@@ -1,6 +1,968 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <h1>Hello World! My GitHub Website is Live.</h1>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luke Jurbergs — Aspiring Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #d0001f;
+      --red-dim: #8a0013;
+      --red-glow: rgba(208, 0, 31, 0.35);
+      --bg: #080808;
+      --surface: #0f0f0f;
+      --surface2: #161616;
+      --border: rgba(255,255,255,0.07);
+      --text: #f0ece6;
+      --text-dim: rgba(240,236,230,0.45);
+      --mono: 'DM Mono', monospace;
+      --display: 'Bebas Neue', sans-serif;
+      --serif: 'Cormorant Garamond', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── Custom Cursor ── */
+    #cursor {
+      position: fixed;
+      width: 10px; height: 10px;
+      background: var(--red);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: width .15s, height .15s, background .15s;
+      mix-blend-mode: normal;
+    }
+    #cursor-ring {
+      position: fixed;
+      width: 34px; height: 34px;
+      border: 1px solid rgba(208,0,31,0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width .3s, height .3s, border-color .3s;
+    }
+    body:has(a:hover) #cursor, body:has(button:hover) #cursor { width: 16px; height: 16px; background: #fff; }
+    body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 50px; height: 50px; border-color: rgba(255,255,255,0.3); }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 48px;
+      transition: background .4s, padding .4s;
+    }
+    nav.scrolled {
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 100%;
+      height: 1px;
+      background: var(--red);
+      transition: right .25s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { right: 0; }
+
+    /* ── Hero ── */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Pixel canvas sits behind everything */
+    #pixel-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      display: block;
+    }
+
+    /* Real image hidden — used as pixel source */
+    #hero-img-src {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .hero-text {
+      position: absolute;
+      bottom: 14vh;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(64px, 10vw, 148px);
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: #fff;
+      text-shadow: 0 0 80px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8);
+    }
+    .hero-sub {
+      font-family: var(--mono);
+      font-size: clamp(12px, 1.5vw, 16px);
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-top: 14px;
+    }
+    .hero-sub span { color: var(--red); }
+
+    /* dark vignette over image */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.65) 100%),
+                  linear-gradient(to top, rgba(8,8,8,1) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hero-text { z-index: 10; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 1;
+      transition: opacity .3s;
+    }
+    .scroll-hint span {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .scroll-line {
+      width: 1px; height: 52px;
+      background: linear-gradient(to bottom, var(--red), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.8); }
+    }
+
+    /* ── Scroll spacer for pixel effect ── */
+    #hero-scroll-spacer { height: 100vh; }
+
+    /* ── Quote Section ── */
+    #quote-section {
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
+      overflow: hidden;
+    }
+    .quote-bg-line {
+      position: absolute;
+      left: 48px; right: 48px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--red-dim), transparent);
+      opacity: 0.4;
+    }
+    .quote-bg-line.top { top: 0; }
+    .quote-bg-line.bottom { bottom: 0; }
+
+    .quote-inner {
+      text-align: center;
+      max-width: 900px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .quote-inner.visible { opacity: 1; transform: translateY(0); }
+
+    .quote-mark {
+      font-family: var(--serif);
+      font-size: 120px;
+      line-height: 0.6;
+      color: var(--red);
+      opacity: 0.6;
+      display: block;
+      margin-bottom: 12px;
+    }
+    blockquote {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4.5vw, 58px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.3;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+    .quote-attr {
+      display: block;
+      margin-top: 28px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* ── Grid intro label ── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+
+    /* ── Portfolio Grid ── */
+    #portfolio {
+      padding: 80px 48px 120px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .portfolio-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s, transform .7s;
+    }
+    .portfolio-header.visible { opacity: 1; transform: translateY(0); }
+    .portfolio-title {
+      font-family: var(--display);
+      font-size: clamp(48px, 7vw, 96px);
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+    .portfolio-title em {
+      color: var(--red);
+      font-style: normal;
+    }
+    .portfolio-desc {
+      max-width: 280px;
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.8;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+      text-align: right;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .port-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      cursor: none;
+      text-decoration: none;
+      display: block;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity .6s ease, transform .6s ease, border-color .3s;
+    }
+    .port-card.visible { opacity: 1; transform: translateY(0); }
+    .port-card:hover { border-color: var(--red); }
+    .port-card:hover .card-arrow { transform: translate(4px, -4px); }
+    .port-card:hover .card-bg-num { opacity: 0.06; }
+
+    /* grid spans */
+    .port-card.wide { grid-column: span 7; }
+    .port-card.medium { grid-column: span 5; }
+    .port-card.third { grid-column: span 4; }
+
+    .card-inner {
+      padding: 40px;
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .card-icon {
+      width: 44px; height: 44px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .card-arrow {
+      font-family: var(--mono);
+      font-size: 18px;
+      color: var(--red);
+      transition: transform .25s ease;
+    }
+    .card-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-top: 40px;
+      display: block;
+    }
+    .card-title {
+      font-family: var(--display);
+      font-size: clamp(32px, 3.5vw, 52px);
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      margin-top: 10px;
+    }
+    .card-desc {
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.9;
+      color: var(--text-dim);
+      margin-top: 16px;
+      max-width: 340px;
+      letter-spacing: 0.03em;
+    }
+    .card-bg-num {
+      position: absolute;
+      bottom: -20px; right: 16px;
+      font-family: var(--display);
+      font-size: 180px;
+      color: #fff;
+      opacity: 0.025;
+      line-height: 1;
+      pointer-events: none;
+      transition: opacity .3s;
+      z-index: 1;
+    }
+    /* subtle red gradient on hover */
+    .port-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 0% 100%, var(--red-glow) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .4s;
+      z-index: 1;
+    }
+    .port-card:hover::before { opacity: 1; }
+
+    /* ── About strip ── */
+    #about-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      max-width: 1400px;
+      margin: 0 auto 80px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s, transform .8s;
+    }
+    #about-strip.visible { opacity: 1; transform: translateY(0); }
+    .about-left {}
+    .about-heading {
+      font-family: var(--display);
+      font-size: clamp(40px, 5vw, 72px);
+      letter-spacing: 0.05em;
+      line-height: 1.05;
+    }
+    .about-heading span { color: var(--red); }
+    .about-body {
+      margin-top: 28px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 2;
+      color: var(--text-dim);
+      letter-spacing: 0.03em;
+    }
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stat-row {
+      display: flex;
+      gap: 48px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-num {
+      font-family: var(--display);
+      font-size: 52px;
+      letter-spacing: 0.03em;
+      color: var(--red);
+      line-height: 1;
+      min-width: 90px;
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      align-self: flex-end;
+      padding-bottom: 6px;
+    }
+
+    /* ── Contact ── */
+    #contact {
+      padding: 80px 48px 120px;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s, transform .8s;
+    }
+    #contact.visible { opacity: 1; transform: translateY(0); }
+    .contact-cta {
+      font-family: var(--display);
+      font-size: clamp(40px, 6vw, 88px);
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+    }
+    .contact-cta span { color: var(--red); }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 240px;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: border-color .25s, background .25s, color .25s;
+    }
+    .contact-link:hover {
+      border-color: var(--red);
+      background: rgba(208,0,31,0.08);
+      color: #fff;
+    }
+    .contact-link .arrow { color: var(--red); transition: transform .2s; }
+    .contact-link:hover .arrow { transform: translateX(4px); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-dim);
+    }
+    .footer-copy span { color: var(--red); }
+    .footer-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-dim);
+    }
+
+    /* ── Sticky hero wrapper (for scroll pin effect) ── */
+    #hero-sticky-wrapper {
+      position: relative;
+      height: 200vh; /* pinned scroll distance */
+    }
+    #hero-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    /* ── Noise grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-size: 180px;
+      pointer-events: none;
+      z-index: 500;
+      opacity: 0.6;
+    }
+
+    /* ── Horizontal rule with label ── */
+    .hr-label {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 48px;
+      max-width: 1400px;
+      margin: 0 auto 60px;
+    }
+    .hr-label span {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+    .hr-label::before, .hr-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { gap: 20px; }
+      #portfolio, #about-strip, #contact { padding-left: 24px; padding-right: 24px; }
+      .port-card.wide, .port-card.medium, .port-card.third { grid-column: span 12; }
+      #about-strip { grid-template-columns: 1fr; gap: 40px; }
+      #contact { flex-direction: column; align-items: flex-start; }
+      .hr-label { padding: 0 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Nav -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">LJ<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="engineering.html">Engineering</a></li>
+      <li><a href="art.html">Art</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero: sticky scroll container ── -->
+  <div id="hero-sticky-wrapper">
+    <div id="hero-sticky">
+      <!-- Hidden source image. Replace src with your actual photo. -->
+      <img id="hero-img-src" src="assets/luke.jpg" alt="Luke Jurbergs" crossorigin="anonymous" />
+      <!-- Canvas renders pixelated version -->
+      <canvas id="pixel-canvas"></canvas>
+
+      <!-- Hero text -->
+      <div class="hero-text" id="hero-text">
+        <div class="hero-name">LUKE JURBERGS</div>
+        <div class="hero-sub">Aspiring <span>Engineer</span></div>
+      </div>
+
+      <!-- vignette handled by #hero::after — replicate on sticky -->
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.65) 100%),linear-gradient(to top,rgba(8,8,8,1) 0%,transparent 40%);pointer-events:none;z-index:2;"></div>
+
+      <!-- Scroll hint -->
+      <div class="scroll-hint" id="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Quote ── -->
+  <section id="quote-section">
+    <div class="quote-bg-line top"></div>
+    <div class="quote-inner" id="quote-inner">
+      <span class="quote-mark">"</span>
+      <blockquote>You haven't failed until you stop trying.</blockquote>
+      <span class="quote-attr">— A principle worth building on</span>
+    </div>
+    <div class="quote-bg-line bottom"></div>
+  </section>
+
+  <!-- ── Portfolio ── -->
+  <section>
+    <div class="hr-label"><span>// Portfolio</span></div>
+    <div id="portfolio">
+      <div class="portfolio-header" id="port-header">
+        <div>
+          <div class="section-label">// My Work</div>
+          <div class="portfolio-title">BUILT &amp;<br><em>CRAFTED</em></div>
+        </div>
+        <p class="portfolio-desc">
+          From precision-machined parts to hand-drawn concepts — a dual body of work in mechanical engineering and visual art.
+        </p>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <!-- Engineering — Wide -->
+        <a href="engineering.html" class="port-card wide" data-delay="0">
+          <div class="card-inner">
+            <div class="card-top">
+              <div class="card-icon">⚙</div>
+              <span class="card-arrow">↗</span>
+            </div>
+            <div>
+              <span class="card-tag">// Engineering Projects</span>
+              <div class="card-title">MECHANICAL<br>ENGINEERING</div>
+              <p class="card-desc">CAD models, fabricated prototypes, physics experiments, and hands-on builds. Where theory meets metal.</p>
+            </div>
+          </div>
+          <div class="card-bg-num">01</div>
+        </a>
+
+        <!-- Art — Medium -->
+        <a href="art.html" class="port-card medium" data-delay="100">
+          <div class="card-inner">
+            <div class="card-top">
+              <div class="card-icon">✦</div>
+              <span class="card-arrow">↗</span>
+            </div>
+            <div>
+              <span class="card-tag">// Art &amp; Design</span>
+              <div class="card-title">VISUAL<br>WORK</div>
+              <p class="card-desc">Illustration, design, and creative work that lives alongside the technical.</p>
+            </div>
+          </div>
+          <div class="card-bg-num">02</div>
+        </a>
+
+        <!-- Skills — Third -->
+        <a href="about.html#skills" class="port-card third" data-delay="0">
+          <div class="card-inner">
+            <div class="card-top">
+              <div class="card-icon">◈</div>
+              <span class="card-arrow">↗</span>
+            </div>
+            <div>
+              <span class="card-tag">// Capabilities</span>
+              <div class="card-title">SKILLS &amp;<br>TOOLS</div>
+              <p class="card-desc">CAD, fabrication, physics, mathematics, and more.</p>
+            </div>
+          </div>
+          <div class="card-bg-num">03</div>
+        </a>
+
+        <!-- Resume — Third -->
+        <a href="resume.pdf" class="port-card third" data-delay="100">
+          <div class="card-inner">
+            <div class="card-top">
+              <div class="card-icon">▣</div>
+              <span class="card-arrow">↗</span>
+            </div>
+            <div>
+              <span class="card-tag">// Download</span>
+              <div class="card-title">RÉSUMÉ &amp;<br>CV</div>
+              <p class="card-desc">Academic record, activities, and engineering coursework.</p>
+            </div>
+          </div>
+          <div class="card-bg-num">04</div>
+        </a>
+
+        <!-- Contact — Third -->
+        <a href="contact.html" class="port-card third" data-delay="200">
+          <div class="card-inner">
+            <div class="card-top">
+              <div class="card-icon">◎</div>
+              <span class="card-arrow">↗</span>
+            </div>
+            <div>
+              <span class="card-tag">// Get in Touch</span>
+              <div class="card-title">CONTACT<br>ME</div>
+              <p class="card-desc">Open to internships, collaborations, and conversations.</p>
+            </div>
+          </div>
+          <div class="card-bg-num">05</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About Strip ── -->
+  <div class="hr-label"><span>// About</span></div>
+  <div id="about-strip">
+    <div class="about-left">
+      <div class="about-heading">DRIVEN BY<br><span>CURIOSITY</span><br>AND CRAFT</div>
+      <p class="about-body">
+        I'm Luke — a high school student with one foot in the machine shop and the other in the sketchbook. 
+        I'm preparing to study Mechanical Engineering, combining analytical problem-solving with a designer's eye for form and function.<br><br>
+        Every project I build teaches me something the classroom can't.
+      </p>
+    </div>
+    <div class="about-right">
+      <div class="stat-row">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years of engineering<br>coursework &amp; projects</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Completed projects<br>across disciplines</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Goal — Mechanical<br>Engineer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Contact CTA ── -->
+  <div class="hr-label"><span>// Contact</span></div>
+  <div id="contact">
+    <div class="contact-cta">LET'S<br><span>CONNECT</span></div>
+    <div class="contact-links">
+      <a href="mailto:luke@example.com" class="contact-link">
+        Email <span class="arrow">→</span>
+      </a>
+      <a href="https://linkedin.com/in/lukejurbergs" target="_blank" class="contact-link">
+        LinkedIn <span class="arrow">→</span>
+      </a>
+      <a href="https://github.com/lukejurbergs" target="_blank" class="contact-link">
+        GitHub <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-copy">© 2025 <span>Luke Jurbergs</span> — All rights reserved</div>
+    <div class="footer-tag">Built with precision &amp; purpose</div>
+  </footer>
+
+  <script>
+    /* ──────────────────────────────────────────
+       Cursor
+    ────────────────────────────────────────── */
+    const cur = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function animCursor() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animCursor);
+    })();
+
+    /* ──────────────────────────────────────────
+       Nav scroll
+    ────────────────────────────────────────── */
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ──────────────────────────────────────────
+       Pixelation hero scroll effect
+    ────────────────────────────────────────── */
+    const canvas = document.getElementById('pixel-canvas');
+    const ctx = canvas.getContext('2d');
+    const imgEl = document.getElementById('hero-img-src');
+    const heroText = document.getElementById('hero-text');
+    const scrollHint = document.getElementById('scroll-hint');
+    const wrapper = document.getElementById('hero-sticky-wrapper');
+
+    let imgReady = false;
+    let offscreen = null;
+
+    function setupOffscreen() {
+      offscreen = document.createElement('canvas');
+      offscreen.width = imgEl.naturalWidth || 1200;
+      offscreen.height = imgEl.naturalHeight || 800;
+      const oc = offscreen.getContext('2d');
+      oc.drawImage(imgEl, 0, 0);
+      imgReady = true;
+    }
+
+    imgEl.addEventListener('load', setupOffscreen);
+    if (imgEl.complete) setupOffscreen();
+
+    // Fallback gradient if no image
+    function drawFallback(pixelSize, alpha) {
+      const w = canvas.width, h = canvas.height;
+      if (pixelSize <= 1) {
+        const grad = ctx.createLinearGradient(0, 0, w, h);
+        grad.addColorStop(0, '#1a0005');
+        grad.addColorStop(0.4, '#0d0d0d');
+        grad.addColorStop(1, '#000');
+        ctx.fillStyle = grad;
+        ctx.globalAlpha = alpha;
+        ctx.fillRect(0, 0, w, h);
+        ctx.globalAlpha = 1;
+        return;
+      }
+      const cols = Math.ceil(w / pixelSize);
+      const rows = Math.ceil(h / pixelSize);
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#3d0010');
+      grad.addColorStop(0.5, '#1a1a2e');
+      grad.addColorStop(1, '#0d0d0d');
+      ctx.globalAlpha = alpha;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const hue = (c / cols) * 20 + (r / rows) * 10;
+          const light = 5 + Math.random() * 8;
+          ctx.fillStyle = `hsl(${350 + hue},${60 + hue}%,${light}%)`;
+          ctx.fillRect(c * pixelSize, r * pixelSize, pixelSize - 1, pixelSize - 1);
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    function drawPixelated(progress) {
+      // progress: 0 = sharp, 1 = fully dissolved
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // pixel size: 1 → 80
+      const maxPx = 80;
+      const pixelSize = Math.max(1, Math.round(progress * maxPx));
+      // alpha: 1 → 0
+      const alpha = Math.max(0, 1 - progress * 1.3);
+
+      if (!imgReady) {
+        drawFallback(pixelSize, alpha);
+        return;
+      }
+
+      // Draw image pixelated via imageSmoothingEnabled trick
+      const tmp = document.createElement('canvas');
+      const tw = Math.max(1, Math.floor(w / pixelSize));
+      const th = Math.max(1, Math.floor(h / pixelSize));
+      tmp.width = tw; tmp.height = th;
+      const tc = tmp.getContext('2d');
+      tc.drawImage(offscreen, 0, 0, tw, th);
+
+      ctx.globalAlpha = alpha;
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(tmp, 0, 0, tw, th, 0, 0, w, h);
+      ctx.imageSmoothingEnabled = true;
+      ctx.globalAlpha = 1;
+    }
+
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function onScroll() {
+      const wrapperTop = wrapper.getBoundingClientRect().top;
+      const totalScroll = wrapper.offsetHeight - window.innerHeight;
+      // How far through the pinned scroll (0–1)
+      const raw = Math.max(0, Math.min(1, -wrapperTop / totalScroll));
+
+      drawPixelated(raw);
+
+      // Fade hero text
+      const textAlpha = Math.max(0, 1 - raw * 2.5);
+      heroText.style.opacity = textAlpha;
+      scrollHint.style.opacity = raw > 0.05 ? 0 : 1;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Initial draw
+    drawPixelated(0);
+
+    /* ──────────────────────────────────────────
+       Scroll-reveal (Intersection Observer)
+    ────────────────────────────────────────── */
+    const reveals = document.querySelectorAll(
+      '#quote-inner, .portfolio-header, .port-card, #about-strip, #contact'
+    );
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => entry.target.classList.add('visible'), +delay);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+  </script>
+</body>
 </html>
