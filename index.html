@@ -25,6 +25,7 @@
       --display:    'Bebas Neue', sans-serif;
       --serif:      'Cormorant Garamond', serif;
       --hand:       'Caveat', cursive;
+      --glow-color: rgba(200,56,10,0.55);
     }
 
     html { scroll-behavior: smooth; }
@@ -38,7 +39,7 @@
     }
     @keyframes pageFade { from{opacity:0} to{opacity:1} }
 
-    /* ── Global graph paper (fixed, shows through everything) ── */
+    /* ── Global graph paper ── */
     body::after {
       content: '';
       position: fixed; inset: 0;
@@ -51,7 +52,6 @@
       pointer-events: none;
       z-index: 0;
     }
-    /* Paper grain */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -114,8 +114,7 @@
     .nav-links a:hover::after { right: 0; }
 
     /* ════════════════════════════════════════
-       HERO — 200vh wrapper: pixels dissolve, then
-       page scrolls in and extruder sweeps simultaneously
+       HERO
     ════════════════════════════════════════ */
     #hero-sticky-wrapper { position: relative; height: 200vh; }
     #hero-sticky {
@@ -138,28 +137,16 @@
       display: block;
     }
 
-    /* Sweep image container */
-    #sweep-wrap {
-      position: absolute; inset: 0;
-      pointer-events: none;
-      z-index: 7;
-      overflow: hidden;
-    }
-    /* Sweep wrap hidden — extruder-car is the live element now */
     #sweep-wrap { display: none; }
     #sweep-img  { display: none; }
 
-    /* ════════════════════════════════════════
-       PRINTED RED LINE — top of .page, tilted
-       Width grows 0→100% as extruder sweeps
-    ════════════════════════════════════════ */
     #printed-line {
       position: absolute;
-      top: 28px;            /* sits above the sec-head padding */
-      left: -80px;          /* extend past left edge */
+      top: 28px;
+      left: -80px;
       right: -80px;
       height: 3px;
-      width: 0%;            /* grows via JS */
+      width: 0%;
       background: #c8380a;
       transform: rotate(-7deg);
       transform-origin: left center;
@@ -167,10 +154,6 @@
       pointer-events: none;
     }
 
-    /* ════════════════════════════════════════
-       EXTRUDER CAR — fixed, follows right edge
-       of the growing printed line in the viewport
-    ════════════════════════════════════════ */
     #extruder-car {
       position: fixed;
       z-index: 400;
@@ -181,7 +164,6 @@
       transform-origin: bottom center;
       opacity: 0;
       transition: opacity 0.15s ease;
-      /* bottom of the car sits ON the line endpoint */
       will-change: left, top;
     }
     #extruder-placeholder {
@@ -236,7 +218,6 @@
       from { opacity:0; transform:translate(-50%, calc(-55%+22px)); }
       to   { opacity:1; transform:translate(-50%, -55%); }
     }
-    /* ─── HERO NAME — split treatment ─── */
     .hero-name {
       position: relative;
       display: inline-block;
@@ -260,7 +241,6 @@
       margin-top: -4px;
       padding-left: 3px;
     }
-    /* Red engineering accent bar between the two name rows */
     .hero-name-bar {
       display: block;
       width: 100%;
@@ -268,7 +248,6 @@
       background: linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%);
       margin: 8px 0 10px;
     }
-    /* Corner crosshair marks on the name block */
     .hero-name::before, .hero-name::after {
       content: '';
       position: absolute;
@@ -312,15 +291,27 @@
     }
     @keyframes hintFade { from{opacity:0} to{opacity:1} }
 
+    /* Scroll hint bounce arrow */
+    .scroll-hint::after {
+      content: '↓';
+      display: block;
+      text-align: center;
+      margin-top: 6px;
+      animation: bounceArrow 1.4s ease-in-out infinite;
+    }
+    @keyframes bounceArrow {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+
     /* ════════════════════════════════════════
-       PAGE (paper)
+       PAGE
     ════════════════════════════════════════ */
     .page {
       position: relative;
       z-index: 10;
       background: var(--bg);
     }
-    /* Red left margin */
     .page::before {
       content: '';
       position: absolute;
@@ -338,7 +329,7 @@
     }
 
     /* ════════════════════════════════════════
-       SECTION HEADERS
+       SECTION HEADERS — buoy rise effect
     ════════════════════════════════════════ */
     .sec-head {
       padding-top: 80px;
@@ -347,12 +338,67 @@
       align-items: flex-end;
       gap: 24px;
       border-bottom: 1.5px solid var(--border);
-      opacity: 0;
-      transition: opacity .55s ease;
       position: relative;
+      /* overflow on just title clip area, not whole header */
     }
-    .sec-head.visible { opacity:1; }
-    /* Left gear — placeholder image box, half off page */
+
+    /* Clip wrapper for the buoy animation */
+    .sec-title-clip {
+      overflow: hidden;
+      display: inline-block;
+      line-height: 1.05;
+    }
+
+    .sec-num {
+      font-family: var(--hand);
+      font-size: 19px;
+      color: var(--red-ink);
+      opacity: 0;
+      padding-bottom: 3px;
+      flex-shrink: 0;
+      transform: translateY(8px);
+      transition: opacity .5s ease .1s, transform .5s ease .1s;
+    }
+    .sec-head.visible .sec-num {
+      opacity: 0.72;
+      transform: translateY(0);
+    }
+
+    /* The big title rises like a buoy from under the border */
+    .sec-title {
+      font-family: var(--display);
+      font-size: clamp(48px, 6vw, 82px); /* LARGER */
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: var(--ink);
+      display: block;
+      transform: translateY(110%);
+      transition: transform 1s cubic-bezier(0.16, 1.6, 0.3, 1);
+    }
+    .sec-head.visible .sec-title {
+      transform: translateY(0);
+    }
+    .sec-title em { color: var(--accent); font-style: normal; }
+
+    .sec-annotation {
+      margin-left: auto;
+      font-family: var(--hand);
+      font-size: 15px;
+      color: var(--blue-ink);
+      opacity: 0;
+      text-align: right;
+      line-height: 1.5;
+      max-width: 200px;
+      padding-bottom: 4px;
+      transform: rotate(-1.2deg) translateX(12px);
+      transition: opacity .5s ease .45s, transform .5s ease .45s;
+    }
+    .sec-head.visible .sec-annotation {
+      opacity: 0.62;
+      transform: rotate(-1.2deg) translateX(0);
+    }
+
+    /* Left gear placeholder */
     .sec-head-img {
       position: absolute;
       left: -90px;
@@ -388,57 +434,13 @@
       padding: 4px;
     }
 
-    /* Card enter animation — slight scale up from 0.97 */
-    .port-card { transform-origin: center bottom; }
-    .port-card.visible { animation: cardPop .4s cubic-bezier(.22,1,.36,1) both; }
-    @keyframes cardPop {
-      from { opacity: 0; transform: scale(0.97); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-
-    /* Staggered card delays */
-    .port-card:nth-child(1) { animation-delay: 0ms; }
-    .port-card:nth-child(2) { animation-delay: 80ms; }
-    .port-card:nth-child(3) { animation-delay: 0ms; }
-    .port-card:nth-child(4) { animation-delay: 80ms; }
-    .port-card:nth-child(5) { animation-delay: 160ms; }
-    .sec-num {
-      font-family: var(--hand);
-      font-size: 19px;
-      color: var(--red-ink);
-      opacity: 0.72;
-      padding-bottom: 3px;
-      flex-shrink: 0;
-    }
-    .sec-title {
-      font-family: var(--display);
-      font-size: clamp(34px, 4.5vw, 58px);
-      letter-spacing: 0.06em;
-      line-height: 1;
-      color: var(--ink);
-    }
-    .sec-title em { color: var(--accent); font-style: normal; }
-    .sec-annotation {
-      margin-left: auto;
-      font-family: var(--hand);
-      font-size: 15px;
-      color: var(--blue-ink);
-      opacity: 0.62;
-      text-align: right;
-      line-height: 1.5;
-      max-width: 200px;
-      padding-bottom: 4px;
-      transform: rotate(-1.2deg);
-    }
-
     /* ════════════════════════════════════════
-       PORTFOLIO — wrapper for grid + caliper behind
+       PORTFOLIO — caliper + cards
     ════════════════════════════════════════ */
     .portfolio-wrap {
       position: relative;
       padding: 44px 0 96px;
     }
-    /* No right padding — caliper goes behind */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -447,29 +449,32 @@
       z-index: 2;
     }
 
-    /* ── Caliper image — BEHIND cards, rising from visual work area up to right of title ── */
+    /* ── Caliper — springs up from bottom ── */
     .caliper-aside {
       position: absolute;
       right: -32px;
-      /* Reach higher — up into the sec-head title area */
       top: -160px;
       height: calc(100% - 60px);
       max-height: 640px;
-      /* Wider */
       width: 240px;
       pointer-events: none;
       z-index: 1;
+      opacity: 0;
+      transform: translateY(80px) rotate(5deg) scale(0.88);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1) .2s,
+                  transform .9s cubic-bezier(0.16, 1.8, 0.3, 1) .2s;
+    }
+    .caliper-aside.visible {
+      opacity: 1;
+      transform: translateY(0) rotate(1.5deg) scale(1);
     }
     .caliper-img {
       width: 100%;
       height: 100%;
-      background: linear-gradient(170deg, #cec9be 0%, #bfb9ae 35%, #b4ae a3 65%, #a8a29a 100%);
       background: linear-gradient(170deg, #cec9be 0%, #bfb9ae 40%, #aaa49c 100%);
       border: 1.5px solid rgba(26,23,20,0.12);
       box-shadow: -4px 4px 20px rgba(26,23,20,0.13), 4px 0 12px rgba(26,23,20,0.06);
       opacity: 0.82;
-      /* slight lean — real photo will be a diagonal caliper */
-      transform: rotate(1.5deg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -477,11 +482,7 @@
       gap: 8px;
       overflow: hidden;
     }
-    .caliper-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .caliper-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .caliper-placeholder-text {
       font-family: var(--mono);
       font-size: 7.5px;
@@ -522,7 +523,11 @@
       display: flex;
       flex-direction: column;
       opacity: 0;
-      transition: opacity .5s ease, box-shadow .28s, border-color .28s;
+      transform: translateY(40px) scale(0.94) rotate(0.4deg);
+      transition: opacity .6s cubic-bezier(.22,1,.36,1),
+                  transform .6s cubic-bezier(.22,1,.36,1),
+                  box-shadow .28s,
+                  border-color .28s;
       background-color: #f9f6ef;
       background-image:
         linear-gradient(rgba(80,105,205,0.16) 1px, transparent 1px),
@@ -532,18 +537,49 @@
       background-size: 60px 60px, 60px 60px, 15px 15px, 15px 15px;
       border: 1.5px solid rgba(26,23,20,0.13);
       box-shadow: 2px 3px 12px rgba(26,23,20,0.09);
+      transform-origin: center bottom;
     }
-    .port-card.visible { opacity:1; }
+    .port-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotate(0deg);
+    }
     .port-card:hover {
-      box-shadow: 5px 9px 28px rgba(26,23,20,0.15);
-      border-color: rgba(26,23,20,0.24);
-      transform: translateY(-3px);
+      box-shadow: 6px 14px 36px rgba(26,23,20,0.18);
+      border-color: rgba(26,23,20,0.28);
+      transform: translateY(-6px) scale(1.01) rotate(0deg) !important;
+      z-index: 5;
     }
+
+    /* Card pop delay based on position */
+    .port-card:nth-child(1) { transition-delay: 0ms; }
+    .port-card:nth-child(2) { transition-delay: 110ms; transform-origin: center bottom; }
+    .port-card:nth-child(3) { transition-delay: 0ms; }
+    .port-card:nth-child(4) { transition-delay: 90ms; }
+    .port-card:nth-child(5) { transition-delay: 180ms; }
+
+    /* Alternate entry directions for variety */
+    .port-card:nth-child(2) { transform: translateY(40px) scale(0.94) rotate(-0.4deg); }
+    .port-card:nth-child(4) { transform: translateY(50px) scale(0.93) rotate(0.6deg); }
+    .port-card:nth-child(5) { transform: translateY(50px) scale(0.93) rotate(-0.5deg); }
+
     .port-card.wide   { grid-column: span 7; }
     .port-card.medium { grid-column: span 5; }
     .port-card.third  { grid-column: span 4; }
 
-    /* Tape strips — each card unique */
+    /* Shimmer effect on card hover */
+    .port-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .port-card:hover::after { opacity: 1; }
+
+    /* Tape strips */
     .card-tape {
       position: absolute;
       top: -5px; left: 50%;
@@ -559,7 +595,7 @@
     .port-card:nth-child(4) .card-tape { transform: translateX(-50%) rotate(2.2deg); left: 62%; width: 58px; }
     .port-card:nth-child(5) .card-tape { transform: translateX(-50%) rotate(-1.1deg); width: 74px; }
 
-    /* Card accent stripe — top-left colored bar, unique per card */
+    /* Card accent stripe */
     .port-card:nth-child(1) .card-accent-bar { background: var(--accent); }
     .port-card:nth-child(2) .card-accent-bar { background: var(--blue-ink); }
     .port-card:nth-child(3) .card-accent-bar { background: #2d6e3a; }
@@ -573,7 +609,7 @@
       opacity: 0.7;
     }
 
-    /* Photo slot — fixed height so all cards align consistently */
+    /* Photo slot */
     .card-photo {
       width: 100%;
       height: 160px;
@@ -597,10 +633,10 @@
       width: 100%; height: 100%;
       object-fit: cover;
       opacity: 0.84;
-      transition: opacity .28s;
+      transition: opacity .28s, transform .4s cubic-bezier(.22,1,.36,1);
       filter: sepia(0.1) contrast(0.97);
     }
-    .port-card:hover .card-photo img { opacity: 0.95; }
+    .port-card:hover .card-photo img { opacity: 0.95; transform: scale(1.04); }
     .card-photo-label {
       font-family: var(--mono);
       font-size: 8px;
@@ -628,16 +664,14 @@
     }
     .card-top { display: flex; justify-content: flex-end; align-items: flex-start; margin-bottom: 8px; }
     .card-arrow { font-size: 14px; color: var(--ink-dim); transition: transform .24s, color .24s; }
-    .port-card:hover .card-arrow { transform: translate(3px,-3px); color: var(--accent); }
+    .port-card:hover .card-arrow { transform: translate(4px,-4px); color: var(--accent); }
     .card-tag { font-family: var(--mono); font-size: 8px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); display: block; }
     .card-title { font-family: var(--display); font-size: clamp(24px, 2.8vw, 44px); letter-spacing: 0.04em; line-height: 1.02; margin-top: 4px; color: var(--ink); }
     .card-desc { font-family: var(--mono); font-size: 10px; line-height: 1.95; color: var(--ink-mid); margin-top: 9px; max-width: 340px; }
 
-    /* Big watermark number — fills the bottom-right of the card text area */
     .card-big-num {
       position: absolute;
-      bottom: -12px;
-      right: -8px;
+      bottom: -12px; right: -8px;
       font-family: var(--display);
       font-size: clamp(100px, 14vw, 160px);
       line-height: 1;
@@ -649,9 +683,8 @@
       transition: opacity .35s;
       user-select: none;
     }
-    .port-card:hover .card-big-num { opacity: 0.24; }
+    .port-card:hover .card-big-num { opacity: 0.28; }
 
-    /* Gear/tool deco — smaller, top-left corner, faint */
     .card-deco {
       position: absolute;
       top: 50%; right: 8px;
@@ -659,14 +692,13 @@
       opacity: 0.04;
       pointer-events: none;
       z-index: 1;
-      transition: opacity .35s;
+      transition: opacity .35s, transform .5s;
       color: var(--ink);
     }
-    .port-card:hover .card-deco { opacity: 0.08; }
+    .port-card:hover .card-deco { opacity: 0.09; transform: translateY(-50%) rotate(15deg); }
 
     /* ════════════════════════════════════════
-       PRINTED LINE — single element between sections
-       Width grows from 0→100% as extruder sweeps
+       PRINTED LINE
     ════════════════════════════════════════ */
     #printed-line {
       position: relative;
@@ -676,11 +708,10 @@
       background: #c8380a;
       margin: 0;
       pointer-events: none;
-      /* no transition — JS drives this directly */
     }
 
     /* ════════════════════════════════════════
-       SIMPLE SECTION DIVIDERS — just a line + text
+       SIMPLE SECTION DIVIDERS
     ════════════════════════════════════════ */
     .simple-divider {
       display: flex;
@@ -695,7 +726,12 @@
       flex: 1;
       height: 1px;
       background: var(--border);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform .7s cubic-bezier(.22,1,.36,1);
     }
+    .simple-divider.visible .simple-divider-line { transform: scaleX(1); }
+    .simple-divider-line:last-child { transform-origin: right center; }
     .simple-divider-label {
       font-family: var(--hand);
       font-size: 15px;
@@ -705,7 +741,7 @@
     }
 
     /* ════════════════════════════════════════
-       GEAR / MECHANICAL DIVIDER (keep for spinning gear CSS)
+       SPINNING GEARS
     ════════════════════════════════════════ */
     .spin-cw  { animation: spinCW  16s linear infinite; transform-origin: center; }
     .spin-ccw { animation: spinCCW 11s linear infinite; transform-origin: center; }
@@ -729,7 +765,6 @@
     .about-body { margin-top: 20px; font-family: var(--mono); font-size: 11.5px; line-height: 2.05; color: var(--ink-mid); }
     .about-body strong { color: var(--ink); font-weight: 400; }
 
-    /* Blueprint-style dimension annotation */
     .dim-annotation {
       margin-top: 20px;
       display: flex;
@@ -767,12 +802,14 @@
       position: relative;
       transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s;
       cursor: default;
+      opacity: 0;
+      transform: rotate(0deg) scale(0.88) translateY(20px) !important;
     }
-    .polaroid:nth-child(1) { transform: rotate(-1.9deg); }
-    .polaroid:nth-child(2) { transform: rotate(1.3deg); }
-    .polaroid:nth-child(3) { transform: rotate(0.7deg); }
-    .polaroid:nth-child(4) { transform: rotate(-1.5deg); }
-    .polaroid:hover { transform: rotate(0deg) scale(1.03) !important; box-shadow: 4px 8px 22px rgba(26,23,20,0.18); z-index: 5; }
+    .polaroid.visible:nth-child(1) { opacity:1; transform: rotate(-1.9deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 0ms; }
+    .polaroid.visible:nth-child(2) { opacity:1; transform: rotate(1.3deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 80ms; }
+    .polaroid.visible:nth-child(3) { opacity:1; transform: rotate(0.7deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 160ms; }
+    .polaroid.visible:nth-child(4) { opacity:1; transform: rotate(-1.5deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 240ms; }
+    .polaroid:hover { transform: rotate(0deg) scale(1.03) translateY(-4px) !important; box-shadow: 4px 8px 22px rgba(26,23,20,0.18); z-index: 5; }
     .polaroid-img {
       width: 100%; aspect-ratio: 1;
       background: #d8d3c8;
@@ -788,18 +825,58 @@
 
     /* About right */
     .about-right { display: flex; flex-direction: column; }
-    .stat-block { border-top: 1.5px solid var(--border); padding: 18px 0; }
+
+    /* ════════════════════════════════════════
+       STAT BLOCKS — glow animation on scroll
+    ════════════════════════════════════════ */
+    .stat-block {
+      border-top: 1.5px solid var(--border);
+      padding: 18px 0;
+    }
     .stat-block:last-of-type { border-bottom: 1.5px solid var(--border); }
     .stat-row-inner { display: flex; align-items: baseline; gap: 6px; }
+
     .stat-num {
       font-family: var(--display);
       font-size: clamp(72px, 10vw, 120px);
       letter-spacing: 0.01em;
       color: var(--accent);
       line-height: 1;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1);
     }
+    .stat-num.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stat-num.glow {
+      animation: statGlow 1.6s ease forwards;
+    }
+    @keyframes statGlow {
+      0%   { text-shadow: none; }
+      25%  { text-shadow: 0 0 22px var(--glow-color), 0 0 48px rgba(200,56,10,0.28), 0 0 80px rgba(200,56,10,0.12); }
+      55%  { text-shadow: 0 0 14px rgba(200,56,10,0.4), 0 0 30px rgba(200,56,10,0.18); }
+      100% { text-shadow: none; }
+    }
+
     .stat-tick { font-family: var(--hand); font-size: 26px; color: var(--red-ink); opacity: 0.5; }
-    .stat-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mid); line-height: 1.85; margin-top: 4px; }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-top: 4px;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity .4s ease .3s, transform .4s ease .3s;
+    }
+    .stat-block.visible .stat-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
     /* ── Sticky note ── */
     .sticky-note {
@@ -809,6 +886,15 @@
       transform: rotate(1.8deg);
       margin: 20px 0;
       position: relative;
+      opacity: 0;
+      transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1), box-shadow .3s;
+    }
+    .sticky-note.visible {
+      opacity: 1;
+    }
+    .sticky-note:hover {
+      transform: rotate(0.4deg) scale(1.02) translateY(-3px);
+      box-shadow: 4px 8px 20px rgba(26,23,20,0.18);
     }
     .sticky-note::before {
       content: '';
@@ -817,25 +903,12 @@
       height: 4px;
       background: rgba(26,23,20,0.06);
     }
-    .sticky-note p {
-      font-family: var(--hand);
-      font-size: 14px;
-      color: rgba(26,23,20,0.75);
-      line-height: 1.65;
-    }
-    .sticky-note ul {
-      margin-top: 8px;
-      padding-left: 18px;
-    }
-    .sticky-note ul li {
-      font-family: var(--hand);
-      font-size: 13px;
-      color: rgba(26,23,20,0.7);
-      line-height: 1.7;
-    }
+    .sticky-note p { font-family: var(--hand); font-size: 14px; color: rgba(26,23,20,0.75); line-height: 1.65; }
+    .sticky-note ul { margin-top: 8px; padding-left: 18px; }
+    .sticky-note ul li { font-family: var(--hand); font-size: 13px; color: rgba(26,23,20,0.7); line-height: 1.7; }
     .sticky-note ul li::marker { color: var(--red-ink); }
 
-    /* ── Notebook clipping image ── */
+    /* ── Notebook image ── */
     .nb-image {
       width: 100%;
       background: #ddd8ce;
@@ -871,7 +944,10 @@
       background: rgba(30,58,110,0.03);
       padding: 14px 16px;
       position: relative;
+      opacity: 0;
+      transition: opacity .5s ease .1s;
     }
+    .blueprint-box.visible { opacity: 1; }
     .blueprint-box::before {
       content: 'NOTE';
       position: absolute;
@@ -884,14 +960,21 @@
       padding: 0 6px;
       opacity: 0.6;
     }
-    .blueprint-box p {
-      font-family: var(--mono);
-      font-size: 10px;
-      line-height: 1.85;
-      color: var(--ink-mid);
-    }
+    .blueprint-box p { font-family: var(--mono); font-size: 10px; line-height: 1.85; color: var(--ink-mid); }
 
-    .skills-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-dim); margin: 26px 0 12px; }
+    /* ── Skills section — BIGGER label + staggered chips ── */
+    .skills-label {
+      font-family: var(--display);
+      font-size: clamp(22px, 2.5vw, 32px); /* MUCH LARGER */
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      margin: 32px 0 14px;
+      opacity: 0;
+      transform: translateX(-16px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .skills-label.visible { opacity: 1; transform: translateX(0); }
+
     .skills-list { display: flex; flex-wrap: wrap; gap: 7px; }
     .skill-chip {
       font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase;
@@ -900,9 +983,20 @@
       border: 1px solid rgba(26,23,20,0.17);
       padding: 5px 11px;
       box-shadow: 1px 1.5px 4px rgba(26,23,20,0.08);
-      transition: background .2s, border-color .2s, box-shadow .2s;
+      transition: background .2s, border-color .2s, box-shadow .2s, transform .2s cubic-bezier(.22,1,.36,1);
+      opacity: 0;
+      transform: translateY(10px) scale(0.92);
     }
-    .skill-chip:hover { background: #fff; border-color: rgba(26,23,20,0.3); box-shadow: 2px 3px 8px rgba(26,23,20,0.12); }
+    .skill-chip.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .skill-chip:hover {
+      background: #fff;
+      border-color: rgba(200,56,10,0.4);
+      box-shadow: 2px 3px 10px rgba(200,56,10,0.15);
+      transform: translateY(-2px) scale(1.04) !important;
+    }
 
     /* Notebook annotation box */
     .about-note-box {
@@ -913,7 +1007,11 @@
       border-left: 3px solid rgba(30,58,110,0.28);
       position: relative;
       overflow: hidden;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .5s ease, transform .5s ease;
     }
+    .about-note-box.visible { opacity: 1; transform: translateY(0); }
     .about-note-box-gear {
       position: absolute; right: -16px; top: -16px;
       width: 80px; height: 80px;
@@ -948,7 +1046,9 @@
       transform: rotate(-0.7deg);
       display: inline-block;
       width: 88%;
+      transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s;
     }
+    .contact-polaroid:hover { transform: rotate(0deg) scale(1.02); box-shadow: 5px 10px 28px rgba(26,23,20,0.16); }
     .contact-polaroid-img {
       width: 100%; aspect-ratio: 4/3;
       background: #d4cfc4;
@@ -982,7 +1082,17 @@
       box-shadow: 1px 2px 8px rgba(26,23,20,0.07);
       overflow: hidden;
       transition: border-color .22s, box-shadow .22s, transform .22s cubic-bezier(.22,1,.36,1);
+      opacity: 0;
+      transform: translateX(24px);
     }
+    .contact-link.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .contact-link:nth-child(1) { transition-delay: 0ms; }
+    .contact-link:nth-child(2) { transition-delay: 80ms; }
+    .contact-link:nth-child(3) { transition-delay: 160ms; }
+    .contact-link:nth-child(4) { transition-delay: 240ms; }
     .contact-link:hover { border-color: rgba(26,23,20,0.26); box-shadow: 2px 5px 18px rgba(26,23,20,0.14); transform: translateX(4px); }
     .contact-link-icon { width: 68px; height: 68px; background: var(--bg); border-right: 1.5px solid rgba(26,23,20,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .22s; }
     .contact-link:hover .contact-link-icon { background: #fff; }
@@ -1008,10 +1118,29 @@
     .footer-tag { font-family: var(--hand); font-size: 14px; color: var(--ink-dim); transform: rotate(-0.5deg); }
 
     /* ════════════════════════════════════════
-       REVEAL
+       GENERAL REVEAL
     ════════════════════════════════════════ */
     .reveal { opacity:0; transition: opacity .55s ease; }
     .reveal.visible { opacity:1; }
+
+    /* ════════════════════════════════════════
+       FLOATING PARTICLES (hero accent)
+    ════════════════════════════════════════ */
+    .hero-particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+      animation: floatParticle var(--dur) ease-in-out infinite;
+      background: var(--accent);
+      opacity: 0;
+    }
+    @keyframes floatParticle {
+      0%   { opacity: 0; transform: translateY(0) scale(1); }
+      15%  { opacity: var(--max-op); }
+      85%  { opacity: var(--max-op); }
+      100% { opacity: 0; transform: translateY(-60px) scale(0.6); }
+    }
 
     /* ════════════════════════════════════════
        RESPONSIVE
@@ -1052,7 +1181,6 @@
 
     <div id="sweep-wrap">
       <div id="sweep-img">
-        <!-- Replace with: <img src="assets/printer-sweep.jpg" alt="3D Printer Extruder"> -->
         <span class="caliper-placeholder-text" style="color:rgba(255,255,255,0.28);font-size:7.5px;letter-spacing:0.2em;padding:12px;text-align:center;line-height:1.7;">3d printer<br>extruder image<br>assets/printer-sweep.jpg</span>
       </div>
     </div>
@@ -1070,9 +1198,8 @@
   </div>
 </div>
 
-<!-- Fixed extruder car — follows the right edge of the growing line in the viewport -->
+<!-- Fixed extruder car -->
 <div id="extruder-car">
-  <!-- Replace inner content with: <img src="assets/extruder-car.jpg" alt="Extruder"> -->
   <div id="extruder-placeholder">
     <span>extruder<br>image<br>here</span>
   </div>
@@ -1080,21 +1207,22 @@
 
 <!-- PAPER SECTIONS -->
 <div class="page">
-  <!-- Printed red line — lives at the very top of the page section, above all content -->
   <div id="printed-line"></div>
   <div class="inner">
 
     <!-- ═══ PORTFOLIO ═══ -->
-    <div class="sec-head reveal">
+    <div class="sec-head" id="sec-portfolio">
       <span class="sec-num">01.</span>
-      <h2 class="sec-title">BUILT &amp; <em>CRAFTED</em></h2>
+      <div class="sec-title-clip">
+        <h2 class="sec-title">BUILT &amp; <em>CRAFTED</em></h2>
+      </div>
       <p class="sec-annotation">engineering + art,<br>two sides of the same mind</p>
     </div>
 
     <div class="portfolio-wrap">
 
-      <!-- Caliper aside — right of grid -->
-      <div class="caliper-aside">
+      <!-- Caliper aside -->
+      <div class="caliper-aside" id="caliper-aside">
         <div class="caliper-tape"></div>
         <div class="caliper-img">
           <!-- Replace with: <img src="assets/calipers.jpg" alt="Calipers"> -->
@@ -1120,7 +1248,6 @@
             <p class="card-desc">CAD models, fabricated prototypes, physics experiments, and hands-on builds. Where theory meets material.</p>
             <div class="card-big-num">01</div>
           </div>
-          <!-- Spur gear — 8 teeth, distinct from all others -->
           <svg class="card-deco" width="110" height="110" viewBox="0 0 110 110" fill="currentColor" style="bottom:-14px;right:-14px">
             <path d="M55 8 L60 2 L65 8 L71 5 L72 12 L79 12 L77 19 L83 22 L78 27 L82 33 L75 35 L75 42 L68 41 L65 48 L58 44 L55 51 L52 44 L45 48 L42 41 L35 42 L35 35 L28 33 L32 27 L27 22 L33 19 L31 12 L38 12 L39 5 L45 8 L50 2 Z M55 28 A17 17 0 1 0 55.001 28 Z"/>
           </svg>
@@ -1141,7 +1268,6 @@
             <p class="card-desc">Illustration, design, and creative work alongside the technical.</p>
             <div class="card-big-num">02</div>
           </div>
-          <!-- Drafting compass — totally different from gear -->
           <svg class="card-deco" width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="bottom:-8px;right:-8px">
             <line x1="50" y1="10" x2="28" y2="85"/>
             <line x1="50" y1="10" x2="72" y2="85"/>
@@ -1168,7 +1294,6 @@
             <p class="card-desc">CAD, fabrication, physics, mathematics, and more.</p>
             <div class="card-big-num">03</div>
           </div>
-          <!-- Adjustable wrench — distinct tool shape -->
           <svg class="card-deco" width="100" height="100" viewBox="0 0 100 100" fill="currentColor" style="bottom:-10px;right:-10px">
             <path d="M72 8 C58 8 48 18 48 32 C48 36 49 40 51 43 L12 82 C8 86 8 92 12 96 C16 100 22 100 26 96 L65 57 C68 59 72 60 76 60 C90 60 100 50 100 36 C100 33 99 30 98 27 L84 41 L74 41 L74 31 L88 17 C85 12 79 8 72 8 Z M20 90 A4 4 0 1 1 20.001 90 Z"/>
           </svg>
@@ -1189,7 +1314,6 @@
             <p class="card-desc">Academic record, activities, and coursework overview.</p>
             <div class="card-big-num">04</div>
           </div>
-          <!-- Protractor — geometric semicircle with degree marks -->
           <svg class="card-deco" width="108" height="108" viewBox="0 0 108 108" fill="none" stroke="currentColor" stroke-linecap="round" style="bottom:-12px;right:-12px">
             <path d="M10 88 A54 54 0 0 1 98 88" stroke-width="4"/>
             <line x1="10" y1="88" x2="98" y2="88" stroke-width="3"/>
@@ -1217,7 +1341,6 @@
             <p class="card-desc">Open to internships, collaborations, and conversations.</p>
             <div class="card-big-num">05</div>
           </div>
-          <!-- Hex bolt head + shank — totally distinct shape -->
           <svg class="card-deco" width="100" height="100" viewBox="0 0 100 100" fill="currentColor" style="bottom:-10px;right:-10px">
             <polygon points="50,4 88,26 88,70 50,92 12,70 12,26"/>
             <polygon points="50,18 76,33 76,63 50,78 24,63 24,33" fill="none" stroke="currentColor" stroke-width="4"/>
@@ -1237,14 +1360,15 @@
     </div>
 
     <!-- ═══ ABOUT ═══ -->
-    <div class="sec-head reveal">
-      <!-- Left image placeholder — replace with a gear/tool photo -->
+    <div class="sec-head" id="sec-about">
       <div class="sec-head-img">
         <!-- <img src="assets/gear-detail.jpg" alt="Gear detail"> -->
         <span class="sec-head-img-label">gear<br>photo<br>here</span>
       </div>
       <span class="sec-num">02.</span>
-      <h2 class="sec-title">DRIVEN BY <em>CURIOSITY</em></h2>
+      <div class="sec-title-clip">
+        <h2 class="sec-title">DRIVEN BY <em>CURIOSITY</em></h2>
+      </div>
       <p class="sec-annotation">background, skills &amp;<br>what keeps me building</p>
     </div>
 
@@ -1257,7 +1381,6 @@
           with a designer's eye for form and function.<br><br>
           Every project I build teaches me something the classroom can't.
         </p>
-        <!-- Blueprint dimension annotation -->
         <div class="dim-annotation">
           <div class="dim-line"></div>
           <span class="dim-text">18 yrs</span>
@@ -1271,7 +1394,7 @@
           <div class="ruled-line"></div>
           <div class="ruled-line"></div>
         </div>
-        <div class="polaroid-grid">
+        <div class="polaroid-grid" id="polaroid-grid">
           <div class="polaroid">
             <div class="polaroid-img">
               <!-- <img src="assets/about-shop.jpg" alt="Shop"> -->
@@ -1302,7 +1425,6 @@
           </div>
         </div>
 
-        <!-- Wide project photo — taped in, slightly tilted -->
         <div style="margin-top:24px;transform:rotate(-0.6deg);position:relative;">
           <div style="position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(1.2deg);width:72px;height:19px;background:rgba(255,240,158,0.72);border:1px solid rgba(200,184,96,0.42);z-index:2;"></div>
           <div class="nb-image" style="aspect-ratio:16/9;">
@@ -1314,21 +1436,26 @@
       </div>
 
       <div class="about-right">
-        <div class="stat-block">
-          <div class="stat-row-inner"><div class="stat-num">4+</div></div>
+        <div class="stat-block" id="stat-1">
+          <div class="stat-row-inner">
+            <div class="stat-num" data-target="4">4+</div>
+          </div>
           <div class="stat-label">Years of engineering<br>coursework &amp; projects</div>
         </div>
-        <div class="stat-block">
-          <div class="stat-row-inner"><div class="stat-num">12+</div></div>
+        <div class="stat-block" id="stat-2">
+          <div class="stat-row-inner">
+            <div class="stat-num" data-target="12">12+</div>
+          </div>
           <div class="stat-label">Completed projects<br>across disciplines</div>
         </div>
-        <div class="stat-block">
-          <div class="stat-row-inner"><div class="stat-num">1</div></div>
+        <div class="stat-block" id="stat-3">
+          <div class="stat-row-inner">
+            <div class="stat-num" data-target="1">1</div>
+          </div>
           <div class="stat-label">Goal — Mechanical<br>Engineer</div>
         </div>
 
-        <!-- Sticky note -->
-        <div class="sticky-note">
+        <div class="sticky-note" id="sticky-note">
           <p>things I want to build next:</p>
           <ul>
             <li>CNC-routed aluminum bracket</li>
@@ -1338,14 +1465,13 @@
           </ul>
         </div>
 
-        <!-- Wide placeholder image — e.g. workshop photo -->
         <div class="nb-image" style="aspect-ratio:16/7;margin-top:16px;">
           <!-- <img src="assets/workshop.jpg" alt="Workshop"> -->
           <span class="nb-image-label">workshop photo<br>assets/workshop.jpg</span>
         </div>
 
-        <div class="skills-label">Tools &amp; Technologies</div>
-        <div class="skills-list">
+        <div class="skills-label" id="skills-label">Tools &amp; Technologies</div>
+        <div class="skills-list" id="skills-list">
           <span class="skill-chip">SolidWorks</span>
           <span class="skill-chip">AutoCAD</span>
           <span class="skill-chip">Fusion 360</span>
@@ -1360,12 +1486,11 @@
           <span class="skill-chip">Prototyping</span>
         </div>
 
-        <!-- Blueprint annotation note -->
-        <div class="blueprint-box">
+        <div class="blueprint-box" id="blueprint-box">
           <p>Every drawing starts on paper. Every model starts in CAD. Every build starts with a mistake — then you fix it and it's better.</p>
         </div>
 
-        <div class="about-note-box" style="margin-top:16px;">
+        <div class="about-note-box" id="about-note-box" style="margin-top:16px;">
           <svg class="about-note-box-gear spinning" viewBox="0 0 100 100" fill="currentColor"><path d="M43.3 5l2.4-5h8.6l2.4 5 5.8 1.5 4.2-3.2 7.1 4.3-.7 5.2 4.4 4.4 5.2-.7 4.3 7.1-3.2 4.2 1.5 5.8 5 2.4v8.6l-5 2.4-1.5 5.8 3.2 4.2-4.3 7.1-5.2-.7-4.4 4.4.7 5.2-7.1 4.3-4.2-3.2-5.8 1.5-2.4 5h-8.6l-2.4-5-5.8-1.5-4.2 3.2-7.1-4.3.7-5.2-4.4-4.4-5.2.7-4.3-7.1 3.2-4.2-1.5-5.8-5-2.4v-8.6l5-2.4 1.5-5.8-3.2-4.2 4.3-7.1 5.2.7 4.4-4.4-.7-5.2 7.1-4.3 4.2 3.2 5.8-1.5zm6.7 20a25 25 0 100 50 25 25 0 000-50z"/></svg>
           <p class="about-note-text">"Every project starts as a sketch — half idea, half wishful thinking. Then you build it anyway."</p>
         </div>
@@ -1380,9 +1505,11 @@
     </div>
 
     <!-- ═══ CONTACT ═══ -->
-    <div class="sec-head reveal">
+    <div class="sec-head" id="sec-contact">
       <span class="sec-num">03.</span>
-      <h2 class="sec-title">LET'S <em>CONNECT</em></h2>
+      <div class="sec-title-clip">
+        <h2 class="sec-title">LET'S <em>CONNECT</em></h2>
+      </div>
       <p class="sec-annotation">open to internships,<br>collabs &amp; conversations</p>
     </div>
 
@@ -1403,7 +1530,7 @@
         </div>
       </div>
       <div class="contact-right">
-        <div class="contact-links">
+        <div class="contact-links" id="contact-links">
           <a href="mailto:luke@example.com" class="contact-link">
             <div class="contact-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></div>
             <div class="contact-link-body"><span class="contact-link-name">Email</span><span class="contact-link-sub">luke@example.com</span></div>
@@ -1447,8 +1574,6 @@ window.addEventListener('scroll', () => {
 
 /* ══════════════════════════════════════════
    PIXEL DISSOLVE HERO
-   Hero wrapper = 200vh → scrollable distance = 100vh
-   p goes 0→1 as you scroll 100vh past the hero
 ══════════════════════════════════════════ */
 const pixCanvas  = document.getElementById('pixel-canvas');
 const pixCtx     = pixCanvas.getContext('2d');
@@ -1472,7 +1597,6 @@ if (imgEl.complete && imgEl.naturalWidth) buildOffscreen();
 
 function renderPixels(p) {
   const w = pixCanvas.width, h = pixCanvas.height;
-  // Pixelate: starts at p=0.1, reaches max blocks at p=0.65, fades to nothing by p=0.85
   const pixPhase  = Math.max(0, (p - 0.10) / 0.55);
   const fadePhase = Math.max(0, (p - 0.65) / 0.25);
   const pixSize   = Math.max(1, Math.round(pixPhase * 88));
@@ -1501,38 +1625,23 @@ function resizePixCanvas() {
 
 /* ══════════════════════════════════════════
    EXTRUDER + PRINTED LINE
-   ─ Triggered by normal page scroll (not hero progress)
-   ─ When .page section enters viewport, the extruder
-     sweeps from LEFT to RIGHT simultaneously with scrolling
-   ─ The red line "prints" behind the extruder nozzle
-   ─ The line lives in the DOM at the top of .page
-   ─ The extruder is position:fixed, follows the line's
-     right endpoint in viewport coordinates
 ══════════════════════════════════════════ */
 const printedLine  = document.getElementById('printed-line');
 const extruderCar  = document.getElementById('extruder-car');
 const pageSection  = document.querySelector('.page');
-const ANGLE_RAD    = -7 * Math.PI / 180;  // -7 degrees in radians
-const EXTRUDER_W   = 110;   // px, matches CSS width
-const EXTRUDER_H   = 520;   // px, matches CSS height
+const ANGLE_RAD    = -7 * Math.PI / 180;
+const EXTRUDER_W   = 110;
+const EXTRUDER_H   = 520;
 
 function updatePrinter() {
   const pageRect = pageSection.getBoundingClientRect();
   const vh = window.innerHeight;
-  const vw = window.innerWidth;
 
-  // t=0: page top enters viewport from below (pageTop = vh)
-  // t=1: page top is 10% from top of viewport (pageTop = 0.1*vh)
-  // As user scrolls, pageTop decreases, t increases
   const t = Math.max(0, Math.min(1,
     (vh - pageRect.top) / (vh * 0.9)
   ));
-
-  // Ease in-out
   const te = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
 
-  // Grow the line width (as % of the full element width: left=-80px to right=-80px = vw+160px)
-  // We just use te*100 as %, the element has left:-80px so at 100% it covers everything
   printedLine.style.width = (te * 100) + '%';
 
   if (t < 0.02 || t > 0.97) {
@@ -1540,189 +1649,25 @@ function updatePrinter() {
     return;
   }
 
-  // Find where the RIGHT END of the printed line is in viewport coordinates.
-  // The line element is position:absolute in .page.
-  // Its left edge in viewport = lineRect.left
-  // Its current rendered width = te * lineEl.offsetWidth (but offsetWidth includes the -80px offsets)
-  // Simpler: use the line element's bounding rect and compute directly.
   const lineRect = printedLine.getBoundingClientRect();
-
-  // Current line width in CSS pixels (the element width grows as %)
-  // = te * (full element width). But since left:-80px and right:-80px, full width ≈ vw+160
-  const lineFullPx = lineRect.width / (te || 0.001); // prevent /0 — not accurate at te≈0
+  const lineFullPx = lineRect.width / (te || 0.001);
   const lineCurrentPx = te * lineFullPx;
 
-  // Right endpoint of the tilted line in viewport space:
-  // Start: (lineRect.left, lineRect.top + lineRect.height/2)
-  // End:   move lineCurrentPx along the angle
   const lineStartX = lineRect.left;
   const lineStartY = lineRect.top + lineRect.height / 2;
   const rightEndX  = lineStartX + lineCurrentPx * Math.cos(ANGLE_RAD);
   const rightEndY  = lineStartY + lineCurrentPx * Math.sin(ANGLE_RAD);
 
-  // Position extruder: its BOTTOM CENTER at (rightEndX, rightEndY)
-  // The car is also rotated -7deg (transform-origin: bottom center)
   const carLeft = rightEndX - EXTRUDER_W / 2;
   const carTop  = rightEndY - EXTRUDER_H;
 
   extruderCar.style.left = carLeft + 'px';
   extruderCar.style.top  = carTop  + 'px';
 
-  // Fade in/out at start and end
   let alpha = 1;
   if (t < 0.06) alpha = t / 0.06;
   else if (t > 0.92) alpha = (1 - t) / 0.08;
   extruderCar.style.opacity = String(Math.min(0.96, alpha));
-}
-
-/* ══════════════════════════════════════════
-   SCROLL HANDLER — both systems update together
-══════════════════════════════════════════ */
-function onScroll() {
-  // Hero pixel progress
-  const top   = heroWrap.getBoundingClientRect().top;
-  const total = heroWrap.offsetHeight - window.innerHeight;
-  const p     = Math.max(0, Math.min(1, -top / total));
-  lastProg = p;
-
-  renderPixels(p);
-
-  // Hero text and hint
-  heroTxt.style.opacity    = String(Math.max(0, 1 - p * 3.5));
-  scrollHint.style.opacity = p > 0.06 ? '0' : '1';
-
-  // Extruder + line — driven by page section's viewport position
-  updatePrinter();
-}
-
-function onResize() {
-  resizePixCanvas();
-  renderPixels(lastProg);
-  updatePrinter();
-}
-
-resizePixCanvas();
-window.addEventListener('resize', onResize);
-window.addEventListener('scroll', onScroll, { passive: true });
-
-/* ══════════════════════════════════════════
-   INTERSECTION OBSERVER
-══════════════════════════════════════════ */
-const revealEls = document.querySelectorAll(
-  '.reveal, .sec-head, .port-card, .about-grid, .contact-grid, .simple-divider'
-);
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const d = +(e.target.dataset.delay || 0);
-    setTimeout(() => e.target.classList.add('visible'), d);
-    io.unobserve(e.target);
-  });
-}, { threshold: 0.07 });
-revealEls.forEach(el => io.observe(el));
-</script>
-</body>
-</html>
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
-
-/* ══════════════════════════════════════════
-   PIXEL DISSOLVE HERO
-══════════════════════════════════════════ */
-const pixCanvas  = document.getElementById('pixel-canvas');
-const pixCtx     = pixCanvas.getContext('2d');
-const imgEl      = document.getElementById('hero-img-src');
-const heroTxt    = document.getElementById('hero-text');
-const scrollHint = document.getElementById('scroll-hint');
-const heroWrap   = document.getElementById('hero-sticky-wrapper');
-
-let imgReady = false, offscreen = null, lastProg = 0;
-
-function buildOffscreen() {
-  offscreen = document.createElement('canvas');
-  offscreen.width  = imgEl.naturalWidth  || 1920;
-  offscreen.height = imgEl.naturalHeight || 1080;
-  offscreen.getContext('2d').drawImage(imgEl, 0, 0);
-  imgReady = true;
-  renderPixels(0);
-}
-imgEl.addEventListener('load', buildOffscreen);
-if (imgEl.complete && imgEl.naturalWidth) buildOffscreen();
-
-function renderPixels(p) {
-  const w = pixCanvas.width, h = pixCanvas.height;
-  // Clear at start, ramp pixelation from p=0.12, big blocks by p=0.58,
-  // then fade out between p=0.60 and p=0.80
-  const pixPhase  = Math.max(0, (p - 0.12) / 0.46);
-  const fadePhase = Math.max(0, (p - 0.60) / 0.20);
-  const pixSize   = Math.max(1, Math.round(pixPhase * 92));
-  const alpha     = Math.max(0, 1 - fadePhase);
-
-  pixCtx.clearRect(0, 0, w, h);
-  if (!imgReady || !offscreen || alpha <= 0) return;
-
-  const tw = Math.max(1, Math.floor(w / pixSize));
-  const th = Math.max(1, Math.floor(h / pixSize));
-  const tmp = document.createElement('canvas');
-  tmp.width = tw; tmp.height = th;
-  tmp.getContext('2d').drawImage(offscreen, 0, 0, tw, th);
-  pixCtx.globalAlpha = alpha;
-  pixCtx.imageSmoothingEnabled = false;
-  pixCtx.drawImage(tmp, 0, 0, tw, th, 0, 0, w, h);
-  pixCtx.imageSmoothingEnabled = true;
-  pixCtx.globalAlpha = 1;
-}
-
-function resizePixCanvas() {
-  pixCanvas.width  = pixCanvas.offsetWidth;
-  pixCanvas.height = pixCanvas.offsetHeight;
-  renderPixels(lastProg);
-}
-
-/* ══════════════════════════════════════════
-   PRINTED RED LINE + EXTRUDER SWEEP
-   ─ Single <div id="printed-line"> between sections
-   ─ Width grows 0%→100% as extruder crosses
-   ─ Extruder visible p=0.83→0.988, sweeps left→right
-   ─ Line "printed" by tracking extruder center X
-══════════════════════════════════════════ */
-const printedLine = document.getElementById('printed-line');
-const sweepImg    = document.getElementById('sweep-img');
-
-function updateSweep(p) {
-  if (p < 0.83) {
-    sweepImg.style.opacity = '0';
-    sweepImg.style.transform = 'rotate(-7deg) translateX(-150%)';
-    // Line stays at whatever width was already set (0 at start)
-    return;
-  }
-  if (p > 0.988) {
-    sweepImg.style.opacity = '0';
-    sweepImg.style.transform = 'rotate(-7deg) translateX(160%)';
-    printedLine.style.width = '100%'; // fully drawn
-    return;
-  }
-
-  // t: 0→1 across [0.83, 0.988]
-  const t  = (p - 0.83) / 0.158;
-  // ease in-out
-  const te = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-
-  // Image opacity — fade in fast, fade out at end
-  let imgAlpha = 1;
-  if (t < 0.05) imgAlpha = t / 0.05;
-  else if (t > 0.90) imgAlpha = (1 - t) / 0.10;
-  sweepImg.style.opacity = String(Math.min(0.95, imgAlpha));
-
-  // Sweep the image: translateX goes from -150% to +160%
-  const tx = -150 + te * 310;
-  sweepImg.style.transform = `rotate(-7deg) translateX(${tx}%)`;
-  sweepImg.style.transition = 'none';
-
-  // The printed line grows in sync with the extruder position.
-  // te goes 0→1, line goes 0%→100% — the line is "drawn" behind the extruder.
-  printedLine.style.width = (te * 100) + '%';
 }
 
 /* ══════════════════════════════════════════
@@ -1733,16 +1678,17 @@ function onScroll() {
   const total = heroWrap.offsetHeight - window.innerHeight;
   const p     = Math.max(0, Math.min(1, -top / total));
   lastProg = p;
+
   renderPixels(p);
-  updateSweep(p);
-  heroTxt.style.opacity    = String(Math.max(0, 1 - p * 3.2));
-  scrollHint.style.opacity = p > 0.04 ? '0' : '1';
+  heroTxt.style.opacity    = String(Math.max(0, 1 - p * 3.5));
+  scrollHint.style.opacity = p > 0.06 ? '0' : '1';
+  updatePrinter();
 }
 
 function onResize() {
   resizePixCanvas();
   renderPixels(lastProg);
-  updateSweep(lastProg);
+  updatePrinter();
 }
 
 resizePixCanvas();
@@ -1750,11 +1696,10 @@ window.addEventListener('resize', onResize);
 window.addEventListener('scroll', onScroll, { passive: true });
 
 /* ══════════════════════════════════════════
-   INTERSECTION OBSERVER
+   INTERSECTION OBSERVERS
 ══════════════════════════════════════════ */
-const revealEls = document.querySelectorAll(
-  '.reveal, .sec-head, .port-card, .about-grid, .contact-grid, .simple-divider'
-);
+
+/* General reveal */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -1763,7 +1708,116 @@ const io = new IntersectionObserver((entries) => {
     io.unobserve(e.target);
   });
 }, { threshold: 0.07 });
-revealEls.forEach(el => io.observe(el));
+
+document.querySelectorAll(
+  '.reveal, .sec-head, .port-card, .about-grid, .contact-grid, .simple-divider, .caliper-aside'
+).forEach(el => io.observe(el));
+
+/* Polaroids — fan in */
+const polaroidIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const grid = e.target;
+    const cards = grid.querySelectorAll('.polaroid');
+    cards.forEach((c, i) => setTimeout(() => c.classList.add('visible'), i * 90));
+    polaroidIO.unobserve(grid);
+  });
+}, { threshold: 0.15 });
+const pg = document.getElementById('polaroid-grid');
+if (pg) polaroidIO.observe(pg);
+
+/* Stat numbers — glow on enter */
+const statIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const block  = e.target;
+    const numEl  = block.querySelector('.stat-num');
+    const lblEl  = block.querySelector('.stat-label');
+    block.classList.add('visible');
+    // Short delay, then make number visible + glow
+    setTimeout(() => {
+      numEl.classList.add('visible');
+      setTimeout(() => {
+        numEl.classList.add('glow');
+        setTimeout(() => numEl.classList.remove('glow'), 1700);
+      }, 420);
+    }, 80);
+    statIO.unobserve(block);
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.stat-block').forEach(el => statIO.observe(el));
+
+/* Skills label */
+const skillsLabelIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    skillsLabelIO.unobserve(e.target);
+  });
+}, { threshold: 0.3 });
+const sl = document.getElementById('skills-label');
+if (sl) skillsLabelIO.observe(sl);
+
+/* Skill chips — wave stagger */
+const chipsIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const chips = e.target.querySelectorAll('.skill-chip');
+    chips.forEach((chip, i) => {
+      setTimeout(() => chip.classList.add('visible'), i * 45);
+    });
+    chipsIO.unobserve(e.target);
+  });
+}, { threshold: 0.2 });
+const sl2 = document.getElementById('skills-list');
+if (sl2) chipsIO.observe(sl2);
+
+/* Sticky note */
+const stickyIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    stickyIO.unobserve(e.target);
+  });
+}, { threshold: 0.2 });
+const sn = document.getElementById('sticky-note');
+if (sn) stickyIO.observe(sn);
+
+/* Blueprint box */
+const bpIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    bpIO.unobserve(e.target);
+  });
+}, { threshold: 0.3 });
+const bp = document.getElementById('blueprint-box');
+if (bp) bpIO.observe(bp);
+
+/* About note box */
+const noteIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    noteIO.unobserve(e.target);
+  });
+}, { threshold: 0.3 });
+const nb = document.getElementById('about-note-box');
+if (nb) noteIO.observe(nb);
+
+/* Contact links — slide in from right, staggered */
+const contactIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const links = e.target.querySelectorAll('.contact-link');
+    links.forEach((link, i) => {
+      setTimeout(() => link.classList.add('visible'), i * 90);
+    });
+    contactIO.unobserve(e.target);
+  });
+}, { threshold: 0.15 });
+const cl = document.getElementById('contact-links');
+if (cl) contactIO.observe(cl);
 </script>
 </body>
 </html>
