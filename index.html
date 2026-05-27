@@ -6,1212 +6,1764 @@
   <title>Luke Jurbergs — Aspiring Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --accent: #d63a08;
-      --accent-dim: rgba(214,58,8,0.12);
-      --accent-glow: rgba(214,58,8,0.2);
-      --bg: #07080a;
-      --surface: #0c0d10;
-      --surface2: #111318;
-      --border: rgba(255,255,255,0.08);
-      --border-accent: rgba(214,58,8,0.4);
-      --text: #e8e4dc;
-      --text-dim: rgba(232,228,220,0.42);
-      --text-mid: rgba(232,228,220,0.68);
-      --offwhite: #f0ece4;
-      --offwhite-dim: rgba(240,236,228,0.07);
-      --mono: 'DM Mono', monospace;
-      --tech: 'Share Tech Mono', monospace;
-      --display: 'Bebas Neue', sans-serif;
-      --serif: 'Cormorant Garamond', serif;
+      --accent:     #c8380a;
+      --bg:         #f4f0e8;
+      --bg-warm:    #ede8de;
+      --ink:        #1a1714;
+      --ink-mid:    rgba(26,23,20,0.55);
+      --ink-dim:    rgba(26,23,20,0.32);
+      --red-ink:    #b83208;
+      --blue-ink:   #1e3a6e;
+      --border:     rgba(26,23,20,0.12);
+      --mono:       'DM Mono', monospace;
+      --display:    'Bebas Neue', sans-serif;
+      --serif:      'Cormorant Garamond', serif;
+      --hand:       'Caveat', cursive;
     }
 
     html { scroll-behavior: smooth; }
+
     body {
       background: var(--bg);
-      color: var(--text);
+      color: var(--ink);
       font-family: var(--mono);
       overflow-x: hidden;
-      animation: pageFade .8s ease both;
+      animation: pageFade .6s ease both;
     }
-    @keyframes pageFade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pageFade { from{opacity:0} to{opacity:1} }
 
-    /* ── NAV ── */
+    /* ── Global graph paper (fixed, shows through everything) ── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(80,110,210,0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,110,210,0.18) 1px, transparent 1px),
+        linear-gradient(rgba(80,110,210,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,110,210,0.07) 1px, transparent 1px);
+      background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Paper grain */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.042'/%3E%3C/svg%3E");
+      background-size: 280px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 300;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 22px 52px;
-      transition: background .5s, padding .4s, border-color .5s;
+      transition: background .4s, border-color .4s, padding .35s;
       border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: rgba(7,8,10,0.94);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 14px 52px;
+      background: rgba(244,240,232,0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 13px 52px;
       border-bottom-color: var(--border);
     }
-
-    /* PCB logo canvas */
     .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0;
+      font-family: var(--display);
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      color: var(--ink);
       text-decoration: none;
-      position: relative;
+      transition: color .2s;
     }
-    #pcb-logo-canvas {
-      display: block;
-      height: 36px;
-    }
-
+    .nav-logo:hover { color: var(--accent); }
     .nav-links { display: flex; gap: 40px; list-style: none; }
     .nav-links a {
-      font-family: var(--tech);
-      font-size: 13px;
+      font-family: var(--mono);
+      font-size: 12px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text-dim);
+      color: var(--ink-mid);
       text-decoration: none;
-      transition: color .22s;
+      transition: color .2s;
       position: relative;
     }
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -3px; left: 0; right: 100%;
+      bottom: -2px; left: 0; right: 100%;
       height: 1px;
       background: var(--accent);
       transition: right .28s cubic-bezier(.4,0,.2,1);
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--ink); }
     .nav-links a:hover::after { right: 0; }
 
-    /* ── HERO ── */
-    #hero-sticky-wrapper { position: relative; height: 220vh; }
+    /* ════════════════════════════════════════
+       HERO — 200vh wrapper: pixels dissolve, then
+       page scrolls in and extruder sweeps simultaneously
+    ════════════════════════════════════════ */
+    #hero-sticky-wrapper { position: relative; height: 200vh; }
     #hero-sticky {
       position: sticky;
-      top: 0;
-      height: 100vh;
-      width: 100%;
+      top: 0; height: 100vh; width: 100%;
       overflow: hidden;
-      background: var(--bg);
+      background: #14120e;
     }
 
     #hero-img-src {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
       visibility: hidden;
       pointer-events: none;
     }
     #pixel-canvas {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       width: 100%; height: 100%;
       display: block;
     }
-    .hero-vignette {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at center, transparent 25%, rgba(0,0,0,0.52) 100%),
-        linear-gradient(to top, rgba(7,8,10,1) 0%, rgba(7,8,10,0.25) 38%, transparent 62%);
+
+    /* Sweep image container */
+    #sweep-wrap {
+      position: absolute; inset: 0;
       pointer-events: none;
-      z-index: 2;
+      z-index: 7;
+      overflow: hidden;
+    }
+    /* Sweep wrap hidden — extruder-car is the live element now */
+    #sweep-wrap { display: none; }
+    #sweep-img  { display: none; }
+
+    /* ════════════════════════════════════════
+       PRINTED RED LINE — top of .page, tilted
+       Width grows 0→100% as extruder sweeps
+    ════════════════════════════════════════ */
+    #printed-line {
+      position: absolute;
+      top: 28px;            /* sits above the sec-head padding */
+      left: -80px;          /* extend past left edge */
+      right: -80px;
+      height: 3px;
+      width: 0%;            /* grows via JS */
+      background: #c8380a;
+      transform: rotate(-7deg);
+      transform-origin: left center;
+      z-index: 30;
+      pointer-events: none;
+    }
+
+    /* ════════════════════════════════════════
+       EXTRUDER CAR — fixed, follows right edge
+       of the growing printed line in the viewport
+    ════════════════════════════════════════ */
+    #extruder-car {
+      position: fixed;
+      z-index: 400;
+      pointer-events: none;
+      width: 110px;
+      height: 520px;
+      transform: rotate(-7deg);
+      transform-origin: bottom center;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      /* bottom of the car sits ON the line endpoint */
+      will-change: left, top;
+    }
+    #extruder-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #c8c3bb 0%, #b8b3ab 40%, #a8a39b 100%);
+      background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 100% 100%, 14px 14px, 14px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(26,23,20,0.2);
+      box-shadow: 3px 0 20px rgba(26,23,20,0.3), -2px 0 8px rgba(26,23,20,0.1);
+    }
+    #extruder-placeholder span {
+      font-family: var(--mono);
+      font-size: 7px;
+      letter-spacing: 0.16em;
+      color: rgba(26,23,20,0.35);
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.7;
+    }
+    #extruder-placeholder img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-vignette {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 120% 60% at 50% 0%, transparent 40%, rgba(0,0,0,0.45) 100%),
+        linear-gradient(to top, #ffffff 0%, #ffffff 15%, transparent 26%);
+      pointer-events: none;
+      z-index: 3;
     }
 
     .hero-text {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -58%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -55%);
       text-align: center;
       z-index: 10;
-      pointer-events: none;
       white-space: nowrap;
-      animation: heroReveal 1.2s cubic-bezier(.22,1,.36,1) .15s both;
+      pointer-events: none;
+      animation: heroReveal 1.1s cubic-bezier(.22,1,.36,1) .1s both;
     }
     @keyframes heroReveal {
-      from { opacity: 0; transform: translate(-50%, calc(-58% + 20px)); }
-      to   { opacity: 1; transform: translate(-50%, -58%); }
+      from { opacity:0; transform:translate(-50%, calc(-55%+22px)); }
+      to   { opacity:1; transform:translate(-50%, -55%); }
     }
+    /* ─── HERO NAME — split treatment ─── */
     .hero-name {
-      font-family: var(--display);
-      font-size: clamp(72px, 11.5vw, 170px);
-      letter-spacing: 0.055em;
-      line-height: 0.93;
-      color: #fff;
-      text-shadow: 0 4px 60px rgba(0,0,0,0.65);
+      position: relative;
+      display: inline-block;
     }
+    .hero-name-top {
+      font-family: var(--display);
+      font-size: clamp(96px, 16vw, 230px);
+      letter-spacing: 0.06em;
+      line-height: 0.88;
+      color: #fff;
+      text-shadow: 0 2px 60px rgba(0,0,0,0.65);
+      display: block;
+    }
+    .hero-name-bottom {
+      font-family: var(--display);
+      font-size: clamp(40px, 6.5vw, 96px);
+      letter-spacing: 0.38em;
+      line-height: 1;
+      color: rgba(255,255,255,0.55);
+      display: block;
+      margin-top: -4px;
+      padding-left: 3px;
+    }
+    /* Red engineering accent bar between the two name rows */
+    .hero-name-bar {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%);
+      margin: 8px 0 10px;
+    }
+    /* Corner crosshair marks on the name block */
+    .hero-name::before, .hero-name::after {
+      content: '';
+      position: absolute;
+      width: 14px; height: 14px;
+      border-color: rgba(255,255,255,0.25);
+      border-style: solid;
+    }
+    .hero-name::before { top: -8px; left: -12px; border-width: 1px 0 0 1px; }
+    .hero-name::after  { bottom: -8px; right: -12px; border-width: 0 1px 1px 0; }
     .hero-sub {
-      font-family: var(--tech);
-      font-size: clamp(10px, 1.1vw, 14px);
-      letter-spacing: 0.44em;
+      font-family: var(--mono);
+      font-size: clamp(10px, 1.1vw, 13px);
+      letter-spacing: 0.42em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.5);
-      margin-top: 18px;
+      margin-top: 16px;
     }
     .hero-quote {
-      margin-top: 30px;
+      margin-top: 26px;
       font-family: var(--serif);
-      font-size: clamp(14px, 1.6vw, 20px);
       font-style: italic;
-      font-weight: 300;
-      color: rgba(255,255,255,0.32);
+      font-size: clamp(14px, 1.5vw, 19px);
+      color: rgba(255,255,255,0.34);
       white-space: normal;
-      max-width: 460px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
+      max-width: 440px;
+      margin-left: auto; margin-right: auto;
+      line-height: 1.65;
     }
     .scroll-hint {
       position: absolute;
-      bottom: 32px;
-      left: 50%;
+      bottom: 52px; left: 50%;
       transform: translateX(-50%);
       z-index: 10;
-      font-family: var(--tech);
-      font-size: 9px;
-      letter-spacing: 0.38em;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.18);
+      color: rgba(26,23,20,0.72);
       transition: opacity .4s;
       animation: hintFade 2s ease 1.8s both;
     }
-    @keyframes hintFade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes hintFade { from{opacity:0} to{opacity:1} }
 
-    /* ── SECTION HEADERS (clean, no gimmicks) ── */
-    .section-header {
-      padding: 88px 52px 0;
-      max-width: 1440px;
-      margin: 0 auto;
+    /* ════════════════════════════════════════
+       PAGE (paper)
+    ════════════════════════════════════════ */
+    .page {
+      position: relative;
+      z-index: 10;
+      background: var(--bg);
     }
-    .section-header-inner {
+    /* Red left margin */
+    .page::before {
+      content: '';
+      position: absolute;
+      left: 88px; top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(184,50,8,0.2);
+      pointer-events: none;
+    }
+
+    .inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 52px 0 112px;
+      position: relative;
+    }
+
+    /* ════════════════════════════════════════
+       SECTION HEADERS
+    ════════════════════════════════════════ */
+    .sec-head {
+      padding-top: 80px;
+      padding-bottom: 44px;
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
+      align-items: flex-end;
       gap: 24px;
-      padding-bottom: 36px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+      opacity: 0;
+      transition: opacity .55s ease;
+      position: relative;
     }
-    .section-title {
-      font-family: var(--display);
-      font-size: clamp(36px, 4.5vw, 56px);
-      letter-spacing: 0.06em;
-      color: var(--text);
+    .sec-head.visible { opacity:1; }
+    /* Left gear — placeholder image box, half off page */
+    .sec-head-img {
+      position: absolute;
+      left: -90px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 160px; height: 160px;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+      background: linear-gradient(135deg, #c8c2b4 0%, #b8b2a4 100%);
+      background-image:
+        linear-gradient(rgba(80,105,205,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,105,205,0.1) 1px, transparent 1px);
+      background-size: 14px 14px;
+      border: 1px solid rgba(26,23,20,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
     }
-    .section-title em {
-      color: var(--accent);
-      font-style: normal;
-    }
-    .section-desc {
+    .sec-head-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .sec-head-img-label {
       font-family: var(--mono);
-      font-size: 10.5px;
-      line-height: 1.85;
-      color: var(--text-dim);
-      letter-spacing: 0.04em;
-      text-align: right;
-      max-width: 200px;
+      font-size: 7px;
+      letter-spacing: 0.18em;
+      color: rgba(26,23,20,0.4);
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      padding: 4px;
     }
 
-    /* ── PORTFOLIO GRID ── */
-    #portfolio-wrap {
-      padding: 36px 52px 100px;
-      max-width: 1440px;
-      margin: 0 auto;
+    /* Card enter animation — slight scale up from 0.97 */
+    .port-card { transform-origin: center bottom; }
+    .port-card.visible { animation: cardPop .4s cubic-bezier(.22,1,.36,1) both; }
+    @keyframes cardPop {
+      from { opacity: 0; transform: scale(0.97); }
+      to   { opacity: 1; transform: scale(1); }
     }
+
+    /* Staggered card delays */
+    .port-card:nth-child(1) { animation-delay: 0ms; }
+    .port-card:nth-child(2) { animation-delay: 80ms; }
+    .port-card:nth-child(3) { animation-delay: 0ms; }
+    .port-card:nth-child(4) { animation-delay: 80ms; }
+    .port-card:nth-child(5) { animation-delay: 160ms; }
+    .sec-num {
+      font-family: var(--hand);
+      font-size: 19px;
+      color: var(--red-ink);
+      opacity: 0.72;
+      padding-bottom: 3px;
+      flex-shrink: 0;
+    }
+    .sec-title {
+      font-family: var(--display);
+      font-size: clamp(34px, 4.5vw, 58px);
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: var(--ink);
+    }
+    .sec-title em { color: var(--accent); font-style: normal; }
+    .sec-annotation {
+      margin-left: auto;
+      font-family: var(--hand);
+      font-size: 15px;
+      color: var(--blue-ink);
+      opacity: 0.62;
+      text-align: right;
+      line-height: 1.5;
+      max-width: 200px;
+      padding-bottom: 4px;
+      transform: rotate(-1.2deg);
+    }
+
+    /* ════════════════════════════════════════
+       PORTFOLIO — wrapper for grid + caliper behind
+    ════════════════════════════════════════ */
+    .portfolio-wrap {
+      position: relative;
+      padding: 44px 0 96px;
+    }
+    /* No right padding — caliper goes behind */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
+      gap: 16px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* Graph paper card */
-    .port-card {
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      display: block;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1), border-color .28s, box-shadow .28s;
-      background-color: #09090c;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
-      background-size: 60px 60px, 60px 60px, 15px 15px, 15px 15px;
-      border: 1px solid var(--border);
-    }
-    .port-card.visible { opacity: 1; transform: translateY(0); }
-    .port-card:hover { border-color: var(--border-accent); box-shadow: 0 0 36px rgba(214,58,8,0.07); }
-    .port-card:hover .card-arrow { transform: translate(3px,-3px); color: var(--accent); }
-    .port-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 0% 100%, rgba(214,58,8,0.09) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity .45s;
+    /* ── Caliper image — BEHIND cards, rising from visual work area up to right of title ── */
+    .caliper-aside {
+      position: absolute;
+      right: -32px;
+      /* Reach higher — up into the sec-head title area */
+      top: -160px;
+      height: calc(100% - 60px);
+      max-height: 640px;
+      /* Wider */
+      width: 240px;
+      pointer-events: none;
       z-index: 1;
     }
-    .port-card:hover::before { opacity: 1; }
-
-    .port-card.wide   { grid-column: span 7; }
-    .port-card.medium { grid-column: span 5; }
-    .port-card.third  { grid-column: span 4; }
-
-    /* Photo slot */
-    .card-photo {
+    .caliper-img {
       width: 100%;
-      aspect-ratio: 16/7;
-      background: #0a0b0e;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 20px 20px;
+      height: 100%;
+      background: linear-gradient(170deg, #cec9be 0%, #bfb9ae 35%, #b4ae a3 65%, #a8a29a 100%);
+      background: linear-gradient(170deg, #cec9be 0%, #bfb9ae 40%, #aaa49c 100%);
+      border: 1.5px solid rgba(26,23,20,0.12);
+      box-shadow: -4px 4px 20px rgba(26,23,20,0.13), 4px 0 12px rgba(26,23,20,0.06);
+      opacity: 0.82;
+      /* slight lean — real photo will be a diagonal caliper */
+      transform: rotate(1.5deg);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       gap: 8px;
-      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .caliper-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .caliper-placeholder-text {
+      font-family: var(--mono);
+      font-size: 7.5px;
+      letter-spacing: 0.18em;
+      color: rgba(26,23,20,0.32);
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.8;
+      padding: 10px;
+    }
+    .caliper-tape {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2.5deg);
+      width: 58px; height: 19px;
+      background: rgba(255,238,140,0.7);
+      border: 1px solid rgba(200,185,100,0.42);
+      z-index: 3;
+    }
+    .caliper-label {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--hand);
+      font-size: 12px;
+      color: var(--blue-ink);
+      opacity: 0.55;
+      white-space: nowrap;
+    }
+
+    /* ── GRAPH PAPER CARD ── */
+    .port-card {
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity .5s ease, box-shadow .28s, border-color .28s;
+      background-color: #f9f6ef;
+      background-image:
+        linear-gradient(rgba(80,105,205,0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,105,205,0.16) 1px, transparent 1px),
+        linear-gradient(rgba(80,105,205,0.062) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,105,205,0.062) 1px, transparent 1px);
+      background-size: 60px 60px, 60px 60px, 15px 15px, 15px 15px;
+      border: 1.5px solid rgba(26,23,20,0.13);
+      box-shadow: 2px 3px 12px rgba(26,23,20,0.09);
+    }
+    .port-card.visible { opacity:1; }
+    .port-card:hover {
+      box-shadow: 5px 9px 28px rgba(26,23,20,0.15);
+      border-color: rgba(26,23,20,0.24);
+      transform: translateY(-3px);
+    }
+    .port-card.wide   { grid-column: span 7; }
+    .port-card.medium { grid-column: span 5; }
+    .port-card.third  { grid-column: span 4; }
+
+    /* Tape strips — each card unique */
+    .card-tape {
+      position: absolute;
+      top: -5px; left: 50%;
+      transform: translateX(-50%) rotate(-1.6deg);
+      width: 82px; height: 22px;
+      background: rgba(255,240,158,0.72);
+      border: 1px solid rgba(200,184,96,0.42);
+      z-index: 5;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.07);
+    }
+    .port-card:nth-child(2) .card-tape { transform: translateX(-50%) rotate(1.4deg); width: 68px; left: 55%; }
+    .port-card:nth-child(3) .card-tape { transform: translateX(-50%) rotate(-0.9deg); left: 38%; width: 76px; }
+    .port-card:nth-child(4) .card-tape { transform: translateX(-50%) rotate(2.2deg); left: 62%; width: 58px; }
+    .port-card:nth-child(5) .card-tape { transform: translateX(-50%) rotate(-1.1deg); width: 74px; }
+
+    /* Card accent stripe — top-left colored bar, unique per card */
+    .port-card:nth-child(1) .card-accent-bar { background: var(--accent); }
+    .port-card:nth-child(2) .card-accent-bar { background: var(--blue-ink); }
+    .port-card:nth-child(3) .card-accent-bar { background: #2d6e3a; }
+    .port-card:nth-child(4) .card-accent-bar { background: #6b4c22; }
+    .port-card:nth-child(5) .card-accent-bar { background: #5a2a7a; }
+    .card-accent-bar {
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      z-index: 3;
+      opacity: 0.7;
+    }
+
+    /* Photo slot — fixed height so all cards align consistently */
+    .card-photo {
+      width: 100%;
+      height: 160px;
+      flex-shrink: 0;
+      background: #e4dfd5;
+      background-image:
+        linear-gradient(rgba(80,105,205,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,105,205,0.08) 1px, transparent 1px);
+      background-size: 18px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 7px;
+      border-bottom: 1.5px solid rgba(26,23,20,0.1);
       position: relative;
       overflow: hidden;
     }
     .card-photo img {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      opacity: 0.72;
-      transition: opacity .3s;
+      opacity: 0.84;
+      transition: opacity .28s;
+      filter: sepia(0.1) contrast(0.97);
     }
-    .port-card:hover .card-photo img { opacity: 0.88; }
+    .port-card:hover .card-photo img { opacity: 0.95; }
     .card-photo-label {
-      font-family: var(--tech);
-      font-size: 9px;
-      letter-spacing: 0.28em;
-      color: rgba(255,255,255,0.16);
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.22em;
+      color: rgba(26,23,20,0.27);
       text-transform: uppercase;
       z-index: 1;
     }
     .card-photo-icon {
-      width: 30px; height: 30px;
-      border: 1px solid rgba(255,255,255,0.1);
+      width: 28px; height: 28px;
+      border: 1px solid rgba(26,23,20,0.14);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       z-index: 1;
     }
-    .card-photo-icon svg { width: 12px; height: 12px; opacity: 0.22; }
+    .card-photo-icon svg { width: 12px; height: 12px; opacity: 0.28; }
 
     .card-inner {
-      padding: 26px 30px 30px;
+      padding: 20px 24px 24px 28px;
       position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
+      flex: 1;
     }
-    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
-    .card-num {
-      font-family: var(--tech);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--text-dim);
-    }
-    .card-arrow {
-      font-size: 15px;
-      color: var(--text-dim);
-      transition: transform .26s cubic-bezier(.22,1,.36,1), color .26s;
-    }
-    .card-tag {
-      font-family: var(--tech);
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
-    }
-    .card-title {
-      font-family: var(--display);
-      font-size: clamp(26px, 3vw, 46px);
-      letter-spacing: 0.04em;
-      line-height: 1.02;
-      margin-top: 6px;
-      color: var(--text);
-    }
-    .card-desc {
-      font-family: var(--mono);
-      font-size: 10.5px;
-      line-height: 1.9;
-      color: var(--text-dim);
-      margin-top: 10px;
-      max-width: 340px;
-      letter-spacing: 0.02em;
-    }
-    /* Gear watermark */
-    .card-gear {
+    .card-top { display: flex; justify-content: flex-end; align-items: flex-start; margin-bottom: 8px; }
+    .card-arrow { font-size: 14px; color: var(--ink-dim); transition: transform .24s, color .24s; }
+    .port-card:hover .card-arrow { transform: translate(3px,-3px); color: var(--accent); }
+    .card-tag { font-family: var(--mono); font-size: 8px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); display: block; }
+    .card-title { font-family: var(--display); font-size: clamp(24px, 2.8vw, 44px); letter-spacing: 0.04em; line-height: 1.02; margin-top: 4px; color: var(--ink); }
+    .card-desc { font-family: var(--mono); font-size: 10px; line-height: 1.95; color: var(--ink-mid); margin-top: 9px; max-width: 340px; }
+
+    /* Big watermark number — fills the bottom-right of the card text area */
+    .card-big-num {
       position: absolute;
-      bottom: -18px; right: -18px;
-      width: 110px; height: 110px;
-      opacity: 0.032;
+      bottom: -12px;
+      right: -8px;
+      font-family: var(--display);
+      font-size: clamp(100px, 14vw, 160px);
+      line-height: 1;
+      color: var(--red-ink);
+      opacity: 0.16;
       pointer-events: none;
       z-index: 1;
-      transition: opacity .38s;
+      letter-spacing: -0.04em;
+      transition: opacity .35s;
+      user-select: none;
     }
-    .port-card:hover .card-gear { opacity: 0.058; }
+    .port-card:hover .card-big-num { opacity: 0.24; }
 
-    /* ── ABOUT ── */
-    #about-wrap {
-      padding: 36px 52px 90px;
-      max-width: 1440px;
-      margin: 0 auto;
+    /* Gear/tool deco — smaller, top-left corner, faint */
+    .card-deco {
+      position: absolute;
+      top: 50%; right: 8px;
+      transform: translateY(-50%);
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity .35s;
+      color: var(--ink);
     }
-    #about-strip {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
-    }
-    #about-strip.visible { opacity: 1; transform: translateY(0); }
+    .port-card:hover .card-deco { opacity: 0.08; }
 
-    .about-heading {
-      font-family: var(--display);
-      font-size: clamp(40px, 5vw, 70px);
-      letter-spacing: 0.05em;
-      line-height: 1.04;
+    /* ════════════════════════════════════════
+       PRINTED LINE — single element between sections
+       Width grows from 0→100% as extruder sweeps
+    ════════════════════════════════════════ */
+    #printed-line {
+      position: relative;
+      z-index: 50;
+      height: 3px;
+      width: 0%;
+      background: #c8380a;
+      margin: 0;
+      pointer-events: none;
+      /* no transition — JS drives this directly */
     }
-    .about-heading em { color: var(--accent); font-style: normal; }
-    .about-body {
-      margin-top: 22px;
-      font-family: var(--mono);
-      font-size: 11.5px;
-      line-height: 2.1;
-      color: var(--text-dim);
-      letter-spacing: 0.025em;
-    }
-    .about-body strong { color: var(--text-mid); font-weight: 400; }
 
-    /* Photo grid — larger with off-white boxes */
-    .about-photos {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 32px;
-    }
-    .about-photo {
-      background: rgba(240,236,228,0.05);
-      border: 1px solid rgba(240,236,228,0.14);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transition: border-color .25s;
-    }
-    .about-photo:hover { border-color: rgba(240,236,228,0.28); }
-    .about-photo-img-wrap {
-      aspect-ratio: 4/3;
-      background: #0d0e11;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 15px 15px;
+    /* ════════════════════════════════════════
+       SIMPLE SECTION DIVIDERS — just a line + text
+    ════════════════════════════════════════ */
+    .simple-divider {
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
+      gap: 20px;
+      padding: 36px 0;
+      opacity: 0;
+      transition: opacity .5s ease;
     }
-    .about-photo-img-wrap img {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: 0.78;
-      transition: opacity .28s;
+    .simple-divider.visible { opacity: 1; }
+    .simple-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
     }
-    .about-photo:hover .about-photo-img-wrap img { opacity: 0.92; }
-    .about-photo-placeholder {
-      font-family: var(--tech);
-      font-size: 8px;
-      letter-spacing: 0.25em;
-      color: rgba(255,255,255,0.14);
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-    }
-    .about-photo-label {
-      padding: 8px 12px;
-      font-family: var(--tech);
-      font-size: 8.5px;
-      letter-spacing: 0.18em;
-      color: rgba(240,236,228,0.45);
-      background: rgba(240,236,228,0.03);
-      border-top: 1px solid rgba(240,236,228,0.1);
-      flex-shrink: 0;
-    }
-    .about-photo-label em {
-      color: rgba(214,58,8,0.75);
-      font-style: normal;
+    .simple-divider-label {
+      font-family: var(--hand);
+      font-size: 15px;
+      color: var(--ink-dim);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
     }
 
-    .about-right { display: flex; flex-direction: column; justify-content: center; }
-    .stat-row {
-      display: flex;
-      gap: 24px;
-      align-items: flex-end;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--border);
+    /* ════════════════════════════════════════
+       GEAR / MECHANICAL DIVIDER (keep for spinning gear CSS)
+    ════════════════════════════════════════ */
+    .spin-cw  { animation: spinCW  16s linear infinite; transform-origin: center; }
+    .spin-ccw { animation: spinCCW 11s linear infinite; transform-origin: center; }
+    @keyframes spinCW  { to { transform: rotate(360deg);  } }
+    @keyframes spinCCW { to { transform: rotate(-360deg); } }
+
+    /* ════════════════════════════════════════
+       ABOUT
+    ════════════════════════════════════════ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      padding: 48px 0 96px;
+      opacity: 0;
+      transition: opacity .6s ease;
     }
-    .stat-row:first-child { border-top: 1px solid var(--border); }
+    .about-grid.visible { opacity:1; }
+    .about-heading { font-family: var(--display); font-size: clamp(38px, 5vw, 66px); letter-spacing: 0.05em; line-height: 1.04; }
+    .about-heading em { color: var(--accent); font-style: normal; }
+    .about-body { margin-top: 20px; font-family: var(--mono); font-size: 11.5px; line-height: 2.05; color: var(--ink-mid); }
+    .about-body strong { color: var(--ink); font-weight: 400; }
+
+    /* Blueprint-style dimension annotation */
+    .dim-annotation {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0.45;
+    }
+    .dim-line {
+      flex: 1;
+      height: 1px;
+      background: var(--blue-ink);
+      position: relative;
+    }
+    .dim-line::before, .dim-line::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      width: 1px; height: 7px;
+      background: var(--blue-ink);
+    }
+    .dim-line::before { left: 0; }
+    .dim-line::after  { right: 0; }
+    .dim-text { font-family: var(--hand); font-size: 12px; color: var(--blue-ink); white-space: nowrap; }
+
+    .ruled-lines { margin-top: 18px; display: flex; flex-direction: column; gap: 18px; }
+    .ruled-line { height: 1px; background: rgba(80,105,205,0.18); }
+
+    /* Polaroids */
+    .polaroid-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
+    .polaroid {
+      background: #faf7f0;
+      padding: 7px 7px 30px;
+      border: 1px solid rgba(26,23,20,0.1);
+      box-shadow: 2px 3px 10px rgba(26,23,20,0.1);
+      position: relative;
+      transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s;
+      cursor: default;
+    }
+    .polaroid:nth-child(1) { transform: rotate(-1.9deg); }
+    .polaroid:nth-child(2) { transform: rotate(1.3deg); }
+    .polaroid:nth-child(3) { transform: rotate(0.7deg); }
+    .polaroid:nth-child(4) { transform: rotate(-1.5deg); }
+    .polaroid:hover { transform: rotate(0deg) scale(1.03) !important; box-shadow: 4px 8px 22px rgba(26,23,20,0.18); z-index: 5; }
+    .polaroid-img {
+      width: 100%; aspect-ratio: 1;
+      background: #d8d3c8;
+      background-image: linear-gradient(rgba(80,105,205,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(80,105,205,0.07) 1px, transparent 1px);
+      background-size: 14px 14px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .polaroid-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: sepia(0.12) contrast(0.95); }
+    .polaroid-placeholder { font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.2em; color: rgba(26,23,20,0.24); text-transform: uppercase; text-align: center; line-height: 1.7; position: relative; z-index:1; }
+    .polaroid-label { padding-top: 5px; font-family: var(--hand); font-size: 13px; color: var(--ink-mid); text-align: center; }
+    .polaroid-label em { color: var(--red-ink); font-style: normal; font-size: 10px; }
+
+    /* About right */
+    .about-right { display: flex; flex-direction: column; }
+    .stat-block { border-top: 1.5px solid var(--border); padding: 18px 0; }
+    .stat-block:last-of-type { border-bottom: 1.5px solid var(--border); }
+    .stat-row-inner { display: flex; align-items: baseline; gap: 6px; }
     .stat-num {
       font-family: var(--display);
-      font-size: 58px;
-      letter-spacing: 0.02em;
+      font-size: clamp(72px, 10vw, 120px);
+      letter-spacing: 0.01em;
       color: var(--accent);
       line-height: 1;
-      min-width: 90px;
     }
-    .stat-label {
-      font-family: var(--tech);
-      font-size: 9.5px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      line-height: 1.85;
-      padding-bottom: 4px;
-    }
+    .stat-tick { font-family: var(--hand); font-size: 26px; color: var(--red-ink); opacity: 0.5; }
+    .stat-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mid); line-height: 1.85; margin-top: 4px; }
 
-    /* Skills — off-white box chips */
-    .skills-strip {
-      margin-top: 36px;
+    /* ── Sticky note ── */
+    .sticky-note {
+      background: #fef08a;
+      padding: 16px 18px;
+      box-shadow: 2px 3px 10px rgba(26,23,20,0.13);
+      transform: rotate(1.8deg);
+      margin: 20px 0;
+      position: relative;
     }
-    .skills-strip-label {
-      font-family: var(--tech);
-      font-size: 9px;
-      letter-spacing: 0.35em;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      margin-bottom: 14px;
+    .sticky-note::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: rgba(26,23,20,0.06);
     }
-    .skills-list {
+    .sticky-note p {
+      font-family: var(--hand);
+      font-size: 14px;
+      color: rgba(26,23,20,0.75);
+      line-height: 1.65;
+    }
+    .sticky-note ul {
+      margin-top: 8px;
+      padding-left: 18px;
+    }
+    .sticky-note ul li {
+      font-family: var(--hand);
+      font-size: 13px;
+      color: rgba(26,23,20,0.7);
+      line-height: 1.7;
+    }
+    .sticky-note ul li::marker { color: var(--red-ink); }
+
+    /* ── Notebook clipping image ── */
+    .nb-image {
+      width: 100%;
+      background: #ddd8ce;
+      background-image:
+        linear-gradient(rgba(80,105,205,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,105,205,0.07) 1px, transparent 1px);
+      background-size: 14px 14px;
+      border: 1px solid rgba(26,23,20,0.13);
       display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
     }
-    .skill-chip {
-      font-family: var(--tech);
-      font-size: 9px;
-      letter-spacing: 0.16em;
+    .nb-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .nb-image-label {
+      font-family: var(--mono);
+      font-size: 7.5px;
+      letter-spacing: 0.2em;
+      color: rgba(26,23,20,0.28);
       text-transform: uppercase;
-      color: rgba(240,236,228,0.7);
-      background: rgba(240,236,228,0.06);
-      border: 1px solid rgba(240,236,228,0.16);
-      padding: 5px 11px;
-      transition: background .2s, border-color .2s, color .2s;
-    }
-    .skill-chip:hover {
-      background: rgba(240,236,228,0.11);
-      border-color: rgba(240,236,228,0.3);
-      color: var(--offwhite);
+      position: relative; z-index: 1;
+      text-align: center;
+      line-height: 1.6;
     }
 
-    /* ── CONTACT ── */
-    #contact-wrap {
-      padding: 36px 52px 120px;
-      max-width: 1440px;
-      margin: 0 auto;
+    /* ── Blueprint annotation box ── */
+    .blueprint-box {
+      margin-top: 22px;
+      border: 1px solid rgba(30,58,110,0.22);
+      background: rgba(30,58,110,0.03);
+      padding: 14px 16px;
+      position: relative;
     }
-    #contact {
+    .blueprint-box::before {
+      content: 'NOTE';
+      position: absolute;
+      top: -7px; left: 12px;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.22em;
+      color: var(--blue-ink);
+      background: var(--bg);
+      padding: 0 6px;
+      opacity: 0.6;
+    }
+    .blueprint-box p {
+      font-family: var(--mono);
+      font-size: 10px;
+      line-height: 1.85;
+      color: var(--ink-mid);
+    }
+
+    .skills-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-dim); margin: 26px 0 12px; }
+    .skills-list { display: flex; flex-wrap: wrap; gap: 7px; }
+    .skill-chip {
+      font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink);
+      background: rgba(244,240,232,0.95);
+      border: 1px solid rgba(26,23,20,0.17);
+      padding: 5px 11px;
+      box-shadow: 1px 1.5px 4px rgba(26,23,20,0.08);
+      transition: background .2s, border-color .2s, box-shadow .2s;
+    }
+    .skill-chip:hover { background: #fff; border-color: rgba(26,23,20,0.3); box-shadow: 2px 3px 8px rgba(26,23,20,0.12); }
+
+    /* Notebook annotation box */
+    .about-note-box {
+      margin-top: 28px;
+      padding: 20px 22px;
+      background: rgba(240,236,228,0.75);
+      border: 1px solid var(--border);
+      border-left: 3px solid rgba(30,58,110,0.28);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-note-box-gear {
+      position: absolute; right: -16px; top: -16px;
+      width: 80px; height: 80px;
+      opacity: 0.07; color: var(--ink);
+    }
+    .about-note-box-gear.spinning { animation: spinCW 24s linear infinite; }
+    .about-note-text { font-family: var(--hand); font-size: 15px; color: var(--blue-ink); line-height: 1.65; opacity: 0.78; position: relative; z-index: 1; }
+
+    /* ════════════════════════════════════════
+       CONTACT
+    ════════════════════════════════════════ */
+    .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: start;
+      gap: 80px;
+      padding: 48px 0 120px;
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+      transition: opacity .6s ease;
     }
-    #contact.visible { opacity: 1; transform: translateY(0); }
+    .contact-grid.visible { opacity:1; }
 
-    .contact-cta {
-      font-family: var(--display);
-      font-size: clamp(50px, 6.5vw, 94px);
-      letter-spacing: 0.04em;
-      line-height: 1.02;
-    }
+    .contact-cta { font-family: var(--display); font-size: clamp(50px, 6.5vw, 88px); letter-spacing: 0.04em; line-height: 1.02; }
     .contact-cta em { color: var(--accent); font-style: normal; }
-    .contact-note {
-      margin-top: 20px;
-      font-family: var(--mono);
-      font-size: 11px;
-      line-height: 2;
-      color: var(--text-dim);
-      letter-spacing: 0.03em;
-      max-width: 340px;
-    }
-    .contact-photo {
-      margin-top: 28px;
-      aspect-ratio: 16/7;
-      background: #0d0e11;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 15px 15px;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .contact-photo img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: 0.65;
-    }
-    .contact-photo-label {
-      font-family: var(--tech);
-      font-size: 9px;
-      letter-spacing: 0.28em;
-      color: rgba(255,255,255,0.16);
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-    }
+    .contact-note { margin-top: 16px; font-family: var(--mono); font-size: 11px; line-height: 2; color: var(--ink-mid); max-width: 340px; }
 
-    .contact-right { padding-top: 8px; }
-    .contact-links { display: flex; flex-direction: column; gap: 10px; }
-
-    /* Large contact cards with off-white icon box */
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      background-color: #09090c;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 15px 15px;
-      overflow: hidden;
-      transition: border-color .25s, box-shadow .25s, transform .25s cubic-bezier(.22,1,.36,1);
+    .contact-polaroid {
+      margin-top: 26px;
+      background: #faf7f0;
+      padding: 7px 7px 42px;
+      border: 1px solid rgba(26,23,20,0.1);
+      box-shadow: 3px 4px 14px rgba(26,23,20,0.1);
+      transform: rotate(-0.7deg);
+      display: inline-block;
+      width: 88%;
     }
-    .contact-link:hover {
-      border-color: var(--border-accent);
-      box-shadow: 0 0 24px rgba(214,58,8,0.07);
-      transform: translateX(3px);
+    .contact-polaroid-img {
+      width: 100%; aspect-ratio: 4/3;
+      background: #d4cfc4;
+      background-image: linear-gradient(rgba(80,105,205,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(80,105,205,0.07) 1px, transparent 1px);
+      background-size: 14px 14px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
     }
-
-    /* Off-white icon box — left side */
-    .contact-link-icon {
-      width: 72px;
-      height: 72px;
-      background: var(--offwhite);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background .25s;
-    }
-    .contact-link:hover .contact-link-icon { background: #e8e2d8; }
-    .contact-link-icon svg {
-      width: 22px; height: 22px;
-    }
-
-    .contact-link-body {
-      flex: 1;
-      padding: 18px 20px;
-    }
-    .contact-link-name {
-      font-family: var(--tech);
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text);
-      display: block;
-    }
-    .contact-link-sub {
-      font-family: var(--mono);
-      font-size: 9.5px;
-      color: var(--text-dim);
-      letter-spacing: 0.05em;
-      display: block;
-      margin-top: 3px;
-    }
-    .contact-link-arrow {
-      padding: 0 22px;
-      color: var(--accent);
-      font-size: 16px;
-      transition: transform .25s;
-    }
-    .contact-link:hover .contact-link-arrow { transform: translateX(3px); }
+    .contact-polaroid-img img { position: absolute; inset: 0; width:100%; height:100%; object-fit: cover; filter: sepia(0.1) contrast(0.96); }
+    .contact-polaroid-label { padding-top: 7px; font-family: var(--hand); font-size: 15px; color: var(--ink-mid); text-align: center; }
+    .contact-polaroid-placeholder { font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.2em; color: rgba(26,23,20,0.24); text-transform: uppercase; position: relative; z-index:1; }
 
     .contact-annotation {
-      margin-top: 28px;
-      padding: 18px 20px;
-      border-left: 2px solid rgba(214,58,8,0.3);
-      background: rgba(214,58,8,0.03);
+      margin-top: 22px;
+      padding: 15px 17px;
+      border-left: 2.5px solid rgba(184,50,8,0.28);
+      background: rgba(240,236,228,0.6);
     }
-    .contact-annotation p {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 13px;
-      color: var(--text-dim);
-      line-height: 1.75;
-    }
-    .contact-annotation span {
-      display: block;
-      font-family: var(--tech);
-      font-size: 8.5px;
-      letter-spacing: 0.25em;
-      color: var(--accent);
-      margin-top: 10px;
-    }
+    .contact-annotation p { font-family: var(--hand); font-size: 15px; color: var(--ink-mid); line-height: 1.7; }
+    .contact-annotation span { display: block; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.2em; color: var(--accent); margin-top: 9px; text-transform: uppercase; }
 
-    /* ── FOOTER ── */
+    .contact-right { padding-top: 6px; }
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0;
+      text-decoration: none;
+      border: 1.5px solid rgba(26,23,20,0.12);
+      background: #faf7f0;
+      background-image: linear-gradient(rgba(80,105,205,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(80,105,205,0.07) 1px, transparent 1px);
+      background-size: 15px 15px;
+      box-shadow: 1px 2px 8px rgba(26,23,20,0.07);
+      overflow: hidden;
+      transition: border-color .22s, box-shadow .22s, transform .22s cubic-bezier(.22,1,.36,1);
+    }
+    .contact-link:hover { border-color: rgba(26,23,20,0.26); box-shadow: 2px 5px 18px rgba(26,23,20,0.14); transform: translateX(4px); }
+    .contact-link-icon { width: 68px; height: 68px; background: var(--bg); border-right: 1.5px solid rgba(26,23,20,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .22s; }
+    .contact-link:hover .contact-link-icon { background: #fff; }
+    .contact-link-icon svg { width: 20px; height: 20px; }
+    .contact-link-body { flex: 1; padding: 16px 18px; }
+    .contact-link-name { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); display: block; }
+    .contact-link-sub { font-family: var(--mono); font-size: 9.5px; color: var(--ink-dim); display: block; margin-top: 3px; }
+    .contact-link-arrow { padding: 0 20px; color: var(--accent); font-size: 15px; transition: transform .22s; }
+    .contact-link:hover .contact-link-arrow { transform: translateX(3px); }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 26px 52px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: relative; z-index: 10;
+      border-top: 1.5px solid var(--border);
+      padding: 26px 52px 26px 112px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg);
     }
-    .footer-copy {
-      font-family: var(--tech);
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      color: var(--text-dim);
-    }
+    .footer-copy { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; color: var(--ink-dim); }
     .footer-copy em { color: var(--accent); font-style: normal; }
-    .footer-tag {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 12px;
-      color: var(--text-dim);
-    }
+    .footer-tag { font-family: var(--hand); font-size: 14px; color: var(--ink-dim); transform: rotate(-0.5deg); }
 
-    /* ── NOISE ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      background-size: 200px;
-      pointer-events: none;
-      z-index: 500;
-      opacity: 0.38;
-    }
+    /* ════════════════════════════════════════
+       REVEAL
+    ════════════════════════════════════════ */
+    .reveal { opacity:0; transition: opacity .55s ease; }
+    .reveal.visible { opacity:1; }
 
-    /* ── REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .caliper-aside { display: none; }
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
-      nav { padding: 18px 24px; }
-      nav.scrolled { padding: 12px 24px; }
-      .nav-links { gap: 20px; }
-      .section-header, #portfolio-wrap, #about-wrap, #contact-wrap { padding-left: 24px; padding-right: 24px; }
-      .port-card.wide, .port-card.medium, .port-card.third { grid-column: span 12; }
-      #about-strip { grid-template-columns: 1fr; gap: 48px; }
-      #contact { grid-template-columns: 1fr; gap: 48px; }
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 10px 24px; }
+      .nav-links { gap: 22px; }
+      .inner { padding: 0 24px 0 48px; }
+      .page::before { left: 36px; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .port-card.wide,.port-card.medium,.port-card.third { grid-column: span 12; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 44px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Nav -->
-  <nav id="main-nav">
-    <a href="index.html" class="nav-logo">
-      <canvas id="pcb-logo-canvas"></canvas>
-    </a>
-    <ul class="nav-links">
-      <li><a href="engineering.html">Engineering</a></li>
-      <li><a href="art.html">Art</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Luke Jurbergs</a>
+  <ul class="nav-links">
+    <li><a href="engineering.html">Engineering</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- Hero -->
-  <div id="hero-sticky-wrapper">
-    <div id="hero-sticky">
-      <img id="hero-img-src" src="assets/luke.jpg" alt="Luke Jurbergs" crossorigin="anonymous" />
-      <canvas id="pixel-canvas"></canvas>
-      <div class="hero-vignette"></div>
-      <div class="hero-text" id="hero-text">
-        <div class="hero-name">LUKE JURBERGS</div>
-        <div class="hero-sub">Aspiring Mechanical Engineer</div>
-        <div class="hero-quote">"You haven't failed until you stop trying."</div>
+<!-- HERO -->
+<div id="hero-sticky-wrapper">
+  <div id="hero-sticky">
+    <img id="hero-img-src" src="assets/luke.jpg" alt="Luke Jurbergs" crossorigin="anonymous" />
+    <canvas id="pixel-canvas"></canvas>
+
+    <div id="sweep-wrap">
+      <div id="sweep-img">
+        <!-- Replace with: <img src="assets/printer-sweep.jpg" alt="3D Printer Extruder"> -->
+        <span class="caliper-placeholder-text" style="color:rgba(255,255,255,0.28);font-size:7.5px;letter-spacing:0.2em;padding:12px;text-align:center;line-height:1.7;">3d printer<br>extruder image<br>assets/printer-sweep.jpg</span>
       </div>
-      <div class="scroll-hint" id="scroll-hint">scroll to explore</div>
     </div>
-  </div>
 
-  <!-- Portfolio Section -->
-  <div class="section-header reveal">
-    <div class="section-header-inner">
-      <div class="section-title">BUILT &amp; <em>CRAFTED</em></div>
-      <p class="section-desc">Engineering projects, visual work, and everything in between.</p>
+    <div class="hero-vignette"></div>
+    <div class="hero-text" id="hero-text">
+      <div class="hero-name">
+        <span class="hero-name-top">LUKE</span>
+        <span class="hero-name-bottom">JURBERGS</span>
+      </div>
+      <div class="hero-sub">Aspiring Mechanical Engineer</div>
+      <div class="hero-quote">"You haven't failed until you stop trying."</div>
     </div>
+    <div class="scroll-hint" id="scroll-hint">scroll to explore</div>
   </div>
+</div>
 
-  <div id="portfolio-wrap">
-    <div class="portfolio-grid">
+<!-- Fixed extruder car — follows the right edge of the growing line in the viewport -->
+<div id="extruder-car">
+  <!-- Replace inner content with: <img src="assets/extruder-car.jpg" alt="Extruder"> -->
+  <div id="extruder-placeholder">
+    <span>extruder<br>image<br>here</span>
+  </div>
+</div>
 
-      <a href="engineering.html" class="port-card wide" data-delay="0">
-        <div class="card-photo">
-          <!-- <img src="assets/engineering-hero.jpg" alt="Engineering"> -->
-          <div class="card-photo-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-          </div>
-          <span class="card-photo-label">add photo → assets/engineering-hero.jpg</span>
-        </div>
-        <div class="card-inner">
-          <div class="card-top">
-            <span class="card-num">01</span>
-            <span class="card-arrow">↗</span>
-          </div>
-          <span class="card-tag">Engineering Projects</span>
-          <div class="card-title">MECHANICAL<br>ENGINEERING</div>
-          <p class="card-desc">CAD models, fabricated prototypes, physics experiments, and hands-on builds. Where theory meets material.</p>
-        </div>
-        <svg class="card-gear" viewBox="0 0 100 100" fill="white"><path d="M43.3 5l2.4-5h8.6l2.4 5 5.8 1.5 4.2-3.2 7.1 4.3-.7 5.2 4.4 4.4 5.2-.7 4.3 7.1-3.2 4.2 1.5 5.8 5 2.4v8.6l-5 2.4-1.5 5.8 3.2 4.2-4.3 7.1-5.2-.7-4.4 4.4.7 5.2-7.1 4.3-4.2-3.2-5.8 1.5-2.4 5h-8.6l-2.4-5-5.8-1.5-4.2 3.2-7.1-4.3.7-5.2-4.4-4.4-5.2.7-4.3-7.1 3.2-4.2-1.5-5.8-5-2.4v-8.6l5-2.4 1.5-5.8-3.2-4.2 4.3-7.1 5.2.7 4.4-4.4-.7-5.2 7.1-4.3 4.2 3.2 5.8-1.5zm6.7 20a25 25 0 100 50 25 25 0 000-50z"/></svg>
-      </a>
+<!-- PAPER SECTIONS -->
+<div class="page">
+  <!-- Printed red line — lives at the very top of the page section, above all content -->
+  <div id="printed-line"></div>
+  <div class="inner">
 
-      <a href="art.html" class="port-card medium" data-delay="100">
-        <div class="card-photo">
-          <!-- <img src="assets/art-hero.jpg" alt="Art"> -->
-          <div class="card-photo-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg>
-          </div>
-          <span class="card-photo-label">add photo → assets/art-hero.jpg</span>
-        </div>
-        <div class="card-inner">
-          <div class="card-top">
-            <span class="card-num">02</span>
-            <span class="card-arrow">↗</span>
-          </div>
-          <span class="card-tag">Art &amp; Design</span>
-          <div class="card-title">VISUAL<br>WORK</div>
-          <p class="card-desc">Illustration, design, and creative work alongside the technical.</p>
-        </div>
-        <svg class="card-gear" viewBox="0 0 100 100" fill="white"><path d="M43.3 5l2.4-5h8.6l2.4 5 5.8 1.5 4.2-3.2 7.1 4.3-.7 5.2 4.4 4.4 5.2-.7 4.3 7.1-3.2 4.2 1.5 5.8 5 2.4v8.6l-5 2.4-1.5 5.8 3.2 4.2-4.3 7.1-5.2-.7-4.4 4.4.7 5.2-7.1 4.3-4.2-3.2-5.8 1.5-2.4 5h-8.6l-2.4-5-5.8-1.5-4.2 3.2-7.1-4.3.7-5.2-4.4-4.4-5.2.7-4.3-7.1 3.2-4.2-1.5-5.8-5-2.4v-8.6l5-2.4 1.5-5.8-3.2-4.2 4.3-7.1 5.2.7 4.4-4.4-.7-5.2 7.1-4.3 4.2 3.2 5.8-1.5zm6.7 20a25 25 0 100 50 25 25 0 000-50z"/></svg>
-      </a>
-
-      <a href="about.html#skills" class="port-card third" data-delay="0">
-        <div class="card-photo">
-          <!-- <img src="assets/skills-photo.jpg" alt="Skills"> -->
-          <div class="card-photo-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-          </div>
-          <span class="card-photo-label">add photo → assets/skills-photo.jpg</span>
-        </div>
-        <div class="card-inner">
-          <div class="card-top">
-            <span class="card-num">03</span>
-            <span class="card-arrow">↗</span>
-          </div>
-          <span class="card-tag">Capabilities</span>
-          <div class="card-title">SKILLS &amp;<br>TOOLS</div>
-          <p class="card-desc">CAD, fabrication, physics, mathematics, and more.</p>
-        </div>
-        <svg class="card-gear" viewBox="0 0 100 100" fill="white"><path d="M43.3 5l2.4-5h8.6l2.4 5 5.8 1.5 4.2-3.2 7.1 4.3-.7 5.2 4.4 4.4 5.2-.7 4.3 7.1-3.2 4.2 1.5 5.8 5 2.4v8.6l-5 2.4-1.5 5.8 3.2 4.2-4.3 7.1-5.2-.7-4.4 4.4.7 5.2-7.1 4.3-4.2-3.2-5.8 1.5-2.4 5h-8.6l-2.4-5-5.8-1.5-4.2 3.2-7.1-4.3.7-5.2-4.4-4.4-5.2.7-4.3-7.1 3.2-4.2-1.5-5.8-5-2.4v-8.6l5-2.4 1.5-5.8-3.2-4.2 4.3-7.1 5.2.7 4.4-4.4-.7-5.2 7.1-4.3 4.2 3.2 5.8-1.5zm6.7 20a25 25 0 100 50 25 25 0 000-50z"/></svg>
-      </a>
-
-      <a href="resume.pdf" class="port-card third" data-delay="100">
-        <div class="card-photo">
-          <!-- <img src="assets/resume-photo.jpg" alt="Resume"> -->
-          <div class="card-photo-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          </div>
-          <span class="card-photo-label">add photo → assets/resume-photo.jpg</span>
-        </div>
-        <div class="card-inner">
-          <div class="card-top">
-            <span class="card-num">04</span>
-            <span class="card-arrow">↗</span>
-          </div>
-          <span class="card-tag">Download</span>
-          <div class="card-title">RÉSUMÉ<br>&amp; CV</div>
-          <p class="card-desc">Academic record, activities, and coursework overview.</p>
-        </div>
-        <svg class="card-gear" viewBox="0 0 100 100" fill="white"><path d="M43.3 5l2.4-5h8.6l2.4 5 5.8 1.5 4.2-3.2 7.1 4.3-.7 5.2 4.4 4.4 5.2-.7 4.3 7.1-3.2 4.2 1.5 5.8 5 2.4v8.6l-5 2.4-1.5 5.8 3.2 4.2-4.3 7.1-5.2-.7-4.4 4.4.7 5.2-7.1 4.3-4.2-3.2-5.8 1.5-2.4 5h-8.6l-2.4-5-5.8-1.5-4.2 3.2-7.1-4.3.7-5.2-4.4-4.4-5.2.7-4.3-7.1 3.2-4.2-1.5-5.8-5-2.4v-8.6l5-2.4 1.5-5.8-3.2-4.2 4.3-7.1 5.2.7 4.4-4.4-.7-5.2 7.1-4.3 4.2 3.2 5.8-1.5zm6.7 20a25 25 0 100 50 25 25 0 000-50z"/></svg>
-      </a>
-
-      <a href="contact.html" class="port-card third" data-delay="200">
-        <div class="card-photo">
-          <!-- <img src="assets/contact-photo.jpg" alt="Contact"> -->
-          <div class="card-photo-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          </div>
-          <span class="card-photo-label">add photo → assets/contact-photo.jpg</span>
-        </div>
-        <div class="card-inner">
-          <div class="card-top">
-            <span class="card-num">05</span>
-            <span class="card-arrow">↗</span>
-          </div>
-          <span class="card-tag">Get in Touch</span>
-          <div class="card-title">CONTACT<br>ME</div>
-          <p class="card-desc">Open to internships, collaborations, and conversations.</p>
-        </div>
-        <svg class="card-gear" viewBox="0 0 100 100" fill="white"><path d="M43.3 5l2.4-5h8.6l2.4 5 5.8 1.5 4.2-3.2 7.1 4.3-.7 5.2 4.4 4.4 5.2-.7 4.3 7.1-3.2 4.2 1.5 5.8 5 2.4v8.6l-5 2.4-1.5 5.8 3.2 4.2-4.3 7.1-5.2-.7-4.4 4.4.7 5.2-7.1 4.3-4.2-3.2-5.8 1.5-2.4 5h-8.6l-2.4-5-5.8-1.5-4.2 3.2-7.1-4.3.7-5.2-4.4-4.4-5.2.7-4.3-7.1 3.2-4.2-1.5-5.8-5-2.4v-8.6l5-2.4 1.5-5.8-3.2-4.2 4.3-7.1 5.2.7 4.4-4.4-.7-5.2 7.1-4.3 4.2 3.2 5.8-1.5zm6.7 20a25 25 0 100 50 25 25 0 000-50z"/></svg>
-      </a>
-
+    <!-- ═══ PORTFOLIO ═══ -->
+    <div class="sec-head reveal">
+      <span class="sec-num">01.</span>
+      <h2 class="sec-title">BUILT &amp; <em>CRAFTED</em></h2>
+      <p class="sec-annotation">engineering + art,<br>two sides of the same mind</p>
     </div>
-  </div>
 
-  <!-- About Section -->
-  <div class="section-header reveal">
-    <div class="section-header-inner">
-      <div class="section-title">DRIVEN BY <em>CURIOSITY</em></div>
-      <p class="section-desc">Background, skills, and what keeps me building.</p>
+    <div class="portfolio-wrap">
+
+      <!-- Caliper aside — right of grid -->
+      <div class="caliper-aside">
+        <div class="caliper-tape"></div>
+        <div class="caliper-img">
+          <!-- Replace with: <img src="assets/calipers.jpg" alt="Calipers"> -->
+          <span class="caliper-placeholder-text">replace with<br>diagonal calipers<br>assets/calipers.jpg</span>
+        </div>
+        <span class="caliper-label">↕ precision tools</span>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <a href="engineering.html" class="port-card wide" data-delay="0">
+          <div class="card-tape"></div>
+          <div class="card-accent-bar"></div>
+          <div class="card-photo">
+            <!-- <img src="assets/engineering-hero.jpg" alt="Engineering"> -->
+            <div class="card-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+            <span class="card-photo-label">engineering-hero.jpg</span>
+          </div>
+          <div class="card-inner">
+            <div class="card-top"><span class="card-arrow">↗</span></div>
+            <span class="card-tag">Engineering Projects</span>
+            <div class="card-title">MECHANICAL<br>ENGINEERING</div>
+            <p class="card-desc">CAD models, fabricated prototypes, physics experiments, and hands-on builds. Where theory meets material.</p>
+            <div class="card-big-num">01</div>
+          </div>
+          <!-- Spur gear — 8 teeth, distinct from all others -->
+          <svg class="card-deco" width="110" height="110" viewBox="0 0 110 110" fill="currentColor" style="bottom:-14px;right:-14px">
+            <path d="M55 8 L60 2 L65 8 L71 5 L72 12 L79 12 L77 19 L83 22 L78 27 L82 33 L75 35 L75 42 L68 41 L65 48 L58 44 L55 51 L52 44 L45 48 L42 41 L35 42 L35 35 L28 33 L32 27 L27 22 L33 19 L31 12 L38 12 L39 5 L45 8 L50 2 Z M55 28 A17 17 0 1 0 55.001 28 Z"/>
+          </svg>
+        </a>
+
+        <a href="art.html" class="port-card medium" data-delay="80">
+          <div class="card-tape"></div>
+          <div class="card-accent-bar"></div>
+          <div class="card-photo">
+            <!-- <img src="assets/art-hero.jpg" alt="Art"> -->
+            <div class="card-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg></div>
+            <span class="card-photo-label">art-hero.jpg</span>
+          </div>
+          <div class="card-inner">
+            <div class="card-top"><span class="card-arrow">↗</span></div>
+            <span class="card-tag">Art &amp; Design</span>
+            <div class="card-title">VISUAL<br>WORK</div>
+            <p class="card-desc">Illustration, design, and creative work alongside the technical.</p>
+            <div class="card-big-num">02</div>
+          </div>
+          <!-- Drafting compass — totally different from gear -->
+          <svg class="card-deco" width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="bottom:-8px;right:-8px">
+            <line x1="50" y1="10" x2="28" y2="85"/>
+            <line x1="50" y1="10" x2="72" y2="85"/>
+            <line x1="28" y1="85" x2="22" y2="100"/>
+            <line x1="72" y1="85" x2="78" y2="100"/>
+            <line x1="34" y1="52" x2="66" y2="52"/>
+            <circle cx="50" cy="10" r="4" fill="currentColor" stroke="none"/>
+            <path d="M28 85 Q50 60 72 85" fill="none" stroke-width="2"/>
+          </svg>
+        </a>
+
+        <a href="about.html#skills" class="port-card third" data-delay="0">
+          <div class="card-tape"></div>
+          <div class="card-accent-bar"></div>
+          <div class="card-photo">
+            <!-- <img src="assets/skills-photo.jpg" alt="Skills"> -->
+            <div class="card-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+            <span class="card-photo-label">skills-photo.jpg</span>
+          </div>
+          <div class="card-inner">
+            <div class="card-top"><span class="card-arrow">↗</span></div>
+            <span class="card-tag">Capabilities</span>
+            <div class="card-title">SKILLS &amp;<br>TOOLS</div>
+            <p class="card-desc">CAD, fabrication, physics, mathematics, and more.</p>
+            <div class="card-big-num">03</div>
+          </div>
+          <!-- Adjustable wrench — distinct tool shape -->
+          <svg class="card-deco" width="100" height="100" viewBox="0 0 100 100" fill="currentColor" style="bottom:-10px;right:-10px">
+            <path d="M72 8 C58 8 48 18 48 32 C48 36 49 40 51 43 L12 82 C8 86 8 92 12 96 C16 100 22 100 26 96 L65 57 C68 59 72 60 76 60 C90 60 100 50 100 36 C100 33 99 30 98 27 L84 41 L74 41 L74 31 L88 17 C85 12 79 8 72 8 Z M20 90 A4 4 0 1 1 20.001 90 Z"/>
+          </svg>
+        </a>
+
+        <a href="resume.pdf" class="port-card third" data-delay="80">
+          <div class="card-tape"></div>
+          <div class="card-accent-bar"></div>
+          <div class="card-photo">
+            <!-- <img src="assets/resume-photo.jpg" alt="Resume"> -->
+            <div class="card-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+            <span class="card-photo-label">resume-photo.jpg</span>
+          </div>
+          <div class="card-inner">
+            <div class="card-top"><span class="card-arrow">↗</span></div>
+            <span class="card-tag">Download</span>
+            <div class="card-title">RÉSUMÉ<br>&amp; CV</div>
+            <p class="card-desc">Academic record, activities, and coursework overview.</p>
+            <div class="card-big-num">04</div>
+          </div>
+          <!-- Protractor — geometric semicircle with degree marks -->
+          <svg class="card-deco" width="108" height="108" viewBox="0 0 108 108" fill="none" stroke="currentColor" stroke-linecap="round" style="bottom:-12px;right:-12px">
+            <path d="M10 88 A54 54 0 0 1 98 88" stroke-width="4"/>
+            <line x1="10" y1="88" x2="98" y2="88" stroke-width="3"/>
+            <line x1="54" y1="88" x2="54" y2="34" stroke-width="2"/>
+            <line x1="54" y1="88" x2="19" y2="55" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <line x1="54" y1="88" x2="89" y2="55" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <line x1="54" y1="88" x2="8"  y2="73" stroke-width="1" stroke-dasharray="2 4"/>
+            <line x1="54" y1="88" x2="100" y2="73" stroke-width="1" stroke-dasharray="2 4"/>
+            <circle cx="54" cy="88" r="4" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+
+        <a href="contact.html" class="port-card third" data-delay="160">
+          <div class="card-tape"></div>
+          <div class="card-accent-bar"></div>
+          <div class="card-photo">
+            <!-- <img src="assets/contact-photo.jpg" alt="Contact"> -->
+            <div class="card-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <span class="card-photo-label">contact-photo.jpg</span>
+          </div>
+          <div class="card-inner">
+            <div class="card-top"><span class="card-arrow">↗</span></div>
+            <span class="card-tag">Get in Touch</span>
+            <div class="card-title">CONTACT<br>ME</div>
+            <p class="card-desc">Open to internships, collaborations, and conversations.</p>
+            <div class="card-big-num">05</div>
+          </div>
+          <!-- Hex bolt head + shank — totally distinct shape -->
+          <svg class="card-deco" width="100" height="100" viewBox="0 0 100 100" fill="currentColor" style="bottom:-10px;right:-10px">
+            <polygon points="50,4 88,26 88,70 50,92 12,70 12,26"/>
+            <polygon points="50,18 76,33 76,63 50,78 24,63 24,33" fill="none" stroke="currentColor" stroke-width="4"/>
+            <rect x="44" y="78" width="12" height="28" rx="3"/>
+            <rect x="38" y="88" width="24" height="6" rx="2"/>
+          </svg>
+        </a>
+
+      </div><!-- /portfolio-grid -->
+    </div><!-- /portfolio-wrap -->
+
+    <!-- ═══ SECTION DIVIDER ═══ -->
+    <div class="simple-divider reveal">
+      <div class="simple-divider-line"></div>
+      <span class="simple-divider-label">about me</span>
+      <div class="simple-divider-line"></div>
     </div>
-  </div>
 
-  <div id="about-wrap">
-    <div id="about-strip">
+    <!-- ═══ ABOUT ═══ -->
+    <div class="sec-head reveal">
+      <!-- Left image placeholder — replace with a gear/tool photo -->
+      <div class="sec-head-img">
+        <!-- <img src="assets/gear-detail.jpg" alt="Gear detail"> -->
+        <span class="sec-head-img-label">gear<br>photo<br>here</span>
+      </div>
+      <span class="sec-num">02.</span>
+      <h2 class="sec-title">DRIVEN BY <em>CURIOSITY</em></h2>
+      <p class="sec-annotation">background, skills &amp;<br>what keeps me building</p>
+    </div>
+
+    <div class="about-grid reveal">
       <div class="about-left">
         <div class="about-heading">THE<br><em>ENGINEER</em><br>BEHIND<br>THE WORK</div>
         <p class="about-body">
-          I'm Luke — a high school student with one foot in the machine shop and the other in the sketchbook. I'm preparing to study <strong>Mechanical Engineering</strong>, combining analytical problem-solving with a designer's eye for form and function.<br><br>
+          I'm Luke — a high school student with one foot in the machine shop and the other in the sketchbook.
+          I'm preparing to study <strong>Mechanical Engineering</strong>, combining analytical problem-solving
+          with a designer's eye for form and function.<br><br>
           Every project I build teaches me something the classroom can't.
         </p>
-
-        <!-- Photo grid -->
-        <div class="about-photos">
-          <div class="about-photo">
-            <div class="about-photo-img-wrap">
-              <!-- <img src="assets/about-shop.jpg" alt="Workshop"> -->
-              <span class="about-photo-placeholder">add photo</span>
+        <!-- Blueprint dimension annotation -->
+        <div class="dim-annotation">
+          <div class="dim-line"></div>
+          <span class="dim-text">18 yrs</span>
+          <div class="dim-line"></div>
+          <span class="dim-text">Austin, TX</span>
+          <div class="dim-line"></div>
+        </div>
+        <div class="ruled-lines">
+          <div class="ruled-line"></div>
+          <div class="ruled-line"></div>
+          <div class="ruled-line"></div>
+          <div class="ruled-line"></div>
+        </div>
+        <div class="polaroid-grid">
+          <div class="polaroid">
+            <div class="polaroid-img">
+              <!-- <img src="assets/about-shop.jpg" alt="Shop"> -->
+              <span class="polaroid-placeholder">add photo<br>shop_01.jpg</span>
             </div>
-            <div class="about-photo-label">shop_01<em>.jpg</em></div>
+            <div class="polaroid-label">machine shop <em>.jpg</em></div>
           </div>
-          <div class="about-photo">
-            <div class="about-photo-img-wrap">
+          <div class="polaroid">
+            <div class="polaroid-img">
               <!-- <img src="assets/about-project.jpg" alt="Project"> -->
-              <span class="about-photo-placeholder">add photo</span>
+              <span class="polaroid-placeholder">add photo<br>project_01.jpg</span>
             </div>
-            <div class="about-photo-label">project_01<em>.jpg</em></div>
+            <div class="polaroid-label">first build <em>.jpg</em></div>
           </div>
-          <div class="about-photo">
-            <div class="about-photo-img-wrap">
+          <div class="polaroid">
+            <div class="polaroid-img">
               <!-- <img src="assets/about-cad.jpg" alt="CAD"> -->
-              <span class="about-photo-placeholder">add photo</span>
+              <span class="polaroid-placeholder">add photo<br>cad_01.jpg</span>
             </div>
-            <div class="about-photo-label">cad_01<em>.jpg</em></div>
+            <div class="polaroid-label">cad session <em>.jpg</em></div>
           </div>
-          <div class="about-photo">
-            <div class="about-photo-img-wrap">
+          <div class="polaroid">
+            <div class="polaroid-img">
               <!-- <img src="assets/about-sketch.jpg" alt="Sketch"> -->
-              <span class="about-photo-placeholder">add photo</span>
+              <span class="polaroid-placeholder">add photo<br>sketch_01.jpg</span>
             </div>
-            <div class="about-photo-label">sketch_01<em>.jpg</em></div>
+            <div class="polaroid-label">notebook sketch <em>.jpg</em></div>
           </div>
+        </div>
+
+        <!-- Wide project photo — taped in, slightly tilted -->
+        <div style="margin-top:24px;transform:rotate(-0.6deg);position:relative;">
+          <div style="position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(1.2deg);width:72px;height:19px;background:rgba(255,240,158,0.72);border:1px solid rgba(200,184,96,0.42);z-index:2;"></div>
+          <div class="nb-image" style="aspect-ratio:16/9;">
+            <!-- <img src="assets/project-wide.jpg" alt="Project overview"> -->
+            <span class="nb-image-label">wide project photo<br>assets/project-wide.jpg</span>
+          </div>
+          <div style="font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;margin-top:6px;opacity:0.6;">figure 1 — completed assembly</div>
         </div>
       </div>
 
       <div class="about-right">
-        <div class="stat-row">
-          <div class="stat-num">4+</div>
+        <div class="stat-block">
+          <div class="stat-row-inner"><div class="stat-num">4+</div></div>
           <div class="stat-label">Years of engineering<br>coursework &amp; projects</div>
         </div>
-        <div class="stat-row">
-          <div class="stat-num">12+</div>
+        <div class="stat-block">
+          <div class="stat-row-inner"><div class="stat-num">12+</div></div>
           <div class="stat-label">Completed projects<br>across disciplines</div>
         </div>
-        <div class="stat-row">
-          <div class="stat-num">1</div>
+        <div class="stat-block">
+          <div class="stat-row-inner"><div class="stat-num">1</div></div>
           <div class="stat-label">Goal — Mechanical<br>Engineer</div>
         </div>
 
-        <div class="skills-strip">
-          <div class="skills-strip-label">Tools &amp; Technologies</div>
-          <div class="skills-list">
-            <span class="skill-chip">SolidWorks</span>
-            <span class="skill-chip">AutoCAD</span>
-            <span class="skill-chip">Fusion 360</span>
-            <span class="skill-chip">3D Printing</span>
-            <span class="skill-chip">CNC Milling</span>
-            <span class="skill-chip">Lathe</span>
-            <span class="skill-chip">TIG Welding</span>
-            <span class="skill-chip">Physics</span>
-            <span class="skill-chip">Calculus</span>
-            <span class="skill-chip">FEA</span>
-            <span class="skill-chip">Adobe Illustrator</span>
-            <span class="skill-chip">Prototyping</span>
-          </div>
+        <!-- Sticky note -->
+        <div class="sticky-note">
+          <p>things I want to build next:</p>
+          <ul>
+            <li>CNC-routed aluminum bracket</li>
+            <li>3D-printed prosthetic hand</li>
+            <li>Autonomous line-following bot</li>
+            <li>Steel TIG-welded frame</li>
+          </ul>
+        </div>
+
+        <!-- Wide placeholder image — e.g. workshop photo -->
+        <div class="nb-image" style="aspect-ratio:16/7;margin-top:16px;">
+          <!-- <img src="assets/workshop.jpg" alt="Workshop"> -->
+          <span class="nb-image-label">workshop photo<br>assets/workshop.jpg</span>
+        </div>
+
+        <div class="skills-label">Tools &amp; Technologies</div>
+        <div class="skills-list">
+          <span class="skill-chip">SolidWorks</span>
+          <span class="skill-chip">AutoCAD</span>
+          <span class="skill-chip">Fusion 360</span>
+          <span class="skill-chip">3D Printing</span>
+          <span class="skill-chip">CNC Milling</span>
+          <span class="skill-chip">Lathe</span>
+          <span class="skill-chip">TIG Welding</span>
+          <span class="skill-chip">Physics</span>
+          <span class="skill-chip">Calculus</span>
+          <span class="skill-chip">FEA</span>
+          <span class="skill-chip">Illustrator</span>
+          <span class="skill-chip">Prototyping</span>
+        </div>
+
+        <!-- Blueprint annotation note -->
+        <div class="blueprint-box">
+          <p>Every drawing starts on paper. Every model starts in CAD. Every build starts with a mistake — then you fix it and it's better.</p>
+        </div>
+
+        <div class="about-note-box" style="margin-top:16px;">
+          <svg class="about-note-box-gear spinning" viewBox="0 0 100 100" fill="currentColor"><path d="M43.3 5l2.4-5h8.6l2.4 5 5.8 1.5 4.2-3.2 7.1 4.3-.7 5.2 4.4 4.4 5.2-.7 4.3 7.1-3.2 4.2 1.5 5.8 5 2.4v8.6l-5 2.4-1.5 5.8 3.2 4.2-4.3 7.1-5.2-.7-4.4 4.4.7 5.2-7.1 4.3-4.2-3.2-5.8 1.5-2.4 5h-8.6l-2.4-5-5.8-1.5-4.2 3.2-7.1-4.3.7-5.2-4.4-4.4-5.2.7-4.3-7.1 3.2-4.2-1.5-5.8-5-2.4v-8.6l5-2.4 1.5-5.8-3.2-4.2 4.3-7.1 5.2.7 4.4-4.4-.7-5.2 7.1-4.3 4.2 3.2 5.8-1.5zm6.7 20a25 25 0 100 50 25 25 0 000-50z"/></svg>
+          <p class="about-note-text">"Every project starts as a sketch — half idea, half wishful thinking. Then you build it anyway."</p>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Contact Section -->
-  <div class="section-header reveal">
-    <div class="section-header-inner">
-      <div class="section-title">LET'S <em>CONNECT</em></div>
-      <p class="section-desc">Open to internships, collaborations, and conversations.</p>
+    <!-- ═══ SECTION DIVIDER ═══ -->
+    <div class="simple-divider reveal">
+      <div class="simple-divider-line"></div>
+      <span class="simple-divider-label">let's connect</span>
+      <div class="simple-divider-line"></div>
     </div>
-  </div>
 
-  <div id="contact-wrap">
-    <div id="contact">
+    <!-- ═══ CONTACT ═══ -->
+    <div class="sec-head reveal">
+      <span class="sec-num">03.</span>
+      <h2 class="sec-title">LET'S <em>CONNECT</em></h2>
+      <p class="sec-annotation">open to internships,<br>collabs &amp; conversations</p>
+    </div>
+
+    <div class="contact-grid reveal">
       <div class="contact-left">
         <div class="contact-cta">REACH<br>OUT &amp;<br><em>SAY HI</em></div>
-        <p class="contact-note">
-          I'm an 18-year-old engineer-in-training always looking for interesting problems to solve, people to learn from, and projects to contribute to.
-        </p>
-        <div class="contact-photo">
-          <!-- <img src="assets/contact-me.jpg" alt="Luke at work"> -->
-          <span class="contact-photo-label">add photo → assets/contact-me.jpg</span>
+        <p class="contact-note">I'm an 18-year-old engineer-in-training always looking for interesting problems to solve, people to learn from, and projects to contribute to.</p>
+        <div class="contact-polaroid">
+          <div class="contact-polaroid-img">
+            <!-- <img src="assets/contact-me.jpg" alt="Luke at work"> -->
+            <span class="contact-polaroid-placeholder">add photo<br>contact-me.jpg</span>
+          </div>
+          <div class="contact-polaroid-label">at the workbench, 2025</div>
         </div>
         <div class="contact-annotation">
           <p>Best way to reach me is email — I check it daily and usually respond within 24 hours.</p>
           <span>— Luke, 2025</span>
         </div>
       </div>
-
       <div class="contact-right">
         <div class="contact-links">
-
           <a href="mailto:luke@example.com" class="contact-link">
-            <div class="contact-link-icon">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="4" width="20" height="16" rx="2" stroke="#1a1a1a" stroke-width="1.8"/>
-                <path d="M2 7l10 7 10-7" stroke="#1a1a1a" stroke-width="1.8"/>
-              </svg>
-            </div>
-            <div class="contact-link-body">
-              <span class="contact-link-name">Email</span>
-              <span class="contact-link-sub">luke@example.com</span>
-            </div>
+            <div class="contact-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></div>
+            <div class="contact-link-body"><span class="contact-link-name">Email</span><span class="contact-link-sub">luke@example.com</span></div>
             <span class="contact-link-arrow">→</span>
           </a>
-
           <a href="https://linkedin.com/in/lukejurbergs" target="_blank" class="contact-link">
-            <div class="contact-link-icon">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="2" width="20" height="20" rx="3" stroke="#1a1a1a" stroke-width="1.8"/>
-                <path d="M7 10v7" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/>
-                <circle cx="7" cy="7.5" r="1" fill="#1a1a1a"/>
-                <path d="M11 17v-4a2.5 2.5 0 015 0v4" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M11 10v7" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="contact-link-body">
-              <span class="contact-link-name">LinkedIn</span>
-              <span class="contact-link-sub">linkedin.com/in/lukejurbergs</span>
-            </div>
+            <div class="contact-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7" stroke-linecap="round"/><circle cx="7" cy="7.5" r="1" fill="var(--ink)" stroke="none"/><path d="M11 17v-4a2.5 2.5 0 015 0v4M11 10v7" stroke-linecap="round"/></svg></div>
+            <div class="contact-link-body"><span class="contact-link-name">LinkedIn</span><span class="contact-link-sub">linkedin.com/in/lukejurbergs</span></div>
             <span class="contact-link-arrow">→</span>
           </a>
-
           <a href="https://github.com/lukejurbergs" target="_blank" class="contact-link">
-            <div class="contact-link-icon">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="contact-link-body">
-              <span class="contact-link-name">GitHub</span>
-              <span class="contact-link-sub">github.com/lukejurbergs</span>
-            </div>
+            <div class="contact-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
+            <div class="contact-link-body"><span class="contact-link-name">GitHub</span><span class="contact-link-sub">github.com/lukejurbergs</span></div>
             <span class="contact-link-arrow">→</span>
           </a>
-
           <a href="resume.pdf" class="contact-link">
-            <div class="contact-link-icon">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 15V3m0 12l-4-4m4 4l4-4" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="contact-link-body">
-              <span class="contact-link-name">Résumé / CV</span>
-              <span class="contact-link-sub">Download PDF</span>
-            </div>
+            <div class="contact-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg></div>
+            <div class="contact-link-body"><span class="contact-link-name">Résumé / CV</span><span class="contact-link-sub">Download PDF</span></div>
             <span class="contact-link-arrow">→</span>
           </a>
-
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-copy">© 2025 <em>Luke Jurbergs</em> — All rights reserved</div>
-    <div class="footer-tag">Built with precision &amp; purpose</div>
-  </footer>
+  </div><!-- /inner -->
+</div><!-- /page -->
 
-  <script>
-    /* ── PCB Logo Canvas ── */
-    (function() {
-      const canvas = document.getElementById('pcb-logo-canvas');
-      const dpr = window.devicePixelRatio || 1;
-      const font = 'Bebas Neue';
-      // Wait for font
-      document.fonts.ready.then(() => drawPCBLogo());
-      function drawPCBLogo() {
-        const FONT_SIZE = 22;
-        const PAD = 10;
-        // Measure text
-        const tmpCtx = document.createElement('canvas').getContext('2d');
-        tmpCtx.font = `${FONT_SIZE}px "${font}"`;
-        const textW = tmpCtx.measureText('LUKE JURBERGS').width;
-        const W = Math.ceil(textW + PAD * 2);
-        const H = 36;
-        canvas.style.width  = W + 'px';
-        canvas.style.height = H + 'px';
-        canvas.width  = W * dpr;
-        canvas.height = H * dpr;
-        const ctx = canvas.getContext('2d');
-        ctx.scale(dpr, dpr);
+<footer>
+  <div class="footer-copy">© 2025 <em>Luke Jurbergs</em> — All rights reserved</div>
+  <div class="footer-tag">Built with precision &amp; purpose</div>
+</footer>
 
-        // PCB board background — dark green
-        ctx.fillStyle = '#0e2016';
-        ctx.fillRect(0, 0, W, H);
+<script>
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
 
-        // PCB trace grid
-        ctx.strokeStyle = 'rgba(40,180,80,0.18)';
-        ctx.lineWidth = 0.5;
-        for (let x = 0; x < W; x += 8) {
-          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-        }
-        for (let y = 0; y < H; y += 8) {
-          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-        }
+/* ══════════════════════════════════════════
+   PIXEL DISSOLVE HERO
+   Hero wrapper = 200vh → scrollable distance = 100vh
+   p goes 0→1 as you scroll 100vh past the hero
+══════════════════════════════════════════ */
+const pixCanvas  = document.getElementById('pixel-canvas');
+const pixCtx     = pixCanvas.getContext('2d');
+const imgEl      = document.getElementById('hero-img-src');
+const heroTxt    = document.getElementById('hero-text');
+const scrollHint = document.getElementById('scroll-hint');
+const heroWrap   = document.getElementById('hero-sticky-wrapper');
 
-        // PCB traces (horizontal accent lines)
-        ctx.strokeStyle = 'rgba(40,200,80,0.28)';
-        ctx.lineWidth = 1;
-        const traceY = [6, H - 6];
-        traceY.forEach(y => {
-          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-        });
+let imgReady = false, offscreen = null, lastProg = 0;
 
-        // Solder pads (small circles along the traces)
-        ctx.fillStyle = 'rgba(60,220,100,0.35)';
-        for (let x = 8; x < W; x += 24) {
-          [6, H-6].forEach(y => {
-            ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI * 2); ctx.fill();
-          });
-        }
+function buildOffscreen() {
+  offscreen = document.createElement('canvas');
+  offscreen.width  = imgEl.naturalWidth  || 1920;
+  offscreen.height = imgEl.naturalHeight || 1080;
+  offscreen.getContext('2d').drawImage(imgEl, 0, 0);
+  imgReady = true;
+  renderPixels(0);
+}
+imgEl.addEventListener('load', buildOffscreen);
+if (imgEl.complete && imgEl.naturalWidth) buildOffscreen();
 
-        // Red accent stripe
-        ctx.fillStyle = 'rgba(214,58,8,0.55)';
-        ctx.fillRect(0, H/2 - 1, W, 2);
+function renderPixels(p) {
+  const w = pixCanvas.width, h = pixCanvas.height;
+  // Pixelate: starts at p=0.1, reaches max blocks at p=0.65, fades to nothing by p=0.85
+  const pixPhase  = Math.max(0, (p - 0.10) / 0.55);
+  const fadePhase = Math.max(0, (p - 0.65) / 0.25);
+  const pixSize   = Math.max(1, Math.round(pixPhase * 88));
+  const alpha     = Math.max(0, 1 - fadePhase);
 
-        // Dark overlay so text pops
-        ctx.fillStyle = 'rgba(0,0,0,0.28)';
-        ctx.fillRect(0, 0, W, H);
+  pixCtx.clearRect(0, 0, w, h);
+  if (!imgReady || !offscreen || alpha <= 0) return;
 
-        // Text
-        ctx.font = `${FONT_SIZE}px "${font}"`;
-        ctx.letterSpacing = '0.06em';
-        ctx.fillStyle = '#f0ece4';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('LUKE JURBERGS', PAD, H / 2);
+  const tw = Math.max(1, Math.floor(w / pixSize));
+  const th = Math.max(1, Math.floor(h / pixSize));
+  const tmp = document.createElement('canvas');
+  tmp.width = tw; tmp.height = th;
+  tmp.getContext('2d').drawImage(offscreen, 0, 0, tw, th);
+  pixCtx.globalAlpha = alpha;
+  pixCtx.imageSmoothingEnabled = false;
+  pixCtx.drawImage(tmp, 0, 0, tw, th, 0, 0, w, h);
+  pixCtx.imageSmoothingEnabled = true;
+  pixCtx.globalAlpha = 1;
+}
 
-        // Thin border
-        ctx.strokeStyle = 'rgba(40,160,70,0.3)';
-        ctx.lineWidth = 1;
-        ctx.strokeRect(0.5, 0.5, W-1, H-1);
-      }
-    })();
+function resizePixCanvas() {
+  pixCanvas.width  = pixCanvas.offsetWidth;
+  pixCanvas.height = pixCanvas.offsetHeight;
+  renderPixels(lastProg);
+}
 
-    /* ── Nav scroll ── */
-    const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
+/* ══════════════════════════════════════════
+   EXTRUDER + PRINTED LINE
+   ─ Triggered by normal page scroll (not hero progress)
+   ─ When .page section enters viewport, the extruder
+     sweeps from LEFT to RIGHT simultaneously with scrolling
+   ─ The red line "prints" behind the extruder nozzle
+   ─ The line lives in the DOM at the top of .page
+   ─ The extruder is position:fixed, follows the line's
+     right endpoint in viewport coordinates
+══════════════════════════════════════════ */
+const printedLine  = document.getElementById('printed-line');
+const extruderCar  = document.getElementById('extruder-car');
+const pageSection  = document.querySelector('.page');
+const ANGLE_RAD    = -7 * Math.PI / 180;  // -7 degrees in radians
+const EXTRUDER_W   = 110;   // px, matches CSS width
+const EXTRUDER_H   = 520;   // px, matches CSS height
 
-    /* ── Pixel dissolve hero ── */
-    const canvas  = document.getElementById('pixel-canvas');
-    const ctx2    = canvas.getContext('2d');
-    const imgEl   = document.getElementById('hero-img-src');
-    const heroTxt = document.getElementById('hero-text');
-    const hint    = document.getElementById('scroll-hint');
-    const wrapper = document.getElementById('hero-sticky-wrapper');
+function updatePrinter() {
+  const pageRect = pageSection.getBoundingClientRect();
+  const vh = window.innerHeight;
+  const vw = window.innerWidth;
 
-    let imgReady = false, offscreen = null, lastProgress = 0;
+  // t=0: page top enters viewport from below (pageTop = vh)
+  // t=1: page top is 10% from top of viewport (pageTop = 0.1*vh)
+  // As user scrolls, pageTop decreases, t increases
+  const t = Math.max(0, Math.min(1,
+    (vh - pageRect.top) / (vh * 0.9)
+  ));
 
-    function setupOffscreen() {
-      offscreen = document.createElement('canvas');
-      offscreen.width  = imgEl.naturalWidth  || 1400;
-      offscreen.height = imgEl.naturalHeight || 900;
-      offscreen.getContext('2d').drawImage(imgEl, 0, 0);
-      imgReady = true;
-      drawPixelated(0);
-    }
-    imgEl.addEventListener('load', setupOffscreen);
-    if (imgEl.complete && imgEl.naturalWidth) setupOffscreen();
+  // Ease in-out
+  const te = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
 
-    function drawPixelated(progress) {
-      const w = canvas.width, h = canvas.height;
-      const pixelSize = Math.max(1, Math.round(progress * 72));
-      const alpha = Math.max(0, 1 - progress * 1.4);
-      ctx2.clearRect(0, 0, w, h);
-      if (!imgReady || !offscreen) return;
-      const tw = Math.max(1, Math.floor(w / pixelSize));
-      const th = Math.max(1, Math.floor(h / pixelSize));
-      const tmp = document.createElement('canvas');
-      tmp.width = tw; tmp.height = th;
-      tmp.getContext('2d').drawImage(offscreen, 0, 0, tw, th);
-      ctx2.globalAlpha = alpha;
-      ctx2.imageSmoothingEnabled = false;
-      ctx2.drawImage(tmp, 0, 0, tw, th, 0, 0, w, h);
-      ctx2.imageSmoothingEnabled = true;
-      ctx2.globalAlpha = 1;
-    }
+  // Grow the line width (as % of the full element width: left=-80px to right=-80px = vw+160px)
+  // We just use te*100 as %, the element has left:-80px so at 100% it covers everything
+  printedLine.style.width = (te * 100) + '%';
 
-    function resizeCanvas() {
-      canvas.width  = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      drawPixelated(lastProgress);
-    }
-    function onScroll() {
-      const top   = wrapper.getBoundingClientRect().top;
-      const total = wrapper.offsetHeight - window.innerHeight;
-      const raw   = Math.max(0, Math.min(1, -top / total));
-      lastProgress = raw;
-      drawPixelated(raw);
-      heroTxt.style.opacity = String(Math.max(0, 1 - raw * 2.6));
-      hint.style.opacity = raw > 0.04 ? '0' : '1';
-    }
+  if (t < 0.02 || t > 0.97) {
+    extruderCar.style.opacity = '0';
+    return;
+  }
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('scroll', onScroll, { passive: true });
+  // Find where the RIGHT END of the printed line is in viewport coordinates.
+  // The line element is position:absolute in .page.
+  // Its left edge in viewport = lineRect.left
+  // Its current rendered width = te * lineEl.offsetWidth (but offsetWidth includes the -80px offsets)
+  // Simpler: use the line element's bounding rect and compute directly.
+  const lineRect = printedLine.getBoundingClientRect();
 
-    /* ── Intersection Observer ── */
-    const targets = document.querySelectorAll('.reveal, .port-card, #about-strip, #contact');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const delay = +(e.target.dataset.delay || 0);
-        setTimeout(() => e.target.classList.add('visible'), delay);
-        io.unobserve(e.target);
-      });
-    }, { threshold: 0.08 });
-    targets.forEach(el => io.observe(el));
-  </script>
+  // Current line width in CSS pixels (the element width grows as %)
+  // = te * (full element width). But since left:-80px and right:-80px, full width ≈ vw+160
+  const lineFullPx = lineRect.width / (te || 0.001); // prevent /0 — not accurate at te≈0
+  const lineCurrentPx = te * lineFullPx;
+
+  // Right endpoint of the tilted line in viewport space:
+  // Start: (lineRect.left, lineRect.top + lineRect.height/2)
+  // End:   move lineCurrentPx along the angle
+  const lineStartX = lineRect.left;
+  const lineStartY = lineRect.top + lineRect.height / 2;
+  const rightEndX  = lineStartX + lineCurrentPx * Math.cos(ANGLE_RAD);
+  const rightEndY  = lineStartY + lineCurrentPx * Math.sin(ANGLE_RAD);
+
+  // Position extruder: its BOTTOM CENTER at (rightEndX, rightEndY)
+  // The car is also rotated -7deg (transform-origin: bottom center)
+  const carLeft = rightEndX - EXTRUDER_W / 2;
+  const carTop  = rightEndY - EXTRUDER_H;
+
+  extruderCar.style.left = carLeft + 'px';
+  extruderCar.style.top  = carTop  + 'px';
+
+  // Fade in/out at start and end
+  let alpha = 1;
+  if (t < 0.06) alpha = t / 0.06;
+  else if (t > 0.92) alpha = (1 - t) / 0.08;
+  extruderCar.style.opacity = String(Math.min(0.96, alpha));
+}
+
+/* ══════════════════════════════════════════
+   SCROLL HANDLER — both systems update together
+══════════════════════════════════════════ */
+function onScroll() {
+  // Hero pixel progress
+  const top   = heroWrap.getBoundingClientRect().top;
+  const total = heroWrap.offsetHeight - window.innerHeight;
+  const p     = Math.max(0, Math.min(1, -top / total));
+  lastProg = p;
+
+  renderPixels(p);
+
+  // Hero text and hint
+  heroTxt.style.opacity    = String(Math.max(0, 1 - p * 3.5));
+  scrollHint.style.opacity = p > 0.06 ? '0' : '1';
+
+  // Extruder + line — driven by page section's viewport position
+  updatePrinter();
+}
+
+function onResize() {
+  resizePixCanvas();
+  renderPixels(lastProg);
+  updatePrinter();
+}
+
+resizePixCanvas();
+window.addEventListener('resize', onResize);
+window.addEventListener('scroll', onScroll, { passive: true });
+
+/* ══════════════════════════════════════════
+   INTERSECTION OBSERVER
+══════════════════════════════════════════ */
+const revealEls = document.querySelectorAll(
+  '.reveal, .sec-head, .port-card, .about-grid, .contact-grid, .simple-divider'
+);
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const d = +(e.target.dataset.delay || 0);
+    setTimeout(() => e.target.classList.add('visible'), d);
+    io.unobserve(e.target);
+  });
+}, { threshold: 0.07 });
+revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ══════════════════════════════════════════
+   PIXEL DISSOLVE HERO
+══════════════════════════════════════════ */
+const pixCanvas  = document.getElementById('pixel-canvas');
+const pixCtx     = pixCanvas.getContext('2d');
+const imgEl      = document.getElementById('hero-img-src');
+const heroTxt    = document.getElementById('hero-text');
+const scrollHint = document.getElementById('scroll-hint');
+const heroWrap   = document.getElementById('hero-sticky-wrapper');
+
+let imgReady = false, offscreen = null, lastProg = 0;
+
+function buildOffscreen() {
+  offscreen = document.createElement('canvas');
+  offscreen.width  = imgEl.naturalWidth  || 1920;
+  offscreen.height = imgEl.naturalHeight || 1080;
+  offscreen.getContext('2d').drawImage(imgEl, 0, 0);
+  imgReady = true;
+  renderPixels(0);
+}
+imgEl.addEventListener('load', buildOffscreen);
+if (imgEl.complete && imgEl.naturalWidth) buildOffscreen();
+
+function renderPixels(p) {
+  const w = pixCanvas.width, h = pixCanvas.height;
+  // Clear at start, ramp pixelation from p=0.12, big blocks by p=0.58,
+  // then fade out between p=0.60 and p=0.80
+  const pixPhase  = Math.max(0, (p - 0.12) / 0.46);
+  const fadePhase = Math.max(0, (p - 0.60) / 0.20);
+  const pixSize   = Math.max(1, Math.round(pixPhase * 92));
+  const alpha     = Math.max(0, 1 - fadePhase);
+
+  pixCtx.clearRect(0, 0, w, h);
+  if (!imgReady || !offscreen || alpha <= 0) return;
+
+  const tw = Math.max(1, Math.floor(w / pixSize));
+  const th = Math.max(1, Math.floor(h / pixSize));
+  const tmp = document.createElement('canvas');
+  tmp.width = tw; tmp.height = th;
+  tmp.getContext('2d').drawImage(offscreen, 0, 0, tw, th);
+  pixCtx.globalAlpha = alpha;
+  pixCtx.imageSmoothingEnabled = false;
+  pixCtx.drawImage(tmp, 0, 0, tw, th, 0, 0, w, h);
+  pixCtx.imageSmoothingEnabled = true;
+  pixCtx.globalAlpha = 1;
+}
+
+function resizePixCanvas() {
+  pixCanvas.width  = pixCanvas.offsetWidth;
+  pixCanvas.height = pixCanvas.offsetHeight;
+  renderPixels(lastProg);
+}
+
+/* ══════════════════════════════════════════
+   PRINTED RED LINE + EXTRUDER SWEEP
+   ─ Single <div id="printed-line"> between sections
+   ─ Width grows 0%→100% as extruder crosses
+   ─ Extruder visible p=0.83→0.988, sweeps left→right
+   ─ Line "printed" by tracking extruder center X
+══════════════════════════════════════════ */
+const printedLine = document.getElementById('printed-line');
+const sweepImg    = document.getElementById('sweep-img');
+
+function updateSweep(p) {
+  if (p < 0.83) {
+    sweepImg.style.opacity = '0';
+    sweepImg.style.transform = 'rotate(-7deg) translateX(-150%)';
+    // Line stays at whatever width was already set (0 at start)
+    return;
+  }
+  if (p > 0.988) {
+    sweepImg.style.opacity = '0';
+    sweepImg.style.transform = 'rotate(-7deg) translateX(160%)';
+    printedLine.style.width = '100%'; // fully drawn
+    return;
+  }
+
+  // t: 0→1 across [0.83, 0.988]
+  const t  = (p - 0.83) / 0.158;
+  // ease in-out
+  const te = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+
+  // Image opacity — fade in fast, fade out at end
+  let imgAlpha = 1;
+  if (t < 0.05) imgAlpha = t / 0.05;
+  else if (t > 0.90) imgAlpha = (1 - t) / 0.10;
+  sweepImg.style.opacity = String(Math.min(0.95, imgAlpha));
+
+  // Sweep the image: translateX goes from -150% to +160%
+  const tx = -150 + te * 310;
+  sweepImg.style.transform = `rotate(-7deg) translateX(${tx}%)`;
+  sweepImg.style.transition = 'none';
+
+  // The printed line grows in sync with the extruder position.
+  // te goes 0→1, line goes 0%→100% — the line is "drawn" behind the extruder.
+  printedLine.style.width = (te * 100) + '%';
+}
+
+/* ══════════════════════════════════════════
+   SCROLL HANDLER
+══════════════════════════════════════════ */
+function onScroll() {
+  const top   = heroWrap.getBoundingClientRect().top;
+  const total = heroWrap.offsetHeight - window.innerHeight;
+  const p     = Math.max(0, Math.min(1, -top / total));
+  lastProg = p;
+  renderPixels(p);
+  updateSweep(p);
+  heroTxt.style.opacity    = String(Math.max(0, 1 - p * 3.2));
+  scrollHint.style.opacity = p > 0.04 ? '0' : '1';
+}
+
+function onResize() {
+  resizePixCanvas();
+  renderPixels(lastProg);
+  updateSweep(lastProg);
+}
+
+resizePixCanvas();
+window.addEventListener('resize', onResize);
+window.addEventListener('scroll', onScroll, { passive: true });
+
+/* ══════════════════════════════════════════
+   INTERSECTION OBSERVER
+══════════════════════════════════════════ */
+const revealEls = document.querySelectorAll(
+  '.reveal, .sec-head, .port-card, .about-grid, .contact-grid, .simple-divider'
+);
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const d = +(e.target.dataset.delay || 0);
+    setTimeout(() => e.target.classList.add('visible'), d);
+    io.unobserve(e.target);
+  });
+}, { threshold: 0.07 });
+revealEls.forEach(el => io.observe(el));
+</script>
 </body>
 </html>
