@@ -87,7 +87,7 @@
     .scroll-hint::after { content:'↓'; display:block; text-align:center; margin-top:5px; animation:bounceArrow 1.4s ease-in-out infinite; }
     @keyframes bounceArrow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
 
-    /* ─── HOVERCRAFT GIF ─── */
+    /* ─── HOVERCRAFT GIF — BIG again ─── */
     #hero-craft-wrap {
       position:absolute;
       bottom:3%;
@@ -101,11 +101,8 @@
       from{opacity:0;transform:translateX(-50%) translateY(28px)}
       to  {opacity:1;transform:translateX(-50%) translateY(0)}
     }
-    /* Preserve native resolution — do not upscale beyond natural size */
     #hero-craft {
-      width: auto;
-      max-width: 90vw;
-      max-height: 60vh;
+      width: min(1400px, 90vw);
       height: auto;
       display: block;
       margin: 0 auto;
@@ -117,11 +114,11 @@
       50%      { transform: translateY(-22px); }
     }
 
-    /* ─── EXTRUDER CAR (exact 2× natural size: 168→336 × 333→666) ─── */
+    /* ─── EXTRUDER CAR — original size (110×218) ─── */
     #extruder-car {
       position:fixed; z-index:400; pointer-events:none;
-      width: 336px;
-      height: 666px;
+      width: 110px;
+      height: 218px;
       transform:rotate(-7deg); transform-origin:bottom center;
       opacity:0; transition:opacity 0.12s ease;
       will-change:left,top;
@@ -134,7 +131,7 @@
     }
     #extruder-placeholder img {
       width:100%; height:100%;
-      object-fit: contain;       /* no cropping – nozzle stays exactly at 75% */
+      object-fit: contain;
       object-position: center;
       display:block;
       background: transparent;
@@ -363,7 +360,7 @@
       .portfolio-grid{grid-template-columns:1fr}
       .port-card.wide,.port-card.medium,.port-card.third{grid-column:span 12}
       .about-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
-      #hero-craft{max-width:86vw}
+      #hero-craft{width:86vw}
     }
   </style>
 </head>
@@ -576,9 +573,10 @@
           <div class="polaroid"><div class="polaroid-img"><img src="assets/electronics_board.jpg" alt="Electronics"></div><div class="polaroid-label">RPi stack <em>.jpg</em></div></div>
           <div class="polaroid"><div class="polaroid-img"><img src="assets/blown_pi.jpg" alt="Blown Pi"></div><div class="polaroid-label">rip pico <em>.jpg</em></div></div>
         </div>
+        <!-- figure 1 — rotated 90° clockwise -->
         <div style="margin-top:24px;transform:rotate(-0.6deg);position:relative;">
           <div style="position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(1.2deg);width:72px;height:19px;background:rgba(255,240,158,0.72);border:1px solid rgba(200,184,96,0.42);z-index:2;"></div>
-          <div class="nb-image" style="aspect-ratio:16/9;"><img src="assets/hovercraft_3.jpg" alt="Hovercraft assembly" style="transform:rotate(180deg);" /></div>
+          <div class="nb-image" style="aspect-ratio:16/9;"><img src="assets/hovercraft_3.jpg" alt="Hovercraft assembly" style="transform:rotate(90deg);" /></div>
           <div style="font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;margin-top:6px;opacity:0.6;">figure 1 — hovercraft mk.3 assembly</div>
         </div>
       </div>
@@ -702,7 +700,6 @@ function buildOffscreen() {
 imgEl.addEventListener('load', buildOffscreen);
 if (imgEl.complete && imgEl.naturalWidth) buildOffscreen();
 
-/* pixel dissolve now driven by page scroll t */
 function renderPixels(t) {
   const w = pixCanvas.width, h = pixCanvas.height;
   const pixPhase  = Math.max(0, (t - 0.05) / 0.65);
@@ -732,28 +729,29 @@ const printedLine  = document.getElementById('printed-line');
 const extruderCar  = document.getElementById('extruder-car');
 const pageSection  = document.querySelector('.page');
 const ANGLE_RAD    = -7 * Math.PI / 180;
-const EXTRUDER_W   = 336;   /* exact 2x of 168 */
-const EXTRUDER_H   = 666;   /* exact 2x of 333 */
+const EXTRUDER_W   = 110;   /* original size */
+const EXTRUDER_H   = 218;
 const NOZZLE_FRAC  = 0.75;
 
 function updatePrinter() {
   const pageRect = pageSection.getBoundingClientRect();
   const vh = window.innerHeight;
 
+  /* t goes linearly from 0 to 1 as page scrolls in */
   const t  = Math.max(0, Math.min(1, (vh - pageRect.top) / (vh * 0.9)));
-  const te = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
 
-  printedLine.style.width = (te * 100) + '%';
+  /* line width and extruder position both follow t directly — perfectly in sync */
+  printedLine.style.width = (t * 100) + '%';
 
   if (t <= 0.01 || t >= 0.99) {
     extruderCar.style.opacity = '0';
-    return { t, te };
+    return { t };
   }
 
   const lineOriginX  = pageRect.left - 80;
   const lineOriginY  = pageRect.top  + 28 + 1.5;
   const lineFullPx   = pageRect.width + 160;
-  const lineCurPx    = te * lineFullPx;
+  const lineCurPx    = t * lineFullPx;
 
   const rightEndX = lineOriginX + lineCurPx * Math.cos(ANGLE_RAD);
   const rightEndY = lineOriginY + lineCurPx * Math.sin(ANGLE_RAD);
@@ -765,11 +763,10 @@ function updatePrinter() {
   if (t < 0.06) alpha = t / 0.06;
   else if (t > 0.92) alpha = (1 - t) / 0.08;
   extruderCar.style.opacity = String(Math.min(0.96, alpha));
-  return { t, te };
+  return { t };
 }
 
 function onScroll() {
-  /* hero text fade driven by hero scroll progress p */
   const top   = heroWrap.getBoundingClientRect().top;
   const total = heroWrap.offsetHeight - window.innerHeight;
   const p     = Math.max(0, Math.min(1, -top / total));
@@ -777,7 +774,6 @@ function onScroll() {
   scrollHint.style.opacity = p > 0.05 ? '0' : '1';
   if (craftWrap) craftWrap.style.opacity = String(Math.max(0, 1 - p * 4.2));
 
-  /* page scroll drives pixel dissolve & extruder together */
   const pageRect = pageSection.getBoundingClientRect();
   const vh = window.innerHeight;
   const t  = Math.max(0, Math.min(1, (vh - pageRect.top) / (vh * 0.9)));
@@ -791,7 +787,7 @@ resizePixCanvas();
 window.addEventListener('resize', onResize);
 window.addEventListener('scroll', onScroll, { passive: true });
 
-/* intersection observers (unchanged) */
+/* intersection observers */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
