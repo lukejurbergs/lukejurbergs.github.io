@@ -76,7 +76,6 @@
     @keyframes heroReveal { from{opacity:0;transform:translate(-50%,calc(-50%+22px))} to{opacity:1;transform:translate(-50%,-50%)} }
     .hero-name { position:relative; display:inline-block; }
 
-    /* ─── NAME IN ACCENT RED ─── */
     .hero-name-top { 
       font-family:var(--display); 
       font-size:clamp(96px,16vw,230px); 
@@ -105,7 +104,7 @@
     .scroll-hint::after { content:'↓'; display:block; text-align:center; margin-top:5px; animation:bounceArrow 1.4s ease-in-out infinite; }
     @keyframes bounceArrow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
 
-    /* ─── HOVERCRAFT GIF — EVEN LARGER ─── */
+    /* ─── HOVERCRAFT GIF ─── */
     #hero-craft-wrap {
       position:absolute;
       bottom:3%;
@@ -132,7 +131,7 @@
       50%      { transform: translateY(-22px); }
     }
 
-    /* ─── EXTRUDER CAR — original size (110×218) ─── */
+    /* ─── EXTRUDER CAR (110×218) ─── */
     #extruder-car {
       position:fixed; z-index:400; pointer-events:none;
       width: 110px;
@@ -192,13 +191,33 @@
     .portfolio-wrap { position:relative; padding:44px 0 96px; }
     .portfolio-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:16px; position:relative; z-index:2; }
 
-    .caliper-aside { position:absolute; right:-32px; top:-160px; height:calc(100% - 60px); max-height:640px; width:240px; pointer-events:none; z-index:1; opacity:0; transform:translateY(80px) rotate(5deg) scale(0.88); transition:opacity .7s cubic-bezier(.22,1,.36,1) .2s, transform .9s cubic-bezier(0.16,1.8,0.3,1) .2s; }
+    /* ─── CALIPER ASIDE (no cropping) ─── */
+    .caliper-aside {
+      position:absolute; right:-32px; top:-30px;
+      height: auto; max-height: none; width:240px;
+      pointer-events:none; z-index:1;
+      opacity:0;
+      transform:translateY(80px) rotate(5deg) scale(0.88);
+      transition:opacity .7s cubic-bezier(.22,1,.36,1) .2s, transform .9s cubic-bezier(0.16,1.8,0.3,1) .2s;
+    }
     .caliper-aside.visible { opacity:1; transform:translateY(0) rotate(1.5deg) scale(1); }
-    .caliper-img { width:100%; height:100%; border:1.5px solid rgba(26,23,20,0.12); box-shadow:-4px 4px 20px rgba(26,23,20,0.13); overflow:hidden; background:transparent; }
-    .caliper-img img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; background:transparent; }
+    .caliper-img {
+      width:100%; height:auto;
+      border:1.5px solid rgba(26,23,20,0.12);
+      box-shadow:-4px 4px 20px rgba(26,23,20,0.13);
+      overflow: visible;
+      background:transparent;
+    }
+    .caliper-img img {
+      width:100%; height:auto;
+      object-fit: contain;
+      display:block;
+      background:transparent;
+    }
     .caliper-tape { position:absolute; top:18px; left:50%; transform:translateX(-50%) rotate(-2.5deg); width:58px; height:19px; background:rgba(255,238,140,0.7); border:1px solid rgba(200,185,100,0.42); z-index:3; }
     .caliper-label { position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-family:var(--hand); font-size:12px; color:var(--blue-ink); opacity:0.55; white-space:nowrap; }
 
+    /* ─── PORTFOLIO CARDS ─── */
     .port-card { position:relative; overflow:hidden; text-decoration:none; display:flex; flex-direction:column; opacity:0; transform:translateY(40px) scale(0.94) rotate(0.4deg); transition:opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1), box-shadow .28s, border-color .28s; background:#f9f6ef url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 0h60M0 0v60' stroke='rgba(80,105,205,0.16)' fill='none'/%3E%3C/svg%3E") 0 0/60px; border:1.5px solid rgba(26,23,20,0.13); box-shadow:2px 3px 12px rgba(26,23,20,0.09); transform-origin:center bottom; }
     .port-card.visible { opacity:1; transform:translateY(0) scale(1) rotate(0deg); }
     .port-card:hover { box-shadow:6px 14px 36px rgba(26,23,20,0.18); border-color:rgba(26,23,20,0.28); transform:translateY(-6px) scale(1.01) !important; z-index:5; }
@@ -442,6 +461,7 @@
     </div>
 
     <div class="portfolio-wrap">
+      <!-- Caliper aside no longer cropped -->
       <div class="caliper-aside" id="caliper-aside">
         <div class="caliper-tape"></div>
         <div class="caliper-img">
@@ -594,7 +614,7 @@
 
         <div style="margin-top:24px;transform:rotate(-0.6deg);position:relative;">
           <div style="position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(1.2deg);width:72px;height:19px;background:rgba(255,240,158,0.72);border:1px solid rgba(200,184,96,0.42);z-index:2;"></div>
-          <div class="nb-image" style="aspect-ratio:2/1;"><img src="assets/hovercraft_3.jpg" alt="Hovercraft assembly";" /></div>
+          <div class="nb-image" style="aspect-ratio:2/1;"><img src="assets/hovercraft_3.jpg" alt="Hovercraft assembly" style="transform:rotate(90deg);" /></div>
           <div style="font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;margin-top:6px;opacity:0.6;">figure 1 — hovercraft mk.3 assembly</div>
         </div>
       </div>
@@ -751,6 +771,7 @@ const ANGLE_RAD    = -7 * Math.PI / 180;
 const EXTRUDER_W   = 110;
 const EXTRUDER_H   = 218;
 const NOZZLE_FRAC  = 0.75;
+const VERT_ADJUST  = 4;   // nudge the nozzle tip exactly onto the line
 
 function updatePrinter() {
   const pageRect = pageSection.getBoundingClientRect();
@@ -762,7 +783,7 @@ function updatePrinter() {
 
   if (t <= 0.01 || t >= 0.99) {
     extruderCar.style.opacity = '0';
-    return { t };
+    return;
   }
 
   const lineOriginX  = pageRect.left - 80;
@@ -773,14 +794,14 @@ function updatePrinter() {
   const rightEndX = lineOriginX + lineCurPx * Math.cos(ANGLE_RAD);
   const rightEndY = lineOriginY + lineCurPx * Math.sin(ANGLE_RAD);
 
+  // Nozzle tip at (75% width, bottom + VERT_ADJUST)
   extruderCar.style.left = (rightEndX - EXTRUDER_W * NOZZLE_FRAC) + 'px';
-  extruderCar.style.top  = (rightEndY - EXTRUDER_H)     + 'px';
+  extruderCar.style.top  = (rightEndY - EXTRUDER_H + VERT_ADJUST) + 'px';
 
   let alpha = 1;
   if (t < 0.06) alpha = t / 0.06;
   else if (t > 0.92) alpha = (1 - t) / 0.08;
   extruderCar.style.opacity = String(Math.min(0.96, alpha));
-  return { t };
 }
 
 function onScroll() {
@@ -804,7 +825,7 @@ resizePixCanvas();
 window.addEventListener('resize', onResize);
 window.addEventListener('scroll', onScroll, { passive: true });
 
-/* intersection observers */
+/* intersection observers (unchanged) */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
