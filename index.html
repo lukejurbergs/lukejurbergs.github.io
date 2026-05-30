@@ -191,7 +191,6 @@
     .portfolio-wrap { position:relative; padding:44px 0 96px; }
     .portfolio-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:16px; position:relative; z-index:2; }
 
-    /* ─── CALIPER ASIDE (no cropping) ─── */
     .caliper-aside {
       position:absolute; right:-32px; top:-30px;
       height: auto; max-height: none; width:240px;
@@ -217,7 +216,6 @@
     .caliper-tape { position:absolute; top:18px; left:50%; transform:translateX(-50%) rotate(-2.5deg); width:58px; height:19px; background:rgba(255,238,140,0.7); border:1px solid rgba(200,185,100,0.42); z-index:3; }
     .caliper-label { position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-family:var(--hand); font-size:12px; color:var(--blue-ink); opacity:0.55; white-space:nowrap; }
 
-    /* ─── PORTFOLIO CARDS ─── */
     .port-card { position:relative; overflow:hidden; text-decoration:none; display:flex; flex-direction:column; opacity:0; transform:translateY(40px) scale(0.94) rotate(0.4deg); transition:opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1), box-shadow .28s, border-color .28s; background:#f9f6ef url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 0h60M0 0v60' stroke='rgba(80,105,205,0.16)' fill='none'/%3E%3C/svg%3E") 0 0/60px; border:1.5px solid rgba(26,23,20,0.13); box-shadow:2px 3px 12px rgba(26,23,20,0.09); transform-origin:center bottom; }
     .port-card.visible { opacity:1; transform:translateY(0) scale(1) rotate(0deg); }
     .port-card:hover { box-shadow:6px 14px 36px rgba(26,23,20,0.18); border-color:rgba(26,23,20,0.28); transform:translateY(-6px) scale(1.01) !important; z-index:5; }
@@ -461,7 +459,6 @@
     </div>
 
     <div class="portfolio-wrap">
-      <!-- Caliper aside no longer cropped -->
       <div class="caliper-aside" id="caliper-aside">
         <div class="caliper-tape"></div>
         <div class="caliper-img">
@@ -771,7 +768,6 @@ const ANGLE_RAD    = -7 * Math.PI / 180;
 const EXTRUDER_W   = 110;
 const EXTRUDER_H   = 218;
 const NOZZLE_FRAC  = 0.75;
-const VERT_ADJUST  = 4;   // nudge the nozzle tip exactly onto the line
 
 function updatePrinter() {
   const pageRect = pageSection.getBoundingClientRect();
@@ -786,17 +782,35 @@ function updatePrinter() {
     return;
   }
 
-  const lineOriginX  = pageRect.left - 80;
-  const lineOriginY  = pageRect.top  + 28 + 1.5;
-  const lineFullPx   = pageRect.width + 160;
-  const lineCurPx    = t * lineFullPx;
+  const lineOriginX = pageRect.left - 80;
+  const lineOriginY = pageRect.top + 28 + 1.5;
+  const lineFullPx  = pageRect.width + 160;
+  const lineCurPx   = t * lineFullPx;
 
   const rightEndX = lineOriginX + lineCurPx * Math.cos(ANGLE_RAD);
   const rightEndY = lineOriginY + lineCurPx * Math.sin(ANGLE_RAD);
 
-  // Nozzle tip at (75% width, bottom + VERT_ADJUST)
-  extruderCar.style.left = (rightEndX - EXTRUDER_W * NOZZLE_FRAC) + 'px';
-  extruderCar.style.top  = (rightEndY - EXTRUDER_H + VERT_ADJUST) + 'px';
+  /*
+   * Nozzle tip is at 75% width, 100% height of the extruder.
+   * Local offset from the origin (bottom center):
+   *   dx_local = (0.75 - 0.5) * EXTRUDER_W = 0.25 * EXTRUDER_W
+   *   dy_local = 0
+   * After rotation by ANGLE_RAD around the origin:
+   *   dx_rot = dx_local * cosθ - dy_local * sinθ
+   *   dy_rot = dx_local * sinθ + dy_local * cosθ
+   */
+  const cosA = Math.cos(ANGLE_RAD);
+  const sinA = Math.sin(ANGLE_RAD);
+  const dx_rot = 0.25 * EXTRUDER_W * cosA;
+  const dy_rot = 0.25 * EXTRUDER_W * sinA;
+
+  // Position the origin (bottom center) so the rotated nozzle tip lands on the line endpoint
+  const originX = rightEndX - dx_rot;
+  const originY = rightEndY - dy_rot;
+
+  // Convert origin to element's top‑left corner
+  extruderCar.style.left = (originX - EXTRUDER_W / 2) + 'px';
+  extruderCar.style.top  = (originY - EXTRUDER_H)     + 'px';
 
   let alpha = 1;
   if (t < 0.06) alpha = t / 0.06;
@@ -825,7 +839,7 @@ resizePixCanvas();
 window.addEventListener('resize', onResize);
 window.addEventListener('scroll', onScroll, { passive: true });
 
-/* intersection observers (unchanged) */
+/* intersection observers */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
