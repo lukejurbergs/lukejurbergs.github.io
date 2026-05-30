@@ -103,9 +103,9 @@
       from{opacity:0;transform:translateX(-50%) translateY(28px)}
       to  {opacity:1;transform:translateX(-50%) translateY(0)}
     }
-    /* video and img both get the same treatment */
+    /* video and img both get the same treatment — MUCH LARGER */
     #hero-craft {
-      width: min(920px, 74vw);  /* LARGE — at least 60% of typical hero width */
+      width: min(1400px, 90vw);
       height: auto;
       display: block;
       animation: craftFloat 4s ease-in-out 2.2s infinite;
@@ -116,24 +116,26 @@
       50%      { transform: translateY(-22px); }
     }
 
-    /* ─── EXTRUDER CAR — sized to match actual 168×333 image ─── */
+    /* ─── EXTRUDER CAR — 2× bigger (was 110×218, now 220×436) ─── */
     #extruder-car {
       position:fixed; z-index:400; pointer-events:none;
-      width: 110px;
-      height: 218px;  /* matches 168×333 ratio: 110 × (333/168) = 218 */
+      width: 220px;
+      height: 436px;
       transform:rotate(-7deg); transform-origin:bottom center;
       opacity:0; transition:opacity 0.12s ease;
       will-change:left,top;
+      background: transparent;
     }
     #extruder-placeholder {
       width:100%; height:100%;
       overflow:hidden;
-      /* No background — extruder image fills it completely */
+      background: transparent;
     }
     #extruder-placeholder img {
       width:100%; height:100%;
-      object-fit:cover;   /* fill the container, image is portrait so this works */
+      object-fit:cover;
       display:block;
+      background: transparent;
     }
 
     /* ═══════════ PAGE ═══════════ */
@@ -174,10 +176,10 @@
     .portfolio-wrap { position:relative; padding:44px 0 96px; }
     .portfolio-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:16px; position:relative; z-index:2; }
 
-    /* Caliper aside — image is now portrait (410×1200) after rotation */
+    /* Caliper aside — transparent background (was #0d0b08, now transparent) */
     .caliper-aside { position:absolute; right:-32px; top:-160px; height:calc(100% - 60px); max-height:640px; width:240px; pointer-events:none; z-index:1; opacity:0; transform:translateY(80px) rotate(5deg) scale(0.88); transition:opacity .7s cubic-bezier(.22,1,.36,1) .2s, transform .9s cubic-bezier(0.16,1.8,0.3,1) .2s; }
     .caliper-aside.visible { opacity:1; transform:translateY(0) rotate(1.5deg) scale(1); }
-    .caliper-img { width:100%; height:100%; border:1.5px solid rgba(26,23,20,0.12); box-shadow:-4px 4px 20px rgba(26,23,20,0.13); overflow:hidden; background:#0d0b08; }
+    .caliper-img { width:100%; height:100%; border:1.5px solid rgba(26,23,20,0.12); box-shadow:-4px 4px 20px rgba(26,23,20,0.13); overflow:hidden; background:transparent; }
     .caliper-img img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
     .caliper-tape { position:absolute; top:18px; left:50%; transform:translateX(-50%) rotate(-2.5deg); width:58px; height:19px; background:rgba(255,238,140,0.7); border:1px solid rgba(200,185,100,0.42); z-index:3; }
     .caliper-label { position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-family:var(--hand); font-size:12px; color:var(--blue-ink); opacity:0.55; white-space:nowrap; }
@@ -210,7 +212,7 @@
     .port-card:nth-child(5) .card-accent-bar { background:#5a2a7a; }
     .card-accent-bar { position:absolute; top:0; left:0; width:4px; height:100%; z-index:3; opacity:0.7; }
 
-    /* Card photos — varied heights so wide/medium cards actually show content */
+    /* Card photos — varied heights */
     .card-photo { width:100%; flex-shrink:0; background:#111; display:flex; align-items:center; justify-content:center; border-bottom:1.5px solid rgba(26,23,20,0.1); position:relative; overflow:hidden; }
     .port-card.wide   .card-photo { height:300px; }
     .port-card.medium .card-photo { height:260px; }
@@ -221,8 +223,10 @@
     /* Per-card image positioning */
     .port-card:nth-child(1) .card-photo img { object-position:center 40%; }
     .port-card:nth-child(2) .card-photo img { object-position:center 20%; }
-    .port-card:nth-child(3) .card-photo img { object-fit:contain; object-position:center; padding:16px; background:#f0ede6; filter:none; }
-    .port-card:nth-child(4) .card-photo img { object-position:center 12%; }
+    /* Card 3 — Skills & Tools: now cover-fill, integrated like the rest */
+    .port-card:nth-child(3) .card-photo img { object-fit:cover; object-position:center; filter:none; }
+    /* Card 4 — Résumé: moved down ~30% so people are visible (was center 12%) */
+    .port-card:nth-child(4) .card-photo img { object-position:center 45%; }
     .port-card:nth-child(5) .card-photo img { object-position:center 18%; }
 
     .card-inner { padding:18px 24px 22px 28px; position:relative; z-index:2; display:flex; flex-direction:column; flex:1; }
@@ -338,7 +342,8 @@
     .contact-polaroid { margin-top:26px; background:#faf7f0; padding:7px 7px 42px; border:1px solid rgba(26,23,20,0.1); box-shadow:3px 4px 14px rgba(26,23,20,0.1); transform:rotate(-0.7deg); display:inline-block; width:88%; transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s; }
     .contact-polaroid:hover { transform:rotate(0deg) scale(1.02); box-shadow:5px 10px 28px rgba(26,23,20,0.16); }
     .contact-polaroid-img { width:100%; aspect-ratio:4/3; background:#d4cfc4; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-    .contact-polaroid-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; filter:sepia(0.08) contrast(0.96); }
+    /* Scuba image — cropped ~20% from top (was center top) */
+    .contact-polaroid-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 20%; filter:sepia(0.08) contrast(0.96); }
     .contact-polaroid-label { padding-top:7px; font-family:var(--hand); font-size:15px; color:var(--ink-mid); text-align:center; }
     .contact-annotation { margin-top:22px; padding:15px 17px; border-left:2.5px solid rgba(184,50,8,0.28); background:rgba(240,236,228,0.6); }
     .contact-annotation p { font-family:var(--hand); font-size:15px; color:var(--ink-mid); line-height:1.7; }
@@ -448,7 +453,7 @@
     </div>
 
     <div class="portfolio-wrap">
-      <!-- Caliper aside — portrait image (rotated 90° in Python) -->
+      <!-- Caliper aside — transparent background -->
       <div class="caliper-aside" id="caliper-aside">
         <div class="caliper-tape"></div>
         <div class="caliper-img">
@@ -499,7 +504,7 @@
           </svg>
         </a>
 
-        <!-- 3. Skills — CAD render image with contain -->
+        <!-- 3. Skills — cover-fill, integrated image -->
         <a href="about.html#skills" class="port-card third">
           <div class="card-tape"></div>
           <div class="card-accent-bar"></div>
@@ -518,7 +523,7 @@
           </svg>
         </a>
 
-        <!-- 4. Résumé -->
+        <!-- 4. Résumé — image moved down ~30% -->
         <a href="resume.pdf" class="port-card third">
           <div class="card-tape"></div>
           <div class="card-accent-bar"></div>
@@ -606,9 +611,10 @@
           <div class="polaroid"><div class="polaroid-img"><img src="assets/electronics_board.jpg" alt="Electronics"></div><div class="polaroid-label">RPi stack <em>.jpg</em></div></div>
           <div class="polaroid"><div class="polaroid-img"><img src="assets/blown_pi.jpg" alt="Blown Pi"></div><div class="polaroid-label">rip pico <em>.jpg</em></div></div>
         </div>
+        <!-- Hovercraft assembly image — flipped 180° -->
         <div style="margin-top:24px;transform:rotate(-0.6deg);position:relative;">
           <div style="position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(1.2deg);width:72px;height:19px;background:rgba(255,240,158,0.72);border:1px solid rgba(200,184,96,0.42);z-index:2;"></div>
-          <div class="nb-image" style="aspect-ratio:16/9;"><img src="assets/hovercraft_3.jpg" alt="Hovercraft assembly"></div>
+          <div class="nb-image" style="aspect-ratio:16/9;"><img src="assets/hovercraft_3.jpg" alt="Hovercraft assembly" style="transform:rotate(180deg);" /></div>
           <div style="font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;margin-top:6px;opacity:0.6;">figure 1 — hovercraft mk.3 assembly</div>
         </div>
       </div>
@@ -763,27 +769,19 @@ function resizePixCanvas() {
   renderPixels(lastProg);
 }
 
-/* ══ EXTRUDER — tracks the actual page printed line endpoint ══
-   Both renderPixels(p) AND updatePrinter() are called on every
-   scroll event, so they run simultaneously.
-   Pixel dissolve: responds to hero scroll progress p (0→1).
-   Extruder: responds to the page section entering the viewport.
-   At ~100vh of scroll, the hero is fully dissolved AND the page
-   is just appearing — both effects are active together.
-══════════════════════════════════════════════════════════════ */
+/* ══ EXTRUDER — nozzle at 75% width of the 2× bigger image ══ */
 const printedLine  = document.getElementById('printed-line');
 const extruderCar  = document.getElementById('extruder-car');
 const pageSection  = document.querySelector('.page');
-const ANGLE_RAD    = -7 * Math.PI / 180;  /* -7 degrees in radians */
-const EXTRUDER_W   = 110;
-const EXTRUDER_H   = 218;  /* matches 168×333 actual image ratio */
+const ANGLE_RAD    = -7 * Math.PI / 180;
+const EXTRUDER_W   = 220;   /* 2× bigger (was 110) */
+const EXTRUDER_H   = 436;   /* 2× bigger (was 218) */
+const NOZZLE_FRAC  = 0.75;  /* nozzle is 75% into the width */
 
 function updatePrinter() {
   const pageRect = pageSection.getBoundingClientRect();
   const vh = window.innerHeight;
 
-  /* t = 0: page top just at bottom of viewport (page entering)
-     t = 1: page top has scrolled 90% of viewport height up      */
   const t  = Math.max(0, Math.min(1, (vh - pageRect.top) / (vh * 0.9)));
   const te = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
 
@@ -794,23 +792,17 @@ function updatePrinter() {
     return;
   }
 
-  /* Calculate the right endpoint of the line in viewport coords.
-     The line element has:
-       left: -80px (relative to .page left edge)
-       width: te * 100% (of .page width)
-       transform: rotate(-7deg) around left center
-     We compute this geometrically from pageRect.          */
-  const lineOriginX  = pageRect.left - 80;          /* line starts 80px left of page */
-  const lineOriginY  = pageRect.top  + 28 + 1.5;   /* top:28px in page + 1.5px half-height */
-  const lineFullPx   = pageRect.width + 160;        /* total element width (page + 80 each side) */
+  /* Line right endpoint in viewport coords */
+  const lineOriginX  = pageRect.left - 80;
+  const lineOriginY  = pageRect.top  + 28 + 1.5;
+  const lineFullPx   = pageRect.width + 160;
   const lineCurPx    = te * lineFullPx;
 
-  /* Apply -7deg rotation from origin (left center) */
   const rightEndX = lineOriginX + lineCurPx * Math.cos(ANGLE_RAD);
   const rightEndY = lineOriginY + lineCurPx * Math.sin(ANGLE_RAD);
 
-  /* Position car so its BOTTOM CENTER sits on the line right endpoint */
-  extruderCar.style.left = (rightEndX - EXTRUDER_W / 2) + 'px';
+  /* Position car so the NOZZLE (at 75% width) sits on the line endpoint */
+  extruderCar.style.left = (rightEndX - EXTRUDER_W * NOZZLE_FRAC) + 'px';
   extruderCar.style.top  = (rightEndY - EXTRUDER_H)     + 'px';
 
   let alpha = 1;
@@ -826,7 +818,6 @@ function onScroll() {
   const p     = Math.max(0, Math.min(1, -top / total));
   lastProg = p;
 
-  /* Both called on every scroll — simultaneous, scroll-driven */
   renderPixels(p);
   updatePrinter();
 
