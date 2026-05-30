@@ -4,6 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Luke Jurbergs — Aspiring Engineer</title>
+  <!--
+  ══════════════════════════════════════════════
+  GITHUB PAGES FILE STRUCTURE
+  Put index.html at the root of your repo.
+  Create an assets/ folder with these files:
+
+  assets/
+    luke_fire.png         ← dark sparks/fire photo
+    hero_hovercraft.gif   ← spinning hovercraft GIF
+    hero_bg.png           ← notebook/CAD background
+    extruder.png          ← Bambu Lab extruder
+    planetary_gear.gif    ← planetary gear GIF
+    hovercraft_1.png      ← hovercraft white bg
+    hovercraft_3.png      ← hovercraft assembly
+    electronics_board.png ← RPi stack board
+    film_group.png        ← film award group
+    luke_medals.png       ← state tournament medals
+    luke_sticker_wall.png ← sticker wall + hovercraft
+    luke_respirator.png   ← respirator workshop
+    luke_face_shield.png  ← face shield garage
+    luke_scuba.png        ← scuba with dad
+    stanford_team.png     ← Stanford invitational
+    blown_pi.png          ← destroyed Pi Pico
+    ev_prototype.png      ← electric vehicle
+    luke_hovercraft_work.png ← working on hovercraft
+
+  Then: Settings → Pages → Source: main branch /root
+  ══════════════════════════════════════════════
+  -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
@@ -39,7 +68,6 @@
     }
     @keyframes pageFade { from{opacity:0} to{opacity:1} }
 
-    /* ── Global graph paper ── */
     body::after {
       content: '';
       position: fixed; inset: 0;
@@ -61,16 +89,11 @@
       z-index: 1;
     }
 
-    /* ════════════════════════════════════════
-       NAV
-    ════════════════════════════════════════ */
+    /* ════════════════ NAV ════════════════ */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: fixed; top: 0; left: 0; right: 0;
       z-index: 300;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 22px 52px;
       transition: background .4s, border-color .4s, padding .35s;
       border-bottom: 1px solid transparent;
@@ -82,452 +105,267 @@
       padding: 13px 52px;
       border-bottom-color: var(--border);
     }
-    .nav-logo {
-      font-family: var(--display);
-      font-size: 22px;
-      letter-spacing: 0.08em;
-      color: var(--ink);
-      text-decoration: none;
-      transition: color .2s;
-    }
+    .nav-logo { font-family: var(--display); font-size: 22px; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; transition: color .2s; }
     .nav-logo:hover { color: var(--accent); }
     .nav-links { display: flex; gap: 40px; list-style: none; }
     .nav-links a {
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-mid);
-      text-decoration: none;
-      transition: color .2s;
-      position: relative;
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-mid); text-decoration: none;
+      transition: color .2s; position: relative;
     }
     .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0; right: 100%;
-      height: 1px;
-      background: var(--accent);
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 100%;
+      height: 1px; background: var(--accent);
       transition: right .28s cubic-bezier(.4,0,.2,1);
     }
     .nav-links a:hover { color: var(--ink); }
     .nav-links a:hover::after { right: 0; }
 
-    /* ════════════════════════════════════════
-       HERO
-    ════════════════════════════════════════ */
+    /* ════════════════ HERO ════════════════ */
     #hero-sticky-wrapper { position: relative; height: 200vh; }
     #hero-sticky {
-      position: sticky;
-      top: 0; height: 100vh; width: 100%;
-      overflow: hidden;
-      background: #14120e;
+      position: sticky; top: 0; height: 100vh; width: 100%;
+      overflow: hidden; background: #0d0b08;
     }
-
     #hero-img-src {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      visibility: hidden;
-      pointer-events: none;
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; visibility: hidden; pointer-events: none;
     }
     #pixel-canvas {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      display: block;
+      position: absolute; inset: 0; width: 100%; height: 100%; display: block;
     }
 
+    /* ── Hovercraft GIF hero overlay ── */
+    #hero-craft-wrap {
+      position: absolute;
+      bottom: 9%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      pointer-events: none;
+      opacity: 0;
+      animation: craftReveal 1.3s cubic-bezier(.22,1,.36,1) 0.7s both;
+    }
+    @keyframes craftReveal {
+      from { opacity: 0; transform: translateX(-50%) translateY(30px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    #hero-craft {
+      width: min(480px, 46vw);
+      display: block;
+      animation: craftFloat 4s ease-in-out 2s infinite;
+      filter: drop-shadow(0 8px 32px rgba(200,56,10,0.22));
+    }
+    @keyframes craftFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-16px); }
+    }
+
+    /* Sweep — hidden, using extruder car instead */
     #sweep-wrap { display: none; }
     #sweep-img  { display: none; }
 
+    /* Printed red line */
     #printed-line {
-      position: absolute;
-      top: 28px;
-      left: -80px;
-      right: -80px;
-      height: 3px;
-      width: 0%;
+      position: absolute; top: 28px; left: -80px; right: -80px;
+      height: 3px; width: 0%;
       background: #c8380a;
-      transform: rotate(-7deg);
-      transform-origin: left center;
-      z-index: 30;
-      pointer-events: none;
+      transform: rotate(-7deg); transform-origin: left center;
+      z-index: 30; pointer-events: none;
     }
 
+    /* Extruder car */
     #extruder-car {
-      position: fixed;
-      z-index: 400;
-      pointer-events: none;
-      width: 110px;
-      height: 520px;
-      transform: rotate(-7deg);
-      transform-origin: bottom center;
-      opacity: 0;
-      transition: opacity 0.15s ease;
+      position: fixed; z-index: 400; pointer-events: none;
+      width: 110px; height: 520px;
+      transform: rotate(-7deg); transform-origin: bottom center;
+      opacity: 0; transition: opacity 0.15s ease;
       will-change: left, top;
     }
     #extruder-placeholder {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, #c8c3bb 0%, #b8b3ab 40%, #a8a39b 100%);
-      background-image:
-        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
-      background-size: 100% 100%, 14px 14px, 14px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100%; height: 100%;
       border: 1px solid rgba(26,23,20,0.2);
       box-shadow: 3px 0 20px rgba(26,23,20,0.3), -2px 0 8px rgba(26,23,20,0.1);
-    }
-    #extruder-placeholder span {
-      font-family: var(--mono);
-      font-size: 7px;
-      letter-spacing: 0.16em;
-      color: rgba(26,23,20,0.35);
-      text-transform: uppercase;
-      text-align: center;
-      line-height: 1.7;
+      overflow: hidden;
     }
     #extruder-placeholder img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    #extruder-placeholder span {
+      font-family: var(--mono); font-size: 7px; letter-spacing: 0.16em;
+      color: rgba(26,23,20,0.35); text-transform: uppercase;
+      text-align: center; line-height: 1.7;
     }
 
     .hero-vignette {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 120% 60% at 50% 0%, transparent 40%, rgba(0,0,0,0.45) 100%),
-        linear-gradient(to top, #ffffff 0%, #ffffff 15%, transparent 26%);
-      pointer-events: none;
-      z-index: 3;
+        radial-gradient(ellipse 120% 60% at 50% 0%, transparent 40%, rgba(0,0,0,0.55) 100%),
+        linear-gradient(to top, #ffffff 0%, #ffffff 12%, transparent 24%);
+      pointer-events: none; z-index: 3;
     }
 
     .hero-text {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -55%);
-      text-align: center;
-      z-index: 10;
-      white-space: nowrap;
-      pointer-events: none;
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -60%);
+      text-align: center; z-index: 10;
+      white-space: nowrap; pointer-events: none;
       animation: heroReveal 1.1s cubic-bezier(.22,1,.36,1) .1s both;
     }
     @keyframes heroReveal {
-      from { opacity:0; transform:translate(-50%, calc(-55%+22px)); }
-      to   { opacity:1; transform:translate(-50%, -55%); }
+      from { opacity:0; transform:translate(-50%, calc(-60%+22px)); }
+      to   { opacity:1; transform:translate(-50%, -60%); }
     }
-    .hero-name {
-      position: relative;
-      display: inline-block;
-    }
+    .hero-name { position: relative; display: inline-block; }
     .hero-name-top {
-      font-family: var(--display);
-      font-size: clamp(96px, 16vw, 230px);
-      letter-spacing: 0.06em;
-      line-height: 0.88;
-      color: #fff;
-      text-shadow: 0 2px 60px rgba(0,0,0,0.65);
-      display: block;
+      font-family: var(--display); font-size: clamp(96px,16vw,230px);
+      letter-spacing: 0.06em; line-height: 0.88; color: #fff;
+      text-shadow: 0 2px 60px rgba(0,0,0,0.65); display: block;
     }
     .hero-name-bottom {
-      font-family: var(--display);
-      font-size: clamp(40px, 6.5vw, 96px);
-      letter-spacing: 0.38em;
-      line-height: 1;
-      color: rgba(255,255,255,0.55);
-      display: block;
-      margin-top: -4px;
-      padding-left: 3px;
+      font-family: var(--display); font-size: clamp(40px,6.5vw,96px);
+      letter-spacing: 0.38em; line-height: 1;
+      color: rgba(255,255,255,0.55); display: block;
+      margin-top: -4px; padding-left: 3px;
     }
     .hero-name-bar {
-      display: block;
-      width: 100%;
-      height: 3px;
+      display: block; width: 100%; height: 3px;
       background: linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%);
       margin: 8px 0 10px;
     }
     .hero-name::before, .hero-name::after {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       width: 14px; height: 14px;
-      border-color: rgba(255,255,255,0.25);
-      border-style: solid;
+      border-color: rgba(255,255,255,0.25); border-style: solid;
     }
     .hero-name::before { top: -8px; left: -12px; border-width: 1px 0 0 1px; }
     .hero-name::after  { bottom: -8px; right: -12px; border-width: 0 1px 1px 0; }
     .hero-sub {
-      font-family: var(--mono);
-      font-size: clamp(10px, 1.1vw, 13px);
-      letter-spacing: 0.42em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-top: 16px;
+      font-family: var(--mono); font-size: clamp(10px,1.1vw,13px);
+      letter-spacing: 0.42em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); margin-top: 16px;
     }
     .hero-quote {
-      margin-top: 26px;
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: clamp(14px, 1.5vw, 19px);
-      color: rgba(255,255,255,0.34);
-      white-space: normal;
-      max-width: 440px;
-      margin-left: auto; margin-right: auto;
-      line-height: 1.65;
+      margin-top: 20px; font-family: var(--serif); font-style: italic;
+      font-size: clamp(14px,1.5vw,19px); color: rgba(255,255,255,0.32);
+      white-space: normal; max-width: 440px;
+      margin-left: auto; margin-right: auto; line-height: 1.65;
     }
     .scroll-hint {
-      position: absolute;
-      bottom: 52px; left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: rgba(26,23,20,0.72);
+      position: absolute; bottom: 52px; left: 50%;
+      transform: translateX(-50%); z-index: 10;
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: rgba(26,23,20,0.72);
       transition: opacity .4s;
       animation: hintFade 2s ease 1.8s both;
     }
     @keyframes hintFade { from{opacity:0} to{opacity:1} }
-
-    /* Scroll hint bounce arrow */
     .scroll-hint::after {
-      content: '↓';
-      display: block;
-      text-align: center;
-      margin-top: 6px;
+      content: '↓'; display: block; text-align: center; margin-top: 6px;
       animation: bounceArrow 1.4s ease-in-out infinite;
     }
-    @keyframes bounceArrow {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(5px); }
-    }
+    @keyframes bounceArrow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
 
-    /* ════════════════════════════════════════
-       PAGE
-    ════════════════════════════════════════ */
-    .page {
-      position: relative;
-      z-index: 10;
-      background: var(--bg);
-    }
+    /* ════════════════ PAGE ════════════════ */
+    .page { position: relative; z-index: 10; background: var(--bg); }
     .page::before {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       left: 88px; top: 0; bottom: 0;
-      width: 1px;
-      background: rgba(184,50,8,0.2);
-      pointer-events: none;
+      width: 1px; background: rgba(184,50,8,0.2); pointer-events: none;
     }
-
     .inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 52px 0 112px;
-      position: relative;
+      max-width: 1400px; margin: 0 auto;
+      padding: 0 52px 0 112px; position: relative;
     }
 
-    /* ════════════════════════════════════════
-       SECTION HEADERS — buoy rise effect
-    ════════════════════════════════════════ */
+    /* ════════════════ SECTION HEADERS ════════════════ */
     .sec-head {
-      padding-top: 80px;
-      padding-bottom: 44px;
-      display: flex;
-      align-items: flex-end;
-      gap: 24px;
+      padding-top: 80px; padding-bottom: 44px;
+      display: flex; align-items: flex-end; gap: 24px;
       border-bottom: 1.5px solid var(--border);
       position: relative;
-      /* overflow on just title clip area, not whole header */
     }
-
-    /* Clip wrapper for the buoy animation */
-    .sec-title-clip {
-      overflow: hidden;
-      display: inline-block;
-      line-height: 1.05;
-    }
-
+    .sec-title-clip { overflow: hidden; display: inline-block; line-height: 1.05; }
     .sec-num {
-      font-family: var(--hand);
-      font-size: 19px;
-      color: var(--red-ink);
-      opacity: 0;
-      padding-bottom: 3px;
-      flex-shrink: 0;
+      font-family: var(--hand); font-size: 19px; color: var(--red-ink);
+      opacity: 0; padding-bottom: 3px; flex-shrink: 0;
       transform: translateY(8px);
       transition: opacity .5s ease .1s, transform .5s ease .1s;
     }
-    .sec-head.visible .sec-num {
-      opacity: 0.72;
-      transform: translateY(0);
-    }
-
-    /* The big title rises like a buoy from under the border */
+    .sec-head.visible .sec-num { opacity: 0.72; transform: translateY(0); }
     .sec-title {
       font-family: var(--display);
-      font-size: clamp(48px, 6vw, 82px); /* LARGER */
-      letter-spacing: 0.06em;
-      line-height: 1;
-      color: var(--ink);
+      font-size: clamp(48px, 6vw, 82px);
+      letter-spacing: 0.06em; line-height: 1; color: var(--ink);
       display: block;
       transform: translateY(110%);
       transition: transform 1s cubic-bezier(0.16, 1.6, 0.3, 1);
     }
-    .sec-head.visible .sec-title {
-      transform: translateY(0);
-    }
+    .sec-head.visible .sec-title { transform: translateY(0); }
     .sec-title em { color: var(--accent); font-style: normal; }
-
     .sec-annotation {
-      margin-left: auto;
-      font-family: var(--hand);
-      font-size: 15px;
-      color: var(--blue-ink);
-      opacity: 0;
-      text-align: right;
-      line-height: 1.5;
-      max-width: 200px;
-      padding-bottom: 4px;
+      margin-left: auto; font-family: var(--hand); font-size: 15px;
+      color: var(--blue-ink); opacity: 0; text-align: right;
+      line-height: 1.5; max-width: 200px; padding-bottom: 4px;
       transform: rotate(-1.2deg) translateX(12px);
       transition: opacity .5s ease .45s, transform .5s ease .45s;
     }
-    .sec-head.visible .sec-annotation {
-      opacity: 0.62;
-      transform: rotate(-1.2deg) translateX(0);
-    }
-
-    /* Left gear placeholder */
+    .sec-head.visible .sec-annotation { opacity: 0.62; transform: rotate(-1.2deg) translateX(0); }
     .sec-head-img {
-      position: absolute;
-      left: -90px;
-      top: 50%;
+      position: absolute; left: -90px; top: 50%;
       transform: translateY(-50%);
       width: 160px; height: 160px;
-      opacity: 0.18;
-      pointer-events: none;
-      z-index: 0;
-      background: linear-gradient(135deg, #c8c2b4 0%, #b8b2a4 100%);
-      background-image:
-        linear-gradient(rgba(80,105,205,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(80,105,205,0.1) 1px, transparent 1px);
-      background-size: 14px 14px;
+      opacity: 0.22; pointer-events: none; z-index: 0;
+      overflow: hidden;
       border: 1px solid rgba(26,23,20,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 4px;
     }
-    .sec-head-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-    .sec-head-img-label {
-      font-family: var(--mono);
-      font-size: 7px;
-      letter-spacing: 0.18em;
-      color: rgba(26,23,20,0.4);
-      text-transform: uppercase;
-      text-align: center;
-      line-height: 1.6;
-      position: relative;
-      z-index: 1;
-      padding: 4px;
-    }
+    .sec-head-img img { width: 100%; height: 100%; object-fit: contain; }
 
-    /* ════════════════════════════════════════
-       PORTFOLIO — caliper + cards
-    ════════════════════════════════════════ */
-    .portfolio-wrap {
-      position: relative;
-      padding: 44px 0 96px;
-    }
+    /* ════════════════ PORTFOLIO ════════════════ */
+    .portfolio-wrap { position: relative; padding: 44px 0 96px; }
     .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
-      position: relative;
-      z-index: 2;
+      display: grid; grid-template-columns: repeat(12, 1fr);
+      gap: 16px; position: relative; z-index: 2;
     }
 
-    /* ── Caliper — springs up from bottom ── */
+    /* Caliper aside — springs up */
     .caliper-aside {
-      position: absolute;
-      right: -32px;
-      top: -160px;
-      height: calc(100% - 60px);
-      max-height: 640px;
-      width: 240px;
-      pointer-events: none;
-      z-index: 1;
+      position: absolute; right: -32px; top: -160px;
+      height: calc(100% - 60px); max-height: 640px; width: 240px;
+      pointer-events: none; z-index: 1;
       opacity: 0;
       transform: translateY(80px) rotate(5deg) scale(0.88);
       transition: opacity .7s cubic-bezier(.22,1,.36,1) .2s,
                   transform .9s cubic-bezier(0.16, 1.8, 0.3, 1) .2s;
     }
-    .caliper-aside.visible {
-      opacity: 1;
-      transform: translateY(0) rotate(1.5deg) scale(1);
-    }
+    .caliper-aside.visible { opacity: 1; transform: translateY(0) rotate(1.5deg) scale(1); }
     .caliper-img {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(170deg, #cec9be 0%, #bfb9ae 40%, #aaa49c 100%);
+      width: 100%; height: 100%;
       border: 1.5px solid rgba(26,23,20,0.12);
       box-shadow: -4px 4px 20px rgba(26,23,20,0.13), 4px 0 12px rgba(26,23,20,0.06);
-      opacity: 0.82;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 8px;
-      overflow: hidden;
+      overflow: hidden; position: relative;
     }
-    .caliper-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .caliper-placeholder-text {
-      font-family: var(--mono);
-      font-size: 7.5px;
-      letter-spacing: 0.18em;
-      color: rgba(26,23,20,0.32);
-      text-transform: uppercase;
-      text-align: center;
-      line-height: 1.8;
-      padding: 10px;
-    }
+    .caliper-img img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; filter: sepia(0.08) contrast(0.96); }
     .caliper-tape {
-      position: absolute;
-      top: 18px;
-      left: 50%;
+      position: absolute; top: 18px; left: 50%;
       transform: translateX(-50%) rotate(-2.5deg);
       width: 58px; height: 19px;
-      background: rgba(255,238,140,0.7);
-      border: 1px solid rgba(200,185,100,0.42);
-      z-index: 3;
+      background: rgba(255,238,140,0.7); border: 1px solid rgba(200,185,100,0.42); z-index: 3;
     }
     .caliper-label {
-      position: absolute;
-      bottom: -22px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--hand);
-      font-size: 12px;
-      color: var(--blue-ink);
-      opacity: 0.55;
-      white-space: nowrap;
+      position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%);
+      font-family: var(--hand); font-size: 12px; color: var(--blue-ink); opacity: 0.55; white-space: nowrap;
     }
 
-    /* ── GRAPH PAPER CARD ── */
+    /* ── PORT CARDS ── */
     .port-card {
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
+      position: relative; overflow: hidden; text-decoration: none;
+      display: flex; flex-direction: column;
       opacity: 0;
       transform: translateY(40px) scale(0.94) rotate(0.4deg);
       transition: opacity .6s cubic-bezier(.22,1,.36,1),
                   transform .6s cubic-bezier(.22,1,.36,1),
-                  box-shadow .28s,
-                  border-color .28s;
+                  box-shadow .28s, border-color .28s;
       background-color: #f9f6ef;
       background-image:
         linear-gradient(rgba(80,105,205,0.16) 1px, transparent 1px),
@@ -539,560 +377,305 @@
       box-shadow: 2px 3px 12px rgba(26,23,20,0.09);
       transform-origin: center bottom;
     }
-    .port-card.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1) rotate(0deg);
-    }
+    .port-card.visible { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
     .port-card:hover {
       box-shadow: 6px 14px 36px rgba(26,23,20,0.18);
       border-color: rgba(26,23,20,0.28);
       transform: translateY(-6px) scale(1.01) rotate(0deg) !important;
       z-index: 5;
     }
-
-    /* Card pop delay based on position */
     .port-card:nth-child(1) { transition-delay: 0ms; }
-    .port-card:nth-child(2) { transition-delay: 110ms; transform-origin: center bottom; }
+    .port-card:nth-child(2) { transition-delay: 110ms; transform: translateY(40px) scale(0.94) rotate(-0.4deg); }
     .port-card:nth-child(3) { transition-delay: 0ms; }
-    .port-card:nth-child(4) { transition-delay: 90ms; }
-    .port-card:nth-child(5) { transition-delay: 180ms; }
+    .port-card:nth-child(4) { transition-delay: 90ms; transform: translateY(50px) scale(0.93) rotate(0.6deg); }
+    .port-card:nth-child(5) { transition-delay: 180ms; transform: translateY(50px) scale(0.93) rotate(-0.5deg); }
 
-    /* Alternate entry directions for variety */
-    .port-card:nth-child(2) { transform: translateY(40px) scale(0.94) rotate(-0.4deg); }
-    .port-card:nth-child(4) { transform: translateY(50px) scale(0.93) rotate(0.6deg); }
-    .port-card:nth-child(5) { transform: translateY(50px) scale(0.93) rotate(-0.5deg); }
+    .port-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+      opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 10;
+    }
+    .port-card:hover::after { opacity: 1; }
 
     .port-card.wide   { grid-column: span 7; }
     .port-card.medium { grid-column: span 5; }
     .port-card.third  { grid-column: span 4; }
 
-    /* Shimmer effect on card hover */
-    .port-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
-      opacity: 0;
-      transition: opacity .3s;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .port-card:hover::after { opacity: 1; }
-
-    /* Tape strips */
     .card-tape {
-      position: absolute;
-      top: -5px; left: 50%;
+      position: absolute; top: -5px; left: 50%;
       transform: translateX(-50%) rotate(-1.6deg);
       width: 82px; height: 22px;
-      background: rgba(255,240,158,0.72);
-      border: 1px solid rgba(200,184,96,0.42);
-      z-index: 5;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.07);
+      background: rgba(255,240,158,0.72); border: 1px solid rgba(200,184,96,0.42);
+      z-index: 5; box-shadow: 0 1px 5px rgba(0,0,0,0.07);
     }
     .port-card:nth-child(2) .card-tape { transform: translateX(-50%) rotate(1.4deg); width: 68px; left: 55%; }
     .port-card:nth-child(3) .card-tape { transform: translateX(-50%) rotate(-0.9deg); left: 38%; width: 76px; }
     .port-card:nth-child(4) .card-tape { transform: translateX(-50%) rotate(2.2deg); left: 62%; width: 58px; }
     .port-card:nth-child(5) .card-tape { transform: translateX(-50%) rotate(-1.1deg); width: 74px; }
 
-    /* Card accent stripe */
     .port-card:nth-child(1) .card-accent-bar { background: var(--accent); }
     .port-card:nth-child(2) .card-accent-bar { background: var(--blue-ink); }
     .port-card:nth-child(3) .card-accent-bar { background: #2d6e3a; }
     .port-card:nth-child(4) .card-accent-bar { background: #6b4c22; }
     .port-card:nth-child(5) .card-accent-bar { background: #5a2a7a; }
-    .card-accent-bar {
-      position: absolute;
-      top: 0; left: 0;
-      width: 4px; height: 100%;
-      z-index: 3;
-      opacity: 0.7;
-    }
+    .card-accent-bar { position: absolute; top: 0; left: 0; width: 4px; height: 100%; z-index: 3; opacity: 0.7; }
 
-    /* Photo slot */
     .card-photo {
-      width: 100%;
-      height: 160px;
-      flex-shrink: 0;
-      background: #e4dfd5;
-      background-image:
-        linear-gradient(rgba(80,105,205,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(80,105,205,0.08) 1px, transparent 1px);
-      background-size: 18px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 7px;
+      width: 100%; height: 180px; flex-shrink: 0;
+      background: #1a1714;
+      display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 7px;
       border-bottom: 1.5px solid rgba(26,23,20,0.1);
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
     .card-photo img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: 0.84;
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.9;
       transition: opacity .28s, transform .4s cubic-bezier(.22,1,.36,1);
-      filter: sepia(0.1) contrast(0.97);
+      filter: sepia(0.08) contrast(1.02);
     }
-    .port-card:hover .card-photo img { opacity: 0.95; transform: scale(1.04); }
-    .card-photo-label {
-      font-family: var(--mono);
-      font-size: 8px;
-      letter-spacing: 0.22em;
-      color: rgba(26,23,20,0.27);
-      text-transform: uppercase;
-      z-index: 1;
-    }
-    .card-photo-icon {
-      width: 28px; height: 28px;
-      border: 1px solid rgba(26,23,20,0.14);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      z-index: 1;
-    }
-    .card-photo-icon svg { width: 12px; height: 12px; opacity: 0.28; }
+    .port-card:hover .card-photo img { opacity: 1; transform: scale(1.05); }
 
     .card-inner {
       padding: 20px 24px 24px 28px;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; flex: 1;
     }
     .card-top { display: flex; justify-content: flex-end; align-items: flex-start; margin-bottom: 8px; }
     .card-arrow { font-size: 14px; color: var(--ink-dim); transition: transform .24s, color .24s; }
     .port-card:hover .card-arrow { transform: translate(4px,-4px); color: var(--accent); }
     .card-tag { font-family: var(--mono); font-size: 8px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); display: block; }
-    .card-title { font-family: var(--display); font-size: clamp(24px, 2.8vw, 44px); letter-spacing: 0.04em; line-height: 1.02; margin-top: 4px; color: var(--ink); }
+    .card-title { font-family: var(--display); font-size: clamp(24px,2.8vw,44px); letter-spacing: 0.04em; line-height: 1.02; margin-top: 4px; color: var(--ink); }
     .card-desc { font-family: var(--mono); font-size: 10px; line-height: 1.95; color: var(--ink-mid); margin-top: 9px; max-width: 340px; }
-
     .card-big-num {
-      position: absolute;
-      bottom: -12px; right: -8px;
-      font-family: var(--display);
-      font-size: clamp(100px, 14vw, 160px);
-      line-height: 1;
-      color: var(--red-ink);
-      opacity: 0.16;
-      pointer-events: none;
-      z-index: 1;
-      letter-spacing: -0.04em;
-      transition: opacity .35s;
-      user-select: none;
+      position: absolute; bottom: -12px; right: -8px;
+      font-family: var(--display); font-size: clamp(100px,14vw,160px);
+      line-height: 1; color: var(--red-ink); opacity: 0.16;
+      pointer-events: none; z-index: 1; letter-spacing: -0.04em;
+      transition: opacity .35s; user-select: none;
     }
     .port-card:hover .card-big-num { opacity: 0.28; }
-
     .card-deco {
-      position: absolute;
-      top: 50%; right: 8px;
-      transform: translateY(-50%);
-      opacity: 0.04;
-      pointer-events: none;
-      z-index: 1;
-      transition: opacity .35s, transform .5s;
-      color: var(--ink);
+      position: absolute; top: 50%; right: 8px; transform: translateY(-50%);
+      opacity: 0.04; pointer-events: none; z-index: 1;
+      transition: opacity .35s, transform .5s; color: var(--ink);
     }
     .port-card:hover .card-deco { opacity: 0.09; transform: translateY(-50%) rotate(15deg); }
 
-    /* ════════════════════════════════════════
-       PRINTED LINE
-    ════════════════════════════════════════ */
-    #printed-line {
-      position: relative;
-      z-index: 50;
-      height: 3px;
-      width: 0%;
-      background: #c8380a;
-      margin: 0;
-      pointer-events: none;
+    /* ════════════════ PRINTED LINE ════════════════ */
+    #printed-line-page {
+      position: relative; z-index: 50; height: 3px; width: 0%;
+      background: #c8380a; margin: 0; pointer-events: none;
     }
 
-    /* ════════════════════════════════════════
-       SIMPLE SECTION DIVIDERS
-    ════════════════════════════════════════ */
+    /* ════════════════ DIVIDERS ════════════════ */
     .simple-divider {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 36px 0;
-      opacity: 0;
-      transition: opacity .5s ease;
+      display: flex; align-items: center; gap: 20px;
+      padding: 36px 0; opacity: 0; transition: opacity .5s ease;
     }
     .simple-divider.visible { opacity: 1; }
     .simple-divider-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      transform: scaleX(0);
-      transform-origin: left center;
+      flex: 1; height: 1px; background: var(--border);
+      transform: scaleX(0); transform-origin: left center;
       transition: transform .7s cubic-bezier(.22,1,.36,1);
     }
     .simple-divider.visible .simple-divider-line { transform: scaleX(1); }
     .simple-divider-line:last-child { transform-origin: right center; }
-    .simple-divider-label {
-      font-family: var(--hand);
-      font-size: 15px;
-      color: var(--ink-dim);
-      white-space: nowrap;
-      letter-spacing: 0.02em;
-    }
+    .simple-divider-label { font-family: var(--hand); font-size: 15px; color: var(--ink-dim); white-space: nowrap; letter-spacing: 0.02em; }
 
-    /* ════════════════════════════════════════
-       SPINNING GEARS
-    ════════════════════════════════════════ */
+    /* ════════════════ GEARS ════════════════ */
     .spin-cw  { animation: spinCW  16s linear infinite; transform-origin: center; }
     .spin-ccw { animation: spinCCW 11s linear infinite; transform-origin: center; }
     @keyframes spinCW  { to { transform: rotate(360deg);  } }
     @keyframes spinCCW { to { transform: rotate(-360deg); } }
 
-    /* ════════════════════════════════════════
-       ABOUT
-    ════════════════════════════════════════ */
+    /* ════════════════ ABOUT ════════════════ */
     .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      padding: 48px 0 96px;
-      opacity: 0;
-      transition: opacity .6s ease;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; padding: 48px 0 96px;
+      opacity: 0; transition: opacity .6s ease;
     }
     .about-grid.visible { opacity:1; }
-    .about-heading { font-family: var(--display); font-size: clamp(38px, 5vw, 66px); letter-spacing: 0.05em; line-height: 1.04; }
+    .about-heading { font-family: var(--display); font-size: clamp(38px,5vw,66px); letter-spacing: 0.05em; line-height: 1.04; }
     .about-heading em { color: var(--accent); font-style: normal; }
     .about-body { margin-top: 20px; font-family: var(--mono); font-size: 11.5px; line-height: 2.05; color: var(--ink-mid); }
     .about-body strong { color: var(--ink); font-weight: 400; }
 
-    .dim-annotation {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      opacity: 0.45;
-    }
-    .dim-line {
-      flex: 1;
-      height: 1px;
-      background: var(--blue-ink);
-      position: relative;
-    }
-    .dim-line::before, .dim-line::after {
-      content: '';
-      position: absolute;
-      top: -3px;
-      width: 1px; height: 7px;
-      background: var(--blue-ink);
-    }
-    .dim-line::before { left: 0; }
-    .dim-line::after  { right: 0; }
+    .dim-annotation { margin-top: 20px; display: flex; align-items: center; gap: 10px; opacity: 0.45; }
+    .dim-line { flex: 1; height: 1px; background: var(--blue-ink); position: relative; }
+    .dim-line::before, .dim-line::after { content: ''; position: absolute; top: -3px; width: 1px; height: 7px; background: var(--blue-ink); }
+    .dim-line::before { left: 0; } .dim-line::after { right: 0; }
     .dim-text { font-family: var(--hand); font-size: 12px; color: var(--blue-ink); white-space: nowrap; }
 
     .ruled-lines { margin-top: 18px; display: flex; flex-direction: column; gap: 18px; }
     .ruled-line { height: 1px; background: rgba(80,105,205,0.18); }
 
-    /* Polaroids */
+    /* Polaroids — fan in */
     .polaroid-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
     .polaroid {
-      background: #faf7f0;
-      padding: 7px 7px 30px;
-      border: 1px solid rgba(26,23,20,0.1);
-      box-shadow: 2px 3px 10px rgba(26,23,20,0.1);
-      position: relative;
-      transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s;
-      cursor: default;
-      opacity: 0;
-      transform: rotate(0deg) scale(0.88) translateY(20px) !important;
+      background: #faf7f0; padding: 7px 7px 30px;
+      border: 1px solid rgba(26,23,20,0.1); box-shadow: 2px 3px 10px rgba(26,23,20,0.1);
+      position: relative; cursor: default;
+      opacity: 0; transform: rotate(0deg) scale(0.88) translateY(20px) !important;
     }
     .polaroid.visible:nth-child(1) { opacity:1; transform: rotate(-1.9deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 0ms; }
-    .polaroid.visible:nth-child(2) { opacity:1; transform: rotate(1.3deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 80ms; }
-    .polaroid.visible:nth-child(3) { opacity:1; transform: rotate(0.7deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 160ms; }
-    .polaroid.visible:nth-child(4) { opacity:1; transform: rotate(-1.5deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 240ms; }
+    .polaroid.visible:nth-child(2) { opacity:1; transform: rotate(1.3deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 90ms; }
+    .polaroid.visible:nth-child(3) { opacity:1; transform: rotate(0.7deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 180ms; }
+    .polaroid.visible:nth-child(4) { opacity:1; transform: rotate(-1.5deg) scale(1) translateY(0) !important; transition: opacity .5s ease, transform .7s cubic-bezier(0.16,1.6,0.3,1); transition-delay: 270ms; }
     .polaroid:hover { transform: rotate(0deg) scale(1.03) translateY(-4px) !important; box-shadow: 4px 8px 22px rgba(26,23,20,0.18); z-index: 5; }
     .polaroid-img {
       width: 100%; aspect-ratio: 1;
-      background: #d8d3c8;
-      background-image: linear-gradient(rgba(80,105,205,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(80,105,205,0.07) 1px, transparent 1px);
-      background-size: 14px 14px;
+      background: #d8d3c8; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
     }
-    .polaroid-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: sepia(0.12) contrast(0.95); }
-    .polaroid-placeholder { font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.2em; color: rgba(26,23,20,0.24); text-transform: uppercase; text-align: center; line-height: 1.7; position: relative; z-index:1; }
+    .polaroid-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: sepia(0.1) contrast(0.96); }
     .polaroid-label { padding-top: 5px; font-family: var(--hand); font-size: 13px; color: var(--ink-mid); text-align: center; }
     .polaroid-label em { color: var(--red-ink); font-style: normal; font-size: 10px; }
 
     /* About right */
     .about-right { display: flex; flex-direction: column; }
 
-    /* ════════════════════════════════════════
-       STAT BLOCKS — glow animation on scroll
-    ════════════════════════════════════════ */
-    .stat-block {
-      border-top: 1.5px solid var(--border);
-      padding: 18px 0;
-    }
+    /* Stat blocks — glow */
+    .stat-block { border-top: 1.5px solid var(--border); padding: 18px 0; }
     .stat-block:last-of-type { border-bottom: 1.5px solid var(--border); }
     .stat-row-inner { display: flex; align-items: baseline; gap: 6px; }
-
     .stat-num {
-      font-family: var(--display);
-      font-size: clamp(72px, 10vw, 120px);
-      letter-spacing: 0.01em;
-      color: var(--accent);
-      line-height: 1;
-      opacity: 0;
-      transform: translateY(24px);
+      font-family: var(--display); font-size: clamp(72px,10vw,120px);
+      letter-spacing: 0.01em; color: var(--accent); line-height: 1;
+      opacity: 0; transform: translateY(24px);
       transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1);
     }
-    .stat-num.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .stat-num.glow {
-      animation: statGlow 1.6s ease forwards;
-    }
+    .stat-num.visible { opacity: 1; transform: translateY(0); }
+    .stat-num.glow { animation: statGlow 1.7s ease forwards; }
     @keyframes statGlow {
       0%   { text-shadow: none; }
       25%  { text-shadow: 0 0 22px var(--glow-color), 0 0 48px rgba(200,56,10,0.28), 0 0 80px rgba(200,56,10,0.12); }
-      55%  { text-shadow: 0 0 14px rgba(200,56,10,0.4), 0 0 30px rgba(200,56,10,0.18); }
+      60%  { text-shadow: 0 0 14px rgba(200,56,10,0.38), 0 0 30px rgba(200,56,10,0.15); }
       100% { text-shadow: none; }
     }
-
-    .stat-tick { font-family: var(--hand); font-size: 26px; color: var(--red-ink); opacity: 0.5; }
     .stat-label {
-      font-family: var(--mono);
-      font-size: 9.5px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-mid);
-      line-height: 1.85;
-      margin-top: 4px;
-      opacity: 0;
-      transform: translateX(-8px);
+      font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-mid); line-height: 1.85; margin-top: 4px;
+      opacity: 0; transform: translateX(-8px);
       transition: opacity .4s ease .3s, transform .4s ease .3s;
     }
-    .stat-block.visible .stat-label {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    .stat-block.visible .stat-label { opacity: 1; transform: translateX(0); }
 
-    /* ── Sticky note ── */
+    /* Sticky note */
     .sticky-note {
-      background: #fef08a;
-      padding: 16px 18px;
+      background: #fef08a; padding: 16px 18px;
       box-shadow: 2px 3px 10px rgba(26,23,20,0.13);
-      transform: rotate(1.8deg);
-      margin: 20px 0;
-      position: relative;
-      opacity: 0;
-      transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1), box-shadow .3s;
+      transform: rotate(1.8deg); margin: 20px 0; position: relative;
+      opacity: 0; transition: opacity .5s ease, transform .5s, box-shadow .3s;
     }
-    .sticky-note.visible {
-      opacity: 1;
-    }
-    .sticky-note:hover {
-      transform: rotate(0.4deg) scale(1.02) translateY(-3px);
-      box-shadow: 4px 8px 20px rgba(26,23,20,0.18);
-    }
-    .sticky-note::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: rgba(26,23,20,0.06);
-    }
+    .sticky-note.visible { opacity: 1; }
+    .sticky-note:hover { transform: rotate(0.4deg) scale(1.02) translateY(-3px); box-shadow: 4px 8px 20px rgba(26,23,20,0.18); }
+    .sticky-note::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: rgba(26,23,20,0.06); }
     .sticky-note p { font-family: var(--hand); font-size: 14px; color: rgba(26,23,20,0.75); line-height: 1.65; }
     .sticky-note ul { margin-top: 8px; padding-left: 18px; }
     .sticky-note ul li { font-family: var(--hand); font-size: 13px; color: rgba(26,23,20,0.7); line-height: 1.7; }
     .sticky-note ul li::marker { color: var(--red-ink); }
 
-    /* ── Notebook image ── */
+    /* Notebook image */
     .nb-image {
-      width: 100%;
-      background: #ddd8ce;
-      background-image:
-        linear-gradient(rgba(80,105,205,0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(80,105,205,0.07) 1px, transparent 1px);
-      background-size: 14px 14px;
+      width: 100%; background: #ddd8ce;
       border: 1px solid rgba(26,23,20,0.13);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 6px;
-      position: relative;
-      overflow: hidden;
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+      gap: 6px; position: relative; overflow: hidden;
     }
     .nb-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .nb-image-label {
-      font-family: var(--mono);
-      font-size: 7.5px;
-      letter-spacing: 0.2em;
-      color: rgba(26,23,20,0.28);
-      text-transform: uppercase;
-      position: relative; z-index: 1;
-      text-align: center;
-      line-height: 1.6;
-    }
+    .nb-image-label { font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.2em; color: rgba(26,23,20,0.28); text-transform: uppercase; position: relative; z-index: 1; text-align: center; line-height: 1.6; }
 
-    /* ── Blueprint annotation box ── */
+    /* Blueprint box */
     .blueprint-box {
-      margin-top: 22px;
-      border: 1px solid rgba(30,58,110,0.22);
-      background: rgba(30,58,110,0.03);
-      padding: 14px 16px;
-      position: relative;
-      opacity: 0;
-      transition: opacity .5s ease .1s;
+      margin-top: 22px; border: 1px solid rgba(30,58,110,0.22);
+      background: rgba(30,58,110,0.03); padding: 14px 16px; position: relative;
+      opacity: 0; transition: opacity .5s ease .1s;
     }
     .blueprint-box.visible { opacity: 1; }
     .blueprint-box::before {
-      content: 'NOTE';
-      position: absolute;
-      top: -7px; left: 12px;
-      font-family: var(--mono);
-      font-size: 8px;
-      letter-spacing: 0.22em;
-      color: var(--blue-ink);
-      background: var(--bg);
-      padding: 0 6px;
-      opacity: 0.6;
+      content: 'NOTE'; position: absolute; top: -7px; left: 12px;
+      font-family: var(--mono); font-size: 8px; letter-spacing: 0.22em;
+      color: var(--blue-ink); background: var(--bg); padding: 0 6px; opacity: 0.6;
     }
     .blueprint-box p { font-family: var(--mono); font-size: 10px; line-height: 1.85; color: var(--ink-mid); }
 
-    /* ── Skills section — BIGGER label + staggered chips ── */
+    /* Skills */
     .skills-label {
-      font-family: var(--display);
-      font-size: clamp(22px, 2.5vw, 32px); /* MUCH LARGER */
-      letter-spacing: 0.08em;
-      color: var(--ink);
-      margin: 32px 0 14px;
-      opacity: 0;
-      transform: translateX(-16px);
+      font-family: var(--display); font-size: clamp(22px, 2.5vw, 32px);
+      letter-spacing: 0.08em; color: var(--ink); margin: 32px 0 14px;
+      opacity: 0; transform: translateX(-16px);
       transition: opacity .5s ease, transform .5s ease;
     }
     .skills-label.visible { opacity: 1; transform: translateX(0); }
-
     .skills-list { display: flex; flex-wrap: wrap; gap: 7px; }
     .skill-chip {
-      font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--ink);
-      background: rgba(244,240,232,0.95);
-      border: 1px solid rgba(26,23,20,0.17);
-      padding: 5px 11px;
-      box-shadow: 1px 1.5px 4px rgba(26,23,20,0.08);
+      font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--ink);
+      background: rgba(244,240,232,0.95); border: 1px solid rgba(26,23,20,0.17);
+      padding: 5px 11px; box-shadow: 1px 1.5px 4px rgba(26,23,20,0.08);
       transition: background .2s, border-color .2s, box-shadow .2s, transform .2s cubic-bezier(.22,1,.36,1);
-      opacity: 0;
-      transform: translateY(10px) scale(0.92);
+      opacity: 0; transform: translateY(10px) scale(0.92);
     }
-    .skill-chip.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    .skill-chip:hover {
-      background: #fff;
-      border-color: rgba(200,56,10,0.4);
-      box-shadow: 2px 3px 10px rgba(200,56,10,0.15);
-      transform: translateY(-2px) scale(1.04) !important;
-    }
+    .skill-chip.visible { opacity: 1; transform: translateY(0) scale(1); }
+    .skill-chip:hover { background: #fff; border-color: rgba(200,56,10,0.4); box-shadow: 2px 3px 10px rgba(200,56,10,0.15); transform: translateY(-2px) scale(1.04) !important; }
 
-    /* Notebook annotation box */
+    /* About note box */
     .about-note-box {
-      margin-top: 28px;
-      padding: 20px 22px;
-      background: rgba(240,236,228,0.75);
-      border: 1px solid var(--border);
+      margin-top: 28px; padding: 20px 22px;
+      background: rgba(240,236,228,0.75); border: 1px solid var(--border);
       border-left: 3px solid rgba(30,58,110,0.28);
-      position: relative;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(12px);
+      position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(12px);
       transition: opacity .5s ease, transform .5s ease;
     }
     .about-note-box.visible { opacity: 1; transform: translateY(0); }
-    .about-note-box-gear {
-      position: absolute; right: -16px; top: -16px;
-      width: 80px; height: 80px;
-      opacity: 0.07; color: var(--ink);
-    }
+    .about-note-box-gear { position: absolute; right: -16px; top: -16px; width: 80px; height: 80px; opacity: 0.07; color: var(--ink); }
     .about-note-box-gear.spinning { animation: spinCW 24s linear infinite; }
     .about-note-text { font-family: var(--hand); font-size: 15px; color: var(--blue-ink); line-height: 1.65; opacity: 0.78; position: relative; z-index: 1; }
 
-    /* ════════════════════════════════════════
-       CONTACT
-    ════════════════════════════════════════ */
+    /* ════════════════ CONTACT ════════════════ */
     .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      padding: 48px 0 120px;
-      opacity: 0;
-      transition: opacity .6s ease;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; padding: 48px 0 120px;
+      opacity: 0; transition: opacity .6s ease;
     }
     .contact-grid.visible { opacity:1; }
-
-    .contact-cta { font-family: var(--display); font-size: clamp(50px, 6.5vw, 88px); letter-spacing: 0.04em; line-height: 1.02; }
+    .contact-cta { font-family: var(--display); font-size: clamp(50px,6.5vw,88px); letter-spacing: 0.04em; line-height: 1.02; }
     .contact-cta em { color: var(--accent); font-style: normal; }
     .contact-note { margin-top: 16px; font-family: var(--mono); font-size: 11px; line-height: 2; color: var(--ink-mid); max-width: 340px; }
-
     .contact-polaroid {
-      margin-top: 26px;
-      background: #faf7f0;
-      padding: 7px 7px 42px;
-      border: 1px solid rgba(26,23,20,0.1);
-      box-shadow: 3px 4px 14px rgba(26,23,20,0.1);
-      transform: rotate(-0.7deg);
-      display: inline-block;
-      width: 88%;
+      margin-top: 26px; background: #faf7f0; padding: 7px 7px 42px;
+      border: 1px solid rgba(26,23,20,0.1); box-shadow: 3px 4px 14px rgba(26,23,20,0.1);
+      transform: rotate(-0.7deg); display: inline-block; width: 88%;
       transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s;
     }
     .contact-polaroid:hover { transform: rotate(0deg) scale(1.02); box-shadow: 5px 10px 28px rgba(26,23,20,0.16); }
     .contact-polaroid-img {
       width: 100%; aspect-ratio: 4/3;
-      background: #d4cfc4;
-      background-image: linear-gradient(rgba(80,105,205,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(80,105,205,0.07) 1px, transparent 1px);
-      background-size: 14px 14px;
+      background: #d4cfc4; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
     }
-    .contact-polaroid-img img { position: absolute; inset: 0; width:100%; height:100%; object-fit: cover; filter: sepia(0.1) contrast(0.96); }
+    .contact-polaroid-img img { position: absolute; inset: 0; width:100%; height:100%; object-fit: cover; filter: sepia(0.08) contrast(0.96); }
     .contact-polaroid-label { padding-top: 7px; font-family: var(--hand); font-size: 15px; color: var(--ink-mid); text-align: center; }
-    .contact-polaroid-placeholder { font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.2em; color: rgba(26,23,20,0.24); text-transform: uppercase; position: relative; z-index:1; }
-
     .contact-annotation {
-      margin-top: 22px;
-      padding: 15px 17px;
+      margin-top: 22px; padding: 15px 17px;
       border-left: 2.5px solid rgba(184,50,8,0.28);
       background: rgba(240,236,228,0.6);
     }
     .contact-annotation p { font-family: var(--hand); font-size: 15px; color: var(--ink-mid); line-height: 1.7; }
     .contact-annotation span { display: block; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.2em; color: var(--accent); margin-top: 9px; text-transform: uppercase; }
-
     .contact-right { padding-top: 6px; }
     .contact-links { display: flex; flex-direction: column; gap: 10px; }
     .contact-link {
-      display: flex; align-items: center; gap: 0;
-      text-decoration: none;
-      border: 1.5px solid rgba(26,23,20,0.12);
-      background: #faf7f0;
+      display: flex; align-items: center; gap: 0; text-decoration: none;
+      border: 1.5px solid rgba(26,23,20,0.12); background: #faf7f0;
       background-image: linear-gradient(rgba(80,105,205,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(80,105,205,0.07) 1px, transparent 1px);
       background-size: 15px 15px;
-      box-shadow: 1px 2px 8px rgba(26,23,20,0.07);
-      overflow: hidden;
+      box-shadow: 1px 2px 8px rgba(26,23,20,0.07); overflow: hidden;
       transition: border-color .22s, box-shadow .22s, transform .22s cubic-bezier(.22,1,.36,1);
-      opacity: 0;
-      transform: translateX(24px);
+      opacity: 0; transform: translateX(24px);
     }
-    .contact-link.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .contact-link:nth-child(1) { transition-delay: 0ms; }
-    .contact-link:nth-child(2) { transition-delay: 80ms; }
-    .contact-link:nth-child(3) { transition-delay: 160ms; }
-    .contact-link:nth-child(4) { transition-delay: 240ms; }
+    .contact-link.visible { opacity: 1; transform: translateX(0); }
     .contact-link:hover { border-color: rgba(26,23,20,0.26); box-shadow: 2px 5px 18px rgba(26,23,20,0.14); transform: translateX(4px); }
     .contact-link-icon { width: 68px; height: 68px; background: var(--bg); border-right: 1.5px solid rgba(26,23,20,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .22s; }
     .contact-link:hover .contact-link-icon { background: #fff; }
@@ -1103,12 +686,9 @@
     .contact-link-arrow { padding: 0 20px; color: var(--accent); font-size: 15px; transition: transform .22s; }
     .contact-link:hover .contact-link-arrow { transform: translateX(3px); }
 
-    /* ════════════════════════════════════════
-       FOOTER
-    ════════════════════════════════════════ */
+    /* ════════════════ FOOTER ════════════════ */
     footer {
-      position: relative; z-index: 10;
-      border-top: 1.5px solid var(--border);
+      position: relative; z-index: 10; border-top: 1.5px solid var(--border);
       padding: 26px 52px 26px 112px;
       display: flex; align-items: center; justify-content: space-between;
       background: var(--bg);
@@ -1117,37 +697,12 @@
     .footer-copy em { color: var(--accent); font-style: normal; }
     .footer-tag { font-family: var(--hand); font-size: 14px; color: var(--ink-dim); transform: rotate(-0.5deg); }
 
-    /* ════════════════════════════════════════
-       GENERAL REVEAL
-    ════════════════════════════════════════ */
+    /* ════════════════ REVEAL ════════════════ */
     .reveal { opacity:0; transition: opacity .55s ease; }
     .reveal.visible { opacity:1; }
 
-    /* ════════════════════════════════════════
-       FLOATING PARTICLES (hero accent)
-    ════════════════════════════════════════ */
-    .hero-particle {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 5;
-      animation: floatParticle var(--dur) ease-in-out infinite;
-      background: var(--accent);
-      opacity: 0;
-    }
-    @keyframes floatParticle {
-      0%   { opacity: 0; transform: translateY(0) scale(1); }
-      15%  { opacity: var(--max-op); }
-      85%  { opacity: var(--max-op); }
-      100% { opacity: 0; transform: translateY(-60px) scale(0.6); }
-    }
-
-    /* ════════════════════════════════════════
-       RESPONSIVE
-    ════════════════════════════════════════ */
-    @media (max-width: 1100px) {
-      .caliper-aside { display: none; }
-    }
+    /* ════════════════ RESPONSIVE ════════════════ */
+    @media (max-width: 1100px) { .caliper-aside { display: none; } }
     @media (max-width: 960px) {
       nav { padding: 16px 24px; }
       nav.scrolled { padding: 10px 24px; }
@@ -1157,6 +712,7 @@
       .portfolio-grid { grid-template-columns: 1fr; }
       .port-card.wide,.port-card.medium,.port-card.third { grid-column: span 12; }
       .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+      #hero-craft { width: min(340px, 72vw); }
     }
   </style>
 </head>
@@ -1176,19 +732,22 @@
 <!-- HERO -->
 <div id="hero-sticky-wrapper">
   <div id="hero-sticky">
-    <img id="hero-img-src" src="assets/luke.jpg" alt="Luke Jurbergs" crossorigin="anonymous" />
+    <!-- Pixel dissolve: the dramatic fire/sparks photo -->
+    <img id="hero-img-src" src="assets/luke_fire.jpg" alt="Luke Jurbergs" crossorigin="anonymous" />
     <canvas id="pixel-canvas"></canvas>
 
-    <div id="sweep-wrap">
-      <div id="sweep-img">
-        <span class="caliper-placeholder-text" style="color:rgba(255,255,255,0.28);font-size:7.5px;letter-spacing:0.2em;padding:12px;text-align:center;line-height:1.7;">3d printer<br>extruder image<br>assets/printer-sweep.jpg</span>
-      </div>
+    <!-- Spinning hovercraft overlay -->
+    <div id="hero-craft-wrap">
+      <img id="hero-craft" src="assets/hero_hovercraft.gif" alt="Hovercraft" />
     </div>
 
+    <div id="sweep-wrap"><div id="sweep-img"></div></div>
     <div class="hero-vignette"></div>
+
     <div class="hero-text" id="hero-text">
       <div class="hero-name">
         <span class="hero-name-top">LUKE</span>
+        <span class="hero-name-bar"></span>
         <span class="hero-name-bottom">JURBERGS</span>
       </div>
       <div class="hero-sub">Aspiring Mechanical Engineer</div>
@@ -1201,7 +760,7 @@
 <!-- Fixed extruder car -->
 <div id="extruder-car">
   <div id="extruder-placeholder">
-    <span>extruder<br>image<br>here</span>
+    <img src="assets/extruder.png" alt="3D Printer Extruder" />
   </div>
 </div>
 
@@ -1212,6 +771,10 @@
 
     <!-- ═══ PORTFOLIO ═══ -->
     <div class="sec-head" id="sec-portfolio">
+      <!-- Spinning planetary gear behind the title -->
+      <div class="sec-head-img">
+        <img src="assets/planetary_gear.gif" alt="Planetary gear" />
+      </div>
       <span class="sec-num">01.</span>
       <div class="sec-title-clip">
         <h2 class="sec-title">BUILT &amp; <em>CRAFTED</em></h2>
@@ -1221,25 +784,23 @@
 
     <div class="portfolio-wrap">
 
-      <!-- Caliper aside -->
+      <!-- Caliper aside — hovercraft prototype replaces the calipers placeholder -->
       <div class="caliper-aside" id="caliper-aside">
         <div class="caliper-tape"></div>
         <div class="caliper-img">
-          <!-- Replace with: <img src="assets/calipers.jpg" alt="Calipers"> -->
-          <span class="caliper-placeholder-text">replace with<br>diagonal calipers<br>assets/calipers.jpg</span>
+          <img src="assets/hovercraft_3.jpg" alt="Hovercraft assembly" />
         </div>
-        <span class="caliper-label">↕ precision tools</span>
+        <span class="caliper-label">hovercraft mk.3 assembly</span>
       </div>
 
       <div class="portfolio-grid">
 
+        <!-- 1. Mechanical Engineering -->
         <a href="engineering.html" class="port-card wide" data-delay="0">
           <div class="card-tape"></div>
           <div class="card-accent-bar"></div>
           <div class="card-photo">
-            <!-- <img src="assets/engineering-hero.jpg" alt="Engineering"> -->
-            <div class="card-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
-            <span class="card-photo-label">engineering-hero.jpg</span>
+            <img src="assets/hovercraft_1.jpg" alt="Hovercraft" />
           </div>
           <div class="card-inner">
             <div class="card-top"><span class="card-arrow">↗</span></div>
@@ -1253,45 +814,41 @@
           </svg>
         </a>
 
+        <!-- 2. Visual Work -->
         <a href="art.html" class="port-card medium" data-delay="80">
           <div class="card-tape"></div>
           <div class="card-accent-bar"></div>
           <div class="card-photo">
-            <!-- <img src="assets/art-hero.jpg" alt="Art"> -->
-            <div class="card-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg></div>
-            <span class="card-photo-label">art-hero.jpg</span>
+            <img src="assets/film_group.jpg" alt="Film group award" />
           </div>
           <div class="card-inner">
             <div class="card-top"><span class="card-arrow">↗</span></div>
             <span class="card-tag">Art &amp; Design</span>
             <div class="card-title">VISUAL<br>WORK</div>
-            <p class="card-desc">Illustration, design, and creative work alongside the technical.</p>
+            <p class="card-desc">Illustration, film, design, and creative work alongside the technical.</p>
             <div class="card-big-num">02</div>
           </div>
           <svg class="card-deco" width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="bottom:-8px;right:-8px">
-            <line x1="50" y1="10" x2="28" y2="85"/>
-            <line x1="50" y1="10" x2="72" y2="85"/>
-            <line x1="28" y1="85" x2="22" y2="100"/>
-            <line x1="72" y1="85" x2="78" y2="100"/>
+            <line x1="50" y1="10" x2="28" y2="85"/><line x1="50" y1="10" x2="72" y2="85"/>
+            <line x1="28" y1="85" x2="22" y2="100"/><line x1="72" y1="85" x2="78" y2="100"/>
             <line x1="34" y1="52" x2="66" y2="52"/>
             <circle cx="50" cy="10" r="4" fill="currentColor" stroke="none"/>
             <path d="M28 85 Q50 60 72 85" fill="none" stroke-width="2"/>
           </svg>
         </a>
 
+        <!-- 3. Skills & Tools -->
         <a href="about.html#skills" class="port-card third" data-delay="0">
           <div class="card-tape"></div>
           <div class="card-accent-bar"></div>
           <div class="card-photo">
-            <!-- <img src="assets/skills-photo.jpg" alt="Skills"> -->
-            <div class="card-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
-            <span class="card-photo-label">skills-photo.jpg</span>
+            <img src="assets/electronics_board.jpg" alt="Electronics board" />
           </div>
           <div class="card-inner">
             <div class="card-top"><span class="card-arrow">↗</span></div>
             <span class="card-tag">Capabilities</span>
             <div class="card-title">SKILLS &amp;<br>TOOLS</div>
-            <p class="card-desc">CAD, fabrication, physics, mathematics, and more.</p>
+            <p class="card-desc">CAD, fabrication, electronics, physics, and more.</p>
             <div class="card-big-num">03</div>
           </div>
           <svg class="card-deco" width="100" height="100" viewBox="0 0 100 100" fill="currentColor" style="bottom:-10px;right:-10px">
@@ -1299,13 +856,12 @@
           </svg>
         </a>
 
+        <!-- 4. Résumé -->
         <a href="resume.pdf" class="port-card third" data-delay="80">
           <div class="card-tape"></div>
           <div class="card-accent-bar"></div>
           <div class="card-photo">
-            <!-- <img src="assets/resume-photo.jpg" alt="Resume"> -->
-            <div class="card-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-            <span class="card-photo-label">resume-photo.jpg</span>
+            <img src="assets/luke_medals.jpg" alt="State tournament medals" />
           </div>
           <div class="card-inner">
             <div class="card-top"><span class="card-arrow">↗</span></div>
@@ -1320,19 +876,16 @@
             <line x1="54" y1="88" x2="54" y2="34" stroke-width="2"/>
             <line x1="54" y1="88" x2="19" y2="55" stroke-width="1.5" stroke-dasharray="3 3"/>
             <line x1="54" y1="88" x2="89" y2="55" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <line x1="54" y1="88" x2="8"  y2="73" stroke-width="1" stroke-dasharray="2 4"/>
-            <line x1="54" y1="88" x2="100" y2="73" stroke-width="1" stroke-dasharray="2 4"/>
             <circle cx="54" cy="88" r="4" fill="currentColor" stroke="none"/>
           </svg>
         </a>
 
+        <!-- 5. Contact -->
         <a href="contact.html" class="port-card third" data-delay="160">
           <div class="card-tape"></div>
           <div class="card-accent-bar"></div>
           <div class="card-photo">
-            <!-- <img src="assets/contact-photo.jpg" alt="Contact"> -->
-            <div class="card-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-            <span class="card-photo-label">contact-photo.jpg</span>
+            <img src="assets/luke_sticker_wall.jpg" alt="Luke with hovercraft" />
           </div>
           <div class="card-inner">
             <div class="card-top"><span class="card-arrow">↗</span></div>
@@ -1352,7 +905,7 @@
       </div><!-- /portfolio-grid -->
     </div><!-- /portfolio-wrap -->
 
-    <!-- ═══ SECTION DIVIDER ═══ -->
+    <!-- ═══ DIVIDER ═══ -->
     <div class="simple-divider reveal">
       <div class="simple-divider-line"></div>
       <span class="simple-divider-label">about me</span>
@@ -1362,8 +915,7 @@
     <!-- ═══ ABOUT ═══ -->
     <div class="sec-head" id="sec-about">
       <div class="sec-head-img">
-        <!-- <img src="assets/gear-detail.jpg" alt="Gear detail"> -->
-        <span class="sec-head-img-label">gear<br>photo<br>here</span>
+        <img src="assets/planetary_gear.gif" alt="Gear" />
       </div>
       <span class="sec-num">02.</span>
       <div class="sec-title-clip">
@@ -1389,69 +941,58 @@
           <div class="dim-line"></div>
         </div>
         <div class="ruled-lines">
-          <div class="ruled-line"></div>
-          <div class="ruled-line"></div>
-          <div class="ruled-line"></div>
-          <div class="ruled-line"></div>
+          <div class="ruled-line"></div><div class="ruled-line"></div>
+          <div class="ruled-line"></div><div class="ruled-line"></div>
         </div>
+
         <div class="polaroid-grid" id="polaroid-grid">
           <div class="polaroid">
             <div class="polaroid-img">
-              <!-- <img src="assets/about-shop.jpg" alt="Shop"> -->
-              <span class="polaroid-placeholder">add photo<br>shop_01.jpg</span>
+              <img src="assets/luke_respirator.jpg" alt="Luke in workshop gear" />
             </div>
             <div class="polaroid-label">machine shop <em>.jpg</em></div>
           </div>
           <div class="polaroid">
             <div class="polaroid-img">
-              <!-- <img src="assets/about-project.jpg" alt="Project"> -->
-              <span class="polaroid-placeholder">add photo<br>project_01.jpg</span>
+              <img src="assets/luke_hovercraft_work.jpg" alt="Building the hovercraft" />
             </div>
             <div class="polaroid-label">first build <em>.jpg</em></div>
           </div>
           <div class="polaroid">
             <div class="polaroid-img">
-              <!-- <img src="assets/about-cad.jpg" alt="CAD"> -->
-              <span class="polaroid-placeholder">add photo<br>cad_01.jpg</span>
+              <img src="assets/electronics_board.jpg" alt="Electronics stack" />
             </div>
-            <div class="polaroid-label">cad session <em>.jpg</em></div>
+            <div class="polaroid-label">RPi stack <em>.jpg</em></div>
           </div>
           <div class="polaroid">
             <div class="polaroid-img">
-              <!-- <img src="assets/about-sketch.jpg" alt="Sketch"> -->
-              <span class="polaroid-placeholder">add photo<br>sketch_01.jpg</span>
+              <img src="assets/blown_pi.jpg" alt="Blown up Pi Pico" />
             </div>
-            <div class="polaroid-label">notebook sketch <em>.jpg</em></div>
+            <div class="polaroid-label">rip pico <em>.jpg</em></div>
           </div>
         </div>
 
+        <!-- Wide taped photo -->
         <div style="margin-top:24px;transform:rotate(-0.6deg);position:relative;">
           <div style="position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(1.2deg);width:72px;height:19px;background:rgba(255,240,158,0.72);border:1px solid rgba(200,184,96,0.42);z-index:2;"></div>
           <div class="nb-image" style="aspect-ratio:16/9;">
-            <!-- <img src="assets/project-wide.jpg" alt="Project overview"> -->
-            <span class="nb-image-label">wide project photo<br>assets/project-wide.jpg</span>
+            <img src="assets/ev_prototype.jpg" alt="Electric vehicle prototype" />
           </div>
-          <div style="font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;margin-top:6px;opacity:0.6;">figure 1 — completed assembly</div>
+          <div style="font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;margin-top:6px;opacity:0.6;">figure 1 — electric vehicle prototype</div>
         </div>
       </div>
 
       <div class="about-right">
         <div class="stat-block" id="stat-1">
-          <div class="stat-row-inner">
-            <div class="stat-num" data-target="4">4+</div>
-          </div>
+          <div class="stat-row-inner"><div class="stat-num">4+</div></div>
           <div class="stat-label">Years of engineering<br>coursework &amp; projects</div>
         </div>
         <div class="stat-block" id="stat-2">
-          <div class="stat-row-inner">
-            <div class="stat-num" data-target="12">12+</div>
-          </div>
+          <div class="stat-row-inner"><div class="stat-num">12+</div></div>
           <div class="stat-label">Completed projects<br>across disciplines</div>
         </div>
         <div class="stat-block" id="stat-3">
-          <div class="stat-row-inner">
-            <div class="stat-num" data-target="1">1</div>
-          </div>
+          <div class="stat-row-inner"><div class="stat-num">1</div></div>
           <div class="stat-label">Goal — Mechanical<br>Engineer</div>
         </div>
 
@@ -1465,9 +1006,9 @@
           </ul>
         </div>
 
+        <!-- Workshop photo -->
         <div class="nb-image" style="aspect-ratio:16/7;margin-top:16px;">
-          <!-- <img src="assets/workshop.jpg" alt="Workshop"> -->
-          <span class="nb-image-label">workshop photo<br>assets/workshop.jpg</span>
+          <img src="assets/stanford_team.jpg" alt="Stanford invitational team" />
         </div>
 
         <div class="skills-label" id="skills-label">Tools &amp; Technologies</div>
@@ -1479,11 +1020,13 @@
           <span class="skill-chip">CNC Milling</span>
           <span class="skill-chip">Lathe</span>
           <span class="skill-chip">TIG Welding</span>
+          <span class="skill-chip">Raspberry Pi</span>
           <span class="skill-chip">Physics</span>
           <span class="skill-chip">Calculus</span>
           <span class="skill-chip">FEA</span>
           <span class="skill-chip">Illustrator</span>
           <span class="skill-chip">Prototyping</span>
+          <span class="skill-chip">Film</span>
         </div>
 
         <div class="blueprint-box" id="blueprint-box">
@@ -1497,7 +1040,7 @@
       </div>
     </div>
 
-    <!-- ═══ SECTION DIVIDER ═══ -->
+    <!-- ═══ DIVIDER ═══ -->
     <div class="simple-divider reveal">
       <div class="simple-divider-line"></div>
       <span class="simple-divider-label">let's connect</span>
@@ -1519,10 +1062,9 @@
         <p class="contact-note">I'm an 18-year-old engineer-in-training always looking for interesting problems to solve, people to learn from, and projects to contribute to.</p>
         <div class="contact-polaroid">
           <div class="contact-polaroid-img">
-            <!-- <img src="assets/contact-me.jpg" alt="Luke at work"> -->
-            <span class="contact-polaroid-placeholder">add photo<br>contact-me.jpg</span>
+            <img src="assets/luke_scuba.jpg" alt="Luke and dad scuba diving" />
           </div>
-          <div class="contact-polaroid-label">at the workbench, 2025</div>
+          <div class="contact-polaroid-label">diving with dad, 2023</div>
         </div>
         <div class="contact-annotation">
           <p>Best way to reach me is email — I check it daily and usually respond within 24 hours.</p>
@@ -1564,21 +1106,18 @@
 </footer>
 
 <script>
-/* ══════════════════════════════════════════
-   NAV
-══════════════════════════════════════════ */
+/* ══ NAV ══ */
 const nav = document.getElementById('main-nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-/* ══════════════════════════════════════════
-   PIXEL DISSOLVE HERO
-══════════════════════════════════════════ */
+/* ══ PIXEL DISSOLVE ══ */
 const pixCanvas  = document.getElementById('pixel-canvas');
 const pixCtx     = pixCanvas.getContext('2d');
 const imgEl      = document.getElementById('hero-img-src');
 const heroTxt    = document.getElementById('hero-text');
+const craftWrap  = document.getElementById('hero-craft-wrap');
 const scrollHint = document.getElementById('scroll-hint');
 const heroWrap   = document.getElementById('hero-sticky-wrapper');
 
@@ -1623,56 +1162,42 @@ function resizePixCanvas() {
   renderPixels(lastProg);
 }
 
-/* ══════════════════════════════════════════
-   EXTRUDER + PRINTED LINE
-══════════════════════════════════════════ */
-const printedLine  = document.getElementById('printed-line');
-const extruderCar  = document.getElementById('extruder-car');
-const pageSection  = document.querySelector('.page');
-const ANGLE_RAD    = -7 * Math.PI / 180;
-const EXTRUDER_W   = 110;
-const EXTRUDER_H   = 520;
+/* ══ EXTRUDER + PRINTED LINE ══ */
+const printedLine = document.getElementById('printed-line');
+const extruderCar = document.getElementById('extruder-car');
+const pageSection = document.querySelector('.page');
+const ANGLE_RAD   = -7 * Math.PI / 180;
+const EXTRUDER_W  = 110;
+const EXTRUDER_H  = 520;
 
 function updatePrinter() {
   const pageRect = pageSection.getBoundingClientRect();
   const vh = window.innerHeight;
-
-  const t = Math.max(0, Math.min(1,
-    (vh - pageRect.top) / (vh * 0.9)
-  ));
-  const te = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
+  const t  = Math.max(0, Math.min(1, (vh - pageRect.top) / (vh * 0.9)));
+  const te = t < 0.5 ? 2*t*t : -1 + (4-2*t)*t;
 
   printedLine.style.width = (te * 100) + '%';
 
-  if (t < 0.02 || t > 0.97) {
-    extruderCar.style.opacity = '0';
-    return;
-  }
+  if (t < 0.02 || t > 0.97) { extruderCar.style.opacity = '0'; return; }
 
-  const lineRect = printedLine.getBoundingClientRect();
-  const lineFullPx = lineRect.width / (te || 0.001);
+  const lineRect      = printedLine.getBoundingClientRect();
+  const lineFullPx    = lineRect.width / (te || 0.001);
   const lineCurrentPx = te * lineFullPx;
+  const lineStartX    = lineRect.left;
+  const lineStartY    = lineRect.top + lineRect.height / 2;
+  const rightEndX     = lineStartX + lineCurrentPx * Math.cos(ANGLE_RAD);
+  const rightEndY     = lineStartY + lineCurrentPx * Math.sin(ANGLE_RAD);
 
-  const lineStartX = lineRect.left;
-  const lineStartY = lineRect.top + lineRect.height / 2;
-  const rightEndX  = lineStartX + lineCurrentPx * Math.cos(ANGLE_RAD);
-  const rightEndY  = lineStartY + lineCurrentPx * Math.sin(ANGLE_RAD);
-
-  const carLeft = rightEndX - EXTRUDER_W / 2;
-  const carTop  = rightEndY - EXTRUDER_H;
-
-  extruderCar.style.left = carLeft + 'px';
-  extruderCar.style.top  = carTop  + 'px';
+  extruderCar.style.left = (rightEndX - EXTRUDER_W / 2) + 'px';
+  extruderCar.style.top  = (rightEndY - EXTRUDER_H)     + 'px';
 
   let alpha = 1;
   if (t < 0.06) alpha = t / 0.06;
-  else if (t > 0.92) alpha = (1 - t) / 0.08;
+  else if (t > 0.92) alpha = (1-t) / 0.08;
   extruderCar.style.opacity = String(Math.min(0.96, alpha));
 }
 
-/* ══════════════════════════════════════════
-   SCROLL HANDLER
-══════════════════════════════════════════ */
+/* ══ SCROLL HANDLER ══ */
 function onScroll() {
   const top   = heroWrap.getBoundingClientRect().top;
   const total = heroWrap.offsetHeight - window.innerHeight;
@@ -1682,22 +1207,17 @@ function onScroll() {
   renderPixels(p);
   heroTxt.style.opacity    = String(Math.max(0, 1 - p * 3.5));
   scrollHint.style.opacity = p > 0.06 ? '0' : '1';
+  if (craftWrap) craftWrap.style.opacity = String(Math.max(0, 1 - p * 3.8));
   updatePrinter();
 }
 
-function onResize() {
-  resizePixCanvas();
-  renderPixels(lastProg);
-  updatePrinter();
-}
+function onResize() { resizePixCanvas(); renderPixels(lastProg); updatePrinter(); }
 
 resizePixCanvas();
 window.addEventListener('resize', onResize);
 window.addEventListener('scroll', onScroll, { passive: true });
 
-/* ══════════════════════════════════════════
-   INTERSECTION OBSERVERS
-══════════════════════════════════════════ */
+/* ══ INTERSECTION OBSERVERS ══ */
 
 /* General reveal */
 const io = new IntersectionObserver((entries) => {
@@ -1713,59 +1233,49 @@ document.querySelectorAll(
   '.reveal, .sec-head, .port-card, .about-grid, .contact-grid, .simple-divider, .caliper-aside'
 ).forEach(el => io.observe(el));
 
-/* Polaroids — fan in */
+/* Polaroids */
 const polaroidIO = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
-    const grid = e.target;
-    const cards = grid.querySelectorAll('.polaroid');
-    cards.forEach((c, i) => setTimeout(() => c.classList.add('visible'), i * 90));
-    polaroidIO.unobserve(grid);
+    e.target.querySelectorAll('.polaroid').forEach((c, i) =>
+      setTimeout(() => c.classList.add('visible'), i * 90));
+    polaroidIO.unobserve(e.target);
   });
 }, { threshold: 0.15 });
 const pg = document.getElementById('polaroid-grid');
 if (pg) polaroidIO.observe(pg);
 
-/* Stat numbers — glow on enter */
+/* Stat glow */
 const statIO = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
-    const block  = e.target;
-    const numEl  = block.querySelector('.stat-num');
-    const lblEl  = block.querySelector('.stat-label');
-    block.classList.add('visible');
-    // Short delay, then make number visible + glow
+    e.target.classList.add('visible');
+    const numEl = e.target.querySelector('.stat-num');
     setTimeout(() => {
       numEl.classList.add('visible');
       setTimeout(() => {
         numEl.classList.add('glow');
-        setTimeout(() => numEl.classList.remove('glow'), 1700);
-      }, 420);
+        setTimeout(() => numEl.classList.remove('glow'), 1800);
+      }, 440);
     }, 80);
-    statIO.unobserve(block);
+    statIO.unobserve(e.target);
   });
 }, { threshold: 0.3 });
 document.querySelectorAll('.stat-block').forEach(el => statIO.observe(el));
 
 /* Skills label */
-const skillsLabelIO = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('visible');
-    skillsLabelIO.unobserve(e.target);
-  });
+const slIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (!e.isIntersecting) return; e.target.classList.add('visible'); slIO.unobserve(e.target); });
 }, { threshold: 0.3 });
 const sl = document.getElementById('skills-label');
-if (sl) skillsLabelIO.observe(sl);
+if (sl) slIO.observe(sl);
 
-/* Skill chips — wave stagger */
+/* Skill chips wave */
 const chipsIO = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
-    const chips = e.target.querySelectorAll('.skill-chip');
-    chips.forEach((chip, i) => {
-      setTimeout(() => chip.classList.add('visible'), i * 45);
-    });
+    e.target.querySelectorAll('.skill-chip').forEach((chip, i) =>
+      setTimeout(() => chip.classList.add('visible'), i * 45));
     chipsIO.unobserve(e.target);
   });
 }, { threshold: 0.2 });
@@ -1773,51 +1283,37 @@ const sl2 = document.getElementById('skills-list');
 if (sl2) chipsIO.observe(sl2);
 
 /* Sticky note */
-const stickyIO = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('visible');
-    stickyIO.unobserve(e.target);
-  });
+const snIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (!e.isIntersecting) return; e.target.classList.add('visible'); snIO.unobserve(e.target); });
 }, { threshold: 0.2 });
 const sn = document.getElementById('sticky-note');
-if (sn) stickyIO.observe(sn);
+if (sn) snIO.observe(sn);
 
 /* Blueprint box */
 const bpIO = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('visible');
-    bpIO.unobserve(e.target);
-  });
+  entries.forEach(e => { if (!e.isIntersecting) return; e.target.classList.add('visible'); bpIO.unobserve(e.target); });
 }, { threshold: 0.3 });
 const bp = document.getElementById('blueprint-box');
 if (bp) bpIO.observe(bp);
 
 /* About note box */
-const noteIO = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('visible');
-    noteIO.unobserve(e.target);
-  });
+const nbIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (!e.isIntersecting) return; e.target.classList.add('visible'); nbIO.unobserve(e.target); });
 }, { threshold: 0.3 });
 const nb = document.getElementById('about-note-box');
-if (nb) noteIO.observe(nb);
+if (nb) nbIO.observe(nb);
 
-/* Contact links — slide in from right, staggered */
-const contactIO = new IntersectionObserver((entries) => {
+/* Contact links stagger */
+const clIO = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
-    const links = e.target.querySelectorAll('.contact-link');
-    links.forEach((link, i) => {
-      setTimeout(() => link.classList.add('visible'), i * 90);
-    });
-    contactIO.unobserve(e.target);
+    e.target.querySelectorAll('.contact-link').forEach((link, i) =>
+      setTimeout(() => link.classList.add('visible'), i * 90));
+    clIO.unobserve(e.target);
   });
 }, { threshold: 0.15 });
 const cl = document.getElementById('contact-links');
-if (cl) contactIO.observe(cl);
+if (cl) clIO.observe(cl);
 </script>
 </body>
 </html>
