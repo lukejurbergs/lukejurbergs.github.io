@@ -219,10 +219,10 @@
 
     /* ═══ PORTFOLIO ═══ */
     .portfolio-wrap { position:relative; padding:44px 0 96px; }
-    .portfolio-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:16px; position:relative; z-index:2; align-items:start; }
+    .portfolio-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:16px; position:relative; z-index:3; align-items:start; }
 
     /* Calipers aside – transparent PNG with auto height */
-    .caliper-aside { position:absolute; right:-32px; top:-280px; height:auto; max-height:none; width:240px; pointer-events:none; z-index:4; opacity:0; transform:translateY(80px) rotate(5deg) scale(0.88); transition:opacity .7s cubic-bezier(.22,1,.36,1) .2s, transform .9s cubic-bezier(0.16,1.8,0.3,1) .2s; }
+    .caliper-aside { position:absolute; right:-32px; top:-280px; height:auto; max-height:none; width:240px; pointer-events:none; z-index:1; opacity:0; transform:translateY(80px) rotate(5deg) scale(0.88); transition:opacity .7s cubic-bezier(.22,1,.36,1) .2s, transform .9s cubic-bezier(0.16,1.8,0.3,1) .2s; }
     .caliper-aside.visible { opacity:1; transform:translateY(0) rotate(1.5deg) scale(1); }
     .caliper-img { width:100%; height:auto; border:none; background:transparent; overflow:visible; }
     .caliper-img img { width:100%; height:auto; object-fit:contain; display:block; background:transparent; }
