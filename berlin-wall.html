@@ -3,10 +3,22 @@
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Berlin Wall Diorama — Luke Jurbergs</title>
+  <meta name="description" content="Award-winning Berlin Wall diorama by Luke Jurbergs — depicting the Bethke brothers' ultralight aircraft escape, 1st place Sprachfest 2026."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .award-strip { display:flex; gap:16px; margin:28px 0; flex-wrap:wrap; }
+    .award-card { flex:1; min-width:200px; background:#fef9f0; border:1.5px solid rgba(200,160,0,0.3); border-left:3px solid #c8a000; padding:16px 18px; }
+    .award-place { font-family:var(--display); font-size:36px; letter-spacing:0.04em; color:#c8a000; line-height:1; }
+    .award-name { font-family:var(--mono); font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-mid); margin-top:5px; line-height:1.6; }
+    .material-list { display:flex; flex-direction:column; gap:0; }
+    .material-row { display:grid; grid-template-columns:130px 1fr; gap:12px; padding:9px 0; border-bottom:1px solid var(--border); font-family:var(--mono); font-size:10px; }
+    .material-row:last-child { border-bottom:none; }
+    .material-key { color:var(--ink-dim); letter-spacing:0.12em; text-transform:uppercase; font-size:9px; padding-top:1px; }
+    .material-val { color:var(--ink); line-height:1.7; }
+  </style>
 </head>
 <body>
 <div id="scroll-progress"></div>
@@ -20,138 +32,253 @@
   </ul>
 </nav>
 
-<div class="proj-hero" style="margin-top:60px">
-  <!-- 📷 HERO: Best wide shot of the Berlin Wall diorama -->
-  <div class="img-slot" style="height:100%;border:none;background:#1a1714">
-    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: wide shot of Berlin Wall diorama</span>
+<!-- HERO -->
+<div class="proj-hero" style="margin-top:60px;background:#1a1410">
+  <!-- 📷 HERO: Wide shot of the full diorama showing both sides and the aircraft above
+       Replace with: <img class="proj-hero-img" src="assets/berlin-wall-hero.jpg" alt="Berlin Wall Diorama"> -->
+  <div class="img-slot" style="height:100%;border:none;background:#1a1410">
+    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: full diorama wide shot showing both sides and aircraft above</span>
   </div>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
       <a href="art.html" class="proj-back">← Visual Work</a>
       <h1 class="proj-title">BERLIN<br><em>WALL</em></h1>
-      <p class="proj-subtitle">Historical Diorama &nbsp;·&nbsp; Award Winner &nbsp;·&nbsp; <!-- ✍️ ADD YEAR/CLASS --></p>
+      <p class="proj-subtitle">Historical Diorama &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Two Competition Awards</p>
     </div>
   </div>
 </div>
 
 <div class="page">
   <div class="inner">
+
     <div class="proj-meta-bar">
-      <div class="proj-meta-item"><strong>Type</strong>Historical Diorama</div>
-      <div class="proj-meta-item"><strong>Medium</strong><!-- ✍️ ADD: materials used --></div>
-      <div class="proj-meta-item"><strong>Class / Context</strong><!-- ✍️ ADD: what class or context --></div>
-      <div class="proj-meta-item"><strong>Award</strong>🏆 <!-- ✍️ ADD AWARD --></div>
+      <div class="proj-meta-item"><strong>Type</strong>Historical Scale Diorama</div>
+      <div class="proj-meta-item"><strong>Subject</strong>Bethke Brothers' Escape, 1989</div>
+      <div class="proj-meta-item"><strong>Competition</strong>German Language (Sprachfest)</div>
+      <div class="proj-meta-item"><strong>Awards</strong>1st Place + 3rd Place</div>
+    </div>
+
+    <!-- AWARDS -->
+    <div class="award-strip">
+      <div class="award-card">
+        <div class="award-place">1st</div>
+        <div class="award-name">Sprachfest Regional<br>German Competition<br>February 2026</div>
+      </div>
+      <div class="award-card">
+        <div class="award-place">3rd</div>
+        <div class="award-name">Classic Model<br>Texas State German Contest<br>March 2026</div>
+      </div>
     </div>
 
     <div class="proj-body">
       <div class="proj-body-main">
 
-        <h2 class="proj-section-label">The <em>Project</em></h2>
+        <h2 class="proj-section-label">The <em>Story</em></h2>
         <p class="prose">
-          <!-- ✍️ WRITE: 2-3 paragraphs about the Berlin Wall diorama.
-               Suggested content:
-               - What historical period/moment does it depict?
-               - What drew you to the Berlin Wall as a subject?
-               - What was the assignment/context?
-               Something like: "The Berlin Wall diorama depicts [specific scene/moment].
-               I was drawn to [aspect] because [reason]..."
-          -->
-          [Add description of what the diorama depicts and your approach to it]
+          The diorama is based on one of the most creative escapes in Cold War history. In 1989, two brothers, Thomas and Ingo Bethke, reunited after years on opposite sides of the Berlin Wall by flying a homemade ultralight aircraft from West Germany into East Germany and then out again. The escape was a miracle of planning and nerve. It felt like exactly the right story to build physically, where you could feel the division between the two worlds just by standing in front of it.
+        </p>
+        <p class="prose">
+          The whole point of the design was contrast. The west side is alive with color, painted murals, green grass, and a bright blue and yellow building. The east side is gray, covered in litter, windows near the wall bricked up so nobody inside could see what freedom looked like. In the middle, between those two worlds, is everything the East German state put between people and escape: the watchtower, the patrol path, the anti-vehicle trenches, the barbed wire, the death strip.
         </p>
 
-        <!-- Gallery -->
-        <div class="gallery-grid cols-2" style="margin:28px 0">
-          <div class="gallery-item" style="height:260px">
-            <!-- 📷 ADD: full front-facing diorama shot -->
-            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Full diorama — front-facing shot</span></div>
-            <span class="gallery-caption">full scene</span>
+        <!-- FULL VIEW -->
+        <div class="gallery-item reveal" style="height:340px;margin:28px 0">
+          <!-- 📷 ADD: Best overhead or 3/4 angle of the whole diorama -->
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">Full diorama, 3/4 or overhead angle showing both sides and the aircraft</span>
           </div>
-          <div class="gallery-item" style="height:260px">
-            <!-- 📷 ADD: detail / close-up of key element -->
-            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Detail close-up — key element</span></div>
-            <span class="gallery-caption">detail shot</span>
+          <span class="gallery-caption">west side (left) vs. east side (right), aircraft suspended above</span>
+        </div>
+
+        <!-- TWO SIDES -->
+        <div class="gallery-grid cols-2" style="margin:0 0 28px">
+          <div class="gallery-item" style="height:240px">
+            <!-- 📷 ADD: West side close-up showing mural, park, bright building -->
+            <div class="img-slot" style="height:100%">
+              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <span class="img-slot-note">West side close-up: murals, green park, blue/yellow building</span>
+            </div>
+            <span class="gallery-caption">west side: color, murals, the brotherly kiss</span>
+          </div>
+          <div class="gallery-item" style="height:240px">
+            <!-- 📷 ADD: East side close-up showing gray, bland buildings, litter, bricked windows -->
+            <div class="img-slot" style="height:100%">
+              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <span class="img-slot-note">East side close-up: gray, litter, bricked-up windows</span>
+            </div>
+            <span class="gallery-caption">east side: gray concrete, trash, no view of the west</span>
           </div>
         </div>
 
-        <h2 class="proj-section-label">The <em>Construction</em></h2>
+        <h2 class="proj-section-label">The Death <em>Strip</em></h2>
         <p class="prose">
-          <!-- ✍️ WRITE: How did you build it? What materials?
-               Something like: "The wall sections were made from [material]...
-               I used [technique] for [element]...
-               The most challenging part was [specific challenge]..."
-          -->
-          [Describe construction process, materials, techniques, and challenges]
+          The section between the two walls took the most research and the most time. Every element in the death strip was real and had to be right. The anti-vehicle trenches were carved foam painted brown with real soil modge-podged on top. The barbed wire was floral wire coiled around a pencil then stretched out. The watchtower is clay and PVC pipe, painted, sitting on a carved foam base. The anti-vehicle hedgehogs were popsicle sticks cut and spray painted. The sand strip, which guards could rake to detect footprints, was made by laying down string, taping over it, painting the sand color, then pulling the tape to leave texture lines before adding real sand with modge-podge.
         </p>
 
+        <!-- DEATH STRIP / DETAIL SHOTS -->
         <div class="gallery-grid cols-3" style="margin:28px 0">
           <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: wall detail / texture -->
-            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Wall detail / texture</span></div>
+            <!-- 📷 ADD: Watchtower close-up -->
+            <div class="img-slot" style="height:100%">
+              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <span class="img-slot-note">Watchtower close-up (clay + PVC)</span>
+            </div>
+            <span class="gallery-caption">watchtower</span>
           </div>
           <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: figures or scene elements -->
-            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Scene elements / figures</span></div>
+            <!-- 📷 ADD: Anti-vehicle trench with real soil -->
+            <div class="img-slot" style="height:100%">
+              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <span class="img-slot-note">Anti-vehicle trench with real soil</span>
+            </div>
+            <span class="gallery-caption">anti-vehicle trench</span>
           </div>
           <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: alternate angle / 3/4 view -->
-            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">3/4 angle view</span></div>
+            <!-- 📷 ADD: Barbed wire + sand strip with raked lines -->
+            <div class="img-slot" style="height:100%">
+              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <span class="img-slot-note">Barbed wire and sand strip with raked lines</span>
+            </div>
+            <span class="gallery-caption">barbed wire + sand strip</span>
           </div>
         </div>
+
+        <!-- MORE DETAIL SHOTS -->
+        <div class="gallery-grid cols-2" style="margin:0 0 28px">
+          <div class="gallery-item" style="height:220px">
+            <!-- 📷 ADD: Concrete wall texture on east side (clay on carved foam) -->
+            <div class="img-slot" style="height:100%">
+              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <span class="img-slot-note">Wall texture detail: clay on carved foam, brick and concrete textures</span>
+            </div>
+            <span class="gallery-caption">wall texture: clay over carved foam</span>
+          </div>
+          <div class="gallery-item" style="height:220px">
+            <!-- 📷 ADD: Mural on west side, showing the brotherly kiss -->
+            <div class="img-slot" style="height:100%">
+              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <span class="img-slot-note">West wall mural: hand-painted brotherly kiss and other murals</span>
+            </div>
+            <span class="gallery-caption">hand-painted murals, west side</span>
+          </div>
+        </div>
+
+        <h2 class="proj-section-label">The <em>Aircraft</em></h2>
+        <p class="prose">
+          Suspended above the whole diorama on a dowel is a model of the Microlight Fox II, the actual aircraft the Bethke brothers used. The frame is made from dowel pieces and wooden skewers. The nose cone came from an old cold brew can. The windshield is cut from a plastic binder sheet. Wings are cardboard. The whole thing is camouflage spray painted in dark green, light green, and black, with metal parts hand painted gray. The wheels are a mix of custom 3D printed parts and LEGO motorcycle wheels. Red Soviet Union stars, printed and modge-podged on the wings and tail, are a nod to the irony of the whole escape.
+        </p>
+
+        <!-- AIRCRAFT -->
+        <div class="gallery-grid cols-2" style="margin:28px 0">
+          <div class="gallery-item" style="height:240px">
+            <!-- 📷 ADD: Aircraft close-up showing detail, stars, camouflage -->
+            <div class="img-slot" style="height:100%">
+              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <span class="img-slot-note">Aircraft close-up: camouflage paint, Soviet stars, cold brew can nose cone</span>
+            </div>
+            <span class="gallery-caption">Microlight Fox II model, cold brew nose cone, Soviet stars</span>
+          </div>
+          <div class="gallery-item" style="height:240px">
+            <!-- 📷 ADD: Aircraft suspended above diorama, showing it in context -->
+            <div class="img-slot" style="height:100%">
+              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <span class="img-slot-note">Aircraft suspended by dowel above the diorama</span>
+            </div>
+            <span class="gallery-caption">aircraft suspended above the wall</span>
+          </div>
+        </div>
+
+        <!-- BOTTOM WIDE -->
+        <div class="gallery-item reveal" style="height:280px;margin-bottom:32px">
+          <!-- 📷 ADD: Another full-view angle, or you working on the diorama -->
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">You building or presenting the diorama, or alternate full view angle</span>
+          </div>
+          <span class="gallery-caption">building and presenting</span>
+        </div>
+
+        <h2 class="proj-section-label">Making It <em>Work</em></h2>
+        <p class="prose">
+          The foam for the whole base came from scrap left over from an acoustic engineering project my dad had done. The problem was it came in one thick sheet, so I had to use a jigsaw to cut it down into the right shapes and layers. From there it was weeks of carving, painting, texturing, and adding detail. Stop signs, pieces of litter, asphalt texture on the east side streets. Every square inch had something going on.
+        </p>
+        <p class="prose">
+          The hardest part was keeping track of what was actually historically accurate. The death strip layout, the specific wall shapes on each side (smooth concrete pipe on top, brick pattern below), the soldier patrol path. Getting those details right was part of what made it a competition piece and not just a model.
+        </p>
 
         <h2 class="proj-section-label">What I <em>Learned</em></h2>
         <div class="learned-block">
           <div class="learned-num">01</div>
-          <div class="learned-text"><!-- ✍️ ADD lesson 1 -->[Lesson about historical research, storytelling through physical objects, or craft]</div>
+          <div class="learned-text"><strong>Using what you have.</strong> The foam was scrap. The nose cone was a coffee can. The wheels were partially LEGO. Nothing was bought for a purpose it wasn't also serving somewhere else. That constraint made the construction more creative, not less.</div>
         </div>
         <div class="learned-block">
           <div class="learned-num">02</div>
-          <div class="learned-text"><!-- ✍️ ADD lesson 2 -->[Lesson about the historical event itself or how physical scale affects emotional impact]</div>
+          <div class="learned-text"><strong>Physical scale changes how you understand history.</strong> You can read about the Berlin Wall in a paragraph. Building it, even at this scale, changes how you think about it. Physically laying out where each element went, how close the death strip was to the wall, what you could and couldn't see from either side... the diorama made me understand it differently than any textbook did.</div>
+        </div>
+        <div class="learned-block">
+          <div class="learned-num">03</div>
+          <div class="learned-text"><strong>Contrast as a design tool.</strong> The whole thing only works because the two sides are so different from each other. Color, texture, the types of details added. Designing that contrast intentionally and making sure it held up from every viewing angle was a real compositional challenge.</div>
         </div>
 
       </div><!-- /main -->
 
       <div class="proj-body-aside">
-        <div class="spec-box">
-          <div class="spec-box-title">PROJECT DETAILS</div>
-          <div class="spec-row"><div class="spec-key">Subject</div><div class="spec-val">Berlin Wall, 1961–1989</div></div>
-          <div class="spec-row"><div class="spec-key">Scale</div><div class="spec-val"><!-- ✍️ ADD scale --></div></div>
-          <div class="spec-row"><div class="spec-key">Materials</div><div class="spec-val"><!-- ✍️ ADD materials --></div></div>
-          <div class="spec-row"><div class="spec-key">Time Spent</div><div class="spec-val"><!-- ✍️ ADD --></div></div>
-          <div class="spec-row"><div class="spec-key">Award</div><div class="spec-val"><!-- ✍️ ADD award name/level --></div></div>
+
+        <div class="spec-box" style="border-left-color:#c8a000">
+          <div class="spec-box-title">AWARDS</div>
+          <div class="spec-row"><div class="spec-key">1st Place</div><div class="spec-val">Sprachfest Regional German Competition, Feb 2026</div></div>
+          <div class="spec-row"><div class="spec-key">3rd Place</div><div class="spec-val">Classic Model, Texas State German Contest, Mar 2026</div></div>
         </div>
-        <!-- 📷 ADD: award photo or you with the diorama -->
-        <div class="img-slot" style="aspect-ratio:3/4;margin-top:14px">
+
+        <!-- 📷 ADD: Award photo, you holding the trophy or at the competition -->
+        <div class="img-slot" style="aspect-ratio:3/4;margin:14px 0">
           <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-          <span class="img-slot-note">Award photo / you with the diorama</span>
+          <span class="img-slot-note">Award photo at competition or with trophy</span>
         </div>
+
+        <div class="spec-box">
+          <div class="spec-box-title">MATERIALS</div>
+          <div class="spec-row"><div class="spec-key">Base</div><div class="spec-val">Scrap acoustic foam, cut with jigsaw</div></div>
+          <div class="spec-row"><div class="spec-key">Wall texture</div><div class="spec-val">Air dry clay on carved foam</div></div>
+          <div class="spec-row"><div class="spec-key">Buildings</div><div class="spec-val">Foam, painted</div></div>
+          <div class="spec-row"><div class="spec-key">Watchtower</div><div class="spec-val">Clay + PVC pipe + paint</div></div>
+          <div class="spec-row"><div class="spec-key">Trench</div><div class="spec-val">Carved foam + real soil (modge-podged)</div></div>
+          <div class="spec-row"><div class="spec-key">Barbed wire</div><div class="spec-val">Floral wire coiled on pencil</div></div>
+          <div class="spec-row"><div class="spec-key">Sand strip</div><div class="spec-val">String texture + real sand modge-podged</div></div>
+          <div class="spec-row"><div class="spec-key">Hedgehogs</div><div class="spec-val">Popsicle sticks, spray painted</div></div>
+          <div class="spec-row"><div class="spec-key">Aircraft frame</div><div class="spec-val">Dowels + wooden skewers</div></div>
+          <div class="spec-row"><div class="spec-key">Nose cone</div><div class="spec-val">Old cold brew can</div></div>
+          <div class="spec-row"><div class="spec-key">Windshield</div><div class="spec-val">Plastic binder sheet</div></div>
+          <div class="spec-row"><div class="spec-key">Wings</div><div class="spec-val">Cardboard</div></div>
+          <div class="spec-row"><div class="spec-key">Aircraft wheels</div><div class="spec-val">Custom 3D printed + LEGO motorcycle wheels</div></div>
+          <div class="spec-row"><div class="spec-key">Soviet stars</div><div class="spec-val">Printed, modge-podged on</div></div>
+        </div>
+
+        <!-- 📷 ADD: Close-up of a favorite detail (wheels, barbed wire, mural, etc.) -->
+        <div class="img-slot" style="aspect-ratio:1/1;margin-top:14px">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="img-slot-note">Your favorite detail close-up (wheels, mural, barbed wire, etc.)</span>
+        </div>
+
       </div>
     </div>
 
     <div class="proj-nav-bar">
-      <a href="paranoid.html" class="proj-nav-link">
-        <span class="proj-nav-label">← Previous</span>
-        <span class="proj-nav-title">Paranoid</span>
-      </a>
+      <a href="paranoid.html" class="proj-nav-link"><span class="proj-nav-label">Previous</span><span class="proj-nav-title">Paranoid</span></a>
+      <a href="portrait.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">Next</span><span class="proj-nav-title">Self Portrait</span></a>
     </div>
+
   </div>
 </div>
 
-<footer>
-  <div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div>
-  <div class="footer-tag">Berlin Wall Diorama</div>
-</footer>
+<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Berlin Wall Diorama</div></footer>
 <script>
-const scrollBar=document.getElementById('scroll-progress');
-window.addEventListener('scroll',()=>{
-  const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
-  scrollBar.style.width=Math.min(100,pct)+'%';
-  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);
-},{passive:true});
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('visible');io.unobserve(e.target);});
-},{threshold:0.08});
-document.querySelectorAll('.reveal,.gallery-item,.learned-block').forEach(el=>io.observe(el));
+const scrollBar=document.getElementById("scroll-progress");
+window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
+document.querySelectorAll(".reveal,.gallery-item,.learned-block").forEach(el=>io.observe(el));
 </script>
 </body>
 </html>

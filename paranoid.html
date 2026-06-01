@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Paranoid — Luke Jurbergs</title>
-  <meta name="description" content="Paranoid — an award-winning short film directed, acted, and co-edited by Luke Jurbergs."/>
+  <meta name="description" content="Paranoid, an award-winning short film directed by Luke Jurbergs. A woman living alone notices things disappearing in her home. Nobody believes her."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
   <style>
-    /* Film hero is darker */
-    .proj-hero{background:#060402}
-    .film-credits{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:28px 0}
-    .credit-item{background:var(--bg);padding:16px 18px}
-    .credit-role{font-family:var(--mono);font-size:8px;letter-spacing:0.24em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:4px}
-    .credit-name{font-family:var(--display);font-size:18px;letter-spacing:0.06em;color:var(--ink)}
+    .crew-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin:28px 0; }
+    .crew-cell { background:var(--bg); padding:14px 16px; }
+    .crew-role { font-family:var(--mono); font-size:8px; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:4px; }
+    .crew-name { font-family:var(--display); font-size:17px; letter-spacing:0.05em; color:var(--ink); }
+    .crew-name em { color:var(--accent); font-style:normal; font-size:14px; }
+    .logline-box { background:#f9f6ef; border:1.5px solid var(--border); border-left:3px solid var(--accent); padding:20px 22px; margin:28px 0; }
+    .logline-box p { font-family:var(--serif); font-style:italic; font-size:18px; line-height:1.65; color:var(--ink); }
+    .scene-tag { font-family:var(--mono); font-size:8px; letter-spacing:0.26em; text-transform:uppercase; color:var(--ink-dim); display:block; margin-bottom:6px; }
   </style>
 </head>
 <body>
@@ -29,212 +31,222 @@
   </ul>
 </nav>
 
-<div class="proj-hero" style="margin-top:60px">
-  <!-- 📷 HERO IMAGE: Best cinematic still from Paranoid — dark, moody
-       Replace with: <img class="proj-hero-img" src="assets/[paranoid-still].jpg" alt="Paranoid film still"> -->
+<!-- HERO -->
+<div class="proj-hero" style="margin-top:60px;background:#060402">
+  <!-- 📷 HERO: Best cinematic still from Paranoid. Dark, tense, atmospheric.
+       <img class="proj-hero-img" src="assets/paranoid-hero.jpg" alt="Paranoid still"> -->
   <div class="img-slot" style="height:100%;border:none;background:#060402">
-    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: best cinematic still from Paranoid</span>
+    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <span class="img-slot-note" style="color:rgba(255,255,255,0.16)">Hero: best cinematic still from Paranoid. Dark, tense.</span>
   </div>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
       <a href="art.html" class="proj-back">← Visual Work</a>
       <h1 class="proj-title"><em>PARANOID</em></h1>
-      <p class="proj-subtitle">Short Film &nbsp;·&nbsp; Award Winner &nbsp;·&nbsp; <!-- ✍️ ADD YEAR --></p>
+      <p class="proj-subtitle">Short Film &nbsp;·&nbsp; Director &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Award Winner</p>
     </div>
   </div>
 </div>
 
 <div class="page">
   <div class="inner">
+
     <div class="proj-meta-bar">
       <div class="proj-meta-item"><strong>Type</strong>Short Film</div>
-      <div class="proj-meta-item"><strong>My Roles</strong>Director, Actor, Co-Editor</div>
-      <div class="proj-meta-item"><strong>Year</strong><!-- ✍️ ADD YEAR --></div>
-      <div class="proj-meta-item"><strong>Award</strong>🏆 <!-- ✍️ ADD AWARD NAME --></div>
+      <div class="proj-meta-item"><strong>Year</strong>2025</div>
+      <div class="proj-meta-item"><strong>Roles</strong>Director, Writer, Actor (Arthur)</div>
+      <div class="proj-meta-item"><strong>Award</strong><!-- ADD: award name --></div>
     </div>
 
     <div class="proj-body">
       <div class="proj-body-main">
 
         <!-- VIDEO EMBED -->
-        <div class="video-embed" style="margin-bottom:28px">
-          <!-- 🎬 ADD VIDEO: Replace this div content with your embed
-               YouTube:  <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
-               Vimeo:    <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" allowfullscreen></iframe>
-               Local:    <video src="assets/paranoid.mp4" controls></video> -->
+        <div class="video-embed" style="margin-bottom:8px">
+          <!-- 🎬 ADD VIDEO: Replace the placeholder below with your embed
+               YouTube: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+               Vimeo:   <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
           <div class="video-embed-placeholder">
-            <div class="play-icon">▶</div>
-            <span class="video-embed-note">Add YouTube / Vimeo embed or local video file</span>
+            <div class="play-icon">&#9654;</div>
+            <span class="video-embed-note">Add YouTube or Vimeo embed</span>
           </div>
         </div>
 
-        <!-- Film credits -->
-        <div class="film-credits">
-          <div class="credit-item">
-            <div class="credit-role">Director</div>
-            <div class="credit-name">Luke Jurbergs</div>
-          </div>
-          <div class="credit-item">
-            <div class="credit-role">Co-Editor</div>
-            <div class="credit-name">Luke Jurbergs</div>
-          </div>
-          <div class="credit-item">
-            <div class="credit-role">Actor</div>
-            <div class="credit-name">Luke Jurbergs</div>
-          </div>
-          <!-- ✍️ ADD MORE CREDITS: cast, other crew -->
+        <!-- LOGLINE -->
+        <div class="logline-box">
+          <p>"A young woman living alone becomes convinced she's not alone at all. Objects move. Things go missing. Nobody believes her. She's right."</p>
         </div>
 
-        <h2 class="proj-section-label">The <em>Film</em></h2>
-        <p class="prose">
-          <!-- ✍️ STORY SYNOPSIS: Write 2-3 sentences about what Paranoid is about.
-               Something like: "Paranoid follows [character] who [premise]. 
-               The film explores [themes] through [approach]." -->
-          [Add synopsis of Paranoid here — what's the story, what themes does it explore?]
-        </p>
-        <p class="prose">
-          <!-- ✍️ ADD: Any details about the production — location, shooting period, format (digital/film), etc. -->
-        </p>
-
-        <!-- Gallery of stills -->
-        <div class="gallery-grid cols-3" style="margin:28px 0">
+        <!-- GALLERY ROW 1: key stills -->
+        <div class="gallery-grid cols-3" style="margin:0 0 4px">
           <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: film still 1 -->
-            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Film still 1</span></div>
-            <span class="gallery-caption"><!-- scene description --></span>
+            <!-- 📷 ADD: Ariya looking stressed in the kitchen / front hall -->
+            <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Ariya (Kavya) in kitchen or front hall, tense</span></div>
+            <span class="gallery-caption">ariya, alone</span>
           </div>
           <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: film still 2 -->
-            <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Film still 2</span></div>
-            <span class="gallery-caption"><!-- scene description --></span>
+            <!-- 📷 ADD: Luke as Arthur, condescending in dining room -->
+            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Luke as Arthur, smirking/dismissive at dining table</span></div>
+            <span class="gallery-caption">arthur (luke) being awful</span>
           </div>
           <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: behind the scenes -->
-            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Behind the scenes</span></div>
-            <span class="gallery-caption">behind the scenes</span>
+            <!-- 📷 ADD: Attic scene, dark, flashlight, phrogger -->
+            <div class="img-slot" style="height:100%;background:#060402"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Attic scene, flashlight, darkness, the phrogger appearing</span></div>
+            <span class="gallery-caption">the attic</span>
           </div>
         </div>
 
-        <!-- Wide BTS shot -->
-        <div class="gallery-item reveal" style="height:280px;margin-bottom:32px">
-          <!-- 📷 ADD: film_group.jpg — team photo or on-set group shot -->
-          <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">film_group.jpg — cast &amp; crew</span></div>
-          <span class="gallery-caption">cast and crew</span>
-        </div>
-
-        <h2 class="proj-section-label">On <em>Leadership</em></h2>
+        <h2 class="proj-section-label">The <em>Story</em></h2>
         <p class="prose">
-          Paranoid was the first time I was fully responsible for something other people were
-          counting on. And I made a decision early on: I wasn't going to be a director who
-          hands out roles and walks away. <strong>I acted in it. I co-edited it.
-          I helped build the sets.</strong>
+          Ariya is a 19-year-old living alone. She works constantly, comes home exhausted, and starts noticing things that shouldn't be happening. A painting falls from the wall. A cup shatters in the kitchen at night. Her cat goes missing. She tells her landlord's son, who calls her dramatic and paranoid. She tells her friend James, who chalks it up to stress. She installs security cameras, and then the one in the attic goes offline.
         </p>
         <p class="prose">
-          I knew what it felt like to be the editor staring at a timeline at 3 a.m. the night
-          before upload day — because I was there. I knew how hard it was to get your lines right
-          under pressure — because I was in the shots. When something frustrated a teammate,
-          I understood why, because I'd been doing the same thing.
+          She goes up herself. There's been someone living in her attic for months. He knows her name. When she tries to escape, he pushes her down the ladder. The detective who arrives writes "no foul play" on his report. "Everyone said she was crazy," he tells his partner. A new family moves in.
         </p>
-
-        <div class="callout">
-          <p>"The best work doesn't come from leaders who give orders. It comes from someone who knows when to lead and when to get in the trenches — and isn't afraid to do both at the same time."</p>
-        </div>
-
         <p class="prose">
-          That's the model I want to bring to engineering. A mechanical engineering team doesn't
-          need a leader who tells the electrical engineer what to do. It needs someone who can
-          sit down with them, understand their constraints, and help find a path neither of you
-          would have found alone. That's what directing Paranoid taught me leadership actually is.
+          The film isn't really about the phrogger. It's about what happens when a woman's own account of her experience is dismissed by everyone around her, over and over, until it's too late. Every character who doesn't believe Ariya is played with a specific flavor of dismissal: the landlord's son is condescending, her friend is well-meaning but useless, the detective doesn't care. The film wanted the audience to feel how exhausting that is before the ending made it final.
         </p>
 
-        <!-- More stills -->
+        <!-- GALLERY ROW 2: atmosphere / BTS -->
         <div class="gallery-grid cols-2" style="margin:28px 0">
           <div class="gallery-item" style="height:240px">
-            <!-- 📷 ADD: still from your acting performance -->
-            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Still from your performance</span></div>
-            <span class="gallery-caption">on screen</span>
-          </div>
-          <div class="gallery-item" style="height:240px">
-            <!-- 📷 ADD: you editing / behind the computer / directing on set -->
-            <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Directing or editing</span></div>
+            <!-- 📷 ADD: Behind the scenes on set, crew working -->
+            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Behind the scenes: crew on set, lighting, directing</span></div>
             <span class="gallery-caption">behind the camera</span>
           </div>
+          <div class="gallery-item" style="height:240px">
+            <!-- 📷 ADD: film_group.jpg or full production team -->
+            <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">film_group.jpg or full cast and crew together</span></div>
+            <span class="gallery-caption">cast and crew</span>
+          </div>
+        </div>
+
+        <h2 class="proj-section-label">Style and <em>Tone</em></h2>
+        <p class="prose">
+          The film gets increasingly claustrophobic as it goes. Early scenes are wide, lit, open. By the time Ariya is alone at her dining table with a laptop notification telling her the attic camera is offline, the framing has closed in. The color desaturates. The camera stops giving her room to breathe in the frame.
+        </p>
+        <p class="prose">
+          The moments of danger aren't drawn out. The death is sudden and quick, exactly how those things actually happen, which was an intentional choice. The horror isn't in the violence. It's in the twenty minutes before it where everyone had a chance to believe her and didn't.
+        </p>
+
+        <!-- GALLERY ROW 3: more stills -->
+        <div class="gallery-grid cols-3" style="margin:28px 0">
+          <div class="gallery-item" style="height:190px">
+            <!-- 📷 ADD: Security camera installation scene -->
+            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Ariya installing security cameras</span></div>
+            <span class="gallery-caption">installing cameras</span>
+          </div>
+          <div class="gallery-item" style="height:190px">
+            <!-- 📷 ADD: Laptop showing "ATTIC CAMERA OFFLINE" notification -->
+            <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Laptop: "ATTIC CAMERA OFFLINE" notification</span></div>
+            <span class="gallery-caption">"attic camera offline"</span>
+          </div>
+          <div class="gallery-item" style="height:190px">
+            <!-- 📷 ADD: Detective with clipboard at the end, dismissive -->
+            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Detective at the end, writing "no foul play"</span></div>
+            <span class="gallery-caption">"probably jumped"</span>
+          </div>
+        </div>
+
+        <!-- CREW -->
+        <h2 class="proj-section-label">The <em>Team</em></h2>
+        <div class="crew-grid">
+          <div class="crew-cell"><div class="crew-role">Director / Writer</div><div class="crew-name"><em>Luke</em> Jurbergs</div></div>
+          <div class="crew-cell"><div class="crew-role">Producer / DP</div><div class="crew-name">Lucas Kiser</div></div>
+          <div class="crew-cell"><div class="crew-role">1st AD</div><div class="crew-name">Lucius Melillo</div></div>
+          <div class="crew-cell"><div class="crew-role">Sound</div><div class="crew-name">Zachary Benavides</div></div>
+          <div class="crew-cell"><div class="crew-role">Production Designer</div><div class="crew-name">Kavya Gupta</div></div>
+          <div class="crew-cell"><div class="crew-role">2nd AC</div><div class="crew-name">Amir</div></div>
+          <div class="crew-cell"><div class="crew-role">Ariya (Lead)</div><div class="crew-name">Kavya Gupta</div></div>
+          <div class="crew-cell"><div class="crew-role">Arthur</div><div class="crew-name"><em>Luke</em> Jurbergs</div></div>
+          <div class="crew-cell"><div class="crew-role">James</div><div class="crew-name">Lucius Melillo</div></div>
+          <div class="crew-cell"><div class="crew-role">Phrogger</div><div class="crew-name">Jude</div></div>
+          <div class="crew-cell"><div class="crew-role">Detective</div><div class="crew-name">Luke's Father</div></div>
+          <div class="crew-cell"><div class="crew-role">School</div><div class="crew-name">LASA Film</div></div>
+        </div>
+
+        <h2 class="proj-section-label">On <em>Directing</em></h2>
+        <p class="prose">
+          Directing Paranoid was the first time I was genuinely responsible for something other people were counting on. And I made a specific choice going in: I wasn't going to be a director who hands out assignments and steps back. I acted in it. I helped with set design. I co-edited it. By the time we were done I had been in almost every part of the process.
+        </p>
+        <p class="prose">
+          That decision changed how I understood leadership. When I was playing Arthur in the dining room scene, I understood what Kavya was working against on the other side of the table. When I was in the edit late at night, I understood what it felt like to be the person staring at a timeline the night before a deadline. Working across every role didn't make the directing harder. It made it better, because I actually understood the problems my team was dealing with.
+        </p>
+
+        <!-- BTS wide shot -->
+        <div class="gallery-item reveal" style="height:280px;margin:28px 0">
+          <!-- 📷 ADD: Wide on-set shot showing the whole production, or you directing -->
+          <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Wide shot of you on set directing, or the whole team at work</span></div>
+          <span class="gallery-caption">on set</span>
         </div>
 
         <h2 class="proj-section-label">What I <em>Learned</em></h2>
         <div class="learned-block">
           <div class="learned-num">01</div>
-          <div class="learned-text"><strong>Real leadership is participatory.</strong> The director who also acts knows what their cast is feeling. The engineer who also codes knows what the software team is up against. Titles don't earn respect — shared experience does.</div>
+          <div class="learned-text"><strong>Real leadership means being in it with your team.</strong> The best call I made was choosing to act and edit in addition to directing. Every person on the team knew I understood their job because I was doing it alongside them. That's not a management technique. It's just the right way to work.</div>
         </div>
         <div class="learned-block">
           <div class="learned-num">02</div>
-          <div class="learned-text"><strong>Every role has invisible difficulty.</strong> Before I edited, I thought editing was just cutting clips. After 3am timelines, I understood it's creative decision-making under exhaustion. Working every role gave me genuine respect for everyone's contribution.</div>
+          <div class="learned-text"><strong>The story has to be simple enough to be intentional.</strong> Paranoid has a clear message and a straightforward plot, which sounds like a limitation. It's actually what gave us room to be specific about every shot, every costume choice, every color decision. Complex stories leave no room for craft. Simple ones demand it.</div>
         </div>
         <div class="learned-block">
           <div class="learned-num">03</div>
-          <div class="learned-text">
-            <!-- ✍️ ADD: Third lesson from Paranoid — could be about storytelling, filmmaking craft, teamwork, specific challenge you overcame -->
-            [Add a third lesson from making this film]
-          </div>
+          <div class="learned-text"><strong>Where the tension lives isn't where you think.</strong> Every instinct says the scariest scene is the attic. But the scenes in the dining room and the kitchen, where Ariya is dismissed, are actually the most disturbing to watch. The film taught me that horror is in the before, not the during.</div>
         </div>
 
       </div><!-- /main -->
 
       <div class="proj-body-aside">
+
+        <!-- 📷 ADD: Best film poster or title card -->
+        <div class="img-slot" style="aspect-ratio:2/3;margin-bottom:14px;background:#060402">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Film poster or title card if you made one</span>
+        </div>
+
         <div class="spec-box" style="border-left-color:#8b1a1a">
           <div class="spec-box-title">FILM DETAILS</div>
-          <div class="spec-row"><div class="spec-key">Genre</div><div class="spec-val"><!-- ✍️ ADD genre --></div></div>
-          <div class="spec-row"><div class="spec-key">Runtime</div><div class="spec-val"><!-- ✍️ ADD runtime --></div></div>
-          <div class="spec-row"><div class="spec-key">Format</div><div class="spec-val"><!-- ✍️ ADD: digital, etc. --></div></div>
-          <div class="spec-row"><div class="spec-key">Shot On</div><div class="spec-val"><!-- ✍️ ADD: camera used --></div></div>
+          <div class="spec-row"><div class="spec-key">Genre</div><div class="spec-val">Psychological Thriller</div></div>
+          <div class="spec-row"><div class="spec-key">Runtime</div><div class="spec-val"><!-- ADD runtime --></div></div>
+          <div class="spec-row"><div class="spec-key">Shot On</div><div class="spec-val"><!-- ADD camera --></div></div>
           <div class="spec-row"><div class="spec-key">Edited In</div><div class="spec-val">Adobe Premiere Pro</div></div>
-          <div class="spec-row"><div class="spec-key">Award</div><div class="spec-val"><!-- ✍️ ADD award --></div></div>
+          <div class="spec-row"><div class="spec-key">School</div><div class="spec-val">LASA Film</div></div>
+          <div class="spec-row"><div class="spec-key">Award</div><div class="spec-val"><!-- ADD award --></div></div>
         </div>
 
-        <!-- 📷 ADD: Award certificate or event photo -->
-        <div class="img-slot" style="aspect-ratio:3/4;margin:14px 0">
+        <div class="note-box" style="margin-top:14px">
+          <p>Luke wrote the script, directed, and played Arthur — the landlord's son who tells Ariya she's "paranoid." Playing a character designed to dismiss a woman's real fear, while also being the director responsible for that fear's payoff, was a specific kind of challenge.</p>
+        </div>
+
+        <!-- 📷 ADD: Award screenshot or certificate -->
+        <div class="img-slot" style="aspect-ratio:4/3;margin-top:14px">
           <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-          <span class="img-slot-note">Award photo / certificate / event</span>
+          <span class="img-slot-note">Award photo, screening, or certificate</span>
         </div>
 
-        <div class="note-box">
-          <p>Paranoid marked the first time I chose to be in every part of a project — not just the part with my name on it. That choice changed how I think about leadership.</p>
-        </div>
-
-        <!-- 📷 ADD: poster or title card if you made one -->
-        <div class="img-slot" style="aspect-ratio:2/3;margin-top:14px">
+        <!-- 📷 ADD: You at the premiere or screening -->
+        <div class="img-slot" style="aspect-ratio:3/4;margin-top:14px">
           <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span class="img-slot-note">Film poster or title card (if you have one)</span>
+          <span class="img-slot-note">You or the team at screening / premiere</span>
         </div>
+
       </div>
     </div>
 
     <div class="proj-nav-bar">
       <div></div>
-      <a href="berlin-wall.html" class="proj-nav-link" style="text-align:right">
-        <span class="proj-nav-label">Next →</span>
-        <span class="proj-nav-title">Berlin Wall Diorama</span>
-      </a>
+      <a href="berlin-wall.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">Next</span><span class="proj-nav-title">Berlin Wall Diorama</span></a>
     </div>
+
   </div>
 </div>
 
-<footer>
-  <div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div>
-  <div class="footer-tag">Paranoid — Short Film</div>
-</footer>
+<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Paranoid — Short Film</div></footer>
 <script>
-const scrollBar=document.getElementById('scroll-progress');
-window.addEventListener('scroll',()=>{
-  const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
-  scrollBar.style.width=Math.min(100,pct)+'%';
-  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);
-},{passive:true});
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('visible');io.unobserve(e.target);});
-},{threshold:0.08});
-document.querySelectorAll('.reveal,.gallery-item,.learned-block').forEach(el=>io.observe(el));
+const scrollBar=document.getElementById("scroll-progress");
+window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
+document.querySelectorAll(".reveal,.gallery-item,.learned-block").forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
