@@ -3,20 +3,30 @@
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Paranoid — Luke Jurbergs</title>
-  <meta name="description" content="Paranoid, an award-winning short film directed by Luke Jurbergs. A woman living alone notices things disappearing in her home. Nobody believes her."/>
+  <meta name="description" content="Paranoid, an award-winning short film directed by Luke Jurbergs. Audience Favorite, Best Picture, and Best Director at the LASA Film Show at Alamo Drafthouse."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
   <style>
-    .crew-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin:28px 0; }
-    .crew-cell { background:var(--bg); padding:14px 16px; }
-    .crew-role { font-family:var(--mono); font-size:8px; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:4px; }
-    .crew-name { font-family:var(--display); font-size:17px; letter-spacing:0.05em; color:var(--ink); }
-    .crew-name em { color:var(--accent); font-style:normal; font-size:14px; }
+    .crew-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin:16px 0 28px; }
+    .crew-cell { background:var(--bg); padding:12px 16px; }
+    .crew-role { font-family:var(--mono); font-size:8px; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:3px; }
+    .crew-name { font-family:var(--display); font-size:16px; letter-spacing:0.05em; color:var(--ink); line-height:1.1; }
+    .crew-name em { color:var(--accent); font-style:normal; font-size:13px; }
+
+    .crew-section-label { font-family:var(--mono); font-size:9px; letter-spacing:0.24em; text-transform:uppercase; color:var(--ink-dim); margin:20px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+
     .logline-box { background:#f9f6ef; border:1.5px solid var(--border); border-left:3px solid var(--accent); padding:20px 22px; margin:28px 0; }
     .logline-box p { font-family:var(--serif); font-style:italic; font-size:18px; line-height:1.65; color:var(--ink); }
-    .scene-tag { font-family:var(--mono); font-size:8px; letter-spacing:0.26em; text-transform:uppercase; color:var(--ink-dim); display:block; margin-bottom:6px; }
+
+    .award-strip { display:flex; gap:16px; margin:28px 0; flex-wrap:wrap; }
+    .award-card { flex:1; min-width:160px; background:#fef9f0; border:1.5px solid rgba(200,160,0,0.3); border-left:3px solid #c8a000; padding:14px 16px; }
+    .award-place { font-family:var(--display); font-size:12px; letter-spacing:0.16em; color:#c8a000; line-height:1; margin-bottom:6px; text-transform:uppercase; }
+    .award-name { font-family:var(--display); font-size:22px; letter-spacing:0.04em; color:var(--ink); line-height:1.1; margin-bottom:4px; }
+    .award-venue { font-family:var(--mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-dim); }
+
+    @media(max-width:720px){ .crew-grid{grid-template-columns:1fr 1fr} }
   </style>
 </head>
 <body>
@@ -33,17 +43,12 @@
 
 <!-- HERO -->
 <div class="proj-hero" style="margin-top:60px;background:#060402">
-  <!-- 📷 HERO: Best cinematic still from Paranoid. Dark, tense, atmospheric.
-       <img class="proj-hero-img" src="assets/paranoid-hero.jpg" alt="Paranoid still"> -->
-  <div class="img-slot" style="height:100%;border:none;background:#060402">
-    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.16)">Hero: best cinematic still from Paranoid. Dark, tense.</span>
-  </div>
+  <img class="proj-hero-img" src="assets/paranoid/CinematicShotofPhroggerinAttic.jpg" alt="Paranoid — the phrogger revealed in the attic"/>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
       <a href="art.html" class="proj-back">← Visual Work</a>
       <h1 class="proj-title"><em>PARANOID</em></h1>
-      <p class="proj-subtitle">Short Film &nbsp;·&nbsp; Director &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Award Winner</p>
+      <p class="proj-subtitle">Short Film &nbsp;·&nbsp; Director &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; 3 Awards</p>
     </div>
   </div>
 </div>
@@ -55,7 +60,7 @@
       <div class="proj-meta-item"><strong>Type</strong>Short Film</div>
       <div class="proj-meta-item"><strong>Year</strong>2025</div>
       <div class="proj-meta-item"><strong>Roles</strong>Director, Writer, Actor (Arthur), Co-Editor</div>
-      <div class="proj-meta-item"><strong>Award</strong><!-- ADD: award name --></div>
+      <div class="proj-meta-item"><strong>Awards</strong>Audience Favorite &nbsp;·&nbsp; Best Picture &nbsp;·&nbsp; Best Director</div>
     </div>
 
     <div class="proj-body">
@@ -63,12 +68,25 @@
 
         <!-- VIDEO EMBED -->
         <div class="video-embed" style="margin-bottom:8px">
-          <!-- 🎬 ADD VIDEO: Replace the placeholder below with your embed
-               YouTube: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
-               Vimeo:   <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
-          <div class="video-embed-placeholder">
-            <div class="play-icon">&#9654;</div>
-            <span class="video-embed-note">Add YouTube or Vimeo embed</span>
+          <iframe src="https://www.youtube.com/embed/6xKlKtp_VJU" title="Paranoid - LASA Film" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <!-- AWARDS -->
+        <div class="award-strip">
+          <div class="award-card">
+            <div class="award-place">LASA Film Show 2025</div>
+            <div class="award-name">Audience Favorite</div>
+            <div class="award-venue">Alamo Drafthouse, Austin TX</div>
+          </div>
+          <div class="award-card">
+            <div class="award-place">LASA Film Show 2025</div>
+            <div class="award-name">Best Picture</div>
+            <div class="award-venue">Alamo Drafthouse, Austin TX</div>
+          </div>
+          <div class="award-card">
+            <div class="award-place">LASA Film Show 2025</div>
+            <div class="award-name">Best Director</div>
+            <div class="award-venue">Luke Jurbergs</div>
           </div>
         </div>
 
@@ -78,21 +96,18 @@
         </div>
 
         <!-- GALLERY ROW 1: key stills -->
-        <div class="gallery-grid cols-3" style="margin:0 0 4px">
+        <div class="gallery-grid cols-3" style="margin:0 0 28px">
           <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: Ariya looking stressed in the kitchen / front hall -->
-            <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Ariya (Kavya) in kitchen or front hall, tense</span></div>
-            <span class="gallery-caption">ariya, alone</span>
+            <img src="assets/paranoid/OTSofArthurAriyaLookingUpset.png" alt="Over the shoulder: Ariya confronting Arthur"/>
+            <span class="gallery-caption">ariya confronts arthur</span>
           </div>
           <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: Luke as Arthur, condescending in dining room -->
-            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Luke as Arthur, smirking/dismissive at dining table</span></div>
-            <span class="gallery-caption">arthur (luke) being awful</span>
+            <img src="assets/paranoid/ArthurLookingAtAriyaLookingCondescending.png" alt="Arthur looking condescendingly at Ariya"/>
+            <span class="gallery-caption">arthur's dismissal</span>
           </div>
           <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: Attic scene, dark, flashlight, phrogger -->
-            <div class="img-slot" style="height:100%;background:#060402"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Attic scene, flashlight, darkness, the phrogger appearing</span></div>
-            <span class="gallery-caption">the attic</span>
+            <img src="assets/paranoid/CinematicShotofPhroggerinAttic.jpg" alt="The phrogger revealed in the attic"/>
+            <span class="gallery-caption">the phrogger, revealed</span>
           </div>
         </div>
 
@@ -104,20 +119,18 @@
           She goes up herself. She finds meat with her cat's collar in it. Then, from behind, a man crawls out. He knows her name. When she tries to escape, he pushes her down the ladder. Later, the detective arrives and writes "no foul play" on his report, assuming it was a suicide. "Everyone said she was crazy," he tells his partner. Then a new family with children moves in.
         </p>
         <p class="prose">
-          The film isn't just a scary horror movie about a phrogger living in one's house like a parasite. It also presents a message about trust and the dismissal of a woman's own account of her experience being dismissed by everyone around her, over and over, until it's too late. Every character Ariya interacts with calls her delusional: the landlord's son is condescending, and her friend doesn't believe her, boiling it down to stress, and even in her final chance at redemption after death, the detective just calls her mentally ill. 
+          The film isn't just a scary horror movie about a phrogger living in one's house like a parasite. It also presents a message about trust and the dismissal of a woman's own account of her experience being dismissed by everyone around her, over and over, until it's too late. Every character Ariya interacts with calls her delusional: the landlord's son is condescending, and her friend doesn't believe her, boiling it down to stress, and even in her final chance at redemption after death, the detective just calls her mentally ill.
         </p>
 
-        <!-- GALLERY ROW 2: atmosphere / BTS -->
+        <!-- GALLERY ROW 2: BTS -->
         <div class="gallery-grid cols-2" style="margin:28px 0">
           <div class="gallery-item" style="height:240px">
-            <!-- 📷 ADD: Behind the scenes on set, crew working -->
-            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Behind the scenes: crew on set, lighting, directing</span></div>
-            <span class="gallery-caption">behind the camera</span>
+            <img src="assets/paranoid/InBackgroundDirectingDetectiveDPandAriya.JPG" alt="Luke directing the detective scene in background with DP and Ariya"/>
+            <span class="gallery-caption">directing the detective scene</span>
           </div>
           <div class="gallery-item" style="height:240px">
-            <!-- 📷 ADD: film_group.jpg or full production team -->
-            <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">film_group.jpg or full cast and crew together</span></div>
-            <span class="gallery-caption">cast and crew</span>
+            <img src="assets/paranoid/VerticalPhoto_FilmSet_NoLuke.JPG" alt="Cast and crew on set" style="object-fit:cover;object-position:center top"/>
+            <span class="gallery-caption">cast and crew on set</span>
           </div>
         </div>
 
@@ -126,58 +139,85 @@
           The film gets increasingly claustrophobic as it goes. Early scenes are wide, lit, and open. By the time Ariya is alone at her dining table with a laptop notification telling her the attic camera is offline, the framing has closed in. The colors are cold blues and harsh reds. The camera stops giving her room to breathe in the frame.
         </p>
         <p class="prose">
-          The film leaves the viewer just as unsure about Ariya's reality as herself. You never fully see the Phrogger until the end, only shadows and crumbs of food. This effect was intentionally cultivated by also mixing reality with impossibilities. She dreams of flesh and blood dripping, hallucinates a man over her bed while she's sleeping. It distorts truth until the viewer doesn't know if she is truly just crazy or a victim. 
+          The film leaves the viewer just as unsure about Ariya's reality as herself. You never fully see the Phrogger until the end, only shadows and crumbs of food. This effect was intentionally cultivated by also mixing reality with impossibilities. She dreams of flesh and blood dripping, hallucinates a man over her bed while she's sleeping. It distorts truth until the viewer doesn't know if she is truly just crazy or a victim.
         </p>
 
-        <!-- GALLERY ROW 3: more stills -->
+        <!-- GALLERY ROW 3: cinematic stills -->
         <div class="gallery-grid cols-3" style="margin:28px 0">
           <div class="gallery-item" style="height:190px">
-            <!-- 📷 ADD: Security camera installation scene -->
-            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Ariya installing security cameras</span></div>
-            <span class="gallery-caption">installing cameras</span>
+            <img src="assets/paranoid/CinematicShotOfOpeningSecuritycamPackage.jpg" alt="Cinematic shot of Ariya opening the security camera package"/>
+            <span class="gallery-caption">ariya receives the cameras</span>
           </div>
           <div class="gallery-item" style="height:190px">
-            <!-- 📷 ADD: Laptop showing "ATTIC CAMERA OFFLINE" notification -->
-            <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Laptop: "ATTIC CAMERA OFFLINE" notification</span></div>
-            <span class="gallery-caption">"attic camera offline"</span>
+            <img src="assets/paranoid/CinematicShotOfPhroggersCrumbsandGlassBottle.jpg" alt="Phrogger's crumbs and glass bottle in the attic"/>
+            <span class="gallery-caption">clues left behind</span>
           </div>
           <div class="gallery-item" style="height:190px">
-            <!-- 📷 ADD: Detective with clipboard at the end, dismissive -->
-            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Detective at the end, writing "no foul play"</span></div>
-            <span class="gallery-caption">"probably jumped"</span>
+            <img src="assets/paranoid/AriyaonFloorwithblood_smiling_notacting.JPG" alt="Ariya on floor with blood — between takes"/>
+            <span class="gallery-caption">after the fall — between takes</span>
           </div>
         </div>
 
         <!-- CREW -->
         <h2 class="proj-section-label">The <em>Team</em></h2>
+        <div class="crew-section-label">Crew</div>
         <div class="crew-grid">
-          <div class="crew-cell"><div class="crew-role">Director / Writer</div><div class="crew-name"><em>Luke</em> Jurbergs</div></div>
-          <div class="crew-cell"><div class="crew-role">Producer / DP</div><div class="crew-name">Lucas Kiser</div></div>
-          <div class="crew-cell"><div class="crew-role">1st AD</div><div class="crew-name">Lucius Melillo</div></div>
-          <div class="crew-cell"><div class="crew-role">Sound</div><div class="crew-name">Zachary Benavides</div></div>
-          <div class="crew-cell"><div class="crew-role">Production Designer</div><div class="crew-name">Kavya Gupta</div></div>
-          <div class="crew-cell"><div class="crew-role">2nd AC</div><div class="crew-name">Amir</div></div>
-          <div class="crew-cell"><div class="crew-role">Ariya (Lead)</div><div class="crew-name">Kavya Gupta</div></div>
-          <div class="crew-cell"><div class="crew-role">Arthur</div><div class="crew-name"><em>Luke</em> Jurbergs</div></div>
-          <div class="crew-cell"><div class="crew-role">James</div><div class="crew-name">Lucius Melillo</div></div>
-          <div class="crew-cell"><div class="crew-role">Phrogger</div><div class="crew-name">Jude</div></div>
-          <div class="crew-cell"><div class="crew-role">Detective</div><div class="crew-name">Luke's Father</div></div>
+          <div class="crew-cell"><div class="crew-role">Director</div><div class="crew-name"><em>Luke</em> Jurbergs</div></div>
+          <div class="crew-cell"><div class="crew-role">Screenplay Writer</div><div class="crew-name"><em>Luke</em> Jurbergs</div></div>
+          <div class="crew-cell"><div class="crew-role">Co-Editor</div><div class="crew-name"><em>Luke</em> Jurbergs</div></div>
+          <div class="crew-cell"><div class="crew-role">Producer</div><div class="crew-name">Lucas Kiser</div></div>
+          <div class="crew-cell"><div class="crew-role">Director of Photography</div><div class="crew-name">Lucas Kiser</div></div>
+          <div class="crew-cell"><div class="crew-role">Co-Editor</div><div class="crew-name">Lucas Kiser</div></div>
+          <div class="crew-cell"><div class="crew-role">Art and Costume Director</div><div class="crew-name">Kavya Gupta</div></div>
+          <div class="crew-cell"><div class="crew-role">Assistant Director</div><div class="crew-name">Lucius Mellilo</div></div>
+          <div class="crew-cell"><div class="crew-role">Clean Up</div><div class="crew-name">Lucius Mellilo</div></div>
+          <div class="crew-cell"><div class="crew-role">Lead Sound Recordist</div><div class="crew-name">Zachary Benavides</div></div>
+          <div class="crew-cell"><div class="crew-role">Asst. Sound / 2nd AC</div><div class="crew-name">Amir Morrison</div></div>
+          <div class="crew-cell"><div class="crew-role">Production Assistant</div><div class="crew-name">Jude N. Seay</div></div>
+          <div class="crew-cell"><div class="crew-role">Craft Services</div><div class="crew-name">Holly Jurbergs</div></div>
+          <div class="crew-cell"><div class="crew-role">Faculty Advisor</div><div class="crew-name">Ms. Mokry</div></div>
           <div class="crew-cell"><div class="crew-role">School</div><div class="crew-name">LASA Film</div></div>
         </div>
 
+        <div class="crew-section-label">Cast</div>
+        <div class="crew-grid">
+          <div class="crew-cell"><div class="crew-role">Ariya (Lead)</div><div class="crew-name">Kavya Gupta</div></div>
+          <div class="crew-cell"><div class="crew-role">Phrogger</div><div class="crew-name">Jude N. Seay</div></div>
+          <div class="crew-cell"><div class="crew-role">Arthur</div><div class="crew-name"><em>Luke</em> Jurbergs</div></div>
+          <div class="crew-cell"><div class="crew-role">James</div><div class="crew-name">Lucius Mellilo</div></div>
+          <div class="crew-cell"><div class="crew-role">Detective</div><div class="crew-name">Dave Jurbergs</div></div>
+          <div class="crew-cell"><div class="crew-role">Finn the Cat</div><div class="crew-name">Finn Jurbergs</div></div>
+          <div class="crew-cell"><div class="crew-role">New Tenant</div><div class="crew-name">Nguyen S. Adams</div></div>
+          <div class="crew-cell"><div class="crew-role">New Tenant</div><div class="crew-name">Kelby Adams</div></div>
+          <div class="crew-cell"><div class="crew-role">Stand-In Actor</div><div class="crew-name">Holly Jurbergs</div></div>
+        </div>
+
+        <p class="prose" style="margin-top:4px;font-size:9.5px;opacity:0.55">Special thanks to Pixabay Artists for royalty-free music and sound effects. &copy; 2025 LASA Film. All Rights Reserved.</p>
+
         <h2 class="proj-section-label">On <em>Directing</em></h2>
         <p class="prose">
-          Directing Paranoid was one of my first experiences as the leader of a large project, with more than 14 people on the film project. The most valuable leadership skill has really influenced my passion for engineering, but it was working shoulder-to-shoulder with my team. Rather than yell out demands like "We'll fix it in post!" I took roles that let me understand the demands and constraints of different roles. I wasn't just a director, but a co-editor, an actor, and a writer. I helped build the set, covered for the sound crew, and the AD. 
+          Directing Paranoid was one of my first experiences as the leader of a large project, with more than 14 people on the film project. The most valuable leadership skill has really influenced my passion for engineering, but it was working shoulder-to-shoulder with my team. Rather than yell out demands like "We'll fix it in post!" I took roles that let me understand the demands and constraints of different roles. I wasn't just a director, but a co-editor, an actor, and a writer. I helped build the set, covered for the sound crew, and the AD.
         </p>
         <p class="prose">
-          That decision changed how I understood leadership. When I was playing Arthur in the dining room scene, I understood what Kavya was working against on the other side of the table. When I was in the edit late at night, I understood what it felt like to be the person staring at a Premiere Pro timeline at 3 am before "upload day." Working across every role didn't make the directing harder. It made it better because I actually understood the problems my team was dealing with. Throughout the film, I was constantly asking my Cinematographer how to improve my vision, and I took so many suggestions from my team that skyrocketed the quality of the film. 
+          That decision changed how I understood leadership. When I was playing Arthur in the dining room scene, I understood what Kavya was working against on the other side of the table. When I was in the edit late at night, I understood what it felt like to be the person staring at a Premiere Pro timeline at 3 am before "upload day." Working across every role didn't make the directing harder. It made it better because I actually understood the problems my team was dealing with. Throughout the film, I was constantly asking my Cinematographer how to improve my vision, and I took so many suggestions from my team that skyrocketed the quality of the film.
         </p>
 
-        <!-- BTS wide shot -->
-        <div class="gallery-item reveal" style="height:280px;margin:28px 0">
-          <!-- 📷 ADD: Wide on-set shot showing the whole production, or you directing -->
-          <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Wide shot of you on set directing, or the whole team at work</span></div>
-          <span class="gallery-caption">on set</span>
+        <!-- WIDE BTS -->
+        <div class="gallery-grid cols-2" style="margin:28px 0">
+          <div class="gallery-item" style="height:240px">
+            <img src="assets/paranoid/LukeTalkingWithCrewAboutUsingBloodProps.JPG" alt="Luke discussing blood props with the crew"/>
+            <span class="gallery-caption">discussing the blood props with the team</span>
+          </div>
+          <div class="gallery-item" style="height:240px">
+            <img src="assets/paranoid/OverheatedinAttic_MeNexttoCamera.jpg" alt="Luke overheated in the attic, next to the camera"/>
+            <span class="gallery-caption">overheated in the attic between takes</span>
+          </div>
+        </div>
+
+        <!-- SOUND RECORDIST BTS -->
+        <div class="gallery-item reveal" style="height:260px;margin-bottom:32px">
+          <img src="assets/paranoid/SoundrecordistLayingonAtticAkwardly.jpg" alt="Sound recordist laying awkwardly in the attic to record"/>
+          <span class="gallery-caption">the attic was not comfortable for anyone — sound recordist doing what it takes</span>
         </div>
 
         <h2 class="proj-section-label">What I <em>Learned</em></h2>
@@ -202,37 +242,31 @@
 
       <div class="proj-body-aside">
 
-        <!-- 📷 ADD: Best film poster or title card -->
-        <div class="img-slot" style="aspect-ratio:2/3;margin-bottom:14px;background:#060402">
-          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Film poster or title card if you made one</span>
-        </div>
+        <!-- AWARD PHOTO (user specified this one) -->
+        <img src="assets/paranoid/HoldingAwardsatBanner_FrontView.jpeg" alt="Luke holding awards at the film show banner" style="width:100%;display:block;margin-bottom:14px"/>
 
         <div class="spec-box" style="border-left-color:#8b1a1a">
           <div class="spec-box-title">FILM DETAILS</div>
           <div class="spec-row"><div class="spec-key">Genre</div><div class="spec-val">Psychological Thriller</div></div>
-          <div class="spec-row"><div class="spec-key">Runtime</div><div class="spec-val"><!-- ADD runtime --></div></div>
-          <div class="spec-row"><div class="spec-key">Shot On</div><div class="spec-val"><!-- ADD camera --></div></div>
+          <div class="spec-row"><div class="spec-key">Runtime</div><div class="spec-val">13:41</div></div>
           <div class="spec-row"><div class="spec-key">Edited In</div><div class="spec-val">Adobe Premiere Pro</div></div>
-          <div class="spec-row"><div class="spec-key">School</div><div class="spec-val">LASA Film</div></div>
-          <div class="spec-row"><div class="spec-key">Award</div><div class="spec-val"><!-- ADD award --></div></div>
+          <div class="spec-row"><div class="spec-key">Screened At</div><div class="spec-val">Alamo Drafthouse, Austin TX</div></div>
+          <div class="spec-row"><div class="spec-key">School</div><div class="spec-val">LASA Film &copy; 2025</div></div>
+          <div class="spec-row"><div class="spec-key">Audience Favorite</div><div class="spec-val">LASA Film Show 2025</div></div>
+          <div class="spec-row"><div class="spec-key">Best Picture</div><div class="spec-val">LASA Film Show 2025</div></div>
+          <div class="spec-row"><div class="spec-key">Best Director</div><div class="spec-val">Luke Jurbergs — LASA Film Show 2025</div></div>
         </div>
 
         <div class="note-box" style="margin-top:14px">
           <p>Luke wrote the script, directed, and played Arthur — the landlord's son who tells Ariya she's "paranoid." Playing a character designed to dismiss a woman's real fear, while also being the director responsible for that fear's payoff, was a specific kind of challenge.</p>
         </div>
 
-        <!-- 📷 ADD: Award screenshot or certificate -->
-        <div class="img-slot" style="aspect-ratio:4/3;margin-top:14px">
-          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-          <span class="img-slot-note">Award photo, screening, or certificate</span>
-        </div>
+        <!-- RECEIVING AWARD AT ALAMO -->
+        <img src="assets/paranoid/RecievingAwardsatAlamoTheater.jpg" alt="Receiving awards at the Alamo Drafthouse theater" style="width:100%;display:block;margin-top:14px"/>
+        <span class="gallery-caption" style="display:block;text-align:center;margin-bottom:14px">receiving awards at the alamo drafthouse</span>
 
-        <!-- 📷 ADD: You at the premiere or screening -->
-        <div class="img-slot" style="aspect-ratio:3/4;margin-top:14px">
-          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span class="img-slot-note">You or the team at screening / premiere</span>
-        </div>
+        <!-- DIAGONAL AWARD BANNER SHOT -->
+        <img src="assets/paranoid/HoldingAwardsatBanner_DiagonalView.jpg" alt="Holding awards at the film show banner, diagonal view" style="width:100%;display:block;margin-top:8px"/>
 
       </div>
     </div>
