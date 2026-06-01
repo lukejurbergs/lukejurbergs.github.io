@@ -8,7 +8,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
   <style>
-    .quote-repeat { font-family:var(--display); font-size:clamp(28px,4vw,52px); letter-spacing:0.06em; color:var(--accent); opacity:0.18; text-align:center; padding:20px 0; }
+    .still{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+    .film-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0;align-items:start}
+    .film-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:20px 0;align-items:start}
+    .img-caption{font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;display:block;margin-top:4px;margin-bottom:8px}
+    @media(max-width:720px){.film-grid-2,.film-grid-3{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -23,16 +27,14 @@
   </ul>
 </nav>
 
+<!-- HERO — the LASA acceptance letter, shot from inside the mailbox -->
 <div class="proj-hero" style="margin-top:60px;background:#0a0c12">
-  <div class="img-slot" style="height:100%;border:none;background:#0a0c12">
-    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.15)">Hero: still from the film, or you at the piano</span>
-  </div>
+  <img class="proj-hero-img" src="assets/perfectly-alone/RecievingLetterOfAcceptanceToLASA.png" alt="Receiving the letter of acceptance to LASA, shot from inside the mailbox"/>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
       <a href="art.html" class="proj-back">← Visual Work</a>
       <h1 class="proj-title">PERFECTLY<br><em>ALONE</em></h1>
-      <p class="proj-subtitle">Personal Short Film &nbsp;·&nbsp; Writer, Director, Subject</p>
+      <p class="proj-subtitle">Personal Short Film &nbsp;·&nbsp; Writer, Director, Actor</p>
     </div>
   </div>
 </div>
@@ -50,54 +52,50 @@
       <div class="proj-body-main">
 
         <!-- VIDEO EMBED -->
-        <div class="video-embed" style="margin-bottom:32px">
+        <div class="video-embed" style="margin-bottom:24px">
           <iframe src="https://www.youtube.com/embed/tGx3ogjtuN8" allowfullscreen title="Perfectly Alone by Luke Jurbergs"></iframe>
         </div>
 
         <h2 class="proj-section-label">The <em>Film</em></h2>
         <p class="prose">
-          Perfectly Alone is about what happens when you decide the most important thing is fitting in. Getting into LASA, I spent the summer before 9th grade hearing from people that everyone there was trying to be perfect, and that I might not fit in. So I decided I would be perfect. Late nights studying. Grade obsession. Piano practice not because I loved it but because getting it right felt like a way to prove something.
+          Perfectly Alone is about my personal story of being addicted to perfection to fit in after getting into LASA. I spent the summer before freshman year hearing from my brother and his friends that everyone there was trying to be perfect, and that I might not fit in. So I decided I would be perfect. Late nights studying, staying up later and later. Grade obsession. Piano practice not because I loved it but because getting it right felt like a way to prove something. I started hating piano and class.
         </p>
         <p class="prose">
-          The film follows that arc. Staying up until midnight studying. Entering piano recitals not with excitement but with dread about making mistakes. And then a friend who needed help with math. He would ask for my answers, but when I asked to hang out, he had plans. It clicked: my perfection had made me useful, not loved. I was, as the film puts it, "the answer key in the teacher's drawer." Inanimate. A tool.
+          The film follows that arc. Staying up until midnight studying. Entering piano recitals not with excitement but with dread about making mistakes. And then a friend who needed help with math. He would ask for my answers, but when I asked to hang out, he had plans. I felt like an answer key in the teacher's drawer. Inanimate. A tool. I realized that being focused on perfection achieved the opposite of what I wanted.
         </p>
         <p class="prose">
-          The turning point is a piano recital where I made mistake after mistake. And I smiled through all of it. It was my worst performance technically and my best one actually, because I felt connected to the audience, to my piano teacher, to myself, in a way I never had when everything went right. The film ends there, with the argument that imperfection is where real connection lives.
+          The turning point is a piano recital where I made mistake after mistake playing the Turkish March. Yet I smiled through all of it. It was my worst performance, but truly my best one, because I felt connected to the audience, to my piano teacher, to myself, in a way I never had when everything went right. Embracing imperfection, I regained a passion for piano. I started to enjoy schoolwork again. I gained stronger friendships, and paradoxically, not seeking perfection brought me to make higher-quality work because I enjoyed it now.
         </p>
 
         <div class="callout">
-          <p>"I couldn't have fit in any better." The phrase repeats every time I betray myself in the film, until the irony becomes impossible to miss.</p>
+          <p>"I couldn't have fit in any better." The phrase repeats every time I betray myself in the film by striving for a facade of perfection, until the irony becomes impossible to miss.</p>
         </div>
 
-        <!-- GALLERY: moments from the film -->
-        <div class="gallery-grid cols-3" style="margin:28px 0">
-          <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: You at the piano, tired/unhappy -->
-            <div class="img-slot" style="height:100%;background:#0a0c12"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">You at piano, tired or stressed (early part of film)</span></div>
-            <span class="gallery-caption">practicing to impress</span>
+        <!-- ROW 1: the three stages of the piano arc -->
+        <div class="film-grid-3">
+          <div>
+            <img class="still" src="assets/perfectly-alone/PlayingPianoUnhappy.png" alt="Luke playing grand piano at a church recital, looking down, not smiling"/>
+            <span class="img-caption">practicing to perform, not to play</span>
           </div>
-          <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: You studying late at night, notebooks -->
-            <div class="img-slot" style="height:100%;background:#0d0e14"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">You studying late, exhausted, grades on screen</span></div>
-            <span class="gallery-caption">late nights for a number</span>
+          <div>
+            <img class="still" src="assets/perfectly-alone/AsleepOntopOfHomework.png" alt="Luke slumped asleep over his homework at night, dark and warm light"/>
+            <span class="img-caption">later and later into the night</span>
           </div>
-          <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: Recital moment, smiling despite mistakes -->
-            <div class="img-slot" style="height:100%;background:#0a0c12"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Recital moment: smiling despite the mistakes</span></div>
-            <span class="gallery-caption">the best recital</span>
+          <div>
+            <img class="still" src="assets/perfectly-alone/HappilyMessingUpPiano.png" alt="Luke playing keyboard outdoors with his piano teacher Angelo, smiling at an audience"/>
+            <span class="img-caption">smiling through the mistakes</span>
           </div>
         </div>
 
-        <div class="gallery-grid cols-2" style="margin:0 0 28px">
-          <div class="gallery-item" style="height:240px">
-            <!-- 📷 ADD: The friend asking for answers / transactional moment -->
-            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">The "answer key" scene: friend asking for math help, then not wanting to hang out</span></div>
-            <span class="gallery-caption">"can you send me the answers later?"</span>
+        <!-- ROW 2: the social arc -->
+        <div class="film-grid-2">
+          <div>
+            <img class="still" src="assets/perfectly-alone/NahICan_tHangOutButSendMeTheAnswers.png" alt="Luke talking with a friend at school who wanted answers but not to hang out"/>
+            <span class="img-caption">"can you send me the answers later?"</span>
           </div>
-          <div class="gallery-item" style="height:240px">
-            <!-- 📷 ADD: You with Lucas, friends, the shift to real connection -->
-            <div class="img-slot" style="height:100%;background:#0a0c12"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">You with Lucas or real friends, the contrast of genuine connection</span></div>
-            <span class="gallery-caption">the shift</span>
+          <div>
+            <img class="still" src="assets/perfectly-alone/DoingWork_EmbracingImperfectionMadeSchoolworkFun.png" alt="Luke happily doing schoolwork at a desk, smiling, genuinely engaged"/>
+            <span class="img-caption">after the transformation, enjoying schoolwork</span>
           </div>
         </div>
 
@@ -106,17 +104,15 @@
           The phrase "I couldn't have fit in better" repeats throughout the film, always at moments where fitting in actually means betraying yourself. It starts feeling like an achievement and ends feeling like an indictment. The repetition was the whole device.
         </p>
         <p class="prose">
-          The emotional contrast was deliberate too. Early in the film, when I'm being "perfect," I'm almost never smiling unless someone else is watching. Late in the film, when things go wrong at the recital, I'm grinning the whole way through. The camera catches that difference without explaining it.
+          I also tried to create emotional contrast. Early in the film, when I'm being "perfect," I'm almost never smiling unless someone else is watching, like a friend looking at my grades. Late in the film, when things go wrong at the recital, I'm grinning time after time. The camera catches that difference without explaining it.
         </p>
         <p class="prose">
-          The language in the voiceover uses dehumanizing words on purpose at certain points. "The answer key in the teacher's drawer." Not a person. An object that exists to serve a function. That phrasing was intentional. That's what perfectionism does to relationships when it's the thing people value in you.
+          The language in the voiceover uses dehumanizing words on purpose throughout the film — "The Answer Key in the teacher's drawer." Not a person. An object that exists to serve a function. That diction helps encapsulate what perfectionism does to relationships when your "perfection" is the only thing people value in you.
         </p>
 
-        <div class="gallery-item reveal" style="height:280px;margin:28px 0">
-          <!-- 📷 ADD: Wide shot from the film, you alone at piano, atmospheric -->
-          <div class="img-slot" style="height:100%;background:#0a0c12"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Wide atmospheric shot, you at piano, dim light</span></div>
-          <span class="gallery-caption">Bach Prelude in C minor, solo</span>
-        </div>
+        <!-- GRADES — the obsession made visible -->
+        <img class="still" src="assets/perfectly-alone/HallucinatingBadGrades.png" alt="School grade portal on a Chromebook screen, multiple grades highlighted in red" style="margin:20px 0;display:block;width:100%"/>
+        <span class="img-caption" style="display:block;text-align:center;margin-top:-14px;margin-bottom:20px">every number a judgment</span>
 
         <h2 class="proj-section-label">What I <em>Learned</em></h2>
         <div class="learned-block">
@@ -147,17 +143,13 @@
           <p>The film is 8 minutes long and made individually. No crew. Just Luke, a camera, and the things he was still figuring out.</p>
         </div>
 
-        <!-- 📷 ADD: Still from the film or you presenting it -->
-        <div class="img-slot" style="aspect-ratio:3/4;margin-top:14px;background:#0a0c12">
-          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Favorite still from the film</span>
-        </div>
+        <!-- Piano recital — the turning point -->
+        <img src="assets/perfectly-alone/HappilyMessingUpPiano.png" alt="Luke at outdoor piano recital with Angelo, smiling" style="width:100%;display:block;margin-top:14px"/>
+        <span class="img-caption">with piano teacher Angelo Lembesis</span>
 
-        <!-- 📷 ADD: You at piano today, portrait style -->
-        <div class="img-slot" style="aspect-ratio:3/4;margin-top:14px">
-          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span class="img-slot-note">You at the piano now, portrait style</span>
-        </div>
+        <!-- Grades screen -->
+        <img src="assets/perfectly-alone/HallucinatingBadGrades.png" alt="Grade portal on Chromebook showing red grades" style="width:100%;display:block;margin-top:10px"/>
+        <span class="img-caption">the grade portal that ran his life</span>
       </div>
     </div>
 
@@ -173,7 +165,7 @@
 const scrollBar=document.getElementById("scroll-progress");
 window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
-document.querySelectorAll(".reveal,.gallery-item,.learned-block").forEach(el=>io.observe(el));
+document.querySelectorAll(".reveal,.learned-block").forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
