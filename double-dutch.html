@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Double Dutch Machine — Luke Jurbergs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div id="scroll-progress"></div>
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Luke Jurbergs</a>
+  <ul class="nav-links">
+    <li><a href="engineering.html" class="active">Engineering</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="index.html#sec-about">About</a></li>
+    <li><a href="index.html#sec-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="proj-hero" style="margin-top:60px;background:#0d1014">
+  <div class="img-slot" style="height:100%;border:none;background:#0d1014">
+    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: Double Dutch machine photo — ideally during demonstration</span>
+  </div>
+  <div class="proj-hero-overlay">
+    <div class="proj-hero-content">
+      <a href="engineering.html" class="proj-back">← Engineering Projects</a>
+      <h1 class="proj-title">DOUBLE<br><em>DUTCH</em></h1>
+      <p class="proj-subtitle">Engineering Design Class &nbsp;·&nbsp; Aug – Dec 2023</p>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="inner">
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><strong>Type</strong>Class Engineering Project</div>
+      <div class="proj-meta-item"><strong>Timeline</strong>Aug – Dec 2023 (18 weeks, ~130 hrs)</div>
+      <div class="proj-meta-item"><strong>Budget</strong>&lt; $5 total</div>
+      <div class="proj-meta-item"><strong>Presented to</strong>Board of Engineers</div>
+    </div>
+
+    <div class="proj-body">
+      <div class="proj-body-main">
+        <h2 class="proj-section-label">The <em>Mission</em></h2>
+        <p class="prose">Build a device that starts in Box 1, travels to Box 2, picks up a donut, travels to Box 3, and places the donut on a cone — autonomously, repeatably, and under $5 total cost with less than 3 joules of energy. No adhesives, no disposables. Presented to a board of engineers at the end of the semester.</p>
+        <p class="prose">This was my main engineering project of freshman year — 18 weeks, 130 hours of planning, CAD, fabrication, testing, and rebuilding.</p>
+
+        <div class="gallery-grid cols-2" style="margin:28px 0">
+          <div class="gallery-item" style="height:240px">
+            <!-- ADD: Double Dutch machine photo -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">The Double Dutch machine — full view</span></div>
+          </div>
+          <div class="gallery-item" style="height:240px">
+            <!-- ADD: claw or scissorlift detail -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Claw or scissorlift mechanism close-up</span></div>
+          </div>
+        </div>
+
+        <h2 class="proj-section-label">How It <em>Worked</em></h2>
+        <div class="version-block reveal">
+          <div class="version-num" style="font-size:24px;padding-top:8px">SEQ</div>
+          <div class="version-content">
+            <div class="version-title">The Sequence</div>
+            <p class="version-desc">A pin releases. An arm falls. A hook grabs the donut. Counterweighted weights create imbalance that raises the arm. A cam-follower pin triggers claw release at exactly the right point over the cone. A scissorlift extends to bring the donut down onto the cone. All mechanical. All timed by geometry, not electronics.</p>
+          </div>
+        </div>
+
+        <h2 class="proj-section-label">What I <em>Learned</em></h2>
+        <div class="learned-block"><div class="learned-num">01</div><div class="learned-text"><strong>Cost allocation.</strong> We spent too much of the $5 budget on a complex popsicle stick system and not enough on the base. Every project has budget tradeoffs — ignoring them is a design error, not a luck problem.</div></div>
+        <div class="learned-block"><div class="learned-num">02</div><div class="learned-text"><strong>Material selection matters more than you think.</strong> Popsicle sticks introduced inconsistent friction everywhere they appeared. Precision wood cutouts from the laser cutter would have cost the same and worked 10x better. We learned this lesson late.</div></div>
+        <div class="learned-block"><div class="learned-num">03</div><div class="learned-text"><strong>Real engineering deliverables.</strong> First time creating a proper BOM, MOM, CAD model, and Design Report. The board presentation made it real — this wasn't a classroom exercise, it was accountable engineering.</div></div>
+      </div>
+
+      <div class="proj-body-aside">
+        <div class="spec-box">
+          <div class="spec-box-title">CONSTRAINTS</div>
+          <div class="spec-row"><div class="spec-key">Budget</div><div class="spec-val">&lt; $5 total</div></div>
+          <div class="spec-row"><div class="spec-key">Energy</div><div class="spec-val">&lt; 3 joules</div></div>
+          <div class="spec-row"><div class="spec-key">Repeatability</div><div class="spec-val">Non-depletable resources only</div></div>
+          <div class="spec-row"><div class="spec-key">Adhesives</div><div class="spec-val">Banned (lose grip over time)</div></div>
+          <div class="spec-row"><div class="spec-key">Review</div><div class="spec-val">Board of engineers inspection</div></div>
+          <div class="spec-row"><div class="spec-key">Duration</div><div class="spec-val">18 weeks, ~130 hours</div></div>
+        </div>
+        <!-- ADD: design report cover or CAD screenshot -->
+        <div class="img-slot" style="aspect-ratio:3/4;margin-top:14px">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="img-slot-note">Design report cover / CAD screenshot / presentation slide</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-nav-bar">
+      <a href="colorado.html" class="proj-nav-link"><span class="proj-nav-label">← Previous</span><span class="proj-nav-title">Colorado Hillside</span></a>
+      <a href="led-matrix.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">Next →</span><span class="proj-nav-title">LED Matrix</span></a>
+    </div>
+  </div>
+</div>
+<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Double Dutch Machine</div></footer>
+<script>
+const scrollBar=document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+'%';document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);},{passive:true});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('visible');io.unobserve(e.target);});},{threshold:0.08});
+document.querySelectorAll('.reveal,.version-block,.gallery-item,.learned-block').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

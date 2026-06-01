@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Paranoid — Luke Jurbergs</title>
+  <meta name="description" content="Paranoid — an award-winning short film directed, acted, and co-edited by Luke Jurbergs."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* Film hero is darker */
+    .proj-hero{background:#060402}
+    .film-credits{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:28px 0}
+    .credit-item{background:var(--bg);padding:16px 18px}
+    .credit-role{font-family:var(--mono);font-size:8px;letter-spacing:0.24em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:4px}
+    .credit-name{font-family:var(--display);font-size:18px;letter-spacing:0.06em;color:var(--ink)}
+  </style>
+</head>
+<body>
+<div id="scroll-progress"></div>
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Luke Jurbergs</a>
+  <ul class="nav-links">
+    <li><a href="engineering.html">Engineering</a></li>
+    <li><a href="art.html" class="active">Art</a></li>
+    <li><a href="index.html#sec-about">About</a></li>
+    <li><a href="index.html#sec-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="proj-hero" style="margin-top:60px">
+  <!-- 📷 HERO IMAGE: Best cinematic still from Paranoid — dark, moody
+       Replace with: <img class="proj-hero-img" src="assets/[paranoid-still].jpg" alt="Paranoid film still"> -->
+  <div class="img-slot" style="height:100%;border:none;background:#060402">
+    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: best cinematic still from Paranoid</span>
+  </div>
+  <div class="proj-hero-overlay">
+    <div class="proj-hero-content">
+      <a href="art.html" class="proj-back">← Visual Work</a>
+      <h1 class="proj-title"><em>PARANOID</em></h1>
+      <p class="proj-subtitle">Short Film &nbsp;·&nbsp; Award Winner &nbsp;·&nbsp; <!-- ✍️ ADD YEAR --></p>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="inner">
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><strong>Type</strong>Short Film</div>
+      <div class="proj-meta-item"><strong>My Roles</strong>Director, Actor, Co-Editor</div>
+      <div class="proj-meta-item"><strong>Year</strong><!-- ✍️ ADD YEAR --></div>
+      <div class="proj-meta-item"><strong>Award</strong>🏆 <!-- ✍️ ADD AWARD NAME --></div>
+    </div>
+
+    <div class="proj-body">
+      <div class="proj-body-main">
+
+        <!-- VIDEO EMBED -->
+        <div class="video-embed" style="margin-bottom:28px">
+          <!-- 🎬 ADD VIDEO: Replace this div content with your embed
+               YouTube:  <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+               Vimeo:    <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" allowfullscreen></iframe>
+               Local:    <video src="assets/paranoid.mp4" controls></video> -->
+          <div class="video-embed-placeholder">
+            <div class="play-icon">▶</div>
+            <span class="video-embed-note">Add YouTube / Vimeo embed or local video file</span>
+          </div>
+        </div>
+
+        <!-- Film credits -->
+        <div class="film-credits">
+          <div class="credit-item">
+            <div class="credit-role">Director</div>
+            <div class="credit-name">Luke Jurbergs</div>
+          </div>
+          <div class="credit-item">
+            <div class="credit-role">Co-Editor</div>
+            <div class="credit-name">Luke Jurbergs</div>
+          </div>
+          <div class="credit-item">
+            <div class="credit-role">Actor</div>
+            <div class="credit-name">Luke Jurbergs</div>
+          </div>
+          <!-- ✍️ ADD MORE CREDITS: cast, other crew -->
+        </div>
+
+        <h2 class="proj-section-label">The <em>Film</em></h2>
+        <p class="prose">
+          <!-- ✍️ STORY SYNOPSIS: Write 2-3 sentences about what Paranoid is about.
+               Something like: "Paranoid follows [character] who [premise]. 
+               The film explores [themes] through [approach]." -->
+          [Add synopsis of Paranoid here — what's the story, what themes does it explore?]
+        </p>
+        <p class="prose">
+          <!-- ✍️ ADD: Any details about the production — location, shooting period, format (digital/film), etc. -->
+        </p>
+
+        <!-- Gallery of stills -->
+        <div class="gallery-grid cols-3" style="margin:28px 0">
+          <div class="gallery-item" style="height:200px">
+            <!-- 📷 ADD: film still 1 -->
+            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Film still 1</span></div>
+            <span class="gallery-caption"><!-- scene description --></span>
+          </div>
+          <div class="gallery-item" style="height:200px">
+            <!-- 📷 ADD: film still 2 -->
+            <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Film still 2</span></div>
+            <span class="gallery-caption"><!-- scene description --></span>
+          </div>
+          <div class="gallery-item" style="height:200px">
+            <!-- 📷 ADD: behind the scenes -->
+            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Behind the scenes</span></div>
+            <span class="gallery-caption">behind the scenes</span>
+          </div>
+        </div>
+
+        <!-- Wide BTS shot -->
+        <div class="gallery-item reveal" style="height:280px;margin-bottom:32px">
+          <!-- 📷 ADD: film_group.jpg — team photo or on-set group shot -->
+          <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">film_group.jpg — cast &amp; crew</span></div>
+          <span class="gallery-caption">cast and crew</span>
+        </div>
+
+        <h2 class="proj-section-label">On <em>Leadership</em></h2>
+        <p class="prose">
+          Paranoid was the first time I was fully responsible for something other people were
+          counting on. And I made a decision early on: I wasn't going to be a director who
+          hands out roles and walks away. <strong>I acted in it. I co-edited it.
+          I helped build the sets.</strong>
+        </p>
+        <p class="prose">
+          I knew what it felt like to be the editor staring at a timeline at 3 a.m. the night
+          before upload day — because I was there. I knew how hard it was to get your lines right
+          under pressure — because I was in the shots. When something frustrated a teammate,
+          I understood why, because I'd been doing the same thing.
+        </p>
+
+        <div class="callout">
+          <p>"The best work doesn't come from leaders who give orders. It comes from someone who knows when to lead and when to get in the trenches — and isn't afraid to do both at the same time."</p>
+        </div>
+
+        <p class="prose">
+          That's the model I want to bring to engineering. A mechanical engineering team doesn't
+          need a leader who tells the electrical engineer what to do. It needs someone who can
+          sit down with them, understand their constraints, and help find a path neither of you
+          would have found alone. That's what directing Paranoid taught me leadership actually is.
+        </p>
+
+        <!-- More stills -->
+        <div class="gallery-grid cols-2" style="margin:28px 0">
+          <div class="gallery-item" style="height:240px">
+            <!-- 📷 ADD: still from your acting performance -->
+            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Still from your performance</span></div>
+            <span class="gallery-caption">on screen</span>
+          </div>
+          <div class="gallery-item" style="height:240px">
+            <!-- 📷 ADD: you editing / behind the computer / directing on set -->
+            <div class="img-slot" style="height:100%;background:#0d0b08"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Directing or editing</span></div>
+            <span class="gallery-caption">behind the camera</span>
+          </div>
+        </div>
+
+        <h2 class="proj-section-label">What I <em>Learned</em></h2>
+        <div class="learned-block">
+          <div class="learned-num">01</div>
+          <div class="learned-text"><strong>Real leadership is participatory.</strong> The director who also acts knows what their cast is feeling. The engineer who also codes knows what the software team is up against. Titles don't earn respect — shared experience does.</div>
+        </div>
+        <div class="learned-block">
+          <div class="learned-num">02</div>
+          <div class="learned-text"><strong>Every role has invisible difficulty.</strong> Before I edited, I thought editing was just cutting clips. After 3am timelines, I understood it's creative decision-making under exhaustion. Working every role gave me genuine respect for everyone's contribution.</div>
+        </div>
+        <div class="learned-block">
+          <div class="learned-num">03</div>
+          <div class="learned-text">
+            <!-- ✍️ ADD: Third lesson from Paranoid — could be about storytelling, filmmaking craft, teamwork, specific challenge you overcame -->
+            [Add a third lesson from making this film]
+          </div>
+        </div>
+
+      </div><!-- /main -->
+
+      <div class="proj-body-aside">
+        <div class="spec-box" style="border-left-color:#8b1a1a">
+          <div class="spec-box-title">FILM DETAILS</div>
+          <div class="spec-row"><div class="spec-key">Genre</div><div class="spec-val"><!-- ✍️ ADD genre --></div></div>
+          <div class="spec-row"><div class="spec-key">Runtime</div><div class="spec-val"><!-- ✍️ ADD runtime --></div></div>
+          <div class="spec-row"><div class="spec-key">Format</div><div class="spec-val"><!-- ✍️ ADD: digital, etc. --></div></div>
+          <div class="spec-row"><div class="spec-key">Shot On</div><div class="spec-val"><!-- ✍️ ADD: camera used --></div></div>
+          <div class="spec-row"><div class="spec-key">Edited In</div><div class="spec-val">Adobe Premiere Pro</div></div>
+          <div class="spec-row"><div class="spec-key">Award</div><div class="spec-val"><!-- ✍️ ADD award --></div></div>
+        </div>
+
+        <!-- 📷 ADD: Award certificate or event photo -->
+        <div class="img-slot" style="aspect-ratio:3/4;margin:14px 0">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <span class="img-slot-note">Award photo / certificate / event</span>
+        </div>
+
+        <div class="note-box">
+          <p>Paranoid marked the first time I chose to be in every part of a project — not just the part with my name on it. That choice changed how I think about leadership.</p>
+        </div>
+
+        <!-- 📷 ADD: poster or title card if you made one -->
+        <div class="img-slot" style="aspect-ratio:2/3;margin-top:14px">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="img-slot-note">Film poster or title card (if you have one)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-nav-bar">
+      <div></div>
+      <a href="berlin-wall.html" class="proj-nav-link" style="text-align:right">
+        <span class="proj-nav-label">Next →</span>
+        <span class="proj-nav-title">Berlin Wall Diorama</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div>
+  <div class="footer-tag">Paranoid — Short Film</div>
+</footer>
+<script>
+const scrollBar=document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{
+  const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+  scrollBar.style.width=Math.min(100,pct)+'%';
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);
+},{passive:true});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('visible');io.unobserve(e.target);});
+},{threshold:0.08});
+document.querySelectorAll('.reveal,.gallery-item,.learned-block').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

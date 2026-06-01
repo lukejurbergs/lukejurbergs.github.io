@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Door Fan — Luke Jurbergs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div id="scroll-progress"></div>
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Luke Jurbergs</a>
+  <ul class="nav-links">
+    <li><a href="engineering.html" class="active">Engineering</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="index.html#sec-about">About</a></li>
+    <li><a href="index.html#sec-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="proj-hero" style="margin-top:60px;background:#111">
+  <div class="img-slot" style="height:100%;border:none;background:#111">
+    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero image — add best photo here</span>
+  </div>
+  <div class="proj-hero-overlay">
+    <div class="proj-hero-content">
+      <a href="engineering.html" class="proj-back">← Engineering Projects</a>
+      <h1 class="proj-title"><em>DOOR FAN</em></h1>
+      <p class="proj-subtitle">Home Engineering · January 2025</p>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="inner">
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><strong>Category</strong>Engineering</div>
+      <div class="proj-meta-item"><strong>Timeline</strong>Home Engineering · January 2025</div>
+    </div>
+
+    <div class="proj-body">
+      <div class="proj-body-main">
+        <h2 class="proj-section-label">The <em>Project</em></h2>
+        <p class="prose">My room runs 80°F on Texas summer days because three of four walls back against an attic — and Texas attics get brutal. I built a fan inside my cat door that creates lower pressure in the room, drawing cooled air from the hallway vent rather than letting it return to the ceiling.</p>
+        <p class="prose">The key engineering detail: the motor shaft runs through the hinge's pivot axis. This means the cat door can still swing open and closed while the fan keeps running — the motor stays powered regardless of door position. <strong>This was one of my first electronics projects</strong>, and it taught me motor control basics — and the painful importance of bearings (I initially had none, and the friction destroyed consistency).</p>
+
+        <div class="gallery-grid cols-2" style="margin:28px 0">
+          <div class="gallery-item" style="height:240px">
+            <!-- ADD: best project photo -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Add best photo</span></div>
+          </div>
+          <div class="gallery-item" style="height:240px">
+            <!-- ADD: detail or process photo -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Detail or in-progress photo</span></div>
+          </div>
+        </div>
+
+        <!-- ADD MORE IMAGES: gallery-item divs with img-slot children -->
+        <!-- ADD MORE TEXT: additional paragraphs, challenges, version history if applicable -->
+      </div>
+
+      <div class="proj-body-aside">
+        <div class="spec-box">
+          <div class="spec-box-title">DETAILS</div>
+          <div class="spec-row"><div class="spec-key">Purpose</div><div class="spec-val">Room cooling (80°F attic-backed walls)</div></div>
+          <div class="spec-row"><div class="spec-key">Mechanism</div><div class="spec-val">Low-pressure draw from hallway vent</div></div>
+          <div class="spec-row"><div class="spec-key">Key Feature</div><div class="spec-val">Motor shaft through hinge pivot — door opens while powered</div></div>
+          <div class="spec-row"><div class="spec-key">Lesson</div><div class="spec-val">Bearings — learned the hard way</div></div>
+        </div>
+        <div class="img-slot" style="aspect-ratio:4/3;margin-top:14px">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="img-slot-note">Additional photo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-nav-bar">
+      <a href="led-matrix.html" class="proj-nav-link"><span class="proj-nav-label">← Previous</span><span class="proj-nav-title">LED Matrix</span></a>
+      <a href="cat-house.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">Next →</span><span class="proj-nav-title">Cat House</span></a>
+    </div>
+  </div>
+</div>
+<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Door Fan</div></footer>
+<script>
+const scrollBar=document.getElementById("scroll-progress");
+window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
+document.querySelectorAll(".reveal,.gallery-item,.learned-block").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

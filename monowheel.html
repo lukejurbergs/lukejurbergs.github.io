@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Monowheel — Luke Jurbergs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div id="scroll-progress"></div>
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Luke Jurbergs</a>
+  <ul class="nav-links">
+    <li><a href="engineering.html" class="active">Engineering</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="index.html#sec-about">About</a></li>
+    <li><a href="index.html#sec-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="proj-hero" style="margin-top:60px;background:#0e1018">
+  <div class="img-slot" style="height:100%;border:none;background:#0e1018">
+    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: monowheel rolling or posed on floor</span>
+  </div>
+  <div class="proj-hero-overlay">
+    <div class="proj-hero-content">
+      <a href="engineering.html" class="proj-back">← Engineering Projects</a>
+      <h1 class="proj-title">MONO<em>WHEEL</em></h1>
+      <p class="proj-subtitle">Independent CAD Project &nbsp;·&nbsp; Sep 2024 – Jan 2025</p>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="inner">
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><strong>Type</strong>Independent Project</div>
+      <div class="proj-meta-item"><strong>Timeline</strong>V1–10 LEGO: Jun–Dec 2024 &nbsp;|&nbsp; V11–12 CAD: Jan 2025</div>
+      <div class="proj-meta-item"><strong>Tools</strong>OnShape CAD, 3D Printing, LEGO Mindstorms</div>
+      <div class="proj-meta-item"><strong>Significance</strong>First independent CAD project</div>
+    </div>
+
+    <div class="proj-body">
+      <div class="proj-body-main">
+        <h2 class="proj-section-label">The <em>Idea</em></h2>
+        <p class="prose">One summer day, I bent a LEGO tread piece in reverse and had an idea: build a monowheel. A monowheel has exactly one ground contact point — the wheel — and must somehow still turn and balance. Even modern full-size monowheels fail this at slow speeds, requiring high velocity for gyroscopic stability and the driver boots on the ground for turning. Mine had to work indoors, at slow speeds, using LEGO motors.</p>
+        <p class="prose">After 10 LEGO prototypes that all kept falling over, I realized the project had exceeded what LEGO allowed. So I opened OnShape for the first time and designed a solution from scratch. <strong>This was the project that made me know I wanted to be an engineer.</strong></p>
+
+        <div class="gallery-grid cols-2" style="margin:28px 0">
+          <div class="gallery-item" style="height:240px">
+            <!-- ADD: Final monowheel V11-12 -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Final monowheel — V11 or V12</span></div>
+            <span class="gallery-caption">final version</span>
+          </div>
+          <div class="gallery-item" style="height:240px">
+            <!-- ADD: CAD model screenshot -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">OnShape CAD model screenshot</span></div>
+            <span class="gallery-caption">CAD model</span>
+          </div>
+        </div>
+
+        <h2 class="proj-section-label">Key <em>Innovations</em></h2>
+        <div class="version-block reveal">
+          <div class="version-num" style="font-size:32px;padding-top:6px">GYR</div>
+          <div class="version-content">
+            <div class="version-title">Custom 3D-Printed Gyroscope</div>
+            <p class="version-desc">Designed with inserts for washers to concentrate mass at the rim — maximizing rotational inertia without scaling up the wheel diameter. Provides enough gyroscopic stability for reliable operation at slow indoor speeds without a running start.</p>
+          </div>
+        </div>
+        <div class="version-block reveal">
+          <div class="version-num" style="font-size:32px;padding-top:6px">STR</div>
+          <div class="version-content">
+            <div class="version-title">Gear Assembly with Rim Friction Pads</div>
+            <p class="version-desc">The core problem: how do you exert directional force from inside a moving wheel onto its exterior? The solution: a gear assembly with friction pads pressing against the inside of the rim — allowing steering torque to transfer to the wheel without a second ground contact. The custom frame has precision slots for the gear train that mesh with the LEGO design grid.</p>
+          </div>
+        </div>
+
+        <div class="gallery-grid cols-3" style="margin:28px 0">
+          <div class="gallery-item" style="height:180px">
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Gyroscope assembly close-up</span></div>
+            <span class="gallery-caption">gyroscope</span>
+          </div>
+          <div class="gallery-item" style="height:180px">
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Steering gear assembly</span></div>
+            <span class="gallery-caption">steering mechanism</span>
+          </div>
+          <div class="gallery-item" style="height:180px">
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Early LEGO prototypes (if available)</span></div>
+            <span class="gallery-caption">LEGO prototypes</span>
+          </div>
+        </div>
+
+        <h2 class="proj-section-label">What I <em>Learned</em></h2>
+        <div class="learned-block"><div class="learned-num">01</div><div class="learned-text"><strong>CAD as a thinking tool, not just a drawing tool.</strong> OnShape forced me to solve the mechanical problem completely before printing anything. That shift — from build-and-iterate to think-then-model — made me a better engineer across every project that followed.</div></div>
+        <div class="learned-block"><div class="learned-num">02</div><div class="learned-text"><strong>Managing a project independently.</strong> No team, no class structure, no deadlines. Just a problem I wanted to solve and twelve versions to get there. That's the purest form of engineering motivation, and I've chased it in every project since.</div></div>
+        <div class="learned-block"><div class="learned-num">03</div><div class="learned-text"><strong>Constraints clarify.</strong> No adhesives, max 4 motors, 3D prints under 250mm. Every constraint forced a more elegant, repairable, rethought solution than I would have found with unlimited options.</div></div>
+      </div>
+
+      <div class="proj-body-aside">
+        <div class="spec-box">
+          <div class="spec-box-title">CONSTRAINTS</div>
+          <div class="spec-row"><div class="spec-key">Motors</div><div class="spec-val">Max 4 (battery output limit)</div></div>
+          <div class="spec-row"><div class="spec-key">Print Size</div><div class="spec-val">&lt; 250 mm any direction</div></div>
+          <div class="spec-row"><div class="spec-key">Adhesives</div><div class="spec-val">None allowed</div></div>
+          <div class="spec-row"><div class="spec-key">Operation</div><div class="spec-val">Indoor, slow-speed, stable</div></div>
+          <div class="spec-row"><div class="spec-key">Electronics</div><div class="spec-val">LEGO IR — fails in sunlight</div></div>
+          <div class="spec-row"><div class="spec-key">Versions</div><div class="spec-val">12 total (V1–10 LEGO, V11–12 CAD)</div></div>
+        </div>
+        <div class="img-slot" style="aspect-ratio:3/4;margin-top:14px">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="img-slot-note">Side profile shot</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-nav-bar">
+      <a href="ev.html" class="proj-nav-link"><span class="proj-nav-label">← Previous</span><span class="proj-nav-title">Electric Vehicle</span></a>
+      <a href="pitbike.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">Next →</span><span class="proj-nav-title">Pit Bike Restoration</span></a>
+    </div>
+  </div>
+</div>
+<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Monowheel</div></footer>
+<script>
+const scrollBar=document.getElementById("scroll-progress");
+window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
+document.querySelectorAll(".reveal,.version-block,.gallery-item,.learned-block").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

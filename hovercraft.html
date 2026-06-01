@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Hovercraft — Luke Jurbergs</title>
+  <meta name="description" content="Science Olympiad Hovercraft project by Luke Jurbergs — mechanical timing via cam mechanism, custom centrifugal fans, and a month of late nights before State."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div id="scroll-progress"></div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Luke Jurbergs</a>
+  <ul class="nav-links">
+    <li><a href="engineering.html" class="active">Engineering</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="index.html#sec-about">About</a></li>
+    <li><a href="index.html#sec-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="proj-hero" style="margin-top:60px">
+  <!-- 📷 HERO IMAGE: Best hovercraft photo — ideally mid-run on track, or dramatic angle
+       Replace the img-slot div with: <img class="proj-hero-img" src="assets/hovercraft_1.jpg" alt="Hovercraft"> -->
+  <div class="img-slot" style="height:100%;border:none;background:#111">
+    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Hero: assets/hovercraft_1.jpg or hovercraft_3.jpg</span>
+  </div>
+  <div class="proj-hero-overlay">
+    <div class="proj-hero-content">
+      <a href="engineering.html" class="proj-back">← Engineering Projects</a>
+      <h1 class="proj-title">HOVER<em>CRAFT</em></h1>
+      <p class="proj-subtitle">Science Olympiad &nbsp;·&nbsp; June 2025 – April 2026</p>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="inner">
+
+    <!-- META BAR -->
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><strong>Category</strong>Science Olympiad</div>
+      <div class="proj-meta-item"><strong>Timeline</strong>June 2025 – April 2026</div>
+      <div class="proj-meta-item"><strong>Skills</strong>Fluid Dynamics, CAD, Fabrication, Cam Mechanics</div>
+      <div class="proj-meta-item"><strong>Outcome</strong>State Competition — V3 Design</div>
+    </div>
+
+    <div class="proj-body">
+
+      <!-- ══ LEFT: MAIN CONTENT ══ -->
+      <div class="proj-body-main">
+
+        <h2 class="proj-section-label">The <em>Challenge</em></h2>
+        <p class="prose">
+          Science Olympiad's Hovercraft event sounds deceptively simple: build a vehicle that
+          travels down a 185cm track and arrives in a specified time window between 6 and 26 seconds.
+          But the devil is in the constraints. The track is only <strong>guaranteed to be smooth,
+          not level</strong>. You get <strong>two motors maximum</strong>. No microchips.
+          No springs. No stored energy sources outside the battery.
+          The hovercraft must actually hover — not slide.
+        </p>
+        <p class="prose">
+          Most teams control their timing with a rheostat — a variable resistor that adjusts motor
+          speed. Set it to the right resistance, and theoretically the hovercraft travels at the
+          right speed for the right amount of time. But on an unlevel track, gravity changes
+          everything. A rheostat approach can never account for a surface that tilts
+          up or down by even a fraction of a degree. Every team using that method is essentially
+          hoping the track is flat. Ours didn't bet on it.
+        </p>
+
+        <!-- Gallery row 1 -->
+        <div class="gallery-grid cols-2" style="margin:28px 0">
+          <div class="gallery-item" style="height:220px">
+            <!-- 📷 ADD: hovercraft_1.jpg — full vehicle shot -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Full vehicle — hovercraft_1.jpg</span></div>
+            <span class="gallery-caption">the finished hovercraft</span>
+          </div>
+          <div class="gallery-item" style="height:220px">
+            <!-- 📷 ADD: hovercraft_3.jpg — assembly/build shot -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Assembly — hovercraft_3.jpg</span></div>
+            <span class="gallery-caption">mk.3 assembly</span>
+          </div>
+        </div>
+
+        <h2 class="proj-section-label">Design <em>Evolution</em></h2>
+        <div class="versions-list">
+
+          <div class="version-block reveal">
+            <div class="version-num">V1</div>
+            <div class="version-content">
+              <div class="version-title">Fan Blocker</div>
+              <p class="version-desc">
+                The first approach was straightforward: one fan for lift, one for thrust,
+                with a mechanical blocker that partially obstructed the thrust fan's airflow
+                to slow the craft down. Adjust the blocker position, adjust the speed.
+                Simple in theory — but getting the exact right position was inconsistent
+                from run to run, and any surface variation made the results unpredictable.
+              </p>
+              <div class="version-milestone">
+                <span class="version-tag">Single thrust fan</span>
+                <span class="version-tag">Manual blocker</span>
+                <span class="version-tag">Inconsistent results</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="version-block reveal">
+            <div class="version-num">V2</div>
+            <div class="version-content">
+              <div class="version-title">Double Custom Centrifugal Fan + Precision Blocker</div>
+              <p class="version-desc">
+                We designed and built custom centrifugal fans from scratch using RC motors —
+                far more efficient than off-the-shelf propellers for this application.
+                The blocker became a precision-machined mechanism, not a hand-set one.
+                Performance improved dramatically, but the rheostat-based speed control
+                still left us at the mercy of surface levelness.
+                <!-- ✍️ ADD: Any specific details about the fan design you remember — blade count, diameter, RC motor specs -->
+              </p>
+              <div class="version-milestone">
+                <span class="version-tag">Custom centrifugal fans</span>
+                <span class="version-tag">RC motors</span>
+                <span class="version-tag">Precision blocker</span>
+                <span class="version-tag">Better consistency</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="version-block reveal">
+            <div class="version-num">V3</div>
+            <div class="version-content">
+              <div class="version-title">"Mechanical Programming" — The Breakthrough</div>
+              <p class="version-desc">
+                The insight that changed everything: <strong>what if the motor IS the timer?</strong>
+                Instead of using a microchip or a separate timing circuit (both banned), we used
+                a cam-based mechanical system where the motor's rotation directly controlled a
+                sequence of mechanical events. The motor didn't just drive — it kept time.
+                The cam profile was the program.
+              </p>
+              <p class="version-desc" style="margin-top:10px">
+                This forced a major concession: with both motors now committed — one to lift/thrust
+                and one to timing — we had to combine lift and thrust under a single fan.
+                That's a harder fluid dynamics problem, but it was the only path forward within
+                the rules. We solved it with a thrust nozzle that redirected airflow.
+              </p>
+              <div class="version-milestone">
+                <span class="version-tag">Cam-based timer</span>
+                <span class="version-tag">Wall-riding wheels</span>
+                <span class="version-tag">Thrust nozzle</span>
+                <span class="version-tag">Start pin</span>
+                <span class="version-tag">Burst method</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Gallery row 2 -->
+        <div class="gallery-grid cols-3" style="margin:28px 0">
+          <div class="gallery-item" style="height:180px">
+            <!-- 📷 ADD: close-up of cam mechanism -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Cam mechanism close-up</span></div>
+            <span class="gallery-caption">cam timer detail</span>
+          </div>
+          <div class="gallery-item" style="height:180px">
+            <!-- 📷 ADD: custom centrifugal fan -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Custom centrifugal fan</span></div>
+            <span class="gallery-caption">custom fan design</span>
+          </div>
+          <div class="gallery-item" style="height:180px">
+            <!-- 📷 ADD: hovercraft on track / in action -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">On the track / in action</span></div>
+            <span class="gallery-caption">competition run</span>
+          </div>
+        </div>
+
+        <!-- Wide single image -->
+        <div class="gallery-item reveal" style="height:280px;margin-bottom:32px">
+          <!-- 📷 ADD: luke_hovercraft_work.jpg — you working on it -->
+          <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">luke_hovercraft_work.jpg — you working late nights</span></div>
+          <span class="gallery-caption">the last month — every night until it worked</span>
+        </div>
+
+        <h2 class="proj-section-label">The <em>Struggles</em></h2>
+
+        <div class="struggle-block">
+          <div class="struggle-title">One Month, Every Night</div>
+          <p class="struggle-desc">The V3 breakthrough happened just one month before State competition. That meant 30 days of rebuilding from the ground up while still going to school — staying up late every single night, reworking parts, re-testing on weekends. Secondary concerns like packability for travel and how levelness would affect V3's performance on an unknown track couldn't get the attention they needed. At State, those gaps showed.</p>
+        </div>
+        <div class="struggle-block">
+          <div class="struggle-title">The Uncontrollable Environment</div>
+          <p class="struggle-desc">The rules only guarantee a smooth track, not a level one. Every conventional speed-control method fails the moment the surface tilts. Our cam-based system was immune to this problem in theory — but getting the cam profile exactly right for any surface angle requires testing on different inclines, which we ran out of time to do fully before State.</p>
+        </div>
+        <div class="struggle-block">
+          <div class="struggle-title">Collaboration Under Pressure</div>
+          <p class="struggle-desc">My partner and I disagreed on almost every design decision — every day, for months. Over 1,200 messages sent. That tension was uncomfortable and exhausting, but it also meant every decision got challenged from two angles. It was the most difficult collaborative environment I'd been in, and ultimately the most successful one.</p>
+        </div>
+
+        <div class="callout" style="margin-top:32px">
+          <p>"The rules prohibit springs and stored energy sources. Cam timing works. The motor is the clock. That was the whole key — stop fighting the constraints and start using the constraints."</p>
+        </div>
+
+        <h2 class="proj-section-label">What I <em>Learned</em></h2>
+        <div class="learned-block">
+          <div class="learned-num">01</div>
+          <div class="learned-text"><strong>Unconventional thinking wins constrained problems.</strong> When every team is using rheostats and the surface is never guaranteed level, the winning move isn't to optimize the rheostat — it's to abandon rheostats entirely and rethink control from first principles.</div>
+        </div>
+        <div class="learned-block">
+          <div class="learned-num">02</div>
+          <div class="learned-text"><strong>Uncontrollable environments demand robust design.</strong> Engineering for a guaranteed-level surface and engineering for an unknown surface are completely different problems. The hardest part isn't building the device — it's accounting for what you can't control.</div>
+        </div>
+        <div class="learned-block">
+          <div class="learned-num">03</div>
+          <div class="learned-text"><strong>Productive disagreement is rare and valuable.</strong> 1,200+ messages with my partner, most of them arguments. But when two people who actually care both push back on every decision, the design gets stronger. Comfortable agreement produces mediocre work.</div>
+        </div>
+        <div class="learned-block">
+          <div class="learned-num">04</div>
+          <div class="learned-text"><strong>Fluid dynamics in practice.</strong> Centrifugal vs. axial fan efficiency. Thrust vs. lift airflow separation. Nozzle geometry and velocity. None of it was from a textbook — all of it was from building something that needed to actually work.</div>
+        </div>
+
+      </div><!-- /proj-body-main -->
+
+      <!-- ══ RIGHT: ASIDE ══ -->
+      <div class="proj-body-aside">
+
+        <div class="spec-box">
+          <div class="spec-box-title">SPECIFICATIONS</div>
+          <div class="spec-row"><div class="spec-key">Track Length</div><div class="spec-val">185 cm</div></div>
+          <div class="spec-row"><div class="spec-key">Time Window</div><div class="spec-val">6 – 26 seconds</div></div>
+          <div class="spec-row"><div class="spec-key">Max Size</div><div class="spec-val">40 × 40 × 40 cm (levitated &amp; ready)</div></div>
+          <div class="spec-row"><div class="spec-key">Motor Limit</div><div class="spec-val">2 motors max (brushless allowed)</div></div>
+          <div class="spec-row"><div class="spec-key">Battery</div><div class="spec-val">Max 12V total — no lithium, no lead</div></div>
+          <div class="spec-row"><div class="spec-key">Electronics</div><div class="spec-val">No ICs/microchips — commercial motors only</div></div>
+          <div class="spec-row"><div class="spec-key">Levitation</div><div class="spec-val">Must actually hover — not slide</div></div>
+          <div class="spec-row"><div class="spec-key">Safety</div><div class="spec-val">Manual kill switch required</div></div>
+        </div>
+
+        <div class="note-box">
+          <p>Propellers and impellers must be shielded from a 3/8" dowel. Springs and energy storage are prohibited. The track is smooth but may not be level.</p>
+        </div>
+
+        <!-- 📷 ADD: side/profile image of hovercraft -->
+        <div class="img-slot" style="aspect-ratio:4/3;margin-bottom:14px">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="img-slot-note">Profile view of hovercraft</span>
+        </div>
+
+        <div class="spec-box" style="border-left-color:var(--blue-ink)">
+          <div class="spec-box-title">KEY MILESTONES</div>
+          <div class="spec-row"><div class="spec-key">Innovation</div><div class="spec-val">Cam-based mechanical timer (no IC)</div></div>
+          <div class="spec-row"><div class="spec-key">Design</div><div class="spec-val">Custom centrifugal fans via RC motors</div></div>
+          <div class="spec-row"><div class="spec-key">Stability</div><div class="spec-val">Wall-riding wheel system</div></div>
+          <div class="spec-row"><div class="spec-key">Airflow</div><div class="spec-val">Directional thrust nozzle</div></div>
+          <div class="spec-row"><div class="spec-key">Start</div><div class="spec-val">Pin-release start mechanism</div></div>
+          <div class="spec-row"><div class="spec-key">Method</div><div class="spec-val">Burst technique for initial speed</div></div>
+        </div>
+
+        <!-- 📷 ADD: CAD screenshot or sketch of hovercraft design -->
+        <div class="img-slot" style="aspect-ratio:4/3;margin-top:14px">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="img-slot-note">CAD model screenshot or sketch</span>
+        </div>
+
+      </div><!-- /aside -->
+    </div><!-- /proj-body -->
+
+    <!-- PROJECT NAVIGATION -->
+    <div class="proj-nav-bar">
+      <div></div>
+      <a href="ev.html" class="proj-nav-link" style="text-align:right">
+        <span class="proj-nav-label">Next Project →</span>
+        <span class="proj-nav-title">Electric Vehicle</span>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div>
+  <div class="footer-tag">Hovercraft — Science Olympiad</div>
+</footer>
+
+<script>
+const scrollBar=document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{
+  const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+  scrollBar.style.width=Math.min(100,pct)+'%';
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);
+},{passive:true});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('visible');io.unobserve(e.target);});
+},{threshold:0.08});
+document.querySelectorAll('.reveal,.version-block,.gallery-item,.learned-block,.struggle-block').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

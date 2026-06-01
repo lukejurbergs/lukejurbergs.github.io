@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Engineering Projects — Luke Jurbergs</title>
+  <meta name="description" content="Engineering projects by Luke Jurbergs — hovercraft, electric vehicle, monowheel, pit bike restoration, and more. CAD, fabrication, electronics, and relentless iteration."/>
+  <link rel="canonical" href="https://lukejurbergs.github.io/engineering.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ── PAGE TOP BAND ── */
+    .page-band{padding-top:120px;padding-bottom:0;position:relative;z-index:10;background:var(--bg)}
+    .page-band-inner{max-width:1400px;margin:0 auto;padding:0 52px 0 112px}
+    .page-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:14px}
+    .page-eyebrow a{color:var(--ink-dim);text-decoration:none}
+    .page-eyebrow a:hover{color:var(--accent)}
+    .page-title-huge{font-family:var(--display);font-size:clamp(72px,11vw,160px);letter-spacing:0.04em;line-height:0.9;color:var(--ink)}
+    .page-title-huge em{color:var(--accent);font-style:normal}
+    .page-intro{max-width:580px;font-family:var(--mono);font-size:12px;line-height:2.1;color:var(--ink-mid);margin-top:28px;margin-bottom:52px}
+    .page-intro strong{color:var(--ink);font-weight:400}
+
+    /* ── PROJECT GRID ── */
+    .proj-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;padding:52px 0 100px}
+
+    /* featured = 7 cols, standard = 5, compact = 4, mini = 3 */
+    .pcard{position:relative;text-decoration:none;display:flex;flex-direction:column;background:#f9f6ef;border:1.5px solid rgba(26,23,20,0.13);box-shadow:2px 3px 12px rgba(26,23,20,0.08);overflow:hidden;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s;opacity:0;transform:translateY(36px) scale(0.95)}
+    .pcard.visible{opacity:1;transform:translateY(0) scale(1)}
+    .pcard:hover{transform:translateY(-6px) scale(1.01) !important;box-shadow:6px 16px 40px rgba(26,23,20,0.16);border-color:rgba(26,23,20,0.26);z-index:5}
+    .pcard.featured{grid-column:span 7}
+    .pcard.standard{grid-column:span 5}
+    .pcard.compact{grid-column:span 4}
+    .pcard.mini{grid-column:span 3}
+
+    .pcard-photo{width:100%;overflow:hidden;flex-shrink:0;position:relative;background:#111}
+    .pcard.featured .pcard-photo{height:320px}
+    .pcard.standard .pcard-photo{height:260px}
+    .pcard.compact .pcard-photo{height:200px}
+    .pcard.mini .pcard-photo{height:160px}
+    .pcard-photo img{width:100%;height:100%;object-fit:cover;filter:sepia(0.06) contrast(1.02);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+    .pcard:hover .pcard-photo img{transform:scale(1.06)}
+    .pcard-photo .img-slot{height:100%;padding:0}
+
+    .pcard-tape{position:absolute;top:-5px;left:50%;transform:translateX(-50%) rotate(-1.4deg);width:76px;height:20px;background:rgba(255,240,158,0.72);border:1px solid rgba(200,184,96,0.42);z-index:5}
+    .pcard-bar{position:absolute;top:0;left:0;width:4px;height:100%;z-index:3;opacity:0.75}
+
+    .pcard-body{padding:18px 22px 22px 26px;flex:1;display:flex;flex-direction:column;position:relative;z-index:2}
+    .pcard-tag{font-family:var(--mono);font-size:8px;letter-spacing:0.28em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+    .pcard-date{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--ink-dim);margin-bottom:2px}
+    .pcard-title{font-family:var(--display);font-size:clamp(26px,2.6vw,40px);letter-spacing:0.04em;line-height:1.02;color:var(--ink);margin-bottom:8px}
+    .pcard-desc{font-family:var(--mono);font-size:10px;line-height:1.9;color:var(--ink-mid);flex:1}
+    .pcard-arrow{position:absolute;top:18px;right:18px;font-size:14px;color:var(--ink-dim);transition:transform .24s,color .24s}
+    .pcard:hover .pcard-arrow{transform:translate(3px,-3px);color:var(--accent)}
+
+    .pcard-num{position:absolute;bottom:-14px;right:-8px;font-family:var(--display);font-size:clamp(80px,12vw,130px);line-height:1;color:var(--red-ink);opacity:0.14;pointer-events:none;z-index:1;letter-spacing:-0.04em;user-select:none;transition:opacity .3s}
+    .pcard:hover .pcard-num{opacity:0.22}
+
+    /* accent bar colors per card */
+    .acc-red{background:var(--accent)}
+    .acc-blue{background:var(--blue-ink)}
+    .acc-green{background:#2d6e3a}
+    .acc-brown{background:#6b4c22}
+    .acc-purple{background:#5a2a7a}
+    .acc-teal{background:#1a6e72}
+    .acc-orange{background:#c86a0a}
+    .acc-slate{background:#4a5a7a}
+    .acc-moss{background:#5a6e2a}
+
+    /* stagger delays */
+    .pcard:nth-child(1){transition-delay:0ms}
+    .pcard:nth-child(2){transition-delay:90ms}
+    .pcard:nth-child(3){transition-delay:0ms}
+    .pcard:nth-child(4){transition-delay:80ms}
+    .pcard:nth-child(5){transition-delay:160ms}
+    .pcard:nth-child(6){transition-delay:0ms}
+    .pcard:nth-child(7){transition-delay:70ms}
+    .pcard:nth-child(8){transition-delay:140ms}
+    .pcard:nth-child(9){transition-delay:210ms}
+
+    @media(max-width:1100px){
+      .pcard.featured,.pcard.standard{grid-column:span 6}
+      .pcard.compact{grid-column:span 6}
+      .pcard.mini{grid-column:span 4}
+    }
+    @media(max-width:720px){
+      .proj-grid{grid-template-columns:1fr}
+      .pcard.featured,.pcard.standard,.pcard.compact,.pcard.mini{grid-column:span 1}
+      .page-band-inner,.page-band-inner .proj-grid{padding-left:24px;padding-right:24px}
+    }
+  </style>
+</head>
+<body>
+<div id="scroll-progress"></div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Luke Jurbergs</a>
+  <ul class="nav-links">
+    <li><a href="engineering.html" class="active">Engineering</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="index.html#sec-about">About</a></li>
+    <li><a href="index.html#sec-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE TITLE -->
+<div class="page-band">
+  <div class="page-band-inner">
+    <p class="page-eyebrow"><a href="index.html">← Home</a> &nbsp;/&nbsp; Engineering</p>
+    <h1 class="page-title-huge">ENGI<em>NEER</em><br>ING</h1>
+    <p class="page-intro">
+      These aren't just projects — they're a record of how I think. Every one of these started with a constraint I didn't know how to solve, and ended with me understanding something I couldn't have learned any other way.
+      <br><br>
+      <strong>Science Olympiad</strong> pushed me hardest. The hovercraft and electric vehicle took 6-month sprints of daily work, repeated failure, and late-night rebuilds. The smaller projects — a pit bike with no magneto, a monowheel that kept falling over — taught me just as much about persistence.
+    </p>
+
+    <!-- PROJECT GRID -->
+    <div class="proj-grid" id="proj-grid">
+
+      <!-- 1. HOVERCRAFT — featured -->
+      <a href="hovercraft.html" class="pcard featured">
+        <div class="pcard-tape"></div>
+        <div class="pcard-bar acc-red"></div>
+        <div class="pcard-photo">
+          <!-- 📷 ADD PHOTO: best hovercraft photo (hovercraft_1.jpg or the rotating GIF still) -->
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">Add hovercraft photo<br>assets/hovercraft_1.jpg</span>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-arrow">↗</span>
+          <span class="pcard-tag">Science Olympiad · Mechanical</span>
+          <span class="pcard-date">June 2025 — April 2026</span>
+          <div class="pcard-title">HOVERCRAFT</div>
+          <p class="pcard-desc">A hovering vehicle that traverses a 185cm track in a precise time window — with no microchips, no springs, and no rheostat. The final design used a cam-based mechanical timer as the control system, treating the motor itself as the clock.</p>
+          <div class="chip-list" style="margin-top:14px">
+            <span class="skill-chip">Fluid Dynamics</span>
+            <span class="skill-chip">CAD</span>
+            <span class="skill-chip">3D Printing</span>
+            <span class="skill-chip">Brushless Motors</span>
+            <span class="skill-chip">Cam Mechanisms</span>
+          </div>
+        </div>
+        <div class="pcard-num">01</div>
+      </a>
+
+      <!-- 2. ELECTRIC VEHICLE — standard -->
+      <a href="ev.html" class="pcard standard">
+        <div class="pcard-tape" style="left:40%;transform:translateX(-50%) rotate(1.3deg)"></div>
+        <div class="pcard-bar acc-blue"></div>
+        <div class="pcard-photo">
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">Add EV photo<br>assets/finalEVehicle.jpg</span>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-arrow">↗</span>
+          <span class="pcard-tag">Science Olympiad · Electronics</span>
+          <span class="pcard-date">October 2025 — April 2026</span>
+          <div class="pcard-title">ELECTRIC<br>VEHICLE</div>
+          <p class="pcard-desc">Started knowing nothing about electronics. Built a custom ultra-thin arc car with a vertical encoder and custom gearbox. Learned C++, motor control, and that "simple" is never what it looks like.</p>
+          <div class="chip-list" style="margin-top:14px">
+            <span class="skill-chip">C++</span>
+            <span class="skill-chip">Arduino</span>
+            <span class="skill-chip">Encoders</span>
+            <span class="skill-chip">Gearbox Design</span>
+          </div>
+        </div>
+        <div class="pcard-num">02</div>
+      </a>
+
+      <!-- 3. MONOWHEEL -->
+      <a href="monowheel.html" class="pcard compact">
+        <div class="pcard-tape" style="left:38%;transform:translateX(-50%) rotate(-0.8deg)"></div>
+        <div class="pcard-bar acc-green"></div>
+        <div class="pcard-photo">
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">Add monowheel photo</span>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-arrow">↗</span>
+          <span class="pcard-tag">Independent · CAD</span>
+          <span class="pcard-date">Sep 2024 — Jan 2025</span>
+          <div class="pcard-title">MONO<br>WHEEL</div>
+          <p class="pcard-desc">Single ground contact point, turns reliably at slow speed. First independent CAD project. Gyroscopic stabilization + custom gear steering assembly.</p>
+        </div>
+        <div class="pcard-num">03</div>
+      </a>
+
+      <!-- 4. PITBIKE -->
+      <a href="pitbike.html" class="pcard compact">
+        <div class="pcard-tape" style="left:62%;transform:translateX(-50%) rotate(2deg)"></div>
+        <div class="pcard-bar acc-brown"></div>
+        <div class="pcard-photo">
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">Add pit bike photo</span>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-arrow">↗</span>
+          <span class="pcard-tag">Restoration · Mechanical</span>
+          <span class="pcard-date">August 2024</span>
+          <div class="pcard-title">PIT BIKE<br>RESTORE</div>
+          <p class="pcard-desc">Salvaged magneto, rebuilt carburetor, fabricated custom seat. Brought a dead engine back to life on a 14-year-old's budget.</p>
+        </div>
+        <div class="pcard-num">04</div>
+      </a>
+
+      <!-- 5. COLORADO -->
+      <a href="colorado.html" class="pcard compact">
+        <div class="pcard-tape" style="left:50%;transform:translateX(-50%) rotate(-1.2deg)"></div>
+        <div class="pcard-bar acc-moss"></div>
+        <div class="pcard-photo">
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">Add Colorado project photo</span>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-arrow">↗</span>
+          <span class="pcard-tag">Construction · Environment</span>
+          <span class="pcard-date">Summer 2023 &amp; 2024</span>
+          <div class="pcard-title">COLORADO<br>HILLSIDE</div>
+          <p class="pcard-desc">Railroad timber erosion barriers, hillside trails, scrap-wood structures, retaining walls. Improved property safety for residents and wildlife.</p>
+        </div>
+        <div class="pcard-num">05</div>
+      </a>
+
+      <!-- 6. DOUBLE DUTCH -->
+      <a href="double-dutch.html" class="pcard mini">
+        <div class="pcard-bar acc-purple"></div>
+        <div class="pcard-photo">
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">Add project photo</span>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-arrow">↗</span>
+          <span class="pcard-tag">Class Project</span>
+          <span class="pcard-date">Aug–Dec 2023</span>
+          <div class="pcard-title">DOUBLE<br>DUTCH</div>
+          <p class="pcard-desc">Autonomous donut-moving machine. 130 hrs, &lt;$5 budget, board of engineers presentation.</p>
+        </div>
+      </a>
+
+      <!-- 7. LED MATRIX -->
+      <a href="led-matrix.html" class="pcard mini">
+        <div class="pcard-bar acc-teal"></div>
+        <div class="pcard-photo">
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">Add LED matrix photo</span>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-arrow">↗</span>
+          <span class="pcard-tag">Electronics · C++</span>
+          <span class="pcard-date">April 2026</span>
+          <div class="pcard-title">LED<br>MATRIX</div>
+          <p class="pcard-desc">3D-printed LED matrix synced to Kendrick Lamar. First deep-dive into C++ arrays + FastLED.</p>
+        </div>
+      </a>
+
+      <!-- 8. DOOR FAN -->
+      <a href="door-fan.html" class="pcard mini">
+        <div class="pcard-bar acc-orange"></div>
+        <div class="pcard-photo">
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">Add door fan photo</span>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-arrow">↗</span>
+          <span class="pcard-tag">Home Engineering</span>
+          <span class="pcard-date">January 2025</span>
+          <div class="pcard-title">DOOR<br>FAN</div>
+          <p class="pcard-desc">Fan in a cat door that cools a room running 80°F. Motor shaft routed through the hinge pivot.</p>
+        </div>
+      </a>
+
+      <!-- 9. CAT HOUSE -->
+      <a href="cat-house.html" class="pcard mini">
+        <div class="pcard-bar acc-slate"></div>
+        <div class="pcard-photo">
+          <div class="img-slot" style="height:100%">
+            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="img-slot-note">Add cat house photo</span>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <span class="pcard-arrow">↗</span>
+          <span class="pcard-tag">Woodworking · First Build</span>
+          <span class="pcard-date">August 2023</span>
+          <div class="pcard-title">A/C CAT<br>HOUSE</div>
+          <p class="pcard-desc">Air-conditioned outdoor cat shelter from scrap wood + fan. First independent woodworking project.</p>
+        </div>
+      </a>
+
+    </div><!-- /proj-grid -->
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div>
+  <div class="footer-tag">Engineering Portfolio</div>
+</footer>
+
+<script>
+const scrollBar=document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{
+  const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+  scrollBar.style.width=Math.min(100,pct)+'%';
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);
+},{passive:true});
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('visible');io.unobserve(e.target);});
+},{threshold:0.07});
+document.querySelectorAll('.pcard,.reveal,.sec-head,.simple-divider').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

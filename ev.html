@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Electric Vehicle — Luke Jurbergs</title>
+  <meta name="description" content="Science Olympiad Electric Vehicle by Luke Jurbergs — from zero electronics knowledge to a custom ultra-thin arc car with vertical encoder and custom gearbox."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div id="scroll-progress"></div>
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Luke Jurbergs</a>
+  <ul class="nav-links">
+    <li><a href="engineering.html" class="active">Engineering</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="index.html#sec-about">About</a></li>
+    <li><a href="index.html#sec-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="proj-hero" style="margin-top:60px">
+  <!-- 📷 HERO IMAGE: finalEVehicle.jpg or ev_prototype.jpg
+       Replace img-slot with: <img class="proj-hero-img" src="assets/finalEVehicle.jpg" alt="Electric Vehicle"> -->
+  <div class="img-slot" style="height:100%;border:none;background:#0d0e14">
+    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    <span class="img-slot-note" style="color:rgba(255,255,255,0.2)">Hero: assets/finalEVehicle.jpg or ev_prototype.jpg</span>
+  </div>
+  <div class="proj-hero-overlay">
+    <div class="proj-hero-content">
+      <a href="engineering.html" class="proj-back">← Engineering Projects</a>
+      <h1 class="proj-title">ELECTRIC<br><em>VEHICLE</em></h1>
+      <p class="proj-subtitle">Science Olympiad &nbsp;·&nbsp; October 2025 – April 2026</p>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="inner">
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><strong>Category</strong>Science Olympiad</div>
+      <div class="proj-meta-item"><strong>Timeline</strong>Oct 2025 – Apr 2026</div>
+      <div class="proj-meta-item"><strong>Skills</strong>C++, Electronics, Encoders, CAD, Gearbox Design</div>
+      <div class="proj-meta-item"><strong>Starting Point</strong>Zero electronics knowledge</div>
+    </div>
+
+    <div class="proj-body">
+      <div class="proj-body-main">
+
+        <h2 class="proj-section-label">Starting at <em>Zero</em></h2>
+        <p class="prose">
+          I started this project knowing <strong>absolutely nothing about electronics.</strong>
+          I didn't know what an encoder was. I'd never written a line of C++ that controlled
+          physical hardware. I'd never soldered a circuit under pressure. Everything I know
+          about electronics — I learned building this car.
+        </p>
+        <p class="prose">
+          The goal: a vehicle that travels a specified distance (7–10 meters) in a specified
+          time (10–20 seconds), while navigating 1 meter to the left through an offset pair
+          of cans. The closer you squeeze through the cans, the more bonus points you earn.
+          Simple enough to describe. Hellishly difficult to execute with the required precision.
+        </p>
+
+        <div class="callout">
+          <p>"I had the belief that 90-degree steering would be the simplest thing ever. It turned out to be the most difficult path — because although it looks simple, reaching PRECISION with that design was impossibly hard."</p>
+        </div>
+
+        <div class="gallery-grid cols-2" style="margin:28px 0">
+          <div class="gallery-item" style="height:220px">
+            <!-- 📷 ADD: finalEVehicle.jpg -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">finalEVehicle.jpg — final V4 car</span></div>
+            <span class="gallery-caption">V4 — the final ultra-thin arc car</span>
+          </div>
+          <div class="gallery-item" style="height:220px">
+            <!-- 📷 ADD: electronics_board.jpg or ev_prototype.jpg -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">electronics_board.jpg or ev_prototype.jpg</span></div>
+            <span class="gallery-caption">electronics stack</span>
+          </div>
+        </div>
+
+        <h2 class="proj-section-label">Design <em>Evolution</em></h2>
+        <div class="versions-list">
+
+          <div class="version-block reveal">
+            <div class="version-num">V1</div>
+            <div class="version-content">
+              <div class="version-title">Right Angle Travel</div>
+              <p class="version-desc">The first instinct: drive straight, turn 90°, drive straight again. Two legs. One turn. It seems like the simplest possible design. It wasn't. Getting a precise 90° turn with enough repeatability to score at competition turned out to be nearly impossible. Any wheel slip, any fabrication imprecision, any encoder error, and the angle drifts. The "simple" design demanded perfection from every component.</p>
+              <div class="version-milestone">
+                <span class="version-tag">Two-segment path</span>
+                <span class="version-tag">90° steering</span>
+                <span class="version-tag">High sensitivity to error</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="version-block reveal">
+            <div class="version-num">V2</div>
+            <div class="version-content">
+              <div class="version-title">Bi-Stable Right Angle Travel</div>
+              <p class="version-desc">A more mechanically locked version of the 90° turn — using a bi-stable mechanism so the turn was physically constrained into position rather than relying purely on encoder feedback. Better repeatability, but still subject to wheel slipping and fabrication imprecision causing cumulative angle error.</p>
+              <div class="version-milestone">
+                <span class="version-tag">Bi-stable mechanism</span>
+                <span class="version-tag">Improved repeatability</span>
+                <span class="version-tag">Still encoder-sensitive</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="version-block reveal">
+            <div class="version-num">V3</div>
+            <div class="version-content">
+              <div class="version-title">Upgrading Off-the-Shelf Kit with Encoders</div>
+              <p class="version-desc">Pivoted to building on an existing kit (UnPhayzed) and adding our own angle measurement system. This let me learn encoder integration and C++ motor control without building the chassis from scratch simultaneously. Good for learning — but the kit's geometry limited what I could achieve with arc-based travel.</p>
+              <div class="version-milestone">
+                <span class="version-tag">UnPhayzed kit base</span>
+                <span class="version-tag">Encoder integration</span>
+                <span class="version-tag">C++ control loop</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="version-block reveal">
+            <div class="version-num">V4</div>
+            <div class="version-content">
+              <div class="version-title">Custom Ultra-Thin Arc Car — The Final Design</div>
+              <p class="version-desc">
+                Built from scratch. The key innovations: the encoder was repositioned to a
+                <strong>vertical orientation using belt drives</strong> — eliminating backlash while
+                achieving a sub-60mm vehicle width that could squeeze through the tightest can gaps.
+                A <strong>custom-built gearbox</strong> gave the motor output the right torque and
+                speed profile. Arc-based travel replaced right-angle turns entirely.
+              </p>
+              <p class="version-desc" style="margin-top:10px">
+                The insight driving V4 was the simplicity paradox: <strong>differential steering
+                looks complex but IS simple</strong>, because it allows PID loops and active
+                correction that make the path naturally self-correcting. 90° turns look simple
+                but are impossible to make precise.
+              </p>
+              <div class="version-milestone">
+                <span class="version-tag">Custom chassis</span>
+                <span class="version-tag">Vertical encoder via belts</span>
+                <span class="version-tag">Sub-60mm width</span>
+                <span class="version-tag">Custom gearbox</span>
+                <span class="version-tag">Arc travel</span>
+                <span class="version-tag">Differential steering</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 3-col gallery -->
+        <div class="gallery-grid cols-3" style="margin:28px 0">
+          <div class="gallery-item" style="height:180px">
+            <!-- 📷 ADD: close-up of vertical encoder + belt system -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Vertical encoder + belt drive close-up</span></div>
+            <span class="gallery-caption">vertical encoder system</span>
+          </div>
+          <div class="gallery-item" style="height:180px">
+            <!-- 📷 ADD: custom gearbox -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Custom gearbox</span></div>
+            <span class="gallery-caption">custom gearbox</span>
+          </div>
+          <div class="gallery-item" style="height:180px">
+            <!-- 📷 ADD: blown_pi.jpg — fried circuit boards / solder burns -->
+            <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">blown_pi.jpg — fried board</span></div>
+            <span class="gallery-caption">rip pico — one of many</span>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" style="height:260px;margin-bottom:32px">
+          <!-- 📷 ADD: testing on elementary school basketball court -->
+          <div class="img-slot" style="height:100%"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Testing at the elementary school basketball court — 6–10pm sessions</span></div>
+          <span class="gallery-caption">the testing ground — sweeping pebbles off the court at 7pm</span>
+        </div>
+
+        <h2 class="proj-section-label">The <em>Struggles</em></h2>
+
+        <div class="struggle-block">
+          <div class="struggle-title">The Source of Failure Was Never Obvious</div>
+          <p class="struggle-desc">With this many variables — math calculations, mechanical slipping, encoder drift, voltage instability, code bugs — pinpointing why the car ended up in the wrong place was a debugging nightmare. Every run that missed could have failed for a dozen different reasons. Isolating variables became its own engineering challenge.</p>
+        </div>
+        <div class="struggle-block">
+          <div class="struggle-title">Absolute Encoders Drifting Unpredictably</div>
+          <p class="struggle-desc">Encoders that should read a consistent angle started drifting between runs with no obvious cause. Voltage instability, mechanical vibration, temperature — all plausible culprits. The passive steering mechanism meant there was no active correction to catch drift mid-run.</p>
+        </div>
+        <div class="struggle-block">
+          <div class="struggle-title">No Space to Test at Home</div>
+          <p class="struggle-desc">You need 10 meters of clear, smooth floor to test an EV properly. We didn't have that. Most testing happened on a nearby elementary school's basketball court — many evenings from 6–10pm, brushing dust and pebbles off the concrete before every run. Not glamorous, but it worked.</p>
+        </div>
+
+        <h2 class="proj-section-label">What I <em>Learned</em></h2>
+        <div class="learned-block">
+          <div class="learned-num">01</div>
+          <div class="learned-text"><strong>All of my electronics knowledge.</strong> Came in knowing nothing. Left understanding motor drivers, encoder integration, voltage regulation, C++ PWM control, and circuit debugging at a practical level. Every skill I now have in electronics came from this project.</div>
+        </div>
+        <div class="learned-block">
+          <div class="learned-num">02</div>
+          <div class="learned-text"><strong>What "simple" actually means.</strong> Simple is not what looks simple. Simple is what is actually easy to make precise, correct, and robust. 90° turns look simple — they aren't. Differential steering with PID looks complex — it's actually the easiest path to a working car.</div>
+        </div>
+        <div class="learned-block">
+          <div class="learned-num">03</div>
+          <div class="learned-text"><strong>How to fail productively.</strong> Fried circuit boards. Solder burns. Entire design approaches abandoned after weeks of work. The project was defined by failure — and each failure narrowed the solution space. Learning what doesn't work is still learning.</div>
+        </div>
+        <div class="learned-block">
+          <div class="learned-num">04</div>
+          <div class="learned-text"><strong>Tons of C++.</strong> Arrays, control loops, PID implementation, serial communication with sensors. This project was my real C++ education — not a class, but a deadline with real stakes.</div>
+        </div>
+
+      </div><!-- /main -->
+
+      <div class="proj-body-aside">
+        <div class="spec-box">
+          <div class="spec-box-title">SPECIFICATIONS</div>
+          <div class="spec-row"><div class="spec-key">Target Distance</div><div class="spec-val">7 – 10 meters</div></div>
+          <div class="spec-row"><div class="spec-key">Target Time</div><div class="spec-val">10 – 20 seconds</div></div>
+          <div class="spec-row"><div class="spec-key">Offset Required</div><div class="spec-val">1 meter left through offset cans</div></div>
+          <div class="spec-row"><div class="spec-key">Scoring Bonus</div><div class="spec-val">Smallest can gap = max bonus</div></div>
+          <div class="spec-row"><div class="spec-key">Max Size</div><div class="spec-val">35 cm × 75 cm footprint</div></div>
+          <div class="spec-row"><div class="spec-key">Propulsion</div><div class="spec-val">Electrical only</div></div>
+          <div class="spec-row"><div class="spec-key">Battery</div><div class="spec-val">Max 8 AA batteries — no lithium, no lead</div></div>
+          <div class="spec-row"><div class="spec-key">Contact</div><div class="spec-val">Wheels or treads only</div></div>
+        </div>
+
+        <div class="note-box">
+          <p>The passive steering mechanism in V4 means active correction isn't possible mid-run. Next year's EV will address this with active differential steering and full PID correction.</p>
+        </div>
+
+        <!-- 📷 ADD: top-down/profile of the V4 final car -->
+        <div class="img-slot" style="aspect-ratio:3/4;margin-bottom:14px">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="img-slot-note">Top-down or profile view of V4 car — showing sub-60mm width</span>
+        </div>
+
+        <div class="spec-box" style="border-left-color:var(--blue-ink)">
+          <div class="spec-box-title">V4 KEY SPECS</div>
+          <div class="spec-row"><div class="spec-key">Width</div><div class="spec-val">Sub-60 mm</div></div>
+          <div class="spec-row"><div class="spec-key">Encoder</div><div class="spec-val">Vertical orientation via belt drives</div></div>
+          <div class="spec-row"><div class="spec-key">Gearbox</div><div class="spec-val">Custom-built</div></div>
+          <div class="spec-row"><div class="spec-key">Path</div><div class="spec-val">Arc-based travel</div></div>
+          <div class="spec-row"><div class="spec-key">Steering</div><div class="spec-val">Differential (passive)</div></div>
+        </div>
+
+        <!-- 📷 ADD: CAD model or sketch of V4 -->
+        <div class="img-slot" style="aspect-ratio:4/3;margin-top:14px">
+          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="img-slot-note">CAD model or sketch of V4 design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-nav-bar">
+      <a href="hovercraft.html" class="proj-nav-link">
+        <span class="proj-nav-label">← Previous Project</span>
+        <span class="proj-nav-title">Hovercraft</span>
+      </a>
+      <a href="monowheel.html" class="proj-nav-link" style="text-align:right">
+        <span class="proj-nav-label">Next Project →</span>
+        <span class="proj-nav-title">Monowheel</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div>
+  <div class="footer-tag">Electric Vehicle — Science Olympiad</div>
+</footer>
+<script>
+const scrollBar=document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{
+  const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+  scrollBar.style.width=Math.min(100,pct)+'%';
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);
+},{passive:true});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('visible');io.unobserve(e.target);});
+},{threshold:0.08});
+document.querySelectorAll('.reveal,.version-block,.gallery-item,.learned-block,.struggle-block').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
