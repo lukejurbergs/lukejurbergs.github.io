@@ -7,6 +7,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .nat{width:100%;height:auto;display:block}
+    .cap{font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;display:block;margin-top:5px;margin-bottom:14px}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;align-items:start}
+    .g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin:16px 0;align-items:start}
+    .sub{font-family:var(--display);font-size:20px;letter-spacing:0.08em;color:var(--ink-dim);margin:32px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+    .sub em{color:var(--accent);font-style:normal}
+    @media(max-width:720px){.g2{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}}
+  </style>
 </head>
 <body>
 <div id="scroll-progress"></div>
@@ -20,81 +29,139 @@
   </ul>
 </nav>
 
-<div class="proj-hero" style="margin-top:60px;background:#2a1f18">
-  <div class="img-slot" style="height:100%;border:none;background:#2a1f18">
-    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: full portrait scan or photo, close, showing the iris</span>
-  </div>
+<!-- HERO -->
+<div class="proj-hero" style="margin-top:60px;background:#1a0e12">
+  <img class="proj-hero-img" src="assets/self-portrait/FInalComparisonWithRealPhoto.jpg" alt="Finished self-portrait on the easel alongside the reference photo"/>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
       <a href="art.html" class="proj-back">← Visual Work</a>
       <h1 class="proj-title">SELF<br><em>PORTRAIT</em></h1>
-      <p class="proj-subtitle">Colored Pencil &nbsp;·&nbsp; Art 1</p>
+      <p class="proj-subtitle">Colored Pencil &nbsp;·&nbsp; Art Class &nbsp;·&nbsp; LASA</p>
     </div>
   </div>
 </div>
 
-<div class="page"><div class="inner">
-  <div class="proj-meta-bar">
-    <div class="proj-meta-item"><strong>Medium</strong>Colored Pencil</div>
-    <div class="proj-meta-item"><strong>Subject</strong>Self-Portrait</div>
-    <div class="proj-meta-item"><strong>Class</strong>Art 1</div>
-    <div class="proj-meta-item"><strong>Notable</strong>Following My Vision By Defying Critique</div>
-  </div>
-  <div class="proj-body">
-    <div class="proj-body-main">
+<div class="page">
+  <div class="inner">
 
-      <h2 class="proj-section-label">The <em>Work</em></h2>
-      <p class="prose">This was the first time I used colored pencils beyond filling in shapes and instead tried to accurately depict something real. Skin tone in colored pencil doesn't start with peach. It starts with dark purple, then cool red, then peach on top, then light white blended over that. You build the color up layer by layer, line by line, until the layers stop looking like layers and start looking like skin.</p>
-      <p class="prose">The most important part of the project was defying my teacher to create my vision. My teacher told me to draw my eyes simply, a solid color with a few highlights and shadows. Instead I went home, spent multiple nights watching YouTube tutorials, filling sketchbooks with iris studies, and working out how to make a detailed, realistic iris in colored pencil. I came back to class and started drawing it the way I'd figured out.</p>
-      <p class="prose">It started looking like a flower, abstract, nothing like a real eye. My teacher stopped me and said it didn't look realistic. She said it looked inaccurate. <strong> But I kept going anyway,<strong> because I could see where it was headed even if she couldn't yet. By the end, the iris had real structure, layers of color, and tiny visible patterns in the pigment. It looked like an eye. My teacher loved it and even ended up giving me extra credit.</p>
-
-      <div class="gallery-grid cols-2" style="margin:28px 0"><div class="gallery-item" style="height:340px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Full portrait scan, cropped tightly to face</span></div>
-        </div><div class="gallery-item" style="height:340px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Eye close-up, showing iris detail and layered color work</span></div>
-        </div>
-      </div>
-
-      <div class="gallery-grid cols-3" style="margin:0 0 28px"><div class="gallery-item" style="height:180px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Sketch studies of the iris from practice nights</span></div>
-        </div><div class="gallery-item" style="height:180px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Skin tone layering detail, showing buildup of purple/red/peach</span></div>
-        </div><div class="gallery-item" style="height:180px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Full portrait at distance showing complete work</span></div>
-        </div>
-      </div>
-
-      <div class="callout"><p>"My teacher stopped me and told me my drawn eyes didn't look realistic. But I kept going because I believed in myself and my vision."</p></div>
-
-      <h2 class="proj-section-label">What I <em>Learned</em></h2>
-      <div class="learned-block"><div class="learned-num">01</div><div class="learned-text"><strong>Trusting your vision when no one else can see it yet.</strong> The iris looked wrong for a long time before it looked right. That's always how it works with things built in layers. If you stop when it looks wrong, you never get to when it looks right. This same message is something I've carried throughout my engineering experience
-      </div></div><div class="learned-block"><div class="learned-num">02</div>
-      <div class="learned-text"><strong>Color is built, not applied.</strong> This was my first time using colored pencils in this way, and it taught me a lot about how to create the best art. You don't just use one color and then shade with black and white on top. Instead, you build colors layer by layer to get the perfect coloring. Learning this would be very important for my future success in painting and drawing.</div></div>
-
+    <div class="proj-meta-bar">
+      <div class="proj-meta-item"><strong>Medium</strong>Colored Pencil on Tinted Paper</div>
+      <div class="proj-meta-item"><strong>Subject</strong>Self-portrait from extreme close-up reference</div>
+      <div class="proj-meta-item"><strong>Class</strong>Art, LASA</div>
+      <div class="proj-meta-item"><strong>Approach</strong>Layered color: purple → red → peach → brown</div>
     </div>
-    <div class="proj-body-aside">
-      <div class="spec-box"><div class="spec-box-title">DETAILS</div>
-        <div class="spec-row"><div class="spec-key">Medium</div><div class="spec-val">Colored pencil</div></div>
-        <div class="spec-row"><div class="spec-key">Subject</div><div class="spec-val">Self-portrait</div></div>
-        <div class="spec-row"><div class="spec-key">Colored Pencils</div><div class="spec-val">Purple, Cool Red, Peach, Light Tan, Brown, White</div></div>
-        <div class="spec-row"><div class="spec-key">Dimensions</div><div class="spec-val">9in x 12in</div></div>
-        
-        
+
+    <div class="proj-body">
+      <div class="proj-body-main">
+
+        <h2 class="proj-section-label">The <em>Portrait</em></h2>
+        <p class="prose">
+          The assignment was a self-portrait drawn in colored pencil on tinted paper, working from a reference photo. I took the reference photo as an extreme close-up looking up into natural light — just the eye, the bridge of the nose, the brow — cutting out most of the face so the composition became more about planes of light and shadow than a recognizable likeness. The pink paper acts as a mid-tone so the darkest darks and the lightest lights both have somewhere to go.
+        </p>
+        <p class="prose">
+          The process started with a purple underlay for all the shadows, then red was added into the deeper shadows for warmth, then peach and brown skin tones were layered over top. Color pencil portrait work moves from cool to warm in the shadows and the tinted paper means every light mark I add reads as a highlight against it.
+        </p>
+
+        <!-- Final portrait standalone — prominent -->
+        <div style="margin:24px auto;max-width:520px">
+          <img class="nat" src="assets/self-portrait/FinalPortraitOnItsOwn.jpg" alt="The finished self-portrait, close-up of the eye and nose on pink tinted paper"/>
+          <span class="cap">the finished portrait</span>
+        </div>
+
+        <!-- Eye detail comparison — full width -->
+        <img class="nat" src="assets/self-portrait/FinalEyeDetail.jpg" alt="Close-up comparison: the drawn eye alongside the reference photo clipped to the board"/>
+        <span class="cap">eye detail alongside the reference photo</span>
+
+        <!-- PROCESS -->
+        <div class="sub">Build <em>Progression</em></div>
+        <p class="prose" style="margin-bottom:20px">Four stages of color being added, left to right.</p>
+
+        <div class="g4">
+          <div>
+            <img class="nat" src="assets/self-portrait/OutlineSelfPortait.jpg" alt="Outline stage: purple pencil sketch on pink paper with reference photo clipped alongside"/>
+            <span class="cap">01 — outline</span>
+          </div>
+          <div>
+            <img class="nat" src="assets/self-portrait/PurpleShadingSelfPortrait.jpg" alt="Purple shading added to the outline on pink paper"/>
+            <span class="cap">02 — purple shadows</span>
+          </div>
+          <div>
+            <img class="nat" src="assets/self-portrait/PurpleShadingAndRedSelfPortrait.jpg" alt="Purple and red shading layered together"/>
+            <span class="cap">03 — red added</span>
+          </div>
+          <div>
+            <img class="nat" src="assets/self-portrait/PurpleRedPeachBrownSelfPortrait.jpg" alt="Full color: purple, red, peach, and brown skin tones all layered"/>
+            <span class="cap">04 — peach + brown</span>
+          </div>
+        </div>
+
+        <!-- PRACTICE SKETCHES -->
+        <div class="sub">Practice <em>Sketches</em></div>
+        <p class="prose" style="margin-bottom:20px">Before starting the portrait, I practiced the iris and lips separately in graphite to understand how to shade them.</p>
+
+        <div class="g2">
+          <div>
+            <img class="nat" src="assets/self-portrait/IrisPracticeSketch.jpg" alt="Graphite pencil practice sketch of an iris with detailed radiating lines and dark pupil"/>
+            <span class="cap">iris practice — graphite</span>
+          </div>
+          <div>
+            <img class="nat" src="assets/self-portrait/LipsPractice.jpg" alt="Graphite pencil practice sketch of lips with shading"/>
+            <span class="cap">lips practice — graphite</span>
+          </div>
+        </div>
+
+        <!-- IMPRESSIONIST FEAR PORTRAIT -->
+        <div class="sub">Impressionist <em>Fear Portrait</em></div>
+        <p class="prose" style="margin-bottom:20px">A separate piece from the same class that I used as practice for the final portrait: a portrait depicting fear using an impressionist approach — loose, layered strokes in purple, blue, and red on gray paper, with less concern for accuracy and more for emotional expression.</p>
+
+        <div class="g2">
+          <div>
+            <img class="nat" src="assets/self-portrait/ImpressionalistFearPortraitProgressPhoto.jpg" alt="Impressionist fear portrait in progress: loose purple and red strokes on gray paper"/>
+            <span class="cap">in progress</span>
+          </div>
+          <div>
+            <img class="nat" src="assets/self-portrait/ImpressionalistFearPortraitFinalPhoto_jpg.jpg" alt="Finished impressionist fear portrait: expressive purple, pink, and blue strokes, eye visible"/>
+            <span class="cap">finished</span>
+          </div>
+        </div>
+
       </div>
-      <div class="img-slot" style="aspect-ratio:3/4;margin:14px 0"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Portrait at a slight angle showing depth of the work</span></div><div class="img-slot" style="aspect-ratio:1/1;margin:14px 0"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Iris detail, maximum zoom, showing color and pattern structure</span></div>
+
+      <div class="proj-body-aside">
+        <div class="spec-box">
+          <div class="spec-box-title">PIECE DETAILS</div>
+          <div class="spec-row"><div class="spec-key">Medium</div><div class="spec-val">Colored pencil</div></div>
+          <div class="spec-row"><div class="spec-key">Surface</div><div class="spec-val">Tinted pink paper</div></div>
+          <div class="spec-row"><div class="spec-key">Colors</div><div class="spec-val">Purple, red, peach, brown</div></div>
+          <div class="spec-row"><div class="spec-key">Reference</div><div class="spec-val">Extreme close-up selfie, looking up</div></div>
+          <div class="spec-row"><div class="spec-key">Class</div><div class="spec-val">Art, LASA</div></div>
+        </div>
+
+        <div class="note-box" style="margin-top:14px">
+          <p>The tinted paper acts as the mid-tone — every dark mark shadows, every light mark highlights. Working on colored paper means you never draw in white light, you reveal it.</p>
+        </div>
+
+        <!-- Final portrait in aside -->
+        <img src="assets/self-portrait/FinalPortraitOnItsOwn.jpg" alt="Finished self-portrait close-up" style="width:100%;height:auto;display:block;margin-top:14px"/>
+
+        <img src="assets/self-portrait/ImpressionalistFearPortraitFinalPhoto_jpg.jpg" alt="Impressionist fear portrait" style="width:100%;height:auto;display:block;margin-top:10px"/>
+        <span class="cap">fear portrait — same class</span>
+      </div>
+    </div>
+
+    <div class="proj-nav-bar">
+      <a href="berlin-wall.html" class="proj-nav-link"><span class="proj-nav-label">Previous</span><span class="proj-nav-title">Berlin Wall Diorama</span></a>
+      <a href="linoleum.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">Next</span><span class="proj-nav-title">Linoleum Print</span></a>
     </div>
   </div>
-  <div class="proj-nav-bar">
-    <div></div>
-    <a href="linoleum.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">Next</span><span class="proj-nav-title">Linoleum Carving</span></a>
-  </div>
-</div></div>
+</div>
+
 <footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Self Portrait</div></footer>
 <script>
 const scrollBar=document.getElementById("scroll-progress");
 window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
-document.querySelectorAll(".reveal,.gallery-item,.learned-block").forEach(el=>io.observe(el));
+document.querySelectorAll(".reveal,.learned-block").forEach(el=>io.observe(el));
 </script>
-</body></html>
+</body>
+</html>
