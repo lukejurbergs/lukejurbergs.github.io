@@ -2,11 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Minecraft Door — Luke Jurbergs — Luke Jurbergs</title>
+  <title>Minecraft — Medieval City & Real Life Spruce Door — Luke Jurbergs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .nat{width:100%;height:auto;display:block}
+    .cap{font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;display:block;margin-top:5px;margin-bottom:14px}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;align-items:start}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0;align-items:start}
+    .g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin:16px 0;align-items:start}
+    .sub{font-family:var(--display);font-size:20px;letter-spacing:0.08em;color:var(--ink-dim);margin:32px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+    .sub em{color:var(--accent);font-style:normal}
+
+    /* Farm collage grid — tight mosaic */
+    .farm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:16px 0}
+    .farm-grid img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-radius:2px}
+
+    /* Door process — 3 steps */
+    .door-steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0;align-items:end}
+    .door-steps img{width:100%;height:auto;display:block;border-radius:2px}
+
+    /* Phone pair */
+    .phone-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;align-items:start}
+    .phone-pair img{width:100%;height:auto;display:block;border-radius:2px}
+
+    @media(max-width:720px){
+      .g3,.g4,.door-steps{grid-template-columns:1fr 1fr}
+      .farm-grid{grid-template-columns:repeat(2,1fr)}
+      .g2,.phone-pair{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
 <div id="scroll-progress"></div>
@@ -21,76 +48,196 @@
 </nav>
 
 <div class="proj-hero" style="margin-top:60px;background:#1a2214">
-  <div class="img-slot" style="height:100%;border:none;background:#1a2214">
-    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: the finished door, full-length shot in the room</span>
-  </div>
+  <img class="proj-hero-img" src="assets/minecraft/FinishedRealLifeSpruceDoor.jpg" alt="Finished bedroom door painted as a Minecraft spruce door — pixel art wood planks in browns, tans, and greys, full length in room"/>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
       <a href="art.html" class="proj-back">← Visual Work</a>
-      <h1 class="proj-title">MINECRAFT<br><em>DOOR</em></h1>
-      <p class="proj-subtitle">Room Painting &nbsp;·&nbsp; Where It All Started</p>
+      <h1 class="proj-title">MINECRAFT<br><em>20 YEARS</em></h1>
+      <p class="proj-subtitle">Medieval City &nbsp;·&nbsp; Redstone &nbsp;·&nbsp; Command Blocks &nbsp;·&nbsp; A Real Painted Door</p>
     </div>
   </div>
 </div>
 
 <div class="page"><div class="inner">
   <div class="proj-meta-bar">
-    <div class="proj-meta-item"><strong>Medium</strong>Paint on bedroom door</div>
-    <div class="proj-meta-item"><strong>Reference</strong>Minecraft spruce door</div>
-    <div class="proj-meta-item"><strong>Built By</strong>Luke, alone</div>
-    <div class="proj-meta-item"><strong>Why</strong>It's the first thing he sees coming home</div>
+    <div class="proj-meta-item"><strong>Started</strong>Age 5, introduced by older brother</div>
+    <div class="proj-meta-item"><strong>Age 10 feat.</strong>Working iPhone in command blocks</div>
+    <div class="proj-meta-item"><strong>Current</strong>Medieval city + full farm network</div>
+    <div class="proj-meta-item"><strong>IRL</strong>Spruce door painted on bedroom door</div>
   </div>
+
   <div class="proj-body">
     <div class="proj-body-main">
 
-      <h2 class="proj-section-label">The <em>Work</em></h2>
-      <p class="prose">I painted my bedroom door to look exactly like a Minecraft spruce door. Grid by grid, plank by plank, matching the color values as close as I could. I did it alone, and it took longer than you'd think to get the shading right at that scale.</p>
-      <p class="prose">This might look trivial on a portfolio. It isn't to me. Minecraft built my childhood. During COVID I built entire medieval cities, block by block, spending months on structures nobody would ever see except me. I built redstone systems inside underground bunkers: custom piston doors, airlocks, automated lighting, lockdown systems, armor display swaps, hidden crafting tables. Minecraft electronics. The game taught me that building things in detail, for the satisfaction of the system working, was worth the time it took.</p>
-      <p class="prose">The door is the first thing I see when I walk into my room. It's a reminder of who I'm trying to be: someone who builds things, who solves problems, who sees a system and wants to understand it and then improve it. That's the same person who is now building hovercrafts and robotic vehicles. The door is just where it started.</p>
+      <h2 class="proj-section-label">Where It <em>Started</em></h2>
+      <p class="prose">I started playing Minecraft at age 5. My older brother was 10, the normal age to start, and he got me into it. I was too young to really play, but I could observe, and then I could build. Minecraft was my first encounter with systems thinking. You have resources, constraints, rules, and an open-ended goal. The rest is design.</p>
+      <p class="prose">By age 10 I had gone deep into command blocks, the scripting layer underneath the game. Without any tutorials or adult help, I built a working iPhone in 2019: a command block circuit where having certain blocks beneath your hitbox would <code>/clone</code> new screen layouts into place. Lock screen, home screen, apps — each screen was a different cloned structure.</p>
+      <p class="prose">Then came the medieval city, the farms, the underground infrastructure. Hundreds of hours of building things nobody asked me to build, purely because the system wasn't good enough yet. That's still how I operate.</p>
 
-      <div class="gallery-grid cols-2" style="margin:28px 0"><div class="gallery-item" style="height:360px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">The finished door, full length, in the room</span></div>
-        </div><div class="gallery-item" style="height:360px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Detail of the door planks showing the shading and grid work</span></div>
+      <!-- COMMAND BLOCK PHONE -->
+      <div class="sub">Age 10 — <em>Working iPhone in Command Blocks</em></div>
+      <p class="prose" style="margin-bottom:16px">No tutorials. No help. A command block circuit board that used <code>/clone</code> commands to swap between phone screens. The chat message in the screenshot is me narrating: "and now we turn off the phone."</p>
+      <div class="phone-pair">
+        <div>
+          <img class="nat" src="assets/minecraft/WorkingMinecraftPhoneCommandBlockCircuitBoardAge10.png" alt="Command block circuit board for the Minecraft iPhone — rows of command blocks with logic, chat reads 'and now we turn off the phone'"/>
+          <span class="cap">the circuit board — command block logic, age 10</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/minecraft/WorkingMinecraftPhoneAge10.png" alt="Minecraft iPhone screen — pixel art phone body showing a map/screen made of colored blocks"/>
+          <span class="cap">the phone — screen displayed via /clone</span>
         </div>
       </div>
 
-      <div class="gallery-grid cols-3" style="margin:0 0 28px"><div class="gallery-item" style="height:200px">
-          <div class="img-slot" style="height:100%;background:#1a2214"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Minecraft screenshot of original spruce door for comparison</span></div>
-        </div><div class="gallery-item" style="height:200px">
-          <div class="img-slot" style="height:100%;background:#1a2214"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Minecraft medieval city build (COVID era, if you have screenshots)</span></div>
-        </div><div class="gallery-item" style="height:200px">
-          <div class="img-slot" style="height:100%;background:#1a2214"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Redstone contraption screenshot from your builds</span></div>
+      <!-- MEDIEVAL CITY AERIALS — BIG -->
+      <div class="sub">The Medieval <em>City</em></div>
+      <p class="prose" style="margin-bottom:16px">A full city built on a peninsula — medieval architecture, themed districts, underground infrastructure. Both aerials are from the same world, different angles.</p>
+      <div style="margin:0 0 10px">
+        <img class="nat" src="assets/minecraft/MinecraftMedievalCity.png" alt="Aerial view of Minecraft medieval city on a peninsula — dense cluster of medieval buildings, towers, and farms surrounded by water, full overhead shot"/>
+        <span class="cap">aerial 1 — full overhead, peninsula city</span>
+      </div>
+      <div style="margin:0 0 20px">
+        <img class="nat" src="assets/minecraft/MinecraftMedievalCity2.png" alt="Aerial view of Minecraft medieval city from a different angle — shows wider landscape, iron golem farm visible to the east, city detail visible"/>
+        <span class="cap">aerial 2 — wider angle, shows surrounding landscape</span>
+      </div>
+
+      <!-- CITY DETAIL -->
+      <div class="sub">Inside the <em>City</em></div>
+      <div class="g2">
+        <div>
+          <img class="nat" src="assets/minecraft/FarmHouseWithCustomDoorAndCustomFarmInside.png" alt="Large medieval farmhouse building exterior with custom redstone door mechanism visible — tall columned structure in wood and stone"/>
+          <span class="cap">farmhouse exterior — custom redstone door</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/minecraft/BeeFarmHouseExternal.png" alt="Medieval city street view — bee shop with yellow banner, stone plaza, multiple buildings lining the street, city atmosphere"/>
+          <span class="cap">city street — bee shop district</span>
+        </div>
+      </div>
+      <div class="g2">
+        <div>
+          <img class="nat" src="assets/minecraft/InsideBeeFarm.png" alt="Interior of bee farm building — long wooden hall with hanging lanterns, glass enclosure containing bee hives and flowers"/>
+          <span class="cap">bee farm interior — glass enclosure, flower beds</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/minecraft/ExplosionBasedTreeFarmInsideMedievalLoggerBuilding.png" alt="Looking down into medieval logger building courtyard — explosion in progress from TNT tree farm, tree and pool visible below, glass walkways on sides"/>
+          <span class="cap">explosion-based tree farm — inside the logger building</span>
+        </div>
+      </div>
+      <div>
+        <img class="nat" src="assets/minecraft/CustomBuiltDelocalizedSuperSmelterUnderneathMedievalCity.png" alt="Underground super smelter beneath the medieval city — rows of furnaces, redstone, hoppers, glass containers, large automated smelting operation"/>
+        <span class="cap">custom super smelter — delocalized, built underneath the city</span>
+      </div>
+
+      <!-- FARM COLLAGE -->
+      <div class="sub">The Farm <em>Network</em></div>
+      <p class="prose" style="margin-bottom:16px">Every resource automated. Farms span the overworld, nether, and end — each one designed, built, and integrated from scratch.</p>
+      <div class="farm-grid">
+        <div>
+          <img src="assets/minecraft/CreeperAndSugarcaneFarm.png" alt="Creeper and sugarcane farm — tall tower structure over water with green sugarcane growing"/>
+          <span class="cap">creeper + sugarcane farm</span>
+        </div>
+        <div>
+          <img src="assets/minecraft/IronGolemFarm.png" alt="Iron golem farm aerial — large blue-roofed structure with portals and chain mechanism, top-down view"/>
+          <span class="cap">iron golem farm</span>
+        </div>
+        <div>
+          <img src="assets/minecraft/WitherSkeletonFarmNether.png" alt="Wither skeleton farm exterior in the Nether — large platform structure floating in the dark red nether sky"/>
+          <span class="cap">wither skeleton farm — nether</span>
+        </div>
+        <div>
+          <img src="assets/minecraft/WitherSkeletonFarmNetherRoof.png" alt="Wither skeleton farm view from the nether roof — enderman farm platform and portals visible against the End backdrop"/>
+          <span class="cap">wither skeleton farm — roof view</span>
+        </div>
+        <div>
+          <img src="assets/minecraft/HoglinFarm.png" alt="Hoglin farm in the End dimension — massive End island used as farm structure, dark void surroundings"/>
+          <span class="cap">hoglin farm — end dimension</span>
+        </div>
+        <div>
+          <img src="assets/minecraft/EndermanFarm.png" alt="Enderman farm — sand pyramid with water column in the End dimension, portals flanking the structure"/>
+          <span class="cap">enderman farm — End</span>
+        </div>
+        <div>
+          <img src="assets/minecraft/CustomSandStorageSystemInEnd.png" alt="Custom sand storage and duplication system in the End — interior view with slime blocks, pistons, and redstone"/>
+          <span class="cap">custom sand storage — End</span>
+        </div>
+        <div>
+          <img src="assets/minecraft/SandDuplicationMechanism.png" alt="Sand duplication mechanism interior — slime blocks, sand columns, pistons, and redstone circuitry"/>
+          <span class="cap">sand duplication mechanism</span>
         </div>
       </div>
 
-      <div class="callout"><p>"My dream was always to build a house full of gadgets. I can't install a hidden fireball defense system, but I can build hovercrafts and robotic vehicles. Same impulse, different materials."</p></div>
+      <!-- THE DOOR -->
+      <div class="sub">The <em>Door</em></div>
+      <p class="prose">I painted my bedroom door to look exactly like a Minecraft spruce door. Grid by grid, plank by plank, matching the color values as close as I could. It's the first thing I see when I walk into my room.</p>
+      <div class="door-steps">
+        <div>
+          <img class="nat" src="assets/minecraft/PrimerOnlyRealLifeSpruceDoor.jpg" alt="Door with white primer only — blue painter's tape on edges, cat door at bottom, totally blank canvas"/>
+          <span class="cap">primer only — blank canvas</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/minecraft/HalfPaintedRealLifeSpruceDoor.jpg" alt="Door half painted — warm browns and tans applied in pixel columns, grey tones not yet added, blue tape still on"/>
+          <span class="cap">mid-process — some browns in, greys not yet, the pixel grid laid out</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/minecraft/FinishedRealLifeSpruceDoor.jpg" alt="Finished Minecraft spruce door painted on bedroom door — full pixel art with warm browns, dark greys, tans, all planks and shading complete"/>
+          <span class="cap">finished — spruce door, bedroom Austin TX</span>
+        </div>
+      </div>
+
+      <div class="callout"><p>"My dream was always to build a house full of gadgets. I can't rip apart my drywall and insert a hidden fireball defense system, but I can build hovercrafts and robotic vehicles."</p></div>
 
       <h2 class="proj-section-label">What I <em>Learned</em></h2>
-      <div class="learned-block"><div class="learned-num">01</div><div class="learned-text"><strong>Building in detail for no external reason is still worth it.</strong> The medieval cities I built in Minecraft during COVID had no audience and no grade attached. Nobody asked me to build them. That's the purest form of the engineering drive: you build it because you want to see if you can.</div></div><div class="learned-block"><div class="learned-num">02</div><div class="learned-text"><strong>Constraints in Minecraft trained constraint thinking in real engineering.</strong> Redstone works in a grid, on and off signals, no exceptions. Designing complex systems inside those limits is genuinely hard. That kind of thinking carries over.</div></div>
+      <div class="learned-block">
+        <div class="learned-num">01</div>
+        <div class="learned-text"><strong>Building in detail for no external reason is still worth it.</strong> The medieval city had no audience and no grade. Nobody asked me to build it. That's the purest form of the engineering drive — you build it because you want to see if you can, and because the system isn't done yet.</div>
+      </div>
+      <div class="learned-block">
+        <div class="learned-num">02</div>
+        <div class="learned-text"><strong>Redstone trained constraint thinking.</strong> On/off signals, a grid, no exceptions. Designing complex systems — piston doors, airlocks, automated lighting — inside those limits is genuinely hard and carries over into real engineering.</div>
+      </div>
+      <div class="learned-block">
+        <div class="learned-num">03</div>
+        <div class="learned-text"><strong>Command blocks at age 10 were my first real programming.</strong> No loops, no variables, just <code>/clone</code> and pressure plates and a lot of thinking about state. Building a phone that worked — turning screens on and off — required understanding what a program actually does before I had a word for it.</div>
+      </div>
 
     </div>
+
     <div class="proj-body-aside">
-      <div class="spec-box"><div class="spec-box-title">DETAILS</div>
+      <div class="spec-box">
+        <div class="spec-box-title">THE DOOR</div>
         <div class="spec-row"><div class="spec-key">Medium</div><div class="spec-val">Paint on wood door</div></div>
         <div class="spec-row"><div class="spec-key">Reference</div><div class="spec-val">Minecraft spruce door texture</div></div>
         <div class="spec-row"><div class="spec-key">Built alone</div><div class="spec-val">Yes</div></div>
-        <div class="spec-row"><div class="spec-key">Location</div><div class="spec-val">Luke's bedroom, Austin TX</div></div>
+        <div class="spec-row"><div class="spec-key">Location</div><div class="spec-val">Bedroom, Austin TX</div></div>
       </div>
-      <div class="img-slot" style="aspect-ratio:3/4;margin:14px 0"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Door at an angle, showing depth and how it looks in the room</span></div><div class="img-slot" style="aspect-ratio:1/1;margin:14px 0"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Close-up of the grain/shading work on one panel</span></div>
+
+      <img src="assets/minecraft/FinishedRealLifeSpruceDoor.jpg" alt="Finished Minecraft spruce door painted on bedroom door" style="width:100%;height:auto;display:block;margin-top:14px;border-radius:2px"/>
+      <span class="cap">finished door</span>
+
+      <div class="spec-box" style="margin-top:24px">
+        <div class="spec-box-title">THE GAME</div>
+        <div class="spec-row"><div class="spec-key">Started</div><div class="spec-val">Age 5</div></div>
+        <div class="spec-row"><div class="spec-key">iPhone build</div><div class="spec-val">Age 10, command blocks</div></div>
+        <div class="spec-row"><div class="spec-key">City</div><div class="spec-val">Medieval, full peninsula</div></div>
+        <div class="spec-row"><div class="spec-key">Farms</div><div class="spec-val">8+ across all 3 dimensions</div></div>
+      </div>
+
+      <img src="assets/minecraft/MinecraftMedievalCity.png" alt="Aerial of Minecraft medieval city" style="width:100%;height:auto;display:block;margin-top:14px;border-radius:2px"/>
+      <span class="cap">medieval city — aerial</span>
     </div>
   </div>
+
   <div class="proj-nav-bar">
     <a href="e-magazine.html" class="proj-nav-link"><span class="proj-nav-label">Previous</span><span class="proj-nav-title">E Magazine</span></a>
     <a href="art.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">All Visual Work</span><span class="proj-nav-title">Art Overview</span></a>
   </div>
 </div></div>
-<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Minecraft Door</div></footer>
+
+<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Minecraft — Medieval City & Spruce Door</div></footer>
 <script>
 const scrollBar=document.getElementById("scroll-progress");
 window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
-document.querySelectorAll(".reveal,.gallery-item,.learned-block").forEach(el=>io.observe(el));
+document.querySelectorAll(".reveal,.learned-block").forEach(el=>io.observe(el));
 </script>
-</body></html>
+</body>
+</html>
