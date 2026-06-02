@@ -9,22 +9,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
   <style>
-    .award-strip { display:flex; gap:16px; margin:28px 0; flex-wrap:wrap; }
-    .award-card { flex:1; min-width:200px; background:#fef9f0; border:1.5px solid rgba(200,160,0,0.3); border-left:3px solid #c8a000; padding:16px 18px; }
-    .award-place { font-family:var(--display); font-size:36px; letter-spacing:0.04em; color:#c8a000; line-height:1; }
-    .award-name { font-family:var(--mono); font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-mid); margin-top:5px; line-height:1.6; }
+    .award-strip{display:flex;gap:16px;margin:28px 0;flex-wrap:wrap}
+    .award-card{flex:1;min-width:200px;background:#fef9f0;border:1.5px solid rgba(200,160,0,0.3);border-left:3px solid #c8a000;padding:16px 18px}
+    .award-place{font-family:var(--display);font-size:36px;letter-spacing:0.04em;color:#c8a000;line-height:1}
+    .award-name{font-family:var(--mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-mid);margin-top:5px;line-height:1.6}
 
-    /* build process grid — natural height, no cropping */
-    .build-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:16px 0; align-items:start; }
-    .build-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0; align-items:start; }
-    .build-img { width:100%; height:auto; display:block; }
-    .build-label { font-family:var(--hand); font-size:12px; color:var(--ink-dim); text-align:center; display:block; margin-top:4px; margin-bottom:10px; }
-    .build-section-title { font-family:var(--display); font-size:22px; letter-spacing:0.08em; color:var(--ink-dim); margin:28px 0 12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
-    .build-section-title em { color:var(--accent); font-style:normal; }
-
-    .coming-soon-note { font-family:var(--hand); font-size:13px; color:var(--blue-ink); opacity:0.6; text-align:center; display:block; margin-top:6px; }
-
-    @media(max-width:720px){ .build-grid-3,.build-grid-2{ grid-template-columns:1fr } }
+    .nat{width:100%;height:auto;display:block}
+    .cap{font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;display:block;margin-top:4px;margin-bottom:14px}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;align-items:start}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0;align-items:start}
+    .g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin:16px 0;align-items:start}
+    .sub{font-family:var(--display);font-size:20px;letter-spacing:0.08em;color:var(--ink-dim);margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+    .sub em{color:var(--accent);font-style:normal}
+    @media(max-width:720px){.g2,.g3,.g4{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.g2,.g3,.g4{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -43,7 +41,7 @@
 <div class="proj-hero" style="margin-top:60px;background:#1a1410">
   <div class="img-slot" style="height:100%;border:none;background:#1a1410">
     <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Finished diorama — full wide shot showing both sides and aircraft above</span>
+    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Finished diorama — full wide shot, both sides + aircraft</span>
   </div>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
@@ -65,14 +63,8 @@
     </div>
 
     <div class="award-strip">
-      <div class="award-card">
-        <div class="award-place">1st</div>
-        <div class="award-name">Sprachfest Regional<br>German Competition<br>February 2026</div>
-      </div>
-      <div class="award-card">
-        <div class="award-place">3rd</div>
-        <div class="award-name">Classic Model<br>Texas State German Contest<br>March 2026</div>
-      </div>
+      <div class="award-card"><div class="award-place">1st</div><div class="award-name">Sprachfest Regional<br>German Competition<br>February 2026</div></div>
+      <div class="award-card"><div class="award-place">3rd</div><div class="award-name">Classic Model<br>Texas State German Contest<br>March 2026</div></div>
     </div>
 
     <div class="proj-body">
@@ -86,181 +78,115 @@
           One major goal of the design was to create contrast between the cities to display both the true and metaphorical social divide that the wall created. The west side is alive with color, painted murals, green grass, and a bright blue and yellow building. The east side is gray, covered in litter, windows near the wall bricked up so nobody inside could see what freedom looked like. In the middle, between those two vastly different worlds, is all the evil defenses put between people and escape: the watchtower, the patrol path, the anti-vehicle trenches, the barbed wire, the death strip, and the control strips.
         </p>
 
-        <!-- FULL VIEW — needs finished photo -->
+        <!-- ONE finished diorama placeholder -->
         <div class="gallery-item reveal" style="margin:28px 0">
           <div class="img-slot" style="aspect-ratio:16/9">
             <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span class="img-slot-note">Finished diorama — overhead or 3/4 angle</span>
+            <span class="img-slot-note">Finished diorama — overhead or 3/4 angle showing both sides</span>
           </div>
           <span class="gallery-caption">west side (left) vs. east side (right), aircraft suspended above</span>
-          <span class="coming-soon-note">finished photo coming when school resumes</span>
         </div>
 
-        <!-- TWO SIDES — needs finished photos -->
-        <div class="gallery-grid cols-2" style="margin:0 0 28px">
-          <div class="gallery-item" style="aspect-ratio:4/3">
-            <div class="img-slot" style="height:100%">
-              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">West side — murals, green park, blue/yellow building</span>
-            </div>
-            <span class="gallery-caption">west side: color, murals, the brotherly kiss</span>
+        <!-- BASE + PLANNING -->
+        <h2 class="proj-section-label">Building the <em>Base</em></h2>
+        <p class="prose">
+          The foam for the whole base came from scrap left over from an acoustic engineering project my dad had done. The problem was that it came in one thick sheet, so I had to use a jigsaw to cut it down into the right shapes and layers. Before cutting anything, every zone — the east wall, patrol path, dirt strip, control strips, sidewalk, park — was mapped out in masking tape on the foam.
+        </p>
+
+        <div class="g4" style="margin:20px 0">
+          <div>
+            <img class="nat" src="assets/berlin-wall/FoamBaseWithDifferentAreasMarked.jpg" alt="Foam base with masking tape mapping out every zone"/>
+            <span class="cap">every zone planned in tape before a single cut</span>
           </div>
-          <div class="gallery-item" style="aspect-ratio:4/3">
-            <div class="img-slot" style="height:100%">
-              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">East side — gray, litter, bricked-up windows</span>
-            </div>
-            <span class="gallery-caption">east side: gray concrete, trash, no view of the west</span>
+          <div>
+            <img class="nat" src="assets/berlin-wall/CutFoamWithJigsawNextToIt.jpg" alt="Foam board after being cut, jigsaw beside it"/>
+            <span class="cap">after the jigsaw</span>
+          </div>
+          <div>
+            <img class="nat" src="assets/berlin-wall/FoamBoardBase_EastWall.jpg" alt="East wall foam section on the workbench, full scale"/>
+            <span class="cap">east wall section — the full scale of it</span>
+          </div>
+          <div>
+            <img class="nat" src="assets/berlin-wall/MeInRespiratorAndGogglesHoldingFoam.jpg" alt="Luke in respirator and goggles holding foam in garage"/>
+            <span class="cap">full PPE — foam particles are no joke</span>
           </div>
         </div>
 
+        <!-- DEATH STRIP -->
         <h2 class="proj-section-label">The Death <em>Strip</em></h2>
         <p class="prose">
           The section between the two walls took the most research and the most time. Every element in the death strip was real and had to be right. The anti-vehicle trenches were carved foam painted brown with real soil modge-podged on top. The barbed wire was floral wire coiled around a pencil, then stretched out. The watchtower is hand-sculpted clay atop a piece of PVC pipe, painted, and sitting on a carved foam base. The anti-vehicle hedgehogs were popsicle sticks cut and spray painted. The control sand strip, which guards could rake to detect footprints, was made by laying down string, taping over it to keep the string in place, painting the sand color, then adding real sand with modge-podge.
         </p>
 
-        <!-- DEATH STRIP — placeholder slots for finished photos + placeholder for textures -->
-        <div class="gallery-grid cols-3" style="margin:28px 0">
-          <div class="gallery-item" style="aspect-ratio:4/3">
-            <div class="img-slot" style="height:100%">
-              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">Watchtower close-up (clay + PVC)</span>
-            </div>
-            <span class="gallery-caption">watchtower</span>
+        <!-- Wide progress shot first -->
+        <div style="margin:20px 0">
+          <img class="nat" src="assets/berlin-wall/EastWallto1stControlStripProgress.jpg" alt="East wall and first control strip in progress, showing all layered textures: barbed wire, soil, mesh, sand"/>
+          <span class="cap">east wall to first control strip — every layer visible at once</span>
+        </div>
+
+        <div class="g3">
+          <div>
+            <img class="nat" src="assets/berlin-wall/FloralWireWrappedAroundPencil.jpg" alt="Green floral wire tightly coiled around a pencil to form barbed wire"/>
+            <span class="cap">barbed wire: floral wire coiled on a pencil, then stretched</span>
           </div>
-          <div class="gallery-item" style="aspect-ratio:4/3">
-            <div class="img-slot" style="height:100%">
-              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">Anti-vehicle trench with real soil</span>
-            </div>
-            <span class="gallery-caption">anti-vehicle trench</span>
+          <div>
+            <img class="nat" src="assets/berlin-wall/OneSandControlStripDone_LayingDownStringForNext.jpg" alt="One sand control strip complete, yellow string being laid for the next"/>
+            <span class="cap">one strip done — laying string for the next sand technique</span>
           </div>
-          <div class="gallery-item" style="aspect-ratio:4/3">
-            <div class="img-slot" style="height:100%">
-              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">Barbed wire + sand strip — finished look</span>
-            </div>
-            <span class="gallery-caption">barbed wire + control sand strip</span>
+          <div>
+            <img class="nat" src="assets/berlin-wall/PaintingHedgehogs.jpg" alt="Anti-vehicle hedgehogs made from popsicle sticks being spray painted black"/>
+            <span class="cap">hedgehogs: popsicle sticks, spray painted black</span>
           </div>
         </div>
 
-        <div class="gallery-grid cols-2" style="margin:0 0 28px">
-          <div class="gallery-item" style="aspect-ratio:4/3">
-            <div class="img-slot" style="height:100%">
-              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">Wall texture — clay on carved foam, brick and concrete</span>
-            </div>
-            <span class="gallery-caption">wall texture: clay over carved foam</span>
-          </div>
-          <div class="gallery-item" style="aspect-ratio:4/3">
-            <div class="img-slot" style="height:100%">
-              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">West wall — hand-painted murals including the brotherly kiss</span>
-            </div>
-            <span class="gallery-caption">hand-painted murals, west side</span>
-          </div>
+        <div style="margin:10px 0 20px">
+          <img class="nat" src="assets/berlin-wall/FoamBaseWithWireBrushLayingOnTop.jpg" alt="Foam board sections ready, wire brush laying on top"/>
+          <span class="cap">foam sections laid out, wire brush for texturing grass</span>
         </div>
 
+        <!-- AIRCRAFT -->
         <h2 class="proj-section-label">The <em>Aircraft</em></h2>
         <p class="prose">
           Suspended above the whole diorama on a dowel is a model of the Microlight Fox II, the actual aircraft the Bethke brothers used. The frame is made from dowel pieces and wooden skewers. The nose cone came from an old cold brew can. The windshield is cut from a plastic binder sheet. Wings are cardboard. The whole thing is camouflage spray painted in dark green, light green, and black, with metal parts hand painted gray. The wheels are a mix of custom 3D printed parts and LEGO motorcycle wheels. Red Soviet Union stars, printed and modge-podged on the wings and tail, are a nod to the irony of the whole escape.
         </p>
 
-        <!-- AIRCRAFT: frame in progress + finished wheels -->
-        <div class="gallery-grid cols-2" style="margin:28px 0">
+        <!-- Unpainted full width — very wide photo, deserves space -->
+        <div style="margin:20px 0">
+          <img class="nat" src="assets/berlin-wall/UltralightAircraftUnpainted_Cardboard_Can_Dowels.jpg" alt="Unpainted aircraft: Polymaker cardboard wing, cold brew can nose cone, dowel and skewer frame"/>
+          <span class="cap">before paint: cardboard wing, cold brew can nose, dowel frame — all scrap</span>
+        </div>
+
+        <!-- Frame in progress — wide landscape, full width -->
+        <div style="margin:0 0 20px">
+          <img class="nat" src="assets/berlin-wall/FrameOfAircraftInProgress.jpg" alt="Aircraft frame being assembled: skewers, cold brew can nose, cardboard wing, super glue visible"/>
+          <span class="cap">frame mid-construction — skewers, super glue, cold brew can nose cone</span>
+        </div>
+
+        <!-- Wheel prototype + painting in 3-col -->
+        <div class="g3">
           <div>
-            <img class="build-img" src="assets/berlin-wall/FrameOfAircraftInProgress.jpg" alt="Aircraft frame in progress: dowels, skewers, cold brew can nose cone, cardboard wing starting, super glue"/>
-            <span class="build-label">aircraft frame mid-construction: dowels, can, cardboard</span>
+            <img class="nat" src="assets/berlin-wall/WheelCoverCardboradPrototype.jpg" alt="Prototype wheel fairing: silver-painted cold brew can with cardboard fins"/>
+            <span class="cap">wheel fairing prototype before 3D printing</span>
           </div>
-          <div class="gallery-item" style="aspect-ratio:4/3">
-            <div class="img-slot" style="height:100%">
-              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">Finished aircraft suspended above the diorama</span>
-            </div>
-            <span class="gallery-caption">aircraft suspended above the wall</span>
+          <div>
+            <img class="nat" src="assets/berlin-wall/PaintingWing.jpg" alt="Wing being spray painted camouflage green at night outside"/>
+            <span class="cap">camouflage going on the wing at night</span>
+          </div>
+          <div>
+            <img class="nat" src="assets/berlin-wall/PaintingPropellerAndTail.jpg" alt="Propeller and tail sections being painted at night"/>
+            <span class="cap">propeller and tail sections</span>
           </div>
         </div>
 
-        <!-- BOTTOM: Luke in PPE -->
-        <div style="margin-bottom:32px">
-          <img class="build-img" src="assets/berlin-wall/MeInRespiratorAndGogglesHoldingFoam.jpg" alt="Luke wearing full respirator and goggles, holding a piece of foam in the garage"/>
-          <span class="build-label">cutting foam requires proper PPE — particles are no joke</span>
-        </div>
-
-        <!-- ══ BUILD PROCESS ══ -->
-        <h2 class="proj-section-label">Build <em>Process</em></h2>
-        <p class="prose" style="margin-bottom:24px">No finished photos were taken before competition. These are the process shots from building it.</p>
-
-        <div class="build-section-title">Planning + <em>Base</em></div>
-        <div class="build-grid-3">
-          <div>
-            <img class="build-img" src="assets/berlin-wall/FoamBaseWithDifferentAreasMarked.jpg" alt="Foam base with masking tape mapping out each zone: east wall, patrol path, dirt strip, K6, sidewalk, park"/>
-            <span class="build-label">every zone mapped out in masking tape before a single cut</span>
-          </div>
-          <div>
-            <img class="build-img" src="assets/berlin-wall/CutFoamWithJigsawNextToIt.jpg" alt="Cut pink foam board standing on edge next to a Skil jigsaw on the workbench"/>
-            <span class="build-label">the foam after being cut down with the jigsaw</span>
-          </div>
-          <div>
-            <img class="build-img" src="assets/berlin-wall/FoamBoardBase_EastWall.jpg" alt="Large foam board for the east wall laid across a workbench in the garage with tools and wire brush on top"/>
-            <span class="build-label">east wall foam section — the full scale of it</span>
-          </div>
-        </div>
-
-        <div class="build-grid-2">
-          <div>
-            <img class="build-img" src="assets/berlin-wall/FoamBaseWithWireBrushLayingOnTop.jpg" alt="Multiple foam board sections leaning against shelving, wire brush tool resting on top"/>
-            <span class="build-label">foam sections ready for carving, wire brush for texturing</span>
-          </div>
-          <div>
-            <img class="build-img" src="assets/berlin-wall/EastWallto1stControlStripProgress.jpg" alt="Progress shot showing east wall section with barbed wire coil, soil trench, wire mesh, and sand strip layers all visible"/>
-            <span class="build-label">east wall to first control strip — all the layers visible at once</span>
-          </div>
-        </div>
-
-        <div class="build-section-title">Death <em>Strip</em></div>
-        <div class="build-grid-3">
-          <div>
-            <img class="build-img" src="assets/berlin-wall/FloralWireWrappedAroundPencil.jpg" alt="Green floral wire tightly coiled around a yellow pencil, ready to be stretched into barbed wire"/>
-            <span class="build-label">barbed wire: floral wire coiled on a pencil, then stretched</span>
-          </div>
-          <div>
-            <img class="build-img" src="assets/berlin-wall/OneSandControlStripDone_LayingDownStringForNext.jpg" alt="Top view of foam base with one completed sand control strip, yellow string being laid down for the next one, scissors and hot glue visible"/>
-            <span class="build-label">first control strip done — laying string for the sand technique on the next</span>
-          </div>
-          <div>
-            <img class="build-img" src="assets/berlin-wall/PaintingHedgehogs.jpg" alt="Anti-vehicle hedgehogs made from cut popsicle sticks being spray painted black on foam outside"/>
-            <span class="build-label">anti-vehicle hedgehogs: popsicle sticks, spray painted black</span>
-          </div>
-        </div>
-
-        <div class="build-section-title"><em>Aircraft</em> Construction</div>
-        <div class="build-grid-2">
-          <div>
-            <img class="build-img" src="assets/berlin-wall/UltralightAircraftUnpainted_Cardboard_Can_Dowels.jpg" alt="The unpainted aircraft: Polymaker cardboard wing, Starbucks cold brew can nose cone, dowel and skewer frame"/>
-            <span class="build-label">before paint: Polymaker cardboard wing, cold brew can nose, dowel frame</span>
-          </div>
-          <div>
-            <img class="build-img" src="assets/berlin-wall/WheelCoverCardboradPrototype.jpg" alt="Hand holding a prototype wheel cover: silver-painted cold brew can with cardboard fins — precursor to the 3D printed version"/>
-            <span class="build-label">wheel fairing prototype — silver-painted can + cardboard, before 3D printing</span>
-          </div>
-        </div>
-
-        <div class="build-section-title">Aircraft <em>Painting</em></div>
-        <div class="build-grid-2">
-          <div>
-            <img class="build-img" src="assets/berlin-wall/PaintingWing.jpg" alt="Aircraft wing being spray painted camouflage dark green at night outside, spray can visible"/>
-            <span class="build-label">camouflage green going on the wing at night</span>
-          </div>
-          <div>
-            <img class="build-img" src="assets/berlin-wall/PaintingPropellerAndTail.jpg" alt="Propeller and tail sections being painted dark, laid on foam surface outside at night"/>
-            <span class="build-label">painting the propeller and tail sections</span>
-          </div>
+        <!-- Finished wheels — best close-up of something fully done -->
+        <div style="margin:0 0 32px;max-width:480px">
+          <img class="nat" src="assets/berlin-wall/CloseUpFinalWheels.jpg" alt="Close-up of finished 3D printed wheel fairings with LEGO motorcycle wheels underneath"/>
+          <span class="cap">finished wheels: 3D printed fairings over LEGO motorcycle wheels</span>
         </div>
 
         <h2 class="proj-section-label">Making It <em>Work</em></h2>
         <p class="prose">
-          The foam for the whole base came from scrap left over from an acoustic engineering project my dad had done. The problem was that it came in one thick sheet, so I had to use a jigsaw to cut it down into the right shapes and layers. From there, it was days of carving, painting, texturing, and adding detail. Stop signs, pieces of litter, asphalt texture on the east side streets.
+          From there, it was days of carving, painting, texturing, and adding detail. Stop signs, pieces of litter, asphalt texture on the east side streets.
         </p>
         <p class="prose">
           The hardest part was keeping track of what was actually historically accurate. The death strip layout, the specific wall shapes on each side (smooth concrete pipe on top, brick pattern below), the soldier patrol path. Getting those details right was part of what made it a competition piece and not just a model.
@@ -273,25 +199,19 @@
         </div>
         <div class="learned-block">
           <div class="learned-num">02</div>
-          <div class="learned-text"><strong>Showing not telling.</strong> Many art projects in my past up to this point hadn't had such a deep message, and I never had to show such a complex story in one still. But this diorama was different, I had dozens of differences between the East & West to show and zero words, so I learned how to show without telling. Little details like extra infrastructure, bright paint, murals versus bland sidewalks, no murals, a rougher street, and litter can tell tons of aspects about East and West Berlin.</div>
+          <div class="learned-text"><strong>Showing not telling.</strong> Many art projects in my past up to this point hadn't had such a deep message, and I never had to show such a complex story in one still. But this diorama was different, I had dozens of differences between the East &amp; West to show and zero words, so I learned how to show without telling. Little details like extra infrastructure, bright paint, murals versus bland sidewalks, no murals, a rougher street, and litter can tell tons of aspects about East and West Berlin.</div>
         </div>
 
-      </div><!-- /main -->
+      </div>
 
       <div class="proj-body-aside">
-
         <div class="spec-box" style="border-left-color:#c8a000">
           <div class="spec-box-title">AWARDS</div>
           <div class="spec-row"><div class="spec-key">1st Place</div><div class="spec-val">Sprachfest Regional German Competition, Feb 2026</div></div>
           <div class="spec-row"><div class="spec-key">3rd Place</div><div class="spec-val">Classic Model, Texas State German Contest, Mar 2026</div></div>
         </div>
 
-        <div class="img-slot" style="aspect-ratio:3/4;margin:14px 0">
-          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-          <span class="img-slot-note">Award photo at competition</span>
-        </div>
-
-        <div class="spec-box">
+        <div class="spec-box" style="margin-top:14px">
           <div class="spec-box-title">MATERIALS</div>
           <div class="spec-row"><div class="spec-key">Base</div><div class="spec-val">Scrap acoustic foam, cut with jigsaw</div></div>
           <div class="spec-row"><div class="spec-key">Wall texture</div><div class="spec-val">Air dry clay on carved foam</div></div>
@@ -309,10 +229,11 @@
           <div class="spec-row"><div class="spec-key">Soviet stars</div><div class="spec-val">Printed, modge-podged on</div></div>
         </div>
 
-        <!-- Finished wheels — only truly finished detail photo available -->
-        <img src="assets/berlin-wall/CloseUpFinalWheels.jpg" alt="Close-up of the finished 3D printed wheel fairings with LEGO motorcycle wheels underneath" style="width:100%;height:auto;display:block;margin-top:14px"/>
-        <span class="build-label">the finished wheels: 3D printed fairings over LEGO motorcycle wheels</span>
+        <img src="assets/berlin-wall/CloseUpFinalWheels.jpg" alt="Finished 3D printed wheel fairings with LEGO motorcycle wheels" style="width:100%;height:auto;display:block;margin-top:14px"/>
+        <span class="cap">finished wheels</span>
 
+        <img src="assets/berlin-wall/EastWallto1stControlStripProgress.jpg" alt="Death strip layers in progress" style="width:100%;height:auto;display:block;margin-top:8px"/>
+        <span class="cap">death strip in progress</span>
       </div>
     </div>
 
@@ -320,7 +241,6 @@
       <a href="paranoid.html" class="proj-nav-link"><span class="proj-nav-label">Previous</span><span class="proj-nav-title">Paranoid</span></a>
       <a href="portrait.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">Next</span><span class="proj-nav-title">Self Portrait</span></a>
     </div>
-
   </div>
 </div>
 
@@ -329,7 +249,7 @@
 const scrollBar=document.getElementById("scroll-progress");
 window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
-document.querySelectorAll(".reveal,.gallery-item,.learned-block").forEach(el=>io.observe(el));
+document.querySelectorAll(".reveal,.learned-block").forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
