@@ -2,11 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Linoleum Carving — Luke Jurbergs — Luke Jurbergs</title>
+  <title>Tortoise Island — Linoleum Print — Luke Jurbergs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .nat{width:100%;height:auto;display:block}
+    .cap{font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;display:block;margin-top:5px;margin-bottom:14px}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;align-items:start}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0;align-items:start}
+    .g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin:16px 0;align-items:start}
+    .sub{font-family:var(--display);font-size:20px;letter-spacing:0.08em;color:var(--ink-dim);margin:32px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+    .sub em{color:var(--accent);font-style:normal}
+    @media(max-width:720px){.g3,.g4{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 <div id="scroll-progress"></div>
@@ -20,16 +30,13 @@
   </ul>
 </nav>
 
-<div class="proj-hero" style="margin-top:60px;background:#1a1410">
-  <div class="img-slot" style="height:100%;border:none;background:#1a1410">
-    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: best print variation, dark background preferred</span>
-  </div>
+<div class="proj-hero" style="margin-top:60px;background:#0d0d0d">
+  <img class="proj-hero-img" src="assets/linoleum-carving/TestPrint10FullTortoiseBlackAndWhite.jpg" alt="Test Print #10 — Tortoise Island, full black ink on white paper, signed 10-16-2023"/>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
       <a href="art.html" class="proj-back">← Visual Work</a>
-      <h1 class="proj-title">LINOLEUM<br><em>CARVING</em></h1>
-      <p class="proj-subtitle">Printmaking &nbsp;·&nbsp; Art 1 &nbsp;·&nbsp; Tortoise with a Garden Shell</p>
+      <h1 class="proj-title">TORTOISE<br><em>ISLAND</em></h1>
+      <p class="proj-subtitle">Linoleum Block Print &nbsp;·&nbsp; Art 1 &nbsp;·&nbsp; 10 Test Prints, 3 Finals</p>
     </div>
   </div>
 </div>
@@ -38,8 +45,10 @@
   <div class="proj-meta-bar">
     <div class="proj-meta-item"><strong>Medium</strong>Linoleum Block, Printmaking</div>
     <div class="proj-meta-item"><strong>Subject</strong>Tortoise with mushroom and fern shell garden</div>
-
+    <div class="proj-meta-item"><strong>Test Prints</strong>10</div>
+    <div class="proj-meta-item"><strong>Final Prints</strong>3 color variations</div>
   </div>
+
   <div class="proj-body">
     <div class="proj-body-main">
 
@@ -48,46 +57,130 @@
       <p class="prose">The project was nearly a disaster. When the deadline arrived, I had barely touched the linoleum. To finish it, I gave up my lunch period for 10 days straight and carved during the break, every day, until it was done. In the end, I had a beautiful final product and finished on time, even if fitting in eating was a struggle.</p>
       <p class="prose">Art 1 grading for the entire year was harsh, but there were many chances. First attempt: 60. Work some more. Second attempt: 75. Third: 90. Fourth: 95. That structure forced me to improve and put in a ton of effort past completion, allowing me to learn and grow. I remember a charcoal drawing where I particularly struggled making a high quality piece of art, I had to resubmit like 10 times and come into tons of lunch office hours.</p>
 
-      <div class="gallery-grid cols-2" style="margin:28px 0"><div class="gallery-item" style="height:300px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Best print: darkest, highest contrast ink on paper</span></div>
-        </div><div class="gallery-item" style="height:300px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Second color variation print, different ink</span></div>
+      <!-- THREE FINALS TOGETHER -->
+      <div class="sub">Three <em>Final Prints</em></div>
+      <div style="margin:16px 0">
+        <img class="nat" src="assets/linoleum-carving/Final3PrintsArrangedSidewaysSideBySide.jpg" alt="All three final prints laid side by side — red, blue/purple, and dark navy"/>
+        <span class="cap">all three final prints — red to black, blue to purple, dark navy</span>
+      </div>
+
+      <div class="g3">
+        <div>
+          <img class="nat" src="assets/linoleum-carving/FinalPrint1.jpg" alt="Final Print 1/3 — red to black ink gradient"/>
+          <span class="cap">final 1/3 — red to black</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/linoleum-carving/FinalPrint2.jpg" alt="Final Print 2/3 — blue to purple ink gradient"/>
+          <span class="cap">final 2/3 — blue to purple</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/linoleum-carving/FinalPrint3.jpg" alt="Final Print 3/3 — dark navy ink"/>
+          <span class="cap">final 3/3 — dark navy</span>
         </div>
       </div>
 
-      <div class="gallery-grid cols-3" style="margin:0 0 28px"><div class="gallery-item" style="height:200px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Third print variation showing color experiment</span></div>
-        </div><div class="gallery-item" style="height:200px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Linoleum block itself, showing carved lines</span></div>
-        </div><div class="gallery-item" style="height:200px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Close-up of shell texture showing fern/mushroom carving</span></div>
+      <!-- PROCESS -->
+      <div class="sub">Design to <em>Block</em></div>
+      <div class="g4">
+        <div>
+          <img class="nat" src="assets/linoleum-carving/InitialSketchInGraphite.jpg" alt="Initial graphite sketch of the tortoise with mushroom and fern shell design"/>
+          <span class="cap">initial graphite sketch</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/linoleum-carving/CarbonPaperInitialSketchTransferInBlueInk.jpg" alt="Carbon paper transfer of the design in blue ink"/>
+          <span class="cap">carbon paper transfer — blue ink</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/linoleum-carving/CarbonPaperAlmostFullyUsedBlueInkTracedOverWithBlack.jpg" alt="Carbon paper almost fully used, blue ink traced over with black for depth"/>
+          <span class="cap">blue ink traced over in black</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/linoleum-carving/CarbonPaperStampedOntoLinoleumBlockWithSomeCarvingStarted.jpg" alt="Design stamped onto the linoleum block with some carving already started"/>
+          <span class="cap">stamped onto linoleum, carving started</span>
+        </div>
+      </div>
+
+      <!-- TEST PRINTS -->
+      <div class="sub">10 <em>Test Prints</em></div>
+      <div class="g3">
+        <div>
+          <img class="nat" src="assets/linoleum-carving/TestPrint2.jpg" alt="Test Print #2 — very early stage, minimal carving, mostly dark"/>
+          <span class="cap">test print #2 — early stage</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/linoleum-carving/TestPrint5.jpg" alt="Test Print #5 — more carving done, pencil for scale, mid-stage"/>
+          <span class="cap">test print #5 — midway</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/linoleum-carving/StackOfTestPrintsOnWall.jpg" alt="Stack of test prints displayed on the classroom wall, test print #7 visible on top"/>
+          <span class="cap">stack of test prints pinned up — #7 on top</span>
         </div>
       </div>
 
       <h2 class="proj-section-label">What I <em>Learned</em></h2>
-      <div class="learned-block"><div class="learned-num">01</div><div class="learned-text"><strong>"I'm Finished!" is not truly finished.</strong> Submitting my hard work and receiving low grade after low grade and having to keep working was brutal, but really it was better than submitting once and getting a 100. By the fourth pass, the carving's lighting and detail had improved massively.</div></div><div class="learned-block"><div class="learned-num">02</div><div class="learned-text"><strong>Every carved line is permanent.</strong> Unlike drawing where you can erase, linoleum is additive subtraction. You remove material and it stays removed. Every cut has to be intentional because you can't undo it, which makes you slow down and think before you cut.</div></div>
+      <div class="learned-block">
+        <div class="learned-num">01</div>
+        <div class="learned-text"><strong>"I'm Finished!" is not truly finished.</strong> Submitting my hard work and receiving low grade after low grade and having to keep working was brutal, but really it was better than submitting once and getting a 100. By the fourth pass, the carving's lighting and detail had improved massively.</div>
+      </div>
+      <div class="learned-block">
+        <div class="learned-num">02</div>
+        <div class="learned-text"><strong>Every carved line is permanent.</strong> Unlike drawing where you can erase, linoleum is additive subtraction. You remove material and it stays removed. Every cut has to be intentional because you can't undo it, which makes you slow down and think before you cut.</div>
+      </div>
+
+      <!-- CHARCOAL RESUBMISSIONS -->
+      <div class="sub">The Charcoal <em>Resubmissions</em></div>
+      <p class="prose" style="margin-bottom:20px">A separate assignment from the same class — referenced still life in charcoal. The four submissions shown here represent the progression from first attempt to the one that finally got the grade.</p>
+      <div class="g4">
+        <div>
+          <img class="nat" src="assets/linoleum-carving/ReferencedStrugglingCharcoalDrawing_Submission1_MessyDarknessBasedOnDetailDensity.jpg" alt="Charcoal drawing submission 1 — dark wherever details are dense, uneven"/>
+          <span class="cap">submission 1 — dark wherever details are</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/linoleum-carving/ReferencedStrugglingCharcoalDrawing_Submission2_MessyShadingButBetterBad3DShapesHarshOutlinesAroundShapesToo.jpg" alt="Charcoal drawing submission 2 — better but harsh outlines and bad 3D shaping"/>
+          <span class="cap">submission 2 — better but still harsh outlines</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/linoleum-carving/ReferencedStrugglingCharcoalDrawing_Submission3_BetterShading.jpg" alt="Charcoal drawing submission 3 — noticeably better shading and form"/>
+          <span class="cap">submission 3 — shading improving</span>
+        </div>
+        <div>
+          <img class="nat" src="assets/linoleum-carving/ReferencedStrugglingCharcoalDrawing_Submission4_BestShading.jpg" alt="Charcoal drawing submission 4 — best shading, smooth tones, solid forms"/>
+          <span class="cap">submission 4 — finally got it</span>
+        </div>
+      </div>
 
     </div>
+
     <div class="proj-body-aside">
-      <div class="spec-box"><div class="spec-box-title">DETAILS</div>
+      <div class="spec-box">
+        <div class="spec-box-title">DETAILS</div>
         <div class="spec-row"><div class="spec-key">Medium</div><div class="spec-val">Linoleum block + ink on paper</div></div>
-        <div class="spec-row"><div class="spec-key">Test Print Variations</div><div class="spec-val">10</div></div>
-        <div class="spec-row"><div class="spec-key">Final Stamped Variations</div><div class="spec-val">3</div></div>
+        <div class="spec-row"><div class="spec-key">Test Prints</div><div class="spec-val">10</div></div>
+        <div class="spec-row"><div class="spec-key">Final Prints</div><div class="spec-val">3 color variations</div></div>
         <div class="spec-row"><div class="spec-key">Subject</div><div class="spec-val">Tortoise with a mushroom and fern shell</div></div>
+        <div class="spec-row"><div class="spec-key">Title</div><div class="spec-val">Tortoise Island</div></div>
       </div>
-      <div class="img-slot" style="aspect-ratio:4/3;margin:14px 0"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Linoleum block, carved, held in hand or on table</span></div><div class="img-slot" style="aspect-ratio:3/4;margin:14px 0"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Print hung or displayed, with texture visible</span></div>
+
+      <img src="assets/linoleum-carving/FinalPrint2.jpg" alt="Final Print 2/3 — blue to purple gradient" style="width:100%;height:auto;display:block;margin-top:14px"/>
+      <span class="cap">final 2/3 — blue to purple</span>
+
+      <img src="assets/linoleum-carving/InitialSketchInGraphite.jpg" alt="Initial graphite sketch of Tortoise Island" style="width:100%;height:auto;display:block;margin-top:10px"/>
+      <span class="cap">where it started</span>
     </div>
   </div>
+
   <div class="proj-nav-bar">
     <a href="portrait.html" class="proj-nav-link"><span class="proj-nav-label">Previous</span><span class="proj-nav-title">Self Portrait</span></a>
     <a href="koi-bowl.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">Next</span><span class="proj-nav-title">Koi Fish Bowl</span></a>
   </div>
 </div></div>
-<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Linoleum Carving</div></footer>
+
+<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Tortoise Island — Linoleum Print</div></footer>
 <script>
 const scrollBar=document.getElementById("scroll-progress");
 window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
-document.querySelectorAll(".reveal,.gallery-item,.learned-block").forEach(el=>io.observe(el));
+document.querySelectorAll(".reveal,.learned-block").forEach(el=>io.observe(el));
 </script>
-</body></html>
+</body>
+</html>
