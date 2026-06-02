@@ -2,11 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>E Magazine — Architecture Article — Luke Jurbergs — Luke Jurbergs</title>
+  <title>E Magazine — Architecture Article — Luke Jurbergs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .nat{width:100%;height:auto;display:block}
+    .cap{font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;display:block;margin-top:5px;margin-bottom:14px}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;align-items:start}
+    .sub{font-family:var(--display);font-size:20px;letter-spacing:0.08em;color:var(--ink-dim);margin:32px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+    .sub em{color:var(--accent);font-style:normal}
+
+    /* Full-bleed spread images — huge, edge-to-edge within the content column */
+    .spread-wrap{margin:24px 0;width:100%}
+    .spread-wrap img{width:100%;height:auto;display:block;border-radius:3px;box-shadow:0 4px 24px rgba(0,0,0,0.18)}
+    .spread-wrap .cap{margin-top:8px}
+
+    /* Covers side-by-side */
+    .covers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;align-items:start}
+    .covers img{width:100%;height:auto;display:block;border-radius:3px;box-shadow:0 4px 24px rgba(0,0,0,0.18)}
+
+    @media(max-width:600px){.covers{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 <div id="scroll-progress"></div>
@@ -21,75 +39,129 @@
 </nav>
 
 <div class="proj-hero" style="margin-top:60px;background:#1a1a24">
-  <div class="img-slot" style="height:100%;border:none;background:#1a1a24">
-    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: magazine spread photo, the finished printed article or layout</span>
-  </div>
+  <img class="proj-hero-img" src="assets/e-magazine/ModernPaletteFrontcover.png" alt="The Modern Palette — Spring 2024 front cover, geometric abstract design in red, teal, orange, and navy"/>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
       <a href="art.html" class="proj-back">← Visual Work</a>
-      <h1 class="proj-title">E MAGAZINE<br><em>ARCHITECTURE</em></h1>
-      <p class="proj-subtitle">Journalism / Design &nbsp;·&nbsp; Spring 2024</p>
+      <h1 class="proj-title">THE MODERN<br><em>PALETTE</em></h1>
+      <p class="proj-subtitle">E-Zine &nbsp;·&nbsp; LASA Freshman Year &nbsp;·&nbsp; Spring 2024</p>
     </div>
   </div>
 </div>
 
 <div class="page"><div class="inner">
   <div class="proj-meta-bar">
-    <div class="proj-meta-item"><strong>Type</strong>Magazine Feature Article</div>
-    <div class="proj-meta-item"><strong>Topic</strong>Architecture as Art</div>
-    <div class="proj-meta-item"><strong>Interviews</strong>3 architects</div>
-    <div class="proj-meta-item"><strong>Published</strong>E Magazine, Spring 2024</div>
+    <div class="proj-meta-item"><strong>Publication</strong>The Modern Palette, Spring 2024</div>
+    <div class="proj-meta-item"><strong>Role</strong>Photo Editor + Writer</div>
+    <div class="proj-meta-item"><strong>Pieces</strong>Feature article + infographic</div>
+    <div class="proj-meta-item"><strong>Class</strong>E-Zine, LASA</div>
   </div>
+
   <div class="proj-body">
     <div class="proj-body-main">
 
-      <h2 class="proj-section-label">The <em>Article</em></h2>
-      <p class="prose">The article covers the question of whether architecture is art, using three architects in Austin with completely different answers. Maanasa Nathan from Furman and Keil Architects argues yes, drawing parallels between architectural movements and art history. Katrina Winsko from Andersson Wise Architects talks about the balance between evoking emotion and building for function. Chris Daemmrich, an architect and educator, disagrees with both and says architecture lives outside art because art doesn't need to be useful.</p>
-      <p class="prose">The entire project was done without adult guidance. Getting the interviews meant reaching out to the firms myself, arranging the meetings, going to their offices, asking the questions, taking photos of their workspaces, and collecting press packages. The writing, layout, and photo editing were all done independently.</p>
-      <p class="prose">The article ended up being two full pages of the magazine, including photos I took at the firms. The story doesn't land on a single answer to whether architecture is art, which was intentional. Three smart people who do this work every day see it completely differently.</p>
+      <h2 class="proj-section-label">The <em>Magazine</em></h2>
+      <p class="prose">The Modern Palette is LASA's student-run art magazine. I contributed two pieces to the Spring 2024 issue as a freshman: a four-page feature article on architecture as art, and a two-page infographic on European architectural styles. Both were entirely self-directed.</p>
 
-      <div class="gallery-grid cols-2" style="margin:28px 0"><div class="gallery-item" style="height:300px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Full two-page spread from the printed E Magazine</span></div>
-        </div><div class="gallery-item" style="height:300px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">You interviewing or photographing one of the architects at their office</span></div>
+      <!-- COVERS -->
+      <div class="sub">The <em>Covers</em></div>
+      <p class="prose" style="margin-bottom:16px">Front and back covers of the Spring 2024 issue — bold geometric abstraction in the magazine's signature palette of navy, red, teal, and orange.</p>
+      <div class="covers">
+        <div>
+          <img src="assets/e-magazine/ModernPaletteFrontcover.png" alt="The Modern Palette Spring 2024 front cover — bold geometric shapes in navy, red, teal, orange with magazine title"/>
+          <span class="cap">front cover — The Modern Palette, Spring 2024</span>
+        </div>
+        <div>
+          <img src="assets/e-magazine/ModernPaletteBackCover.png" alt="The Modern Palette back cover — geometric art with quote about art being the heartbeat of humanity"/>
+          <span class="cap">back cover — "Art is like the heartbeat of humanity"</span>
         </div>
       </div>
 
-      <div class="gallery-grid cols-3" style="margin:0 0 28px"><div class="gallery-item" style="height:200px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Photo you took at Furman + Keil Architects office</span></div>
-        </div><div class="gallery-item" style="height:200px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Photo you took at Andersson Wise or Daemmrich's space</span></div>
-        </div><div class="gallery-item" style="height:200px">
-          <div class="img-slot" style="height:100%;background:#e8e3d8"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Magazine layout close-up showing text and photos together</span></div>
-        </div>
+      <!-- ARTISTRY IN ARCHITECTURE -->
+      <div class="sub">Artistry In <em>Architecture</em> — Feature Article</div>
+      <p class="prose">The article covers three Austin architects with completely different views on whether architecture is art. Maanasa Nathan from Furman + Keil Architects argues yes. Katrina Winsko from Andersson Wise Architects talks about balancing emotion with function. Chris Daemmrich — architect, educator, and social justice advocate — disagrees with both, arguing architecture lives outside art because art doesn't need to be useful.</p>
+      <p class="prose">Getting the interviews meant reaching out to the firms myself, arranging the meetings, going to their offices, asking the questions, taking photos of their workspaces, and collecting press packages. The writing, layout, and photo editing were all done independently, without adult guidance. I was credited as photo editor.</p>
+      <p class="prose">The story doesn't land on a single answer — intentionally. Three smart people who do this work every day see it completely differently, and collapsing them into a conclusion would have been dishonest.</p>
+
+      <div class="spread-wrap">
+        <img src="assets/e-magazine/ArtistryInArchitecturePages1-2.png" alt="Artistry In Architecture — magazine spread pages 20-21, opening spread with large photo of a modern home, article text, pull quote from Maanasa Nathan, photo of architects at a drafting table"/>
+        <span class="cap">pages 20–21 — opening spread, Luke Jurbergs photo editor</span>
+      </div>
+
+      <div class="spread-wrap">
+        <img src="assets/e-magazine/ArtistryInArchitecturePages3-4.png" alt="Artistry In Architecture — magazine spread pages 22-23, continuation with Daemmrich and Winsko quotes, photos of buildings and lecture"/>
+        <span class="cap">pages 22–23 — Daemmrich and Winsko, closing spread</span>
+      </div>
+
+      <!-- INFOGRAPHIC -->
+      <div class="sub">Diverse Designs — <em>Architecture in Europe</em> Infographic</div>
+      <p class="prose">A two-page infographic mapping eight architectural styles across Europe — Gothic, Modern, Post-Modern, Victorian, Tudor, Colonial, Contemporary, and Bauhaus. Each style gets a timeline, key characteristics, and an illustrated building. A color-coded map shows which countries favor which style, based on a survey of citizens across the continent.</p>
+      <p class="prose">The infographic was fully designed and illustrated — I drew and planned it by hand first, then built the final version digitally.</p>
+
+      <div class="spread-wrap">
+        <img src="assets/e-magazine/ArchitectureInEuropeInfographicPages1-2.png" alt="Diverse Designs infographic — two-page spread pages 24-25 showing 8 European architectural styles with illustrated buildings, timelines, and a color-coded map of Europe"/>
+        <span class="cap">pages 24–25 — Diverse Designs infographic</span>
+      </div>
+
+      <div class="sub">The <em>Sketch</em></div>
+      <p class="prose" style="margin-bottom:16px">Hand-drawn planning sketch for the infographic — the full layout roughed out in pencil and colored pencil before going to digital. Buildings, map, numbered styles, sources, and editorial framing all worked out on paper first.</p>
+      <div class="spread-wrap">
+        <img src="assets/e-magazine/ArchitectureInEuropeInfographicSketch.jpg" alt="Hand-drawn pencil and colored pencil sketch for the Architecture in Europe infographic — buildings, Europe map, numbered styles 1-8, layout planning"/>
+        <span class="cap">planning sketch — pencil + colored pencil, before going digital</span>
       </div>
 
       <h2 class="proj-section-label">What I <em>Learned</em></h2>
-      <div class="learned-block"><div class="learned-num">01</div><div class="learned-text"><strong>Getting access is a skill.</strong> Sending cold emails to architecture firms, getting them to say yes, showing up, conducting the interview, taking photos, and leaving with usable material. None of that is automatic. All of it is learnable.</div></div><div class="learned-block"><div class="learned-num">02</div><div class="learned-text"><strong>The best stories don't have one answer.</strong> Nathan says architecture is art. Daemmrich says it isn't. Winsko is somewhere in the middle. Letting those three coexist in one article, without collapsing them into a conclusion, made it more interesting to read.</div></div><div class="learned-block"><div class="learned-num">03</div><div class="learned-text"><strong>Design and writing are both about space.</strong> Laying out a magazine spread means deciding what goes where, what size, what breathes and what doesn't. Same decisions as a building, just at a smaller scale.</div></div>
+      <div class="learned-block">
+        <div class="learned-num">01</div>
+        <div class="learned-text"><strong>Getting access is a skill.</strong> Sending cold emails to architecture firms, getting them to say yes, showing up, conducting the interview, taking photos, and leaving with usable material — none of that is automatic. All of it is learnable, and I learned it as a freshman.</div>
+      </div>
+      <div class="learned-block">
+        <div class="learned-num">02</div>
+        <div class="learned-text"><strong>The best stories don't have one answer.</strong> Nathan says architecture is art. Daemmrich says it isn't. Winsko is somewhere in the middle. Letting those three coexist in one article without collapsing them into a conclusion made it more honest and more interesting to read.</div>
+      </div>
+      <div class="learned-block">
+        <div class="learned-num">03</div>
+        <div class="learned-text"><strong>Design and writing are both about space.</strong> Laying out a magazine spread means deciding what goes where, what size, what breathes and what doesn't. Same decisions as a building, just at a smaller scale.</div>
+      </div>
+      <div class="learned-block">
+        <div class="learned-num">04</div>
+        <div class="learned-text"><strong>Sketch first.</strong> The infographic only worked because I'd already solved the layout problems on paper. The digital version was execution; the real design thinking happened with pencil and colored pencil on a single sheet.</div>
+      </div>
 
     </div>
+
     <div class="proj-body-aside">
-      <div class="spec-box"><div class="spec-box-title">DETAILS</div>
-        <div class="spec-row"><div class="spec-key">Publication</div><div class="spec-val">E Magazine, Spring 2024</div></div>
-        <div class="spec-row"><div class="spec-key">Topic</div><div class="spec-val">Architecture as Art vs. Function</div></div>
-        <div class="spec-row"><div class="spec-key">Interviews</div><div class="spec-val">3 architects (3 different firms)</div></div>
-        <div class="spec-row"><div class="spec-key">Photos</div><div class="spec-val">Taken by Luke at their offices</div></div>
+      <div class="spec-box">
+        <div class="spec-box-title">DETAILS</div>
+        <div class="spec-row"><div class="spec-key">Publication</div><div class="spec-val">The Modern Palette, Spring 2024</div></div>
+        <div class="spec-row"><div class="spec-key">Role</div><div class="spec-val">Photo editor + writer</div></div>
+        <div class="spec-row"><div class="spec-key">Article</div><div class="spec-val">4 pages, 3 architect interviews</div></div>
+        <div class="spec-row"><div class="spec-key">Infographic</div><div class="spec-val">2 pages, 8 architectural styles</div></div>
+        <div class="spec-row"><div class="spec-key">Photos</div><div class="spec-val">Taken at architect offices</div></div>
         <div class="spec-row"><div class="spec-key">Adult guidance</div><div class="spec-val">None</div></div>
+        <div class="spec-row"><div class="spec-key">Class</div><div class="spec-val">E-Zine, LASA Freshman Year</div></div>
       </div>
-      <div class="img-slot" style="aspect-ratio:3/4;margin:14px 0"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">Magazine cover or the article's opening page</span></div><div class="img-slot" style="aspect-ratio:4/3;margin:14px 0"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note">One of your best photos taken at an architect's office</span></div>
+
+      <img src="assets/e-magazine/ModernPaletteFrontcover.png" alt="The Modern Palette front cover" style="width:100%;height:auto;display:block;margin-top:14px;border-radius:3px;box-shadow:0 4px 20px rgba(0,0,0,0.15)"/>
+      <span class="cap" style="font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;display:block;margin-top:5px;margin-bottom:14px">front cover</span>
+
+      <img src="assets/e-magazine/ModernPaletteBackCover.png" alt="The Modern Palette back cover" style="width:100%;height:auto;display:block;margin-top:4px;border-radius:3px;box-shadow:0 4px 20px rgba(0,0,0,0.15)"/>
+      <span class="cap" style="font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;display:block;margin-top:5px;margin-bottom:14px">back cover</span>
     </div>
   </div>
+
   <div class="proj-nav-bar">
     <a href="koi-bowl.html" class="proj-nav-link"><span class="proj-nav-label">Previous</span><span class="proj-nav-title">Koi Fish Bowl</span></a>
     <a href="minecraft-door.html" class="proj-nav-link" style="text-align:right"><span class="proj-nav-label">Next</span><span class="proj-nav-title">Minecraft Door</span></a>
   </div>
 </div></div>
-<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">E Magazine</div></footer>
+
+<footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">The Modern Palette — E-Zine</div></footer>
 <script>
 const scrollBar=document.getElementById("scroll-progress");
 window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
-document.querySelectorAll(".reveal,.gallery-item,.learned-block").forEach(el=>io.observe(el));
+document.querySelectorAll(".reveal,.learned-block").forEach(el=>io.observe(el));
 </script>
-</body></html>
+</body>
+</html>
