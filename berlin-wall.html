@@ -13,11 +13,18 @@
     .award-card { flex:1; min-width:200px; background:#fef9f0; border:1.5px solid rgba(200,160,0,0.3); border-left:3px solid #c8a000; padding:16px 18px; }
     .award-place { font-family:var(--display); font-size:36px; letter-spacing:0.04em; color:#c8a000; line-height:1; }
     .award-name { font-family:var(--mono); font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-mid); margin-top:5px; line-height:1.6; }
-    .material-list { display:flex; flex-direction:column; gap:0; }
-    .material-row { display:grid; grid-template-columns:130px 1fr; gap:12px; padding:9px 0; border-bottom:1px solid var(--border); font-family:var(--mono); font-size:10px; }
-    .material-row:last-child { border-bottom:none; }
-    .material-key { color:var(--ink-dim); letter-spacing:0.12em; text-transform:uppercase; font-size:9px; padding-top:1px; }
-    .material-val { color:var(--ink); line-height:1.7; }
+
+    /* build process grid — natural height, no cropping */
+    .build-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:16px 0; align-items:start; }
+    .build-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0; align-items:start; }
+    .build-img { width:100%; height:auto; display:block; }
+    .build-label { font-family:var(--hand); font-size:12px; color:var(--ink-dim); text-align:center; display:block; margin-top:4px; margin-bottom:10px; }
+    .build-section-title { font-family:var(--display); font-size:22px; letter-spacing:0.08em; color:var(--ink-dim); margin:28px 0 12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+    .build-section-title em { color:var(--accent); font-style:normal; }
+
+    .coming-soon-note { font-family:var(--hand); font-size:13px; color:var(--blue-ink); opacity:0.6; text-align:center; display:block; margin-top:6px; }
+
+    @media(max-width:720px){ .build-grid-3,.build-grid-2{ grid-template-columns:1fr } }
   </style>
 </head>
 <body>
@@ -32,13 +39,11 @@
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — finished diorama photo needed -->
 <div class="proj-hero" style="margin-top:60px;background:#1a1410">
-  <!-- 📷 HERO: Wide shot of the full diorama showing both sides and the aircraft above
-       Replace with: <img class="proj-hero-img" src="assets/berlin-wall-hero.jpg" alt="Berlin Wall Diorama"> -->
   <div class="img-slot" style="height:100%;border:none;background:#1a1410">
     <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Hero: full diorama wide shot showing both sides and aircraft above</span>
+    <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Finished diorama — full wide shot showing both sides and aircraft above</span>
   </div>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
@@ -59,7 +64,6 @@
       <div class="proj-meta-item"><strong>Awards</strong>1st Place + 3rd Place</div>
     </div>
 
-    <!-- AWARDS -->
     <div class="award-strip">
       <div class="award-card">
         <div class="award-place">1st</div>
@@ -82,31 +86,29 @@
           One major goal of the design was to create contrast between the cities to display both the true and metaphorical social divide that the wall created. The west side is alive with color, painted murals, green grass, and a bright blue and yellow building. The east side is gray, covered in litter, windows near the wall bricked up so nobody inside could see what freedom looked like. In the middle, between those two vastly different worlds, is all the evil defenses put between people and escape: the watchtower, the patrol path, the anti-vehicle trenches, the barbed wire, the death strip, and the control strips.
         </p>
 
-        <!-- FULL VIEW -->
-        <div class="gallery-item reveal" style="height:340px;margin:28px 0">
-          <!-- 📷 ADD: Best overhead or 3/4 angle of the whole diorama -->
-          <div class="img-slot" style="height:100%">
+        <!-- FULL VIEW — needs finished photo -->
+        <div class="gallery-item reveal" style="margin:28px 0">
+          <div class="img-slot" style="aspect-ratio:16/9">
             <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span class="img-slot-note">Full diorama, 3/4 or overhead angle showing both sides and the aircraft</span>
+            <span class="img-slot-note">Finished diorama — overhead or 3/4 angle</span>
           </div>
           <span class="gallery-caption">west side (left) vs. east side (right), aircraft suspended above</span>
+          <span class="coming-soon-note">finished photo coming when school resumes</span>
         </div>
 
-        <!-- TWO SIDES -->
+        <!-- TWO SIDES — needs finished photos -->
         <div class="gallery-grid cols-2" style="margin:0 0 28px">
-          <div class="gallery-item" style="height:240px">
-            <!-- 📷 ADD: West side close-up showing mural, park, bright building -->
+          <div class="gallery-item" style="aspect-ratio:4/3">
             <div class="img-slot" style="height:100%">
               <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">West side close-up: murals, green park, blue/yellow building</span>
+              <span class="img-slot-note">West side — murals, green park, blue/yellow building</span>
             </div>
             <span class="gallery-caption">west side: color, murals, the brotherly kiss</span>
           </div>
-          <div class="gallery-item" style="height:240px">
-            <!-- 📷 ADD: East side close-up showing gray, bland buildings, litter, bricked windows -->
+          <div class="gallery-item" style="aspect-ratio:4/3">
             <div class="img-slot" style="height:100%">
               <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">East side close-up: gray, litter, bricked-up windows</span>
+              <span class="img-slot-note">East side — gray, litter, bricked-up windows</span>
             </div>
             <span class="gallery-caption">east side: gray concrete, trash, no view of the west</span>
           </div>
@@ -114,52 +116,46 @@
 
         <h2 class="proj-section-label">The Death <em>Strip</em></h2>
         <p class="prose">
-          The section between the two walls took the most research and the most time. Every element in the death strip was real and had to be right. The anti-vehicle trenches were carved foam painted brown with real soil modge-podged on top. The barbed wire was floral wire coiled around a pencil, then stretched out. The watchtower is hand-sculpted clay atop a piece of PVC pipe, painted, and sitting on a carved foam base. The anti-vehicle hedgehogs were popsicle sticks cut and spray painted. The control sand strip, which guards could rake to detect footprints, was made by laying down string, taping over it to keep the string in place, painting the sand color, then adidng real sand with modge-podge.
+          The section between the two walls took the most research and the most time. Every element in the death strip was real and had to be right. The anti-vehicle trenches were carved foam painted brown with real soil modge-podged on top. The barbed wire was floral wire coiled around a pencil, then stretched out. The watchtower is hand-sculpted clay atop a piece of PVC pipe, painted, and sitting on a carved foam base. The anti-vehicle hedgehogs were popsicle sticks cut and spray painted. The control sand strip, which guards could rake to detect footprints, was made by laying down string, taping over it to keep the string in place, painting the sand color, then adding real sand with modge-podge.
         </p>
 
-        <!-- DEATH STRIP / DETAIL SHOTS -->
+        <!-- DEATH STRIP — placeholder slots for finished photos + placeholder for textures -->
         <div class="gallery-grid cols-3" style="margin:28px 0">
-          <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: Watchtower close-up -->
+          <div class="gallery-item" style="aspect-ratio:4/3">
             <div class="img-slot" style="height:100%">
               <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
               <span class="img-slot-note">Watchtower close-up (clay + PVC)</span>
             </div>
             <span class="gallery-caption">watchtower</span>
           </div>
-          <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: Anti-vehicle trench with real soil -->
+          <div class="gallery-item" style="aspect-ratio:4/3">
             <div class="img-slot" style="height:100%">
               <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
               <span class="img-slot-note">Anti-vehicle trench with real soil</span>
             </div>
             <span class="gallery-caption">anti-vehicle trench</span>
           </div>
-          <div class="gallery-item" style="height:200px">
-            <!-- 📷 ADD: Barbed wire + sand strip with raked lines -->
+          <div class="gallery-item" style="aspect-ratio:4/3">
             <div class="img-slot" style="height:100%">
               <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">Barbed wire and sand strip with raked lines</span>
+              <span class="img-slot-note">Barbed wire + sand strip — finished look</span>
             </div>
-            <span class="gallery-caption">barbed wire + sand strip</span>
+            <span class="gallery-caption">barbed wire + control sand strip</span>
           </div>
         </div>
 
-        <!-- MORE DETAIL SHOTS -->
         <div class="gallery-grid cols-2" style="margin:0 0 28px">
-          <div class="gallery-item" style="height:220px">
-            <!-- 📷 ADD: Concrete wall texture on east side (clay on carved foam) -->
+          <div class="gallery-item" style="aspect-ratio:4/3">
             <div class="img-slot" style="height:100%">
               <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">Wall texture detail: clay on carved foam, brick and concrete textures</span>
+              <span class="img-slot-note">Wall texture — clay on carved foam, brick and concrete</span>
             </div>
             <span class="gallery-caption">wall texture: clay over carved foam</span>
           </div>
-          <div class="gallery-item" style="height:220px">
-            <!-- 📷 ADD: Mural on west side, showing the brotherly kiss -->
+          <div class="gallery-item" style="aspect-ratio:4/3">
             <div class="img-slot" style="height:100%">
               <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">West wall mural: hand-painted brotherly kiss and other murals</span>
+              <span class="img-slot-note">West wall — hand-painted murals including the brotherly kiss</span>
             </div>
             <span class="gallery-caption">hand-painted murals, west side</span>
           </div>
@@ -170,34 +166,96 @@
           Suspended above the whole diorama on a dowel is a model of the Microlight Fox II, the actual aircraft the Bethke brothers used. The frame is made from dowel pieces and wooden skewers. The nose cone came from an old cold brew can. The windshield is cut from a plastic binder sheet. Wings are cardboard. The whole thing is camouflage spray painted in dark green, light green, and black, with metal parts hand painted gray. The wheels are a mix of custom 3D printed parts and LEGO motorcycle wheels. Red Soviet Union stars, printed and modge-podged on the wings and tail, are a nod to the irony of the whole escape.
         </p>
 
-        <!-- AIRCRAFT -->
+        <!-- AIRCRAFT: frame in progress + finished wheels -->
         <div class="gallery-grid cols-2" style="margin:28px 0">
-          <div class="gallery-item" style="height:240px">
-            <!-- 📷 ADD: Aircraft close-up showing detail, stars, camouflage -->
-            <div class="img-slot" style="height:100%">
-              <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">Aircraft close-up: camouflage paint, Soviet stars, cold brew can nose cone</span>
-            </div>
-            <span class="gallery-caption">Microlight Fox II model, cold brew nose cone, Soviet stars</span>
+          <div>
+            <img class="build-img" src="assets/berlin-wall/FrameOfAircraftInProgress.jpg" alt="Aircraft frame in progress: dowels, skewers, cold brew can nose cone, cardboard wing starting, super glue"/>
+            <span class="build-label">aircraft frame mid-construction: dowels, can, cardboard</span>
           </div>
-          <div class="gallery-item" style="height:240px">
-            <!-- 📷 ADD: Aircraft suspended above diorama, showing it in context -->
+          <div class="gallery-item" style="aspect-ratio:4/3">
             <div class="img-slot" style="height:100%">
               <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span class="img-slot-note">Aircraft suspended by dowel above the diorama</span>
+              <span class="img-slot-note">Finished aircraft suspended above the diorama</span>
             </div>
             <span class="gallery-caption">aircraft suspended above the wall</span>
           </div>
         </div>
 
-        <!-- BOTTOM WIDE -->
-        <div class="gallery-item reveal" style="height:280px;margin-bottom:32px">
-          <!-- 📷 ADD: Another full-view angle, or you working on the diorama -->
-          <div class="img-slot" style="height:100%">
-            <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span class="img-slot-note">You building or presenting the diorama, or alternate full view angle</span>
+        <!-- BOTTOM: Luke in PPE -->
+        <div style="margin-bottom:32px">
+          <img class="build-img" src="assets/berlin-wall/MeInRespiratorAndGogglesHoldingFoam.jpg" alt="Luke wearing full respirator and goggles, holding a piece of foam in the garage"/>
+          <span class="build-label">cutting foam requires proper PPE — particles are no joke</span>
+        </div>
+
+        <!-- ══ BUILD PROCESS ══ -->
+        <h2 class="proj-section-label">Build <em>Process</em></h2>
+        <p class="prose" style="margin-bottom:24px">No finished photos were taken before competition. These are the process shots from building it.</p>
+
+        <div class="build-section-title">Planning + <em>Base</em></div>
+        <div class="build-grid-3">
+          <div>
+            <img class="build-img" src="assets/berlin-wall/FoamBaseWithDifferentAreasMarked.jpg" alt="Foam base with masking tape mapping out each zone: east wall, patrol path, dirt strip, K6, sidewalk, park"/>
+            <span class="build-label">every zone mapped out in masking tape before a single cut</span>
           </div>
-          <span class="gallery-caption">building and presenting</span>
+          <div>
+            <img class="build-img" src="assets/berlin-wall/CutFoamWithJigsawNextToIt.jpg" alt="Cut pink foam board standing on edge next to a Skil jigsaw on the workbench"/>
+            <span class="build-label">the foam after being cut down with the jigsaw</span>
+          </div>
+          <div>
+            <img class="build-img" src="assets/berlin-wall/FoamBoardBase_EastWall.jpg" alt="Large foam board for the east wall laid across a workbench in the garage with tools and wire brush on top"/>
+            <span class="build-label">east wall foam section — the full scale of it</span>
+          </div>
+        </div>
+
+        <div class="build-grid-2">
+          <div>
+            <img class="build-img" src="assets/berlin-wall/FoamBaseWithWireBrushLayingOnTop.jpg" alt="Multiple foam board sections leaning against shelving, wire brush tool resting on top"/>
+            <span class="build-label">foam sections ready for carving, wire brush for texturing</span>
+          </div>
+          <div>
+            <img class="build-img" src="assets/berlin-wall/EastWallto1stControlStripProgress.jpg" alt="Progress shot showing east wall section with barbed wire coil, soil trench, wire mesh, and sand strip layers all visible"/>
+            <span class="build-label">east wall to first control strip — all the layers visible at once</span>
+          </div>
+        </div>
+
+        <div class="build-section-title">Death <em>Strip</em></div>
+        <div class="build-grid-3">
+          <div>
+            <img class="build-img" src="assets/berlin-wall/FloralWireWrappedAroundPencil.jpg" alt="Green floral wire tightly coiled around a yellow pencil, ready to be stretched into barbed wire"/>
+            <span class="build-label">barbed wire: floral wire coiled on a pencil, then stretched</span>
+          </div>
+          <div>
+            <img class="build-img" src="assets/berlin-wall/OneSandControlStripDone_LayingDownStringForNext.jpg" alt="Top view of foam base with one completed sand control strip, yellow string being laid down for the next one, scissors and hot glue visible"/>
+            <span class="build-label">first control strip done — laying string for the sand technique on the next</span>
+          </div>
+          <div>
+            <img class="build-img" src="assets/berlin-wall/PaintingHedgehogs.jpg" alt="Anti-vehicle hedgehogs made from cut popsicle sticks being spray painted black on foam outside"/>
+            <span class="build-label">anti-vehicle hedgehogs: popsicle sticks, spray painted black</span>
+          </div>
+        </div>
+
+        <div class="build-section-title"><em>Aircraft</em> Construction</div>
+        <div class="build-grid-2">
+          <div>
+            <img class="build-img" src="assets/berlin-wall/UltralightAircraftUnpainted_Cardboard_Can_Dowels.jpg" alt="The unpainted aircraft: Polymaker cardboard wing, Starbucks cold brew can nose cone, dowel and skewer frame"/>
+            <span class="build-label">before paint: Polymaker cardboard wing, cold brew can nose, dowel frame</span>
+          </div>
+          <div>
+            <img class="build-img" src="assets/berlin-wall/WheelCoverCardboradPrototype.jpg" alt="Hand holding a prototype wheel cover: silver-painted cold brew can with cardboard fins — precursor to the 3D printed version"/>
+            <span class="build-label">wheel fairing prototype — silver-painted can + cardboard, before 3D printing</span>
+          </div>
+        </div>
+
+        <div class="build-section-title">Aircraft <em>Painting</em></div>
+        <div class="build-grid-2">
+          <div>
+            <img class="build-img" src="assets/berlin-wall/PaintingWing.jpg" alt="Aircraft wing being spray painted camouflage dark green at night outside, spray can visible"/>
+            <span class="build-label">camouflage green going on the wing at night</span>
+          </div>
+          <div>
+            <img class="build-img" src="assets/berlin-wall/PaintingPropellerAndTail.jpg" alt="Propeller and tail sections being painted dark, laid on foam surface outside at night"/>
+            <span class="build-label">painting the propeller and tail sections</span>
+          </div>
         </div>
 
         <h2 class="proj-section-label">Making It <em>Work</em></h2>
@@ -228,10 +286,9 @@
           <div class="spec-row"><div class="spec-key">3rd Place</div><div class="spec-val">Classic Model, Texas State German Contest, Mar 2026</div></div>
         </div>
 
-        <!-- 📷 ADD: Award photo, you holding the trophy or at the competition -->
         <div class="img-slot" style="aspect-ratio:3/4;margin:14px 0">
           <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-          <span class="img-slot-note">Award photo at competition or with trophy</span>
+          <span class="img-slot-note">Award photo at competition</span>
         </div>
 
         <div class="spec-box">
@@ -252,11 +309,9 @@
           <div class="spec-row"><div class="spec-key">Soviet stars</div><div class="spec-val">Printed, modge-podged on</div></div>
         </div>
 
-        <!-- 📷 ADD: Close-up of a favorite detail (wheels, barbed wire, mural, etc.) -->
-        <div class="img-slot" style="aspect-ratio:1/1;margin-top:14px">
-          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span class="img-slot-note">Your favorite detail close-up (wheels, mural, barbed wire, etc.)</span>
-        </div>
+        <!-- Finished wheels — only truly finished detail photo available -->
+        <img src="assets/berlin-wall/CloseUpFinalWheels.jpg" alt="Close-up of the finished 3D printed wheel fairings with LEGO motorcycle wheels underneath" style="width:100%;height:auto;display:block;margin-top:14px"/>
+        <span class="build-label">the finished wheels: 3D printed fairings over LEGO motorcycle wheels</span>
 
       </div>
     </div>
