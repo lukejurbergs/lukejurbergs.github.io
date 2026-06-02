@@ -1,0 +1,1 @@
+E-Magazine about Art, Luke Jurbergs' portion focusing on art in architecture, interviewing 3 different professional architects from 3 different firms, and creating an article with an infographic. He also created the front and back covers.
