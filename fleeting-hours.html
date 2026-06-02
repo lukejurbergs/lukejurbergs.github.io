@@ -7,6 +7,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .still{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+    .film-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0;align-items:start}
+    .film-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:20px 0;align-items:start}
+    .img-caption{font-family:var(--hand);font-size:12px;color:var(--ink-dim);text-align:center;display:block;margin-top:4px;margin-bottom:8px}
+    @media(max-width:720px){.film-grid-2,.film-grid-3{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 <div id="scroll-progress"></div>
@@ -20,11 +27,9 @@
   </ul>
 </nav>
 
+<!-- HERO — the cliché opening shot, 8:14am alarm clock -->
 <div class="proj-hero" style="margin-top:60px;background:#0c0d10">
-  <div class="img-slot" style="height:100%;border:none;background:#0c0d10">
-    <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    <span class="img-slot-note" style="color:rgba(255,255,255,0.15)">Hero: still from the film. Piano, or the outdoor pickleball scene.</span>
-  </div>
+  <img class="proj-hero-img" src="assets/fleeting-hours/ClicheStartWithAlarmClock.png" alt="Luke asleep in bed beside an alarm clock reading 8:14"/>
   <div class="proj-hero-overlay">
     <div class="proj-hero-content">
       <a href="art.html" class="proj-back">← Visual Work</a>
@@ -48,11 +53,7 @@
 
         <!-- VIDEO EMBED -->
         <div class="video-embed" style="margin-bottom:32px">
-          <!-- ADD VIDEO EMBED HERE when link is available -->
-          <div class="video-embed-placeholder">
-            <div class="play-icon">&#9654;</div>
-            <span class="video-embed-note">Add video embed when available</span>
-          </div>
+          <iframe src="https://www.youtube.com/embed/La_03MFKmlU" title="Fleeting Hours" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 
         <h2 class="proj-section-label">The <em>Film</em></h2>
@@ -66,35 +67,31 @@
           This was one of my first films made individually for my AVP class. No crew, no supervisors, just my camera, and a piece of music I was in the middle of learning. I think it accurately depicts my life, and since it was my introduction to film it holds a special place in my heart.
         </p>
 
-        <!-- GALLERY: scenes from the film -->
-        <div class="gallery-grid cols-3" style="margin:28px 0">
-          <div class="gallery-item" style="height:200px">
-            <!-- ADD: Opening piano shot -->
-            <div class="img-slot" style="height:100%;background:#0c0d10"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Opening piano shot, hands on keys</span></div>
-            <span class="gallery-caption">bach, well tempered clavier no.2</span>
+        <!-- ROW 1: piano, pickleball shoe, math -->
+        <div class="film-grid-3">
+          <div>
+            <img class="still" src="assets/fleeting-hours/PlayingPrelude2.png" alt="Luke from behind at the upright piano at home, sheet music on the stand"/>
+            <span class="img-caption">bach, prelude no.2</span>
           </div>
-          <div class="gallery-item" style="height:200px">
-            <!-- ADD: Pickleball scene, outdoors -->
-            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Pickleball, outdoor shot</span></div>
-            <span class="gallery-caption">pickleball</span>
+          <div>
+            <img class="still" src="assets/fleeting-hours/RunningShoesReallyClosePickleball.png" alt="Extreme low-angle close-up of a running shoe on the pickleball court, motion blur"/>
+            <span class="img-caption">pickleball</span>
           </div>
-          <div class="gallery-item" style="height:200px">
-            <!-- ADD: Computer / math work -->
-            <div class="img-slot" style="height:100%;background:#0c0d10"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Computer work or math on laptop</span></div>
-            <span class="gallery-caption">work</span>
+          <div>
+            <img class="still" src="assets/fleeting-hours/WorkingOnMath.png" alt="Close-up of Luke's hand writing math problems in a notebook at night, keyboard in background"/>
+            <span class="img-caption">grinding math problems</span>
           </div>
         </div>
 
-        <div class="gallery-grid cols-2" style="margin:0 0 28px">
-          <div class="gallery-item" style="height:240px">
-            <!-- ADD: Falling asleep / end of day -->
-            <div class="img-slot" style="height:100%;background:#0a0b0e"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">End of the day, falling asleep as the song ends</span></div>
-            <span class="gallery-caption">the song ends</span>
+        <!-- ROW 2: leaving the house, celebrating -->
+        <div class="film-grid-2">
+          <div>
+            <img class="still" src="assets/fleeting-hours/LeavingHouse.png" alt="Luke stepping out the front door of his house, Halloween pumpkin and welcome flag visible"/>
+            <span class="img-caption">leaving the house</span>
           </div>
-          <div class="gallery-item" style="height:240px">
-            <!-- ADD: Piano keys close-up or you playing -->
-            <div class="img-slot" style="height:100%;background:#111"><svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Piano keys close-up or you playing, warm light</span></div>
-            <span class="gallery-caption">keys, close</span>
+          <div>
+            <img class="still" src="assets/fleeting-hours/CelebratingPickleBallWin.png" alt="Luke celebrating on the pickleball court with his paddle raised, dad in background"/>
+            <span class="img-caption">celebrating a win with dad</span>
           </div>
         </div>
 
@@ -122,11 +119,14 @@
           <div class="spec-row"><div class="spec-key">Class</div><div class="spec-val">Audio/Visual Production</div></div>
           <div class="spec-row"><div class="spec-key">Music</div><div class="spec-val">Bach Prelude and Fugue No.2, Well Tempered Clavier</div></div>
           <div class="spec-row"><div class="spec-key">Piano Teacher</div><div class="spec-val">Angelo Lembesis</div></div>
+          <div class="spec-row"><div class="spec-key">Watch</div><div class="spec-val"><a href="https://youtu.be/La_03MFKmlU" target="_blank" style="color:var(--accent)">youtu.be/La_03MFKmlU</a></div></div>
         </div>
-        <div class="img-slot" style="aspect-ratio:3/4;margin-top:14px;background:#0c0d10">
-          <svg class="img-slot-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          <span class="img-slot-note" style="color:rgba(255,255,255,0.18)">Best still from the film</span>
-        </div>
+
+        <img src="assets/fleeting-hours/CinematicCloseUpWritingOnAssignment.png" alt="Extreme close-up of fingers writing on an assignment at night, moody blue glow in background" style="width:100%;display:block;margin-top:14px"/>
+        <span class="img-caption">writing at night</span>
+
+        <img src="assets/fleeting-hours/ClicheStartWithAlarmClock.png" alt="Luke asleep beside an 8:14 alarm clock" style="width:100%;display:block;margin-top:10px"/>
+        <span class="img-caption">the cliché opening — 8:14am</span>
       </div>
     </div>
 
@@ -136,12 +136,13 @@
     </div>
   </div>
 </div>
+
 <footer><div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div><div class="footer-tag">Fleeting Hours</div></footer>
 <script>
 const scrollBar=document.getElementById("scroll-progress");
 window.addEventListener("scroll",()=>{const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;scrollBar.style.width=Math.min(100,pct)+"%";document.getElementById("main-nav").classList.toggle("scrolled",window.scrollY>40);},{passive:true});
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("visible");io.unobserve(e.target);});},{threshold:0.08});
-document.querySelectorAll(".reveal,.gallery-item,.learned-block").forEach(el=>io.observe(el));
+document.querySelectorAll(".reveal,.learned-block").forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
