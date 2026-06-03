@@ -139,10 +139,10 @@
   */
   .logo-throw {
     position: absolute;
-    top: -700px;
-    right: 100px;
-    width: 500px;
-    height: 380px;
+    top: -350px;      /* much lower — sits near the intro text, not floating high above */
+    right: 80px;
+    width: 520px;
+    height: 600px;    /* tall zone so logos can spread far vertically */
     z-index: 5;
     pointer-events: none;
   }
@@ -189,20 +189,24 @@
     100%{ opacity:1; transform:translate(var(--tx),var(--ty)) rotate(var(--tr)) scale(1); }
   }
 
-  /* Logos bigger (68–72px), scattered across the 500px wide zone */
-  .lc-ps { width:70px; left:240px; bottom:20px; --tx: 100px; --ty:-280px; --tr:-25deg; }
-  .lc-ae { width:70px; left:290px; bottom:10px; --tx: -20px; --ty:-340px; --tr: 22deg; }
-  .lc-pr { width:70px; left:200px; bottom:30px; --tx: 170px; --ty:-230px; --tr:-42deg; }
-  .lc-lr { width:64px; left:340px; bottom:15px; --tx:-100px; --ty:-300px; --tr: 35deg; }
-  .lc-id { width:64px; left:260px; bottom:25px; --tx:  60px; --ty:-320px; --tr:-18deg; }
-  .lc-ai { width:64px; left:210px; bottom:35px; --tx: -80px; --ty:-260px; --tr: 48deg; }
+  /*
+     Logos: 90–100px. All start at bottom-center (jar mouth).
+     --ty ranges: -80px (lowest, stays near jar) to -560px (highest, near title).
+     440px of vertical spread. --tx ranges: -200px to +210px horizontal scatter.
+  */
+  .lc-ps { width:100px; left:210px; bottom:10px; --tx: 210px;  --ty: -90px; --tr:-30deg; }
+  .lc-ae { width:100px; left:210px; bottom:10px; --tx: -60px;  --ty:-480px; --tr: 20deg; }
+  .lc-pr { width:100px; left:210px; bottom:10px; --tx: 180px;  --ty:-300px; --tr:-48deg; }
+  .lc-lr { width: 92px; left:210px; bottom:10px; --tx:-200px;  --ty:-180px; --tr: 40deg; }
+  .lc-id { width: 92px; left:210px; bottom:10px; --tx:  70px;  --ty:-560px; --tr:-16deg; }
+  .lc-ai { width: 92px; left:210px; bottom:10px; --tx:-160px;  --ty:-390px; --tr: 55deg; }
 
-  .logos-fired .lc-ps { animation: throw0 0.7s cubic-bezier(.2,.8,.4,1) 0.00s forwards; }
-  .logos-fired .lc-ae { animation: throw1 0.7s cubic-bezier(.2,.8,.4,1) 0.18s forwards; }
-  .logos-fired .lc-pr { animation: throw2 0.7s cubic-bezier(.2,.8,.4,1) 0.36s forwards; }
-  .logos-fired .lc-lr { animation: throw3 0.7s cubic-bezier(.2,.8,.4,1) 0.54s forwards; }
-  .logos-fired .lc-id { animation: throw4 0.7s cubic-bezier(.2,.8,.4,1) 0.72s forwards; }
-  .logos-fired .lc-ai { animation: throw5 0.7s cubic-bezier(.2,.8,.4,1) 0.90s forwards; }
+  .logos-fired .lc-ps { animation: throw0 0.8s cubic-bezier(.2,.8,.4,1) 0.00s forwards; }
+  .logos-fired .lc-ae { animation: throw1 0.8s cubic-bezier(.2,.8,.4,1) 0.20s forwards; }
+  .logos-fired .lc-pr { animation: throw2 0.8s cubic-bezier(.2,.8,.4,1) 0.40s forwards; }
+  .logos-fired .lc-lr { animation: throw3 0.8s cubic-bezier(.2,.8,.4,1) 0.60s forwards; }
+  .logos-fired .lc-id { animation: throw4 0.8s cubic-bezier(.2,.8,.4,1) 0.80s forwards; }
+  .logos-fired .lc-ai { animation: throw5 0.8s cubic-bezier(.2,.8,.4,1) 1.00s forwards; }
 
   /* ─────────────────────────────────────────────────────
      CLAPPERBOARD
@@ -519,12 +523,12 @@
 
       <!-- LOGOS — scroll-triggered throw animation, z:5 (above everything) -->
       <div class="logo-throw" id="logo-throw" aria-hidden="true">
-        <div class="logo-chip lc-ps"><img src="assets/visual-work/PhotoshopLogo.png"    width="50" alt=""/></div>
-        <div class="logo-chip lc-ae"><img src="assets/visual-work/AfterEffectsLogo.png" width="50" alt=""/></div>
-        <div class="logo-chip lc-pr"><img src="assets/visual-work/PremiereProLogo.png"  width="50" alt=""/></div>
-        <div class="logo-chip lc-lr"><img src="assets/visual-work/LightroomLogo.png"    width="46" alt=""/></div>
-        <div class="logo-chip lc-id"><img src="assets/visual-work/InDesignLogo.png"     width="46" alt=""/></div>
-        <div class="logo-chip lc-ai"><img src="assets/visual-work/IllustratorLogo.png"  width="46" alt=""/></div>
+        <div class="logo-chip lc-ps"><img src="assets/visual-work/PhotoshopLogo.png"    width="100" alt=""/></div>
+        <div class="logo-chip lc-ae"><img src="assets/visual-work/AfterEffectsLogo.png" width="100" alt=""/></div>
+        <div class="logo-chip lc-pr"><img src="assets/visual-work/PremiereProLogo.png"  width="100" alt=""/></div>
+        <div class="logo-chip lc-lr"><img src="assets/visual-work/LightroomLogo.png"    width="92" alt=""/></div>
+        <div class="logo-chip lc-id"><img src="assets/visual-work/InDesignLogo.png"     width="92" alt=""/></div>
+        <div class="logo-chip lc-ai"><img src="assets/visual-work/IllustratorLogo.png"  width="92" alt=""/></div>
       </div>
 
       <!-- CLAPPERBOARD — in the empty right half of the Fleeting Hours row -->
