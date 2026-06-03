@@ -11,14 +11,12 @@
   <link rel="stylesheet" href="shared.css"/>
   <style>
 
-  /* ─────────────────────────────────────────
-     PAGE SHELL
-  ───────────────────────────────────────── */
+  /* ── PAGE SHELL ── */
   .page-band {
     padding-top: 120px;
     background: var(--bg);
     position: relative;
-    overflow: visible; /* props bleed out */
+    overflow-x: clip; /* allow vertical overflow for props, clip horizontal */
   }
   .page-band-inner {
     max-width: 1400px;
@@ -27,245 +25,7 @@
     position: relative;
   }
 
-  /* ─────────────────────────────────────────
-     HEADER TEXT
-  ───────────────────────────────────────── */
-  .page-eyebrow {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-    margin-bottom: 14px;
-    opacity: 0;
-    animation: fadeUp 0.6s 0.1s forwards;
-    position: relative; z-index: 4;
-  }
-  .page-eyebrow a { color: var(--ink-dim); text-decoration: none; transition: color .2s; }
-  .page-eyebrow a:hover { color: var(--accent); }
-
-  .page-title-huge {
-    font-family: var(--display);
-    font-size: clamp(72px, 11vw, 160px);
-    letter-spacing: 0.04em;
-    line-height: 0.9;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.2s forwards;
-    position: relative; z-index: 4;
-    display: inline-block;
-  }
-  .page-title-huge .red { color: var(--accent); }
-  .page-title-huge .blk { color: var(--ink); }
-
-  .page-intro {
-    max-width: 520px;
-    font-family: var(--mono);
-    font-size: 12px;
-    line-height: 2.1;
-    color: var(--ink-mid);
-    margin-top: 28px;
-    margin-bottom: 52px;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.35s forwards;
-    position: relative; z-index: 4;
-  }
-  .page-intro strong { color: var(--ink); font-weight: 400; }
-
-  /* ─────────────────────────────────────────
-     FILM TAPE — vertical strips on right edge forming a corner triangle
-  ───────────────────────────────────────── */
-  .corner-tape {
-    position: absolute;
-    top: 0;
-    right: 0;
-    /* tape is horizontal image — rotate 90deg so it runs top-to-bottom */
-    width: 52px;     /* height of the tape strip when rotated */
-    height: 500px;
-    overflow: hidden;
-    opacity: 0.22;
-    z-index: 1;
-    pointer-events: none;
-  }
-  .corner-tape img {
-    /* rotate the horizontal tape image 90deg, then stretch to fill the strip height */
-    width: 500px;
-    height: 52px;
-    display: block;
-    transform: rotate(90deg) translateX(0) translateY(-52px);
-    transform-origin: top left;
-    max-width: none;
-  }
-
-  /* second strip inset, angled slightly to form the triangle corner shape */
-  .corner-tape-2 {
-    position: absolute;
-    top: 20px;
-    right: 64px;
-    width: 42px;
-    height: 380px;
-    overflow: hidden;
-    opacity: 0.14;
-    z-index: 1;
-    pointer-events: none;
-    transform: rotate(-8deg);
-    transform-origin: top right;
-  }
-  .corner-tape-2 img {
-    width: 380px;
-    height: 42px;
-    display: block;
-    transform: rotate(90deg) translateY(-42px);
-    transform-origin: top left;
-    max-width: none;
-  }
-
-  /* ─────────────────────────────────────────
-     PAINTBRUSH JAR — half behind top of Paranoid/PA cards, brushes peek up
-     The film-section-wrap is position:relative.
-     The film-grid cards start at top ~0 of the wrap (after the header).
-     We place the jar so its bottom half = hidden behind the grid cards,
-     top half (the brushes) = visible above/through the card top edge.
-     z-index: 0 means behind cards (z-index: 2 on film-grid).
-  ───────────────────────────────────────── */
-  .brush-zone {
-    position: absolute;
-    /* section-head + sweep-line ≈ 56px from top of film-section-wrap.
-       Jar image is ~300px tall at 240px wide.
-       We want brushes to appear ~120px above card top, jar body hidden behind cards.
-       So: top = card_top - brush_height/2 = 56 - 150 = -94px from wrap top */
-    top: -94px;
-    right: 28px;
-    width: 240px;
-    z-index: 0;     /* behind film cards (z-index 2) */
-    pointer-events: none;
-  }
-  .brush-zone img { width: 100%; height: auto; display: block; }
-
-  /* logo-throw anchored so logos fly from above the jar mouth */
-  /* jar mouth is roughly at: top -94px + 60px (top of jar) = -34px from wrap top */
-  /* logo-throw top should be around wrap_top - 200px to fill whitespace by title */
-
-  /* ─────────────────────────────────────────
-     LOGO THROW — logos thrown up from above the brush jar
-     Positioned above brush-zone, z-index 3 (on top of everything)
-  ───────────────────────────────────────── */
-  .logo-throw {
-    position: absolute;
-    /* float logos in the whitespace to the right of the title — above the brushes */
-    top: -320px;     /* well above the film section, into the title area whitespace */
-    right: 10px;
-    width: 260px;
-    height: 300px;
-    z-index: 3;
-    pointer-events: none;
-  }
-  .logo-chip {
-    position: absolute;
-    opacity: 0;
-    animation: logoThrow 4s ease-out infinite;
-  }
-  .logo-chip img { display: block; border-radius: 8px; }
-
-  /* Each logo thrown from bottom-center upward with different arcs */
-  .lc-ps  { width:48px; left:130px; bottom:0;   animation-delay:0.0s; --lry:-130px; --lrx: 15px; --lrr:-20deg; }
-  .lc-ae  { width:48px; left: 60px; bottom:10px; animation-delay:0.6s; --lry:-190px; --lrx:-25px; --lrr: 16deg; }
-  .lc-pr  { width:48px; left:160px; bottom:20px; animation-delay:1.1s; --lry:-145px; --lrx: 35px; --lrr:-32deg; }
-  .lc-lr  { width:44px; left: 30px; bottom:5px;  animation-delay:1.7s; --lry:-200px; --lrx:-45px; --lrr: 28deg; }
-  .lc-id  { width:44px; left:100px; bottom:15px; animation-delay:2.2s; --lry:-170px; --lrx: 20px; --lrr:-12deg; }
-  .lc-ai  { width:44px; left:  5px; bottom:25px; animation-delay:2.8s; --lry:-140px; --lrx:-35px; --lrr: 38deg; }
-
-  @keyframes logoThrow {
-    0%   { opacity: 0;    transform: translate(0,0)                          rotate(0deg); }
-    8%   { opacity: 0.9; }
-    55%  { opacity: 0.9;  transform: translate(var(--lrx), var(--lry))       rotate(var(--lrr)); }
-    88%  { opacity: 0.9; }
-    100% { opacity: 0;    transform: translate(var(--lrx), calc(var(--lry) - 18px)) rotate(var(--lrr)); }
-  }
-
-  /* ─────────────────────────────────────────
-     CLAPPERBOARD — large, to the right of Fleeting Hours card
-     The film-grid has 12 cols: Paranoid=8, PA=4, FH=6, gap after.
-     Fleeting Hours occupies roughly left:66% of the grid.
-     We position clapper at the right edge of the film-section-wrap,
-     vertically aligned with the card thumbs.
-  ───────────────────────────────────────── */
-  .clapper-wrap {
-    position: absolute;
-    top: 56px;       /* align with top of cards (section-head height) */
-    right: -80px;    /* sticks out past the content column */
-    width: 220px;    /* big */
-    z-index: 2;
-    pointer-events: none;
-    transform: rotate(22deg);
-    opacity: 0.55;
-  }
-  .clapper-wrap img { width: 100%; height: auto; display: block; }
-
-  /* ─────────────────────────────────────────
-     PENCIL DIVIDER — 904x63px tight crop JPG
-  ───────────────────────────────────────── */
-  .pencil-divider {
-    position: relative;
-    width: 100%;
-    margin: 24px 0 12px;
-    line-height: 0;   /* kill any inline gap */
-  }
-  .pencil-divider img {
-    /* let it fill the full column width naturally */
-    width: 100%;
-    height: auto;
-    display: block;
-    opacity: 0.75;
-  }
-
-  /* ─────────────────────────────────────────
-     SECTION WRAPPERS (position: relative for absolute children)
-  ───────────────────────────────────────── */
-  .film-section-wrap {
-    position: relative;
-    padding-bottom: 80px; /* space for brush + clapper overflow */
-  }
-  .art-section-wrap {
-    position: relative;
-  }
-
-  /* ─────────────────────────────────────────
-     SECTION RED SWEEP LINE
-  ───────────────────────────────────────── */
-  .sweep-line {
-    height: 1px;
-    background: var(--border);
-    position: relative;
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
-  .sweep-line::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    height: 100%; width: 0;
-    background: var(--accent);
-    transition: width 0.8s cubic-bezier(.22,1,.36,1);
-  }
-  .sweep-line.visible::after { width: 100%; }
-
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin: 0 0 20px;
-  }
-  .section-head-title {
-    font-family: var(--display);
-    font-size: 28px;
-    letter-spacing: 0.08em;
-    color: var(--ink-dim);
-  }
-  .section-head-title em { color: var(--accent); font-style: normal; }
-
-  /* ─────────────────────────────────────────
-     KEYFRAMES
-  ───────────────────────────────────────── */
+  /* ── KEYFRAMES ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(22px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -274,38 +34,263 @@
     from { opacity: 0; transform: translateY(36px) scale(0.97); }
     to   { opacity: 1; transform: translateY(0) scale(1); }
   }
+  /* brush pop-up: starts below its final position, animates up */
+  @keyframes brushPop {
+    from { transform: translateY(120px); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+  }
+  /* single logo thrown from jar mouth, arcs up and fades */
+  @keyframes logoArc {
+    0%   { opacity: 0;    transform: translate(0, 0)                               rotate(0deg)       scale(0.6); }
+    12%  { opacity: 1; }
+    60%  { opacity: 1;    transform: translate(var(--tx), var(--ty))               rotate(var(--tr))  scale(1); }
+    88%  { opacity: 0.8; }
+    100% { opacity: 0;    transform: translate(var(--tx), calc(var(--ty) - 24px))  rotate(var(--tr))  scale(1); }
+  }
 
-  /* ─────────────────────────────────────────
-     FILM GRID
-  ───────────────────────────────────────── */
+  /* ── HEADER TEXT ── */
+  .page-eyebrow {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-dim); margin-bottom: 14px;
+    opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+    position: relative; z-index: 4;
+  }
+  .page-eyebrow a { color: var(--ink-dim); text-decoration: none; transition: color .2s; }
+  .page-eyebrow a:hover { color: var(--accent); }
+
+  .page-title-huge {
+    font-family: var(--display);
+    font-size: clamp(72px, 11vw, 160px);
+    letter-spacing: 0.04em; line-height: 0.9;
+    opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+    position: relative; z-index: 4; display: inline-block;
+  }
+  .page-title-huge .red { color: var(--accent); }
+  .page-title-huge .blk { color: var(--ink); }
+
+  .page-intro {
+    max-width: 520px;
+    font-family: var(--mono); font-size: 12px; line-height: 2.1;
+    color: var(--ink-mid); margin-top: 28px; margin-bottom: 52px;
+    opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+    position: relative; z-index: 4;
+  }
+  .page-intro strong { color: var(--ink); font-weight: 400; }
+
+  /* ─────────────────────────────────────────────────────
+     FILM TAPE — two simple vertical strips in top-right
+     Using a wrapper that's just a thin tall strip; image
+     tiles or stretches naturally within it via object-fit.
+  ───────────────────────────────────────────────────── */
+  .tape-strip {
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .tape-strip img {
+    display: block;
+    height: 100%;
+    width: auto;
+    /* rotate the horizontal strip 90deg inside the container */
+    transform-origin: top left;
+  }
+
+  /* Strip A: rightmost, runs full page height */
+  .tape-a {
+    right: 0;
+    width: 48px;
+    height: 100vh;
+    opacity: 0.20;
+  }
+  .tape-a img {
+    width: 100vh; /* after rotate this becomes the height */
+    height: 48px;
+    transform: rotate(90deg) translateY(-48px);
+    max-width: none;
+  }
+
+  /* Strip B: 64px inset, slightly angled, shorter */
+  .tape-b {
+    right: 60px;
+    width: 36px;
+    height: 60vh;
+    opacity: 0.12;
+    transform: rotate(4deg);
+    transform-origin: top right;
+  }
+  .tape-b img {
+    width: 60vh;
+    height: 36px;
+    transform: rotate(90deg) translateY(-36px);
+    max-width: none;
+  }
+
+  /* ─────────────────────────────────────────────────────
+     FILM SECTION WRAPPER — position:relative so props inside
+     use it as their coordinate origin
+  ───────────────────────────────────────────────────── */
+  .film-section-wrap {
+    position: relative;
+    /* extra bottom padding so clapper/brush don't get clipped */
+    padding-bottom: 0;
+    margin-bottom: 60px;
+  }
+
+  /* ─────────────────────────────────────────────────────
+     PAINTBRUSH JAR
+     The film-grid has two rows:
+       Row 1: Paranoid(8col) + PA(4col)  — height ≈ 360px thumb + ~110px body = ~470px
+       Row 2: Fleeting Hours(6col)       — height ≈ 220px thumb + ~110px body = ~330px
+     Total grid ≈ 800px + 20px gap = ~820px
+
+     The jar image is square-ish (~1:1.1 ratio).
+     At width:380px the jar is ~420px tall.
+
+     We want:
+       - Jar bottom = behind the Paranoid card (so ~200px from top of grid)
+       - Brushes stick UP above that, filling the space between title and cards
+       - Jar overlaps INTO the right edge of the Paranoid card
+
+     film-section-wrap top padding = section-head (~48px) + sweep (~1px) + gap (~8px) = ~57px
+
+     So we place brush-zone:
+       top: -120px  (brushes appear ~120px above the card top into the whitespace)
+       right: -20px (slightly outside the content edge, overlapping PA card right side)
+  ───────────────────────────────────────────────────── */
+  .brush-zone {
+    position: absolute;
+    top: -120px;
+    right: -20px;
+    width: 360px;
+    /* z-index 1 = in front of background but behind cards (cards are z:2 via film-grid) */
+    z-index: 1;
+    pointer-events: none;
+    /* starts hidden below, JS adds .brush-animated to trigger pop-up */
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.9s cubic-bezier(.22,1,.36,1), opacity 0.7s ease;
+  }
+  .brush-zone.brush-animated {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .brush-zone img { width: 100%; height: auto; display: block; }
+
+  /* ─────────────────────────────────────────────────────
+     LOGO THROW ZONE
+     Positioned above the brush jar mouth — logos fly up
+     from the jar into the whitespace to the right of the title.
+     The jar mouth (top of jar) is at:
+       top: -120px + ~60px (top portion of jar) = -60px from wrap top
+       = roughly 460px from page top (after 120px page-top padding + header text ~340px)
+     Logo-throw sits at the same right:, but higher (top: -280px from wrap)
+  ───────────────────────────────────────────────────── */
+  .logo-throw {
+    position: absolute;
+    top: -280px;
+    right: 0;
+    width: 380px;
+    height: 280px;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .logo-chip {
+    position: absolute;
+    bottom: 0;   /* logos originate from bottom of zone = jar mouth area */
+    opacity: 0;
+  }
+  /* Scroll-triggered: JS adds .logos-fired class to .logo-throw */
+  .logos-fired .logo-chip {
+    animation: logoArc 3.8s ease-out infinite;
+  }
+  .logo-chip img { display: block; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+
+  /* Each logo: unique start position, arc destination, rotation, delay */
+  .lc-ps { width:50px; left:200px; --tx: 60px;  --ty:-210px; --tr:-22deg; animation-delay:0.0s; }
+  .lc-ae { width:50px; left:240px; --tx:-10px;  --ty:-260px; --tr: 18deg; animation-delay:0.55s; }
+  .lc-pr { width:50px; left:170px; --tx: 90px;  --ty:-170px; --tr:-35deg; animation-delay:1.1s; }
+  .lc-lr { width:46px; left:290px; --tx:-40px;  --ty:-220px; --tr: 28deg; animation-delay:1.65s; }
+  .lc-id { width:46px; left:220px; --tx: 30px;  --ty:-240px; --tr:-14deg; animation-delay:2.2s; }
+  .lc-ai { width:46px; left:260px; --tx:-60px;  --ty:-190px; --tr: 40deg; animation-delay:2.75s; }
+
+  /* ─────────────────────────────────────────────────────
+     CLAPPERBOARD
+     Row 2 of the film-grid is Fleeting Hours (6col) + 6col empty space.
+     The empty 6col is the right half of the second row.
+     Row 1 height ≈ 470px + 20px gap = ~490px from grid top.
+     Row 2 sits at ~490px from grid top.
+     Grid top from film-section-wrap top = ~57px.
+     So row 2 top = 57 + 490 = ~547px from wrap top.
+
+     We want the clapper centered in that empty right-half space,
+     at the same vertical level as the Fleeting Hours card.
+     Right half of a 12-col grid at ~1300px wide content = col 7-12 = right 50%.
+     Use left: 56% (just past Fleeting Hours right edge) to position it.
+  ───────────────────────────────────────────────────── */
+  .clapper-wrap {
+    position: absolute;
+    top: 547px;       /* row 2 top from film-section-wrap top */
+    left: 56%;        /* starts right of Fleeting Hours card */
+    width: 280px;
+    z-index: 2;
+    pointer-events: none;
+    transform: rotate(20deg);
+    transform-origin: center center;
+    opacity: 0.6;
+  }
+  .clapper-wrap img { width: 100%; height: auto; display: block; }
+
+  /* ── SECTION HEADER ── */
+  .section-head {
+    display: flex; align-items: baseline; gap: 16px;
+    margin: 0 0 0px;
+  }
+  .section-head-title {
+    font-family: var(--display); font-size: 28px;
+    letter-spacing: 0.08em; color: var(--ink-dim);
+  }
+  .section-head-title em { color: var(--accent); font-style: normal; }
+
+  .sweep-line {
+    height: 1px; background: var(--border);
+    position: relative; margin-bottom: 20px; overflow: hidden;
+  }
+  .sweep-line::after {
+    content: ''; position: absolute;
+    top: 0; left: 0; height: 100%; width: 0;
+    background: var(--accent);
+    transition: width 0.8s cubic-bezier(.22,1,.36,1);
+  }
+  .sweep-line.visible::after { width: 100%; }
+
+  /* ── FILM GRID ── */
   .film-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 20px;
     position: relative;
-    z-index: 2;
+    z-index: 2;  /* cards above brush (z:1) */
   }
   .fcard {
-    position: relative;
-    text-decoration: none;
+    position: relative; text-decoration: none;
     display: flex; flex-direction: column;
     background: #0d0b08;
     border: 1.5px solid rgba(255,255,255,0.07);
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(32px);
+    overflow: hidden; opacity: 0; transform: translateY(32px);
     transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.3s, border-color 0.3s;
   }
   .fcard.visible { animation: revealSlide 0.6s forwards; }
   .fcard:hover {
     transform: translateY(-6px) !important;
     box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-    border-color: rgba(200,56,10,0.35);
-    z-index: 5;
+    border-color: rgba(200,56,10,0.35); z-index: 5;
   }
-  .fcard.featured  { grid-column: span 8; }
-  .fcard.standard  { grid-column: span 4; }
-  .fcard.half      { grid-column: span 6; }
+  .fcard.featured { grid-column: span 8; }
+  .fcard.standard { grid-column: span 4; }
+  .fcard.half     { grid-column: span 6; }
 
   .fcard-thumb {
     width: 100%; position: relative; overflow: hidden;
@@ -314,6 +299,7 @@
   .fcard.featured .fcard-thumb { height: 360px; }
   .fcard.standard .fcard-thumb,
   .fcard.half     .fcard-thumb { height: 220px; }
+
   .fcard-thumb img {
     width: 100%; height: 100%; object-fit: cover;
     opacity: 0.82; display: block;
@@ -321,8 +307,7 @@
   }
   .fcard:hover .fcard-thumb img { opacity: 1; transform: scale(1.05); }
   .fcard-thumb::after {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(135deg, rgba(200,56,10,0.08) 0%, transparent 60%);
     opacity: 0; transition: opacity 0.35s;
   }
@@ -337,7 +322,6 @@
     transition: transform 0.25s, background 0.25s;
   }
   .fcard:hover .play-badge { transform: scale(1.12); background: var(--accent); }
-
   .award-badge {
     position: absolute; top: 14px; left: 14px;
     background: rgba(200,56,10,0.92); color: #fff;
@@ -352,23 +336,21 @@
   .fcard-arrow { position: absolute; top: 16px; right: 16px; font-size: 14px; color: rgba(255,255,255,0.28); transition: color .25s, transform .28s; }
   .fcard:hover .fcard-arrow { color: var(--accent); transform: translate(4px,-4px); }
 
-  /* ─────────────────────────────────────────
-     ART GRID
-  ───────────────────────────────────────── */
+  /* ── ART SECTION ── */
+  .art-section-wrap { position: relative; }
+
+  /* ── ART GRID ── */
   .art-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 16px;
-    margin-bottom: 100px;
+    gap: 16px; margin-bottom: 100px;
     position: relative; z-index: 2;
   }
   .acard {
-    position: relative;
-    text-decoration: none;
+    position: relative; text-decoration: none;
     background: #f9f6ef;
     border: 1.5px solid rgba(26,23,20,0.13);
-    overflow: hidden;
-    opacity: 0;
+    overflow: hidden; opacity: 0;
     transform: translateY(28px) scale(0.97);
     display: flex; flex-direction: column;
     transition: opacity 0.5s, transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.3s, border-color 0.3s;
@@ -377,8 +359,7 @@
   .acard:hover {
     transform: translateY(-5px) !important;
     box-shadow: 4px 16px 40px rgba(26,23,20,0.18);
-    border-color: rgba(200,56,10,0.25);
-    z-index: 5;
+    border-color: rgba(200,56,10,0.25); z-index: 5;
   }
   .acard.wide  { grid-column: span 6; }
   .acard.third { grid-column: span 4; }
@@ -389,7 +370,6 @@
   }
   .acard.wide  .acard-img { height: 280px; }
   .acard.third .acard-img { height: 200px; }
-
   .acard-img img {
     width: 100%; height: 100%; object-fit: cover; display: block;
     filter: sepia(0.08) contrast(0.97);
@@ -397,52 +377,36 @@
   }
   .acard:hover .acard-img img { transform: scale(1.06); filter: sepia(0) contrast(1); }
 
-  /* Koi: zoom in, push DOWN in frame (more bowl, less white border at top) */
-  .acard-img.koi-crop img {
-    object-fit: cover;
-    object-position: center 65%;
-    transform: scale(1.38);
-  }
+  /* Koi: zoom in, push bowl down into frame, cut white top border */
+  .acard-img.koi-crop img { object-position: center 65%; transform: scale(1.38); }
   .acard:hover .acard-img.koi-crop img { transform: scale(1.44); }
 
-  /* Berlin: move UP in frame to show more diorama sky/aircraft */
+  /* Berlin: show upper portion of diorama */
   .acard-img.berlin-crop img { object-position: center 25%; }
 
-  /* Modern Palette: move UP in frame (show top of cover, not middle) */
+  /* Modern Palette: show top of cover */
   .acard-img.palette-crop img { object-position: center 5%; }
 
-  /* Minecraft split — left=door, right=city */
+  /* Minecraft split: left=door, right=city */
   .minecraft-split {
     width: 100%; height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr; overflow: hidden;
   }
   .minecraft-split .ms-door,
-  .minecraft-split .ms-city {
-    overflow: hidden;
-    position: relative;
-  }
+  .minecraft-split .ms-city { overflow: hidden; position: relative; }
   .minecraft-split img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
+    width: 100%; height: 100%; object-fit: cover; display: block;
     filter: sepia(0.08) contrast(0.97);
     transition: transform 0.45s cubic-bezier(.22,1,.36,1);
   }
-  /* door: crop into center where door pixels are densest */
   .minecraft-split .ms-door img { object-position: 50% 40%; transform: scale(1.15); }
-  /* city: zoom toward top-left where the city cluster sits in the aerial */
   .minecraft-split .ms-city img { object-position: 30% 20%; transform: scale(1.2); }
-  .acard:hover .minecraft-split img { transform: scale(1.06); filter: sepia(0) contrast(1); }
-  .acard:hover .minecraft-split .ms-door img { transform: scale(1.2); }
-  /* thin divider between halves */
+  .acard:hover .minecraft-split .ms-door img { transform: scale(1.22); filter: sepia(0) contrast(1); }
+  .acard:hover .minecraft-split .ms-city img { transform: scale(1.26); filter: sepia(0) contrast(1); }
   .minecraft-split .ms-door::after {
-    content: '';
-    position: absolute; top: 0; right: 0;
+    content: ''; position: absolute; top: 0; right: 0;
     width: 2px; height: 100%;
-    background: rgba(26,23,20,0.25);
-    z-index: 2;
+    background: rgba(26,23,20,0.3); z-index: 2;
   }
 
   .acard-tape {
@@ -467,22 +431,15 @@
   .acard:hover .acard-arrow { color: var(--accent); transform: translate(3px,-3px); }
 
   /* stagger */
-  .fcard:nth-child(1) { animation-delay: 0.05s; }
-  .fcard:nth-child(2) { animation-delay: 0.15s; }
-  .fcard:nth-child(3) { animation-delay: 0.10s; }
-  .acard:nth-child(1) { animation-delay: 0.05s; }
-  .acard:nth-child(2) { animation-delay: 0.12s; }
-  .acard:nth-child(3) { animation-delay: 0.19s; }
-  .acard:nth-child(4) { animation-delay: 0.08s; }
-  .acard:nth-child(5) { animation-delay: 0.15s; }
-  .acard:nth-child(6) { animation-delay: 0.22s; }
+  .fcard:nth-child(1){animation-delay:0.05s} .fcard:nth-child(2){animation-delay:0.15s} .fcard:nth-child(3){animation-delay:0.10s}
+  .acard:nth-child(1){animation-delay:0.05s} .acard:nth-child(2){animation-delay:0.12s} .acard:nth-child(3){animation-delay:0.19s}
+  .acard:nth-child(4){animation-delay:0.08s} .acard:nth-child(5){animation-delay:0.15s} .acard:nth-child(6){animation-delay:0.22s}
 
   @media(max-width:960px){
-    .fcard.featured,.fcard.standard,.fcard.half { grid-column: span 12; }
-    .acard.wide,.acard.third { grid-column: span 12; }
-    .page-band-inner { padding-left: 24px; padding-right: 24px; }
-    .corner-tape,.corner-tape-2,.brush-zone,.logo-throw,.clapper-wrap { display: none; }
-    .pencil-divider img { display: none; }
+    .fcard.featured,.fcard.standard,.fcard.half{grid-column:span 12}
+    .acard.wide,.acard.third{grid-column:span 12}
+    .page-band-inner{padding-left:24px;padding-right:24px}
+    .tape-a,.tape-b,.brush-zone,.logo-throw,.clapper-wrap{display:none}
   }
   </style>
 </head>
@@ -500,9 +457,13 @@
 
 <div class="page-band">
 
-  <!-- film tape corner triangle: two strips crossing in upper right -->
-  <div class="corner-tape"  aria-hidden="true"><img src="assets/visual-work/HorizontalFilmTape.png" alt=""/></div>
-  <div class="corner-tape-2" aria-hidden="true"><img src="assets/visual-work/HorizontalFilmTape.png" alt=""/></div>
+  <!-- Film tape: two vertical strips in top-right corner -->
+  <div class="tape-strip tape-a" aria-hidden="true">
+    <img src="assets/visual-work/HorizontalFilmTape.png" alt=""/>
+  </div>
+  <div class="tape-strip tape-b" aria-hidden="true">
+    <img src="assets/visual-work/HorizontalFilmTape.png" alt=""/>
+  </div>
 
   <div class="page-band-inner">
     <p class="page-eyebrow"><a href="index.html">Home</a> &nbsp;/&nbsp; Visual Work</p>
@@ -516,15 +477,17 @@
     </p>
 
     <!-- ── FILM SECTION ── -->
-    <div class="film-section-wrap">
+    <div class="film-section-wrap" id="film-section">
 
       <div class="section-head">
         <div class="section-head-title">Film &amp; <em>Video</em></div>
       </div>
       <div class="sweep-line"></div>
 
+      <!-- Film grid: z-index 2, cards sit above brush (z:1) -->
       <div class="film-grid">
-        <!-- PARANOID -->
+
+        <!-- PARANOID — featured, 8col -->
         <a href="paranoid.html" class="fcard featured">
           <div class="fcard-thumb">
             <img src="assets/paranoid/CinematicShotofPhroggerinAttic.jpg" alt="Paranoid — cinematic attic shot"/>
@@ -539,7 +502,7 @@
           </div>
         </a>
 
-        <!-- PERFECTLY ALONE -->
+        <!-- PERFECTLY ALONE — standard, 4col -->
         <a href="perfectly-alone.html" class="fcard standard">
           <div class="fcard-thumb">
             <img src="assets/perfectly-alone/PerfectlyAloneTitleImage.png" alt="Perfectly Alone title card"/>
@@ -553,7 +516,7 @@
           </div>
         </a>
 
-        <!-- FLEETING HOURS -->
+        <!-- FLEETING HOURS — half, 6col. Right 6col is empty = clapper space -->
         <a href="fleeting-hours.html" class="fcard half">
           <div class="fcard-thumb">
             <img src="assets/fleeting-hours/ClicheStartWithAlarmClock.png" alt="Fleeting Hours — alarm clock"/>
@@ -566,40 +529,34 @@
             <p class="fcard-desc">One day: Bach Prelude and Fugue No.2 on piano, pickleball with my dad, school computer work, math homework, piano again, sleep. The music plays the whole way through without stopping. My teacher gave a lecture on film clichés after I submitted it because I opened with an alarm clock going off. She was right.</p>
           </div>
         </a>
+
       </div><!-- /film-grid -->
 
-      <!-- paintbrush jar — z-index 0, sits behind film cards.
-           Top of jar is ~halfway up the card, brushes peek above the card top edge.
-           CSS positions it so the jar body is obscured by Paranoid/PA cards. -->
-      <div class="brush-zone" aria-hidden="true">
+      <!-- PAINTBRUSH JAR — scroll-triggered, z:1 (behind cards z:2, above bg) -->
+      <div class="brush-zone" id="brush-zone" aria-hidden="true">
         <img src="assets/visual-work/CupOfUsedPaintBrushes.webp" alt=""/>
       </div>
 
-      <!-- logos thrown up from above the jar, z-index 3 -->
-      <div class="logo-throw" aria-hidden="true">
-        <div class="logo-chip lc-ps"><img src="assets/visual-work/PhotoshopLogo.png"    width="48" alt=""/></div>
-        <div class="logo-chip lc-ae"><img src="assets/visual-work/AfterEffectsLogo.png" width="48" alt=""/></div>
-        <div class="logo-chip lc-pr"><img src="assets/visual-work/PremiereProLogo.png"  width="48" alt=""/></div>
-        <div class="logo-chip lc-lr"><img src="assets/visual-work/LightroomLogo.png"    width="44" alt=""/></div>
-        <div class="logo-chip lc-id"><img src="assets/visual-work/InDesignLogo.png"     width="44" alt=""/></div>
-        <div class="logo-chip lc-ai"><img src="assets/visual-work/IllustratorLogo.png"  width="44" alt=""/></div>
+      <!-- LOGOS — scroll-triggered throw animation, z:5 (above everything) -->
+      <div class="logo-throw" id="logo-throw" aria-hidden="true">
+        <div class="logo-chip lc-ps"><img src="assets/visual-work/PhotoshopLogo.png"    width="50" alt=""/></div>
+        <div class="logo-chip lc-ae"><img src="assets/visual-work/AfterEffectsLogo.png" width="50" alt=""/></div>
+        <div class="logo-chip lc-pr"><img src="assets/visual-work/PremiereProLogo.png"  width="50" alt=""/></div>
+        <div class="logo-chip lc-lr"><img src="assets/visual-work/LightroomLogo.png"    width="46" alt=""/></div>
+        <div class="logo-chip lc-id"><img src="assets/visual-work/InDesignLogo.png"     width="46" alt=""/></div>
+        <div class="logo-chip lc-ai"><img src="assets/visual-work/IllustratorLogo.png"  width="46" alt=""/></div>
       </div>
 
-      <!-- clapperboard — large, to the right of Fleeting Hours, card-level height -->
+      <!-- CLAPPERBOARD — in the empty right half of the Fleeting Hours row -->
       <div class="clapper-wrap" aria-hidden="true">
         <img src="assets/visual-work/ClapperBoard.png" alt=""/>
       </div>
 
     </div><!-- /film-section-wrap -->
 
-    <!-- ── PENCIL DIVIDER ── -->
-    <div class="pencil-divider" aria-hidden="true">
-      <img src="assets/visual-work/HorizontalPencil.jpg" alt="pencil line break"/>
-    </div>
-
     <!-- ── VISUAL ART SECTION ── -->
     <div class="art-section-wrap">
-      <div class="section-head" style="margin-top:8px">
+      <div class="section-head">
         <div class="section-head-title">Visual <em>Art</em></div>
       </div>
       <div class="sweep-line"></div>
@@ -626,7 +583,7 @@
           <div class="acard-tape" style="left:38%"></div>
           <div class="acard-bar" style="background:var(--accent)"></div>
           <div class="acard-img">
-            <img src="assets/self-portrait/FInalComparisonWithRealPhoto.jpg" alt="Colored pencil self portrait with reference photo"/>
+            <img src="assets/self-portrait/FInalComparisonWithRealPhoto.jpg" alt="Colored pencil self portrait"/>
           </div>
           <div class="acard-body">
             <span class="acard-arrow">&#8599;</span>
@@ -704,7 +661,7 @@
         </a>
 
       </div><!-- /art-grid -->
-    </div><!-- /art-section-wrap -->
+    </div>
 
   </div><!-- /page-band-inner -->
 </div><!-- /page-band -->
@@ -715,6 +672,7 @@
 </footer>
 
 <script>
+  /* ── scroll progress + nav ── */
   const scrollBar = document.getElementById('scroll-progress');
   window.addEventListener('scroll', () => {
     const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
@@ -722,6 +680,7 @@
     document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
+  /* ── IntersectionObserver: cards + sweep lines ── */
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
@@ -730,6 +689,56 @@
     });
   }, { threshold: 0.07 });
   document.querySelectorAll('.fcard,.acard,.sweep-line,.reveal').forEach(el => io.observe(el));
+
+  /* ── Scroll-trigger: brush pop-up + logo throw ──
+     Fire when the film-section-wrap enters the viewport.
+     Use a threshold of 0.15 so it triggers when ~15% of the section is visible.
+  ── */
+  const brushZone = document.getElementById('brush-zone');
+  const logoThrow = document.getElementById('logo-throw');
+
+  const propObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      /* brush pops up */
+      brushZone.classList.add('brush-animated');
+      /* logos fire 400ms after brush appears */
+      setTimeout(() => { logoThrow.classList.add('logos-fired'); }, 400);
+      propObserver.unobserve(e.target);
+    });
+  }, { threshold: 0.15 });
+
+  propObserver.observe(document.getElementById('film-section'));
+
+  /* ── Measure real clapper position after layout ──
+     The clapper needs to sit in the right half of row 2 of the film grid.
+     We do this in JS so it's accurate regardless of screen width.
+  ── */
+  function positionClapper() {
+    const filmGrid = document.querySelector('.film-grid');
+    const fleetingCard = document.querySelector('.fcard.half');
+    const clapper = document.querySelector('.clapper-wrap');
+    const wrap = document.getElementById('film-section');
+    if (!filmGrid || !fleetingCard || !clapper || !wrap) return;
+
+    const wrapRect  = wrap.getBoundingClientRect();
+    const cardRect  = fleetingCard.getBoundingClientRect();
+    const gridRect  = filmGrid.getBoundingClientRect();
+
+    /* clapper top: align with top of Fleeting Hours card, relative to wrap */
+    const clapTop  = (cardRect.top  - wrapRect.top) + 30;  /* 30px inset */
+    /* clapper left: right edge of Fleeting Hours card + small gap */
+    const clapLeft = (cardRect.right - wrapRect.left) + 24;
+
+    clapper.style.top  = clapTop  + 'px';
+    clapper.style.left = clapLeft + 'px';
+    /* remove the CSS default so JS values win */
+    clapper.style.position = 'absolute';
+  }
+
+  /* run after fonts + images have a chance to load */
+  window.addEventListener('load', positionClapper);
+  window.addEventListener('resize', positionClapper);
 </script>
 </body>
 </html>
