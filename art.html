@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Visual Work — Luke Jurbergs</title>
-  <meta name="description" content="Visual work by Luke Jurbergs — Paranoid (award-winning short film), Berlin Wall diorama (1st place Sprachfest), Perfectly Alone, and more art, film, and design projects."/>
+  <meta name="description" content="Visual work by Luke Jurbergs — Paranoid (award-winning short film), Berlin Wall diorama (1st place Sprachfest), Perfectly Alone, and more."/>
   <link rel="canonical" href="https://lukejurbergs.github.io/art.html"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -11,304 +11,462 @@
   <link rel="stylesheet" href="shared.css"/>
   <style>
 
-    /* ── PAGE HEADER ── */
-    .page-band {
-      padding-top: 120px;
-      background: var(--bg);
-      position: relative;
-      z-index: 10;
-      overflow: hidden;
-    }
-    .page-band-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 52px 0 112px;
-    }
-    .page-eyebrow {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
-      margin-bottom: 14px;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.1s forwards;
-    }
-    .page-eyebrow a { color: var(--ink-dim); text-decoration: none; transition: color .2s; }
-    .page-eyebrow a:hover { color: var(--accent); }
+  /* ─────────────────────────────────────────
+     PAGE SHELL
+  ───────────────────────────────────────── */
+  .page-band {
+    padding-top: 120px;
+    background: var(--bg);
+    position: relative;
+    overflow: visible; /* props bleed out */
+  }
+  .page-band-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 52px 0 112px;
+    position: relative;
+  }
 
-    /* Title: VISUAL red, WORK black */
-    .page-title-huge {
-      font-family: var(--display);
-      font-size: clamp(72px, 11vw, 160px);
-      letter-spacing: 0.04em;
-      line-height: 0.9;
-      color: var(--ink);
-      opacity: 0;
-      animation: fadeUp 0.7s 0.2s forwards;
-      position: relative;
-      z-index: 2;
-    }
-    .page-title-huge .red  { color: var(--accent); }
-    .page-title-huge .blk  { color: var(--ink); }
+  /* ─────────────────────────────────────────
+     HEADER TEXT
+  ───────────────────────────────────────── */
+  .page-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 14px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.1s forwards;
+    position: relative; z-index: 4;
+  }
+  .page-eyebrow a { color: var(--ink-dim); text-decoration: none; transition: color .2s; }
+  .page-eyebrow a:hover { color: var(--accent); }
 
-    .page-intro {
-      max-width: 580px;
-      font-family: var(--mono);
-      font-size: 12px;
-      line-height: 2.1;
-      color: var(--ink-mid);
-      margin-top: 28px;
-      margin-bottom: 52px;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.35s forwards;
-    }
-    .page-intro strong { color: var(--ink); font-weight: 400; }
+  .page-title-huge {
+    font-family: var(--display);
+    font-size: clamp(72px, 11vw, 160px);
+    letter-spacing: 0.04em;
+    line-height: 0.9;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s forwards;
+    position: relative; z-index: 4;
+    display: inline-block;
+  }
+  .page-title-huge .red { color: var(--accent); }
+  .page-title-huge .blk { color: var(--ink); }
 
-    /* ── FLOATING PROPS ZONE ── */
-    /* sits behind the title, fills the right half of the header */
-    .props-field {
-      position: absolute;
-      top: 60px;
-      right: 0;
-      width: 55%;
-      height: 520px;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .prop {
-      position: absolute;
-      opacity: 0;
-      animation: propFloat linear infinite;
-    }
-    .prop img { width: 100%; height: auto; display: block; }
+  .page-intro {
+    max-width: 520px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 2.1;
+    color: var(--ink-mid);
+    margin-top: 28px;
+    margin-bottom: 52px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s forwards;
+    position: relative; z-index: 4;
+  }
+  .page-intro strong { color: var(--ink); font-weight: 400; }
 
-    /* each prop: different sizes, positions, delays, durations, rotations */
-    /* film + art objects */
-    .p-reel       { width:130px; left:62%; top:10%;  animation-duration:7s;  animation-delay:0s;    --rot:18deg;  --rot2:-8deg; }
-    .p-clapper    { width:90px;  left:20%; top:5%;   animation-duration:6s;  animation-delay:0.8s;  --rot:-22deg; --rot2:10deg; }
-    .p-tape       { width:200px; left:5%;  top:55%;  animation-duration:9s;  animation-delay:0.4s;  --rot:6deg;   --rot2:-3deg; }
-    .p-pencil     { width:160px; left:40%; top:70%;  animation-duration:8s;  animation-delay:1.2s;  --rot:-14deg; --rot2:7deg; }
-    .p-brushes    { width:80px;  left:78%; top:50%;  animation-duration:7.5s;animation-delay:0.6s;  --rot:25deg;  --rot2:-12deg; }
-    .p-canon      { width:120px; left:50%; top:20%;  animation-duration:10s; animation-delay:0.2s;  --rot:-8deg;  --rot2:5deg; }
-    .p-lens       { width:80px;  left:85%; top:15%;  animation-duration:6.5s;animation-delay:1.5s;  --rot:30deg;  --rot2:-15deg; }
+  /* ─────────────────────────────────────────
+     FILM TAPE — top-right corner triangle
+  ───────────────────────────────────────── */
+  .corner-tape {
+    position: absolute;
+    top: -30px;
+    right: -20px;
+    width: 320px;
+    opacity: 0.18;
+    z-index: 1;
+    pointer-events: none;
+    /* rotate so the tape runs diagonally corner-to-corner */
+    transform: rotate(-42deg) scaleX(1.3);
+    transform-origin: top right;
+  }
+  .corner-tape img { width: 100%; height: auto; display: block; }
 
-    /* adobe logos — thrown up at different heights */
-    .p-ps         { width:52px;  left:8%;  top:20%;  animation-duration:5.5s;animation-delay:0.3s;  --rot:-30deg; --rot2:15deg; }
-    .p-ae         { width:52px;  left:30%; top:35%;  animation-duration:6.8s;animation-delay:1.0s;  --rot:22deg;  --rot2:-10deg; }
-    .p-pr         { width:52px;  left:55%; top:55%;  animation-duration:7.2s;animation-delay:0.5s;  --rot:-18deg; --rot2:9deg; }
-    .p-lr         { width:52px;  left:72%; top:30%;  animation-duration:5.8s;animation-delay:1.8s;  --rot:35deg;  --rot2:-20deg; }
-    .p-id         { width:52px;  left:88%; top:65%;  animation-duration:6.2s;animation-delay:0.9s;  --rot:-25deg; --rot2:12deg; }
-    .p-ai         { width:52px;  left:15%; top:75%;  animation-duration:7.8s;animation-delay:0.1s;  --rot:15deg;  --rot2:-8deg; }
+  /* Second tape strip at a different angle to make a triangle wedge */
+  .corner-tape-2 {
+    position: absolute;
+    top: 60px;
+    right: -40px;
+    width: 260px;
+    opacity: 0.13;
+    z-index: 1;
+    pointer-events: none;
+    transform: rotate(-68deg) scaleX(1.1);
+    transform-origin: top right;
+  }
+  .corner-tape-2 img { width: 100%; height: auto; display: block; }
 
-    @keyframes propFloat {
-      0%   { opacity: 0;   transform: translateY(0px)   rotate(var(--rot)); }
-      8%   { opacity: 0.55; }
-      50%  { opacity: 0.55; transform: translateY(-28px) rotate(var(--rot2)); }
-      92%  { opacity: 0.55; }
-      100% { opacity: 0;   transform: translateY(0px)   rotate(var(--rot)); }
-    }
+  /* ─────────────────────────────────────────
+     PAINTBRUSH JAR — behind film cards row
+  ───────────────────────────────────────── */
+  .brush-zone {
+    position: absolute;
+    /* sits behind the film grid, jar body below card bottom edge */
+    bottom: -60px;   /* relative to .film-section-wrap */
+    right: 32px;
+    width: 160px;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .brush-zone img { width: 100%; height: auto; display: block; }
 
-    /* ── SECTION LABELS ── */
-    .art-section-label {
-      font-family: var(--display);
-      font-size: 28px;
-      letter-spacing: 0.08em;
-      color: var(--ink-dim);
-      margin: 52px 0 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    .art-section-label em { color: var(--accent); font-style: normal; }
-    .art-section-label::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0;
-      height: 2px; width: 0;
-      background: var(--accent);
-      transition: width 0.7s cubic-bezier(.22,1,.36,1);
-    }
-    .art-section-label.visible::after { width: 100%; }
+  /* ─────────────────────────────────────────
+     LOGO THROW — logos above brush jar
+  ───────────────────────────────────────── */
+  .logo-throw {
+    position: absolute;
+    bottom: 120px;   /* starts above the brush jar */
+    right: 10px;
+    width: 220px;
+    height: 260px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .logo-chip {
+    position: absolute;
+    opacity: 0;
+    animation: logoThrow 4s ease-out infinite;
+  }
+  .logo-chip img { display: block; border-radius: 8px; }
 
-    /* ── KEYFRAMES ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes revealSlide {
-      from { opacity: 0; transform: translateY(36px) scale(0.97); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
+  /* Each logo: different position, size, delay, slight rotation */
+  .lc-ps  { width:44px; left:130px; bottom:0;   animation-delay:0.0s; --lry: -110px; --lrx:  10px; --lrr: -20deg; }
+  .lc-ae  { width:44px; left: 70px; bottom:10px; animation-delay:0.5s; --lry: -160px; --lrx: -20px; --lrr:  14deg; }
+  .lc-pr  { width:44px; left:150px; bottom:20px; animation-delay:1.0s; --lry: -130px; --lrx:  30px; --lrr: -30deg; }
+  .lc-lr  { width:40px; left: 40px; bottom:5px;  animation-delay:1.5s; --lry: -180px; --lrx: -40px; --lrr:  25deg; }
+  .lc-id  { width:40px; left:100px; bottom:15px; animation-delay:2.0s; --lry: -150px; --lrx:  15px; --lrr: -10deg; }
+  .lc-ai  { width:40px; left: 10px; bottom:25px; animation-delay:2.5s; --lry: -120px; --lrx: -30px; --lrr:  35deg; }
 
-    /* ── FILM GRID ── */
-    .film-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
-      margin-bottom: 60px;
-    }
-    .fcard {
-      position: relative;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      background: #0d0b08;
-      border: 1.5px solid rgba(255,255,255,0.07);
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(32px);
-      transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.3s, border-color 0.3s;
-    }
-    .fcard.visible { animation: revealSlide 0.6s forwards; }
-    .fcard:hover {
-      transform: translateY(-6px) !important;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-      border-color: rgba(200,56,10,0.35);
-      z-index: 5;
-    }
-    .fcard.featured { grid-column: span 8; }
-    .fcard.standard { grid-column: span 4; }
-    .fcard.half     { grid-column: span 6; }
+  @keyframes logoThrow {
+    0%   { opacity: 0;    transform: translate(0, 0)             rotate(0deg); }
+    10%  { opacity: 0.85; }
+    60%  { opacity: 0.85; transform: translate(var(--lrx), var(--lry)) rotate(var(--lrr)); }
+    85%  { opacity: 0.85; }
+    100% { opacity: 0;    transform: translate(var(--lrx), calc(var(--lry) - 20px)) rotate(var(--lrr)); }
+  }
 
-    .fcard-thumb {
-      width: 100%; position: relative; overflow: hidden;
-      background: #141210; flex-shrink: 0;
-    }
-    .fcard.featured .fcard-thumb { height: 360px; }
-    .fcard.standard .fcard-thumb,
-    .fcard.half     .fcard-thumb { height: 220px; }
+  /* ─────────────────────────────────────────
+     CLAPPERBOARD — diagonal next to Fleeting Hours
+  ───────────────────────────────────────── */
+  .clapper-wrap {
+    position: absolute;
+    /* bottom-right of the film grid, peeking behind Fleeting Hours card */
+    bottom: -50px;
+    left: 52%;
+    width: 130px;
+    z-index: 0;
+    pointer-events: none;
+    transform: rotate(18deg);
+    opacity: 0.45;
+  }
+  .clapper-wrap img { width: 100%; height: auto; display: block; }
 
-    .fcard-thumb img {
-      width: 100%; height: 100%; object-fit: cover;
-      opacity: 0.82; display: block;
-      transition: opacity 0.35s, transform 0.5s cubic-bezier(.22,1,.36,1);
-    }
-    .fcard:hover .fcard-thumb img { opacity: 1; transform: scale(1.05); }
-    .fcard-thumb::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(200,56,10,0.08) 0%, transparent 60%);
-      opacity: 0; transition: opacity 0.35s;
-    }
-    .fcard:hover .fcard-thumb::after { opacity: 1; }
+  /* ─────────────────────────────────────────
+     PENCIL DIVIDER
+  ───────────────────────────────────────── */
+  .pencil-divider {
+    position: relative;
+    height: 60px;
+    margin: 8px 0 0;
+    display: flex;
+    align-items: center;
+  }
+  .pencil-divider img {
+    height: 28px;
+    width: auto;
+    display: block;
+    opacity: 0.6;
+    /* pencil runs full width */
+    width: 100%;
+    object-fit: contain;
+    object-position: left center;
+  }
+  /* label floats over the pencil */
+  .pencil-label {
+    position: absolute;
+    left: 0;
+    font-family: var(--display);
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+    background: var(--bg);
+    padding-right: 16px;
+    line-height: 1;
+  }
+  .pencil-label em { color: var(--accent); font-style: normal; }
 
-    .play-badge {
-      position: absolute; bottom: 14px; right: 14px;
-      width: 44px; height: 44px;
-      background: rgba(200,56,10,0.88); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; color: #fff; z-index: 2;
-      transition: transform 0.25s, background 0.25s;
-    }
-    .fcard:hover .play-badge { transform: scale(1.12); background: var(--accent); }
+  /* ─────────────────────────────────────────
+     SECTION WRAPPERS (position: relative for absolute children)
+  ───────────────────────────────────────── */
+  .film-section-wrap {
+    position: relative;
+    padding-bottom: 80px; /* space for brush + clapper overflow */
+  }
+  .art-section-wrap {
+    position: relative;
+  }
 
-    .award-badge {
-      position: absolute; top: 14px; left: 14px;
-      background: rgba(200,56,10,0.92); color: #fff;
-      font-family: var(--mono); font-size: 8px;
-      letter-spacing: 0.24em; text-transform: uppercase;
-      padding: 5px 10px; z-index: 2;
-    }
+  /* ─────────────────────────────────────────
+     SECTION RED SWEEP LINE
+  ───────────────────────────────────────── */
+  .sweep-line {
+    height: 1px;
+    background: var(--border);
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .sweep-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 0;
+    background: var(--accent);
+    transition: width 0.8s cubic-bezier(.22,1,.36,1);
+  }
+  .sweep-line.visible::after { width: 100%; }
 
-    .fcard-body { padding: 18px 20px 22px; flex: 1; display: flex; flex-direction: column; }
-    .fcard-tag  { font-family: var(--mono); font-size: 8px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
-    .fcard-title { font-family: var(--display); font-size: clamp(22px,2.4vw,34px); letter-spacing: 0.04em; color: #fff; line-height: 1.05; margin-bottom: 10px; }
-    .fcard-desc  { font-family: var(--mono); font-size: 10px; line-height: 1.9; color: rgba(255,255,255,0.5); flex: 1; }
-    .fcard-arrow { position: absolute; top: 16px; right: 16px; font-size: 14px; color: rgba(255,255,255,0.28); transition: color .25s, transform .28s; }
-    .fcard:hover .fcard-arrow { color: var(--accent); transform: translate(4px,-4px); }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin: 0 0 20px;
+  }
+  .section-head-title {
+    font-family: var(--display);
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+  }
+  .section-head-title em { color: var(--accent); font-style: normal; }
 
-    /* ── ART CARDS ── */
-    .art-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
-      margin-bottom: 100px;
-    }
-    .acard {
-      position: relative;
-      text-decoration: none;
-      background: #f9f6ef;
-      border: 1.5px solid rgba(26,23,20,0.13);
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(28px) scale(0.97);
-      display: flex; flex-direction: column;
-      transition: opacity 0.5s, transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.3s, border-color 0.3s;
-    }
-    .acard.visible { animation: revealSlide 0.55s forwards; }
-    .acard:hover {
-      transform: translateY(-5px) !important;
-      box-shadow: 4px 16px 40px rgba(26,23,20,0.18);
-      border-color: rgba(200,56,10,0.25);
-      z-index: 5;
-    }
-    .acard.wide  { grid-column: span 6; }
-    .acard.third { grid-column: span 4; }
+  /* ─────────────────────────────────────────
+     KEYFRAMES
+  ───────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes revealSlide {
+    from { opacity: 0; transform: translateY(36px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
 
-    .acard-img {
-      width: 100%; overflow: hidden; flex-shrink: 0;
-      position: relative; background: #d8d3c8;
-    }
-    .acard.wide  .acard-img { height: 280px; }
-    .acard.third .acard-img { height: 200px; }
+  /* ─────────────────────────────────────────
+     FILM GRID
+  ───────────────────────────────────────── */
+  .film-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .fcard {
+    position: relative;
+    text-decoration: none;
+    display: flex; flex-direction: column;
+    background: #0d0b08;
+    border: 1.5px solid rgba(255,255,255,0.07);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(32px);
+    transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.3s, border-color 0.3s;
+  }
+  .fcard.visible { animation: revealSlide 0.6s forwards; }
+  .fcard:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    border-color: rgba(200,56,10,0.35);
+    z-index: 5;
+  }
+  .fcard.featured  { grid-column: span 8; }
+  .fcard.standard  { grid-column: span 4; }
+  .fcard.half      { grid-column: span 6; }
 
-    .acard-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: sepia(0.08) contrast(0.97);
-      transition: transform 0.45s cubic-bezier(.22,1,.36,1), filter 0.3s;
-    }
-    .acard:hover .acard-img img { transform: scale(1.06); filter: sepia(0) contrast(1); }
+  .fcard-thumb {
+    width: 100%; position: relative; overflow: hidden;
+    background: #141210; flex-shrink: 0;
+  }
+  .fcard.featured .fcard-thumb { height: 360px; }
+  .fcard.standard .fcard-thumb,
+  .fcard.half     .fcard-thumb { height: 220px; }
+  .fcard-thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.82; display: block;
+    transition: opacity 0.35s, transform 0.5s cubic-bezier(.22,1,.36,1);
+  }
+  .fcard:hover .fcard-thumb img { opacity: 1; transform: scale(1.05); }
+  .fcard-thumb::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(200,56,10,0.08) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.35s;
+  }
+  .fcard:hover .fcard-thumb::after { opacity: 1; }
 
-    /* Koi bowl: zoom in to cut white space — object-position centers on bowl */
-    .acard-img.koi-crop img {
-      object-position: center 35%;
-      transform: scale(1.18);
-    }
-    .acard:hover .acard-img.koi-crop img { transform: scale(1.24); }
+  .play-badge {
+    position: absolute; bottom: 14px; right: 14px;
+    width: 44px; height: 44px;
+    background: rgba(200,56,10,0.88); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: #fff; z-index: 2;
+    transition: transform 0.25s, background 0.25s;
+  }
+  .fcard:hover .play-badge { transform: scale(1.12); background: var(--accent); }
 
-    /* Berlin wall: shift image down so the diorama interior shows, not just sky */
-    .acard-img.berlin-crop img { object-position: center 70%; }
+  .award-badge {
+    position: absolute; top: 14px; left: 14px;
+    background: rgba(200,56,10,0.92); color: #fff;
+    font-family: var(--mono); font-size: 8px;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    padding: 5px 10px; z-index: 2;
+  }
+  .fcard-body { padding: 18px 20px 22px; flex: 1; display: flex; flex-direction: column; }
+  .fcard-tag  { font-family: var(--mono); font-size: 8px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+  .fcard-title { font-family: var(--display); font-size: clamp(22px,2.4vw,34px); letter-spacing: 0.04em; color: #fff; line-height: 1.05; margin-bottom: 10px; }
+  .fcard-desc  { font-family: var(--mono); font-size: 10px; line-height: 1.9; color: rgba(255,255,255,0.5); flex: 1; }
+  .fcard-arrow { position: absolute; top: 16px; right: 16px; font-size: 14px; color: rgba(255,255,255,0.28); transition: color .25s, transform .28s; }
+  .fcard:hover .fcard-arrow { color: var(--accent); transform: translate(4px,-4px); }
 
-    .acard-tape {
-      position: absolute; top: -4px; left: 50%;
-      transform: translateX(-50%) rotate(-1deg);
-      width: 68px; height: 18px;
-      background: rgba(255,240,158,0.72);
-      border: 1px solid rgba(200,184,96,0.42); z-index: 5;
-    }
-    .acard-bar {
-      position: absolute; top: 0; left: 0;
-      width: 4px; height: 100%; z-index: 3; opacity: 0.7;
-      transition: opacity 0.25s, width 0.25s;
-    }
-    .acard:hover .acard-bar { opacity: 1; width: 5px; }
+  /* ─────────────────────────────────────────
+     ART GRID
+  ───────────────────────────────────────── */
+  .art-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+    margin-bottom: 100px;
+    position: relative; z-index: 2;
+  }
+  .acard {
+    position: relative;
+    text-decoration: none;
+    background: #f9f6ef;
+    border: 1.5px solid rgba(26,23,20,0.13);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+    display: flex; flex-direction: column;
+    transition: opacity 0.5s, transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.3s, border-color 0.3s;
+  }
+  .acard.visible { animation: revealSlide 0.55s forwards; }
+  .acard:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 4px 16px 40px rgba(26,23,20,0.18);
+    border-color: rgba(200,56,10,0.25);
+    z-index: 5;
+  }
+  .acard.wide  { grid-column: span 6; }
+  .acard.third { grid-column: span 4; }
 
-    .acard-body  { padding: 16px 18px 18px 20px; flex: 1; }
-    .acard-tag   { font-family: var(--mono); font-size: 8px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; display: block; }
-    .acard-title { font-family: var(--display); font-size: clamp(20px,2vw,30px); letter-spacing: 0.04em; color: var(--ink); line-height: 1.05; margin-bottom: 8px; }
-    .acard-desc  { font-family: var(--mono); font-size: 10px; line-height: 1.9; color: var(--ink-mid); }
-    .acard-arrow { position: absolute; top: 14px; right: 14px; font-size: 13px; color: var(--ink-dim); transition: color .22s, transform .26s; }
-    .acard:hover .acard-arrow { color: var(--accent); transform: translate(3px,-3px); }
+  .acard-img {
+    width: 100%; overflow: hidden; flex-shrink: 0;
+    position: relative; background: #d8d3c8;
+  }
+  .acard.wide  .acard-img { height: 280px; }
+  .acard.third .acard-img { height: 200px; }
 
-    /* staggered delays */
-    .fcard:nth-child(1) { animation-delay: 0.05s; }
-    .fcard:nth-child(2) { animation-delay: 0.15s; }
-    .fcard:nth-child(3) { animation-delay: 0.10s; }
-    .acard:nth-child(1) { animation-delay: 0.05s; }
-    .acard:nth-child(2) { animation-delay: 0.12s; }
-    .acard:nth-child(3) { animation-delay: 0.19s; }
-    .acard:nth-child(4) { animation-delay: 0.08s; }
-    .acard:nth-child(5) { animation-delay: 0.15s; }
-    .acard:nth-child(6) { animation-delay: 0.22s; }
+  .acard-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: sepia(0.08) contrast(0.97);
+    transition: transform 0.45s cubic-bezier(.22,1,.36,1), filter 0.3s;
+  }
+  .acard:hover .acard-img img { transform: scale(1.06); filter: sepia(0) contrast(1); }
 
-    @media(max-width:960px){
-      .fcard.featured, .fcard.standard, .fcard.half { grid-column: span 12; }
-      .acard.wide, .acard.third { grid-column: span 12; }
-      .page-band-inner { padding-left: 24px; padding-right: 24px; }
-      .props-field { display: none; }
-    }
+  /* Koi: zoom in more, push up in frame */
+  .acard-img.koi-crop img {
+    object-fit: cover;
+    object-position: center 20%;
+    transform: scale(1.35);
+  }
+  .acard:hover .acard-img.koi-crop img { transform: scale(1.42); }
+
+  /* Berlin: crop lower into diorama, not sky */
+  .acard-img.berlin-crop img { object-position: center 80%; }
+
+  /* Modern Palette: push image down a bit */
+  .acard-img.palette-crop img { object-position: center 30%; }
+
+  /* Minecraft split — left=door, right=city */
+  .minecraft-split {
+    width: 100%; height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+  .minecraft-split .ms-door,
+  .minecraft-split .ms-city {
+    overflow: hidden;
+    position: relative;
+  }
+  .minecraft-split img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: sepia(0.08) contrast(0.97);
+    transition: transform 0.45s cubic-bezier(.22,1,.36,1);
+  }
+  /* door: crop into center where door pixels live */
+  .minecraft-split .ms-door img { object-position: 50% 40%; transform: scale(1.15); }
+  /* city: wide aerial */
+  .minecraft-split .ms-city img { object-position: center center; }
+  .acard:hover .minecraft-split img { transform: scale(1.06); filter: sepia(0) contrast(1); }
+  .acard:hover .minecraft-split .ms-door img { transform: scale(1.2); }
+  /* thin divider between halves */
+  .minecraft-split .ms-door::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 2px; height: 100%;
+    background: rgba(26,23,20,0.25);
+    z-index: 2;
+  }
+
+  .acard-tape {
+    position: absolute; top: -4px; left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    width: 68px; height: 18px;
+    background: rgba(255,240,158,0.72);
+    border: 1px solid rgba(200,184,96,0.42); z-index: 5;
+  }
+  .acard-bar {
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%; z-index: 3; opacity: 0.7;
+    transition: opacity 0.25s, width 0.25s;
+  }
+  .acard:hover .acard-bar { opacity: 1; width: 5px; }
+
+  .acard-body  { padding: 16px 18px 18px 20px; flex: 1; }
+  .acard-tag   { font-family: var(--mono); font-size: 8px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; display: block; }
+  .acard-title { font-family: var(--display); font-size: clamp(20px,2vw,30px); letter-spacing: 0.04em; color: var(--ink); line-height: 1.05; margin-bottom: 8px; }
+  .acard-desc  { font-family: var(--mono); font-size: 10px; line-height: 1.9; color: var(--ink-mid); }
+  .acard-arrow { position: absolute; top: 14px; right: 14px; font-size: 13px; color: var(--ink-dim); transition: color .22s, transform .26s; }
+  .acard:hover .acard-arrow { color: var(--accent); transform: translate(3px,-3px); }
+
+  /* stagger */
+  .fcard:nth-child(1) { animation-delay: 0.05s; }
+  .fcard:nth-child(2) { animation-delay: 0.15s; }
+  .fcard:nth-child(3) { animation-delay: 0.10s; }
+  .acard:nth-child(1) { animation-delay: 0.05s; }
+  .acard:nth-child(2) { animation-delay: 0.12s; }
+  .acard:nth-child(3) { animation-delay: 0.19s; }
+  .acard:nth-child(4) { animation-delay: 0.08s; }
+  .acard:nth-child(5) { animation-delay: 0.15s; }
+  .acard:nth-child(6) { animation-delay: 0.22s; }
+
+  @media(max-width:960px){
+    .fcard.featured,.fcard.standard,.fcard.half { grid-column: span 12; }
+    .acard.wide,.acard.third { grid-column: span 12; }
+    .page-band-inner { padding-left: 24px; padding-right: 24px; }
+    .corner-tape,.corner-tape-2,.brush-zone,.logo-throw,.clapper-wrap { display: none; }
+    .pencil-divider img { display: none; }
+  }
   </style>
 </head>
 <body>
@@ -325,24 +483,9 @@
 
 <div class="page-band">
 
-  <!-- ── FLOATING PROPS ── -->
-  <div class="props-field" aria-hidden="true">
-    <!-- physical objects -->
-    <div class="prop p-reel">   <img src="assets/visual-work/FilmReel.png"              alt=""/></div>
-    <div class="prop p-clapper"><img src="assets/visual-work/ClapperBoard.png"           alt=""/></div>
-    <div class="prop p-tape">   <img src="assets/visual-work/HorizontalFilmTape.png"     alt=""/></div>
-    <div class="prop p-pencil"> <img src="assets/visual-work/HorizontalPencil.webp"      alt=""/></div>
-    <div class="prop p-brushes"><img src="assets/visual-work/CupOfUsedPaintBrushes.webp" alt=""/></div>
-    <div class="prop p-canon">  <img src="assets/visual-work/CanonT7i.png"               alt=""/></div>
-    <div class="prop p-lens">   <img src="assets/visual-work/CameraLenseCircle.png"      alt=""/></div>
-    <!-- adobe logos — thrown up higher, smaller -->
-    <div class="prop p-ps">     <img src="assets/visual-work/PhotoshopLogo.png"          alt=""/></div>
-    <div class="prop p-ae">     <img src="assets/visual-work/AfterEffectsLogo.png"       alt=""/></div>
-    <div class="prop p-pr">     <img src="assets/visual-work/PremiereProLogo.png"        alt=""/></div>
-    <div class="prop p-lr">     <img src="assets/visual-work/LightroomLogo.png"          alt=""/></div>
-    <div class="prop p-id">     <img src="assets/visual-work/InDesignLogo.png"           alt=""/></div>
-    <div class="prop p-ai">     <img src="assets/visual-work/IllustratorLogo.png"        alt=""/></div>
-  </div>
+  <!-- film tape corner triangle: two strips crossing in upper right -->
+  <div class="corner-tape"  aria-hidden="true"><img src="assets/visual-work/HorizontalFilmTape.png" alt=""/></div>
+  <div class="corner-tape-2" aria-hidden="true"><img src="assets/visual-work/HorizontalFilmTape.png" alt=""/></div>
 
   <div class="page-band-inner">
     <p class="page-eyebrow"><a href="index.html">Home</a> &nbsp;/&nbsp; Visual Work</p>
@@ -355,152 +498,197 @@
       <strong>Paranoid</strong> won Audience Favorite, Best Picture, and Best Director at the 2025 LASA Film Show at the Alamo Drafthouse. The <strong>Berlin Wall diorama</strong> took 1st at Regionals and 3rd at the Texas State German Contest. The rest taught things that don't fit on a trophy.
     </p>
 
-    <!-- ── FILM ── -->
-    <div class="art-section-label">Film &amp; <em>Video</em></div>
-    <div class="film-grid">
+    <!-- ── FILM SECTION ── -->
+    <div class="film-section-wrap">
 
-      <!-- PARANOID -->
-      <a href="paranoid.html" class="fcard featured">
-        <div class="fcard-thumb">
-          <img src="assets/paranoid/CinematicShotofPhroggerinAttic.jpg" alt="Paranoid — cinematic attic shot"/>
-          <div class="play-badge">&#9654;</div>
-          <div class="award-badge">3 Awards — Alamo Drafthouse 2025</div>
-        </div>
-        <div class="fcard-body">
-          <span class="fcard-arrow">&#8599;</span>
-          <span class="fcard-tag">Short Film &nbsp;·&nbsp; Director, Writer, Actor &nbsp;·&nbsp; 13:41</span>
-          <div class="fcard-title">PARANOID</div>
-          <p class="fcard-desc">Ariya lives alone. Things start moving on their own — a fallen painting, the cat gone, the attic camera blinking offline. She tells her landlord's son. He calls her dramatic. She tells a friend. He blames stress. She installs more cameras. Then she goes up into the attic herself. The film is really about what happens when no one believes a woman's account of her own experience, and then it turns out she was right the whole time.</p>
-        </div>
-      </a>
+      <div class="section-head">
+        <div class="section-head-title">Film &amp; <em>Video</em></div>
+      </div>
+      <div class="sweep-line"></div>
 
-      <!-- PERFECTLY ALONE -->
-      <a href="perfectly-alone.html" class="fcard standard">
-        <div class="fcard-thumb">
-          <img src="assets/perfectly-alone/PerfectlyAloneTitleImage.png" alt="Perfectly Alone — title card"/>
-          <div class="play-badge">&#9654;</div>
-        </div>
-        <div class="fcard-body">
-          <span class="fcard-arrow">&#8599;</span>
-          <span class="fcard-tag">Personal Essay Film &nbsp;·&nbsp; Director, Subject &nbsp;·&nbsp; 8 min</span>
-          <div class="fcard-title">PERFECTLY<br>ALONE</div>
-          <p class="fcard-desc">Getting into LASA. Spending freshman year addicted to being perfect. Late nights, piano practice I hated, a friend whose only interest in me was my answers on the homework. Then a recital where I messed up every single note and smiled through all of it. After that, grades actually got better.</p>
-        </div>
-      </a>
+      <div class="film-grid">
+        <!-- PARANOID -->
+        <a href="paranoid.html" class="fcard featured">
+          <div class="fcard-thumb">
+            <img src="assets/paranoid/CinematicShotofPhroggerinAttic.jpg" alt="Paranoid — cinematic attic shot"/>
+            <div class="play-badge">&#9654;</div>
+            <div class="award-badge">3 Awards — Alamo Drafthouse 2025</div>
+          </div>
+          <div class="fcard-body">
+            <span class="fcard-arrow">&#8599;</span>
+            <span class="fcard-tag">Short Film &nbsp;·&nbsp; Director, Writer, Actor &nbsp;·&nbsp; 13:41</span>
+            <div class="fcard-title">PARANOID</div>
+            <p class="fcard-desc">Ariya lives alone. Things start moving on their own — a fallen painting, the cat gone, the attic camera blinking offline. She tells her landlord's son. He calls her dramatic. She tells a friend. He blames stress. She installs more cameras. Then she goes up into the attic herself. The film is really about what happens when no one believes a woman's account of her own experience, and then it turns out she was right the whole time.</p>
+          </div>
+        </a>
 
-      <!-- FLEETING HOURS -->
-      <a href="fleeting-hours.html" class="fcard half">
-        <div class="fcard-thumb">
-          <img src="assets/fleeting-hours/ClicheStartWithAlarmClock.png" alt="Fleeting Hours — alarm clock"/>
-          <div class="play-badge">&#9654;</div>
-        </div>
-        <div class="fcard-body">
-          <span class="fcard-arrow">&#8599;</span>
-          <span class="fcard-tag">Micro Film &nbsp;·&nbsp; First Film &nbsp;·&nbsp; AVP Class</span>
-          <div class="fcard-title">FLEETING<br>HOURS</div>
-          <p class="fcard-desc">One day: Bach Prelude and Fugue No.2 on piano, pickleball with my dad, school computer work, math homework, piano again, sleep. The music plays the whole way through without stopping. My teacher gave a lecture on film clichés after I submitted it because I opened with an alarm clock going off. She was right.</p>
-        </div>
-      </a>
+        <!-- PERFECTLY ALONE -->
+        <a href="perfectly-alone.html" class="fcard standard">
+          <div class="fcard-thumb">
+            <img src="assets/perfectly-alone/PerfectlyAloneTitleImage.png" alt="Perfectly Alone title card"/>
+            <div class="play-badge">&#9654;</div>
+          </div>
+          <div class="fcard-body">
+            <span class="fcard-arrow">&#8599;</span>
+            <span class="fcard-tag">Personal Essay Film &nbsp;·&nbsp; Director, Subject &nbsp;·&nbsp; 8 min</span>
+            <div class="fcard-title">PERFECTLY<br>ALONE</div>
+            <p class="fcard-desc">Getting into LASA. Spending freshman year addicted to being perfect. Late nights, piano practice I hated, a friend whose only interest in me was my answers on the homework. Then a recital where I messed up every note and smiled through all of it. After that, grades actually got better.</p>
+          </div>
+        </a>
 
+        <!-- FLEETING HOURS -->
+        <a href="fleeting-hours.html" class="fcard half">
+          <div class="fcard-thumb">
+            <img src="assets/fleeting-hours/ClicheStartWithAlarmClock.png" alt="Fleeting Hours — alarm clock"/>
+            <div class="play-badge">&#9654;</div>
+          </div>
+          <div class="fcard-body">
+            <span class="fcard-arrow">&#8599;</span>
+            <span class="fcard-tag">Micro Film &nbsp;·&nbsp; First Film &nbsp;·&nbsp; AVP Class</span>
+            <div class="fcard-title">FLEETING<br>HOURS</div>
+            <p class="fcard-desc">One day: Bach Prelude and Fugue No.2 on piano, pickleball with my dad, school computer work, math homework, piano again, sleep. The music plays the whole way through without stopping. My teacher gave a lecture on film clichés after I submitted it because I opened with an alarm clock going off. She was right.</p>
+          </div>
+        </a>
+      </div><!-- /film-grid -->
+
+      <!-- paintbrush jar — peeks from behind the Paranoid/PA cards -->
+      <div class="brush-zone" aria-hidden="true">
+        <img src="assets/visual-work/CupOfUsedPaintBrushes.webp" alt=""/>
+      </div>
+
+      <!-- logos thrown up above the jar -->
+      <div class="logo-throw" aria-hidden="true">
+        <div class="logo-chip lc-ps"><img src="assets/visual-work/PhotoshopLogo.png"    width="44" alt=""/></div>
+        <div class="logo-chip lc-ae"><img src="assets/visual-work/AfterEffectsLogo.png" width="44" alt=""/></div>
+        <div class="logo-chip lc-pr"><img src="assets/visual-work/PremiereProLogo.png"  width="44" alt=""/></div>
+        <div class="logo-chip lc-lr"><img src="assets/visual-work/LightroomLogo.png"    width="40" alt=""/></div>
+        <div class="logo-chip lc-id"><img src="assets/visual-work/InDesignLogo.png"     width="40" alt=""/></div>
+        <div class="logo-chip lc-ai"><img src="assets/visual-work/IllustratorLogo.png"  width="40" alt=""/></div>
+      </div>
+
+      <!-- clapperboard diagonal, tucked next to Fleeting Hours -->
+      <div class="clapper-wrap" aria-hidden="true">
+        <img src="assets/visual-work/ClapperBoard.png" alt=""/>
+      </div>
+
+    </div><!-- /film-section-wrap -->
+
+    <!-- ── PENCIL DIVIDER ── -->
+    <div class="pencil-divider" aria-hidden="true">
+      <img src="assets/visual-work/HorizontalPencil.webp" alt="pencil line break"/>
     </div>
 
-    <!-- ── VISUAL ART ── -->
-    <div class="art-section-label">Visual <em>Art</em></div>
-    <div class="art-grid">
+    <!-- ── VISUAL ART SECTION ── -->
+    <div class="art-section-wrap">
+      <div class="section-head" style="margin-top:8px">
+        <div class="section-head-title">Visual <em>Art</em></div>
+      </div>
+      <div class="sweep-line"></div>
 
-      <!-- BERLIN WALL -->
-      <a href="berlin-wall.html" class="acard wide">
-        <div class="acard-tape"></div>
-        <div class="acard-bar" style="background:#c8a000"></div>
-        <div class="acard-img berlin-crop">
-          <img src="assets/berlin-wall/BerlinWallDioramaFinished.jpg" alt="Berlin Wall diorama finished — both sides and suspended ultralight"/>
-        </div>
-        <div class="acard-body">
-          <span class="acard-arrow">&#8599;</span>
-          <span class="acard-tag">Historical Diorama &nbsp;·&nbsp; 1st Place Sprachfest &nbsp;·&nbsp; 3rd Place Texas State</span>
-          <div class="acard-title">BERLIN WALL<br>DIORAMA</div>
-          <p class="acard-desc">The Bethke brothers escaped East Germany in 1989 by ultralight aircraft. The west side is painted murals and green grass. The east side is gray, bricked windows, litter. The death strip between them has real soil, barbed wire from floral wire, popsicle stick hedgehogs, and a raked sand strip. Above it all, a model Microlight Fox II hangs from a dowel: cold brew can nose cone, cardboard wings, LEGO and 3D printed wheels.</p>
-        </div>
-      </a>
+      <div class="art-grid">
 
-      <!-- SELF PORTRAIT -->
-      <a href="portrait.html" class="acard third">
-        <div class="acard-tape" style="left:38%"></div>
-        <div class="acard-bar" style="background:var(--accent)"></div>
-        <div class="acard-img">
-          <img src="assets/self-portrait/FInalComparisonWithRealPhoto.jpg" alt="Colored pencil self portrait on easel with reference photo"/>
-        </div>
-        <div class="acard-body">
-          <span class="acard-arrow">&#8599;</span>
-          <span class="acard-tag">Colored Pencil &nbsp;·&nbsp; Art 1</span>
-          <div class="acard-title">SELF<br>PORTRAIT</div>
-          <p class="acard-desc">Skin tone in colored pencil starts with dark purple, not peach. Then cool red, then peach blended on top. My teacher told me it didn't look realistic in progress. I kept going. She gave me extra credit when it was done.</p>
-        </div>
-      </a>
+        <!-- BERLIN WALL -->
+        <a href="berlin-wall.html" class="acard wide">
+          <div class="acard-tape"></div>
+          <div class="acard-bar" style="background:#c8a000"></div>
+          <div class="acard-img berlin-crop">
+            <img src="assets/berlin-wall/BerlinWallDioramaFinished.jpg" alt="Berlin Wall diorama finished"/>
+          </div>
+          <div class="acard-body">
+            <span class="acard-arrow">&#8599;</span>
+            <span class="acard-tag">Historical Diorama &nbsp;·&nbsp; 1st Place Sprachfest &nbsp;·&nbsp; 3rd Place Texas State</span>
+            <div class="acard-title">BERLIN WALL<br>DIORAMA</div>
+            <p class="acard-desc">The Bethke brothers escaped East Germany in 1989 by ultralight aircraft. The west side is painted murals and green grass. The east side is gray, bricked windows, litter. The death strip has real soil, barbed wire from floral wire, popsicle stick hedgehogs, a raked sand strip. Above it all, a model Microlight Fox II hangs from a dowel: cold brew can nose cone, cardboard wings, LEGO and 3D printed wheels.</p>
+          </div>
+        </a>
 
-      <!-- LINOLEUM -->
-      <a href="linoleum.html" class="acard third">
-        <div class="acard-tape" style="left:62%;transform:translateX(-50%) rotate(1.8deg)"></div>
-        <div class="acard-bar" style="background:var(--blue-ink)"></div>
-        <div class="acard-img">
-          <img src="assets/linoleum-carving/TestPrint10FullTortoiseBlackAndWhite.jpg" alt="Tortoise Island linoleum print — black ink on white"/>
-        </div>
-        <div class="acard-body">
-          <span class="acard-arrow">&#8599;</span>
-          <span class="acard-tag">Printmaking &nbsp;·&nbsp; Art 1</span>
-          <div class="acard-title">TORTOISE<br>ISLAND</div>
-          <p class="acard-desc">A tortoise carrying a garden ecosystem on its shell. Carved during 10 straight lunch periods when the deadline arrived and the block was still blank. Submitted four times. Grades went 60, 75, 90, then 95.</p>
-        </div>
-      </a>
+        <!-- SELF PORTRAIT -->
+        <a href="portrait.html" class="acard third">
+          <div class="acard-tape" style="left:38%"></div>
+          <div class="acard-bar" style="background:var(--accent)"></div>
+          <div class="acard-img">
+            <img src="assets/self-portrait/FInalComparisonWithRealPhoto.jpg" alt="Colored pencil self portrait with reference photo"/>
+          </div>
+          <div class="acard-body">
+            <span class="acard-arrow">&#8599;</span>
+            <span class="acard-tag">Colored Pencil &nbsp;·&nbsp; Art 1</span>
+            <div class="acard-title">SELF<br>PORTRAIT</div>
+            <p class="acard-desc">Skin tone in colored pencil starts with dark purple, not peach. Then cool red, then peach blended on top. My teacher told me it didn't look realistic in progress. I kept going. She gave me extra credit when it was done.</p>
+          </div>
+        </a>
 
-      <!-- KOI BOWL -->
-      <a href="koi-bowl.html" class="acard third">
-        <div class="acard-tape" style="left:44%"></div>
-        <div class="acard-bar" style="background:#1a6e72"></div>
-        <div class="acard-img koi-crop">
-          <img src="assets/koi-bowl/BlueGlazeBottom.jpg" alt="Koi fish bowl — bottom view showing yin-yang base"/>
-        </div>
-        <div class="acard-body">
-          <span class="acard-arrow">&#8599;</span>
-          <span class="acard-tag">Ceramics &nbsp;·&nbsp; Austin Empty Bowl Project</span>
-          <div class="acard-title">KOI FISH<br>BOWL</div>
-          <p class="acard-desc">Hand-sculpted red clay for the Austin Empty Bowl Project. Koi loop around the outside in glaze. Yin-yangs on the interior and exterior base. The glazes overlapped during firing and blurred the outlines. It ended up a better object for it.</p>
-        </div>
-      </a>
+        <!-- LINOLEUM -->
+        <a href="linoleum.html" class="acard third">
+          <div class="acard-tape" style="left:62%;transform:translateX(-50%) rotate(1.8deg)"></div>
+          <div class="acard-bar" style="background:var(--blue-ink)"></div>
+          <div class="acard-img">
+            <img src="assets/linoleum-carving/TestPrint10FullTortoiseBlackAndWhite.jpg" alt="Tortoise Island linoleum print"/>
+          </div>
+          <div class="acard-body">
+            <span class="acard-arrow">&#8599;</span>
+            <span class="acard-tag">Printmaking &nbsp;·&nbsp; Art 1</span>
+            <div class="acard-title">TORTOISE<br>ISLAND</div>
+            <p class="acard-desc">A tortoise carrying a garden ecosystem on its shell. Carved during 10 straight lunch periods when the deadline arrived and the block was still blank. Submitted four times. Grades went 60, 75, 90, then 95.</p>
+          </div>
+        </a>
 
-      <!-- E MAGAZINE -->
-      <a href="e-magazine.html" class="acard third">
-        <div class="acard-tape" style="left:60%;transform:translateX(-50%) rotate(-1.4deg)"></div>
-        <div class="acard-bar" style="background:#2d3a5a"></div>
-        <div class="acard-img">
-          <img src="assets/e-magazine/ModernPaletteFrontcover.png" alt="The Modern Palette Spring 2024 front cover"/>
-        </div>
-        <div class="acard-body">
-          <span class="acard-arrow">&#8599;</span>
-          <span class="acard-tag">Journalism &nbsp;·&nbsp; Design &nbsp;·&nbsp; Spring 2024</span>
-          <div class="acard-title">THE MODERN<br>PALETTE</div>
-          <p class="acard-desc">A four-page feature on whether architecture is art, built around three Austin architects who all answer the question differently. Cold-emailed the firms, arranged the meetings, showed up, took the photos, wrote the article. No adult guidance.</p>
-        </div>
-      </a>
+        <!-- KOI BOWL -->
+        <a href="koi-bowl.html" class="acard third">
+          <div class="acard-tape" style="left:44%"></div>
+          <div class="acard-bar" style="background:#1a6e72"></div>
+          <div class="acard-img koi-crop">
+            <img src="assets/koi-bowl/BlueGlazeBottom.jpg" alt="Koi fish bowl — yin-yang base"/>
+          </div>
+          <div class="acard-body">
+            <span class="acard-arrow">&#8599;</span>
+            <span class="acard-tag">Ceramics &nbsp;·&nbsp; Austin Empty Bowl Project</span>
+            <div class="acard-title">KOI FISH<br>BOWL</div>
+            <p class="acard-desc">Hand-sculpted red clay for the Austin Empty Bowl Project. Koi loop around the outside in glaze. Yin-yangs on the interior and exterior base. The glazes overlapped during firing and blurred the outlines. It ended up a better object for it.</p>
+          </div>
+        </a>
 
-      <!-- MINECRAFT DOOR -->
-      <a href="minecraft-door.html" class="acard third">
-        <div class="acard-tape" style="left:40%;transform:translateX(-50%) rotate(1.1deg)"></div>
-        <div class="acard-bar" style="background:#2d6e3a"></div>
-        <div class="acard-img">
-          <img src="assets/minecraft/FinishedRealLifeSpruceDoor.jpg" alt="Bedroom door painted as Minecraft spruce door"/>
-        </div>
-        <div class="acard-body">
-          <span class="acard-arrow">&#8599;</span>
-          <span class="acard-tag">Painting &nbsp;·&nbsp; Minecraft &nbsp;·&nbsp; Age 5 to Now</span>
-          <div class="acard-title">MINECRAFT<br>10 YEARS</div>
-          <p class="acard-desc">Started at age 5 because my older brother played. By 10 I'd built a working iPhone in command blocks. Now there's a medieval city, a full farm network across three dimensions, and a bedroom door painted grid by grid to match the spruce door texture.</p>
-        </div>
-      </a>
+        <!-- E MAGAZINE -->
+        <a href="e-magazine.html" class="acard third">
+          <div class="acard-tape" style="left:60%;transform:translateX(-50%) rotate(-1.4deg)"></div>
+          <div class="acard-bar" style="background:#2d3a5a"></div>
+          <div class="acard-img palette-crop">
+            <img src="assets/e-magazine/ModernPaletteFrontcover.png" alt="The Modern Palette Spring 2024 cover"/>
+          </div>
+          <div class="acard-body">
+            <span class="acard-arrow">&#8599;</span>
+            <span class="acard-tag">Journalism &nbsp;·&nbsp; Design &nbsp;·&nbsp; Spring 2024</span>
+            <div class="acard-title">THE MODERN<br>PALETTE</div>
+            <p class="acard-desc">A four-page feature on whether architecture is art, built around three Austin architects who all answer the question differently. Cold-emailed the firms, arranged the meetings, showed up, took the photos, wrote the article. No adult guidance.</p>
+          </div>
+        </a>
 
-    </div>
-  </div>
-</div>
+        <!-- MINECRAFT -->
+        <a href="minecraft-door.html" class="acard third">
+          <div class="acard-tape" style="left:40%;transform:translateX(-50%) rotate(1.1deg)"></div>
+          <div class="acard-bar" style="background:#2d6e3a"></div>
+          <div class="acard-img" style="padding:0">
+            <div class="minecraft-split">
+              <div class="ms-door">
+                <img src="assets/minecraft/FinishedRealLifeSpruceDoor.jpg" alt="Minecraft spruce door painted on bedroom door"/>
+              </div>
+              <div class="ms-city">
+                <img src="assets/minecraft/MinecraftMedievalCity.png" alt="Minecraft medieval city aerial"/>
+              </div>
+            </div>
+          </div>
+          <div class="acard-body">
+            <span class="acard-arrow">&#8599;</span>
+            <span class="acard-tag">Painting &nbsp;·&nbsp; Minecraft &nbsp;·&nbsp; Age 5 to Now</span>
+            <div class="acard-title">MINECRAFT<br>10 YEARS</div>
+            <p class="acard-desc">Started at age 5 because my older brother played. By 10 I'd built a working iPhone in command blocks. Now there's a medieval city, a full farm network across three dimensions, and a bedroom door painted grid by grid to match the spruce door texture.</p>
+          </div>
+        </a>
+
+      </div><!-- /art-grid -->
+    </div><!-- /art-section-wrap -->
+
+  </div><!-- /page-band-inner -->
+</div><!-- /page-band -->
 
 <footer>
   <div class="footer-copy">© 2026 <em>Luke Jurbergs</em></div>
@@ -522,7 +710,7 @@
       io.unobserve(e.target);
     });
   }, { threshold: 0.07 });
-  document.querySelectorAll('.fcard, .acard, .art-section-label, .reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.fcard,.acard,.sweep-line,.reveal').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
