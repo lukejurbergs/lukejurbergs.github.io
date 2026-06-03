@@ -39,14 +39,6 @@
     from { transform: translateY(120px); opacity: 0; }
     to   { transform: translateY(0);     opacity: 1; }
   }
-  /* single logo thrown from jar mouth, arcs up and fades */
-  @keyframes logoArc {
-    0%   { opacity: 0;    transform: translate(0, 0)                               rotate(0deg)       scale(0.6); }
-    12%  { opacity: 1; }
-    60%  { opacity: 1;    transform: translate(var(--tx), var(--ty))               rotate(var(--tr))  scale(1); }
-    88%  { opacity: 0.8; }
-    100% { opacity: 0;    transform: translate(var(--tx), calc(var(--ty) - 24px))  rotate(var(--tr))  scale(1); }
-  }
 
   /* ── HEADER TEXT ── */
   .page-eyebrow {
@@ -77,56 +69,6 @@
     position: relative; z-index: 4;
   }
   .page-intro strong { color: var(--ink); font-weight: 400; }
-
-  /* ─────────────────────────────────────────────────────
-     FILM TAPE — two simple vertical strips in top-right
-     Using a wrapper that's just a thin tall strip; image
-     tiles or stretches naturally within it via object-fit.
-  ───────────────────────────────────────────────────── */
-  .tape-strip {
-    position: absolute;
-    top: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-  }
-  .tape-strip img {
-    display: block;
-    height: 100%;
-    width: auto;
-    /* rotate the horizontal strip 90deg inside the container */
-    transform-origin: top left;
-  }
-
-  /* Strip A: rightmost, runs full page height */
-  .tape-a {
-    right: 0;
-    width: 48px;
-    height: 100vh;
-    opacity: 0.20;
-  }
-  .tape-a img {
-    width: 100vh; /* after rotate this becomes the height */
-    height: 48px;
-    transform: rotate(90deg) translateY(-48px);
-    max-width: none;
-  }
-
-  /* Strip B: 64px inset, slightly angled, shorter */
-  .tape-b {
-    right: 60px;
-    width: 36px;
-    height: 60vh;
-    opacity: 0.12;
-    transform: rotate(4deg);
-    transform-origin: top right;
-  }
-  .tape-b img {
-    width: 60vh;
-    height: 36px;
-    transform: rotate(90deg) translateY(-36px);
-    max-width: none;
-  }
 
   /* ─────────────────────────────────────────────────────
      FILM SECTION WRAPPER — position:relative so props inside
@@ -161,26 +103,21 @@
        right: -20px (slightly outside the content edge, overlapping PA card right side)
   ───────────────────────────────────────────────────── */
   /*
-     BRUSH JAR: tripled from 360px → 1080px wide.
-     At 1080px wide the jar image (roughly square) is ~1200px tall.
-     We want the jar body hidden behind cards, brushes peeking up.
-     The Paranoid card top is ~57px from film-section-wrap top.
-     We want brushes to fill from ~-500px (above section, in title whitespace)
-     down to ~200px into the card.
-     So: top = 57px - (brushes portion ~550px) = -493px ≈ -500px
-     Move left enough to not clip off left edge of page:
-       content starts at 112px from viewport left.
-       right: -400px pushes jar far enough left that it spans the right portion.
-       Jar center lands roughly over the PA card + right edge area.
+     BRUSH JAR: 800px wide (reduced from 1080 to give logos room above).
+     Jar image ratio ~1:1.1 → ~880px tall at 800px wide.
+     top: -380px → brushes fill from 380px above the film section top
+          into the title/intro whitespace on the right side.
+     right: -260px → shifts jar left so it spans from 260px off right edge
+          to 540px into content, covering PA card area and beyond.
   */
   .brush-zone {
     position: absolute;
-    top: -500px;
-    right: -400px;
-    width: 1080px;
+    top: -380px;
+    right: -260px;
+    width: 800px;
     z-index: 1;
     pointer-events: none;
-    transform: translateY(180px);
+    transform: translateY(140px);
     opacity: 0;
     transition: transform 1.1s cubic-bezier(.22,1,.36,1), opacity 0.8s ease;
   }
@@ -191,20 +128,21 @@
   .brush-zone img { width: 100%; height: auto; display: block; }
 
   /*
-     LOGO THROW ZONE
-     The jar mouth (top of the jar image) is roughly at:
-       brush-zone top (-500px) + ~18% of jar height (~1200px * 0.18 = 216px) = -284px from wrap top
-     Logo-throw sits anchored to that jar mouth, slightly to the left of jar center.
-     Jar center horizontally: right:-400px, width:1080px → center is at right: -400 + 540 = right:140px
-     → left: content_width - 140px. We'll use right:140px to mirror that.
-     Logo-throw width: 520px, height: 400px — wide enough for logos to scatter.
+     LOGO THROW — sits ABOVE the brush jar, in the open whitespace
+     beside the VISUAL WORK title.
+     Jar mouth (top of brushes) ≈ top: -380px + 15% of 880px ≈ -380 + 132 = -248px from wrap top.
+     Logo-throw sits above that: top: -700px, so logos arc DOWN from their
+     thrown peak into the space above the jar.
+     Jar horizontal center: right:-260px, width:800px → center at right: -260+400 = right:140px
+     Logo-throw right:100px keeps it roughly centered over the jar mouth.
+     Width:500px, height:380px — large enough for wide scatter.
   */
   .logo-throw {
     position: absolute;
-    top: -680px;      /* above jar mouth, into title whitespace */
-    right: 140px;     /* centered over jar mouth horizontally */
-    width: 520px;
-    height: 420px;
+    top: -700px;
+    right: 100px;
+    width: 500px;
+    height: 380px;
     z-index: 5;
     pointer-events: none;
   }
@@ -213,22 +151,58 @@
     bottom: 0;
     opacity: 0;
   }
-  .logos-fired .logo-chip {
-    animation: logoArc 3.8s ease-out infinite;
-  }
-  .logo-chip img { display: block; border-radius: 10px; box-shadow: 0 4px 18px rgba(0,0,0,0.28); }
+  .logo-chip img { display: block; border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
 
   /*
-     Logos scatter from the jar mouth (bottom-center of logo-throw zone).
-     Jar mouth is roughly at horizontal center of the zone → ~260px from left.
-     Logos start clustered near that center and arc outward.
+     ONE-SHOT animation on scroll: JS adds .logos-fired which sets
+     animation-fill-mode: forwards so logos land and stay visible.
+     Each logo has its own keyframe name so they can all run once independently.
   */
-  .lc-ps { width:58px; left:220px; --tx:  80px; --ty:-300px; --tr:-22deg; animation-delay:0.0s;  }
-  .lc-ae { width:58px; left:270px; --tx: -30px; --ty:-370px; --tr: 20deg; animation-delay:0.55s; }
-  .lc-pr { width:58px; left:180px; --tx: 140px; --ty:-250px; --tr:-38deg; animation-delay:1.1s;  }
-  .lc-lr { width:52px; left:310px; --tx: -90px; --ty:-320px; --tr: 32deg; animation-delay:1.65s; }
-  .lc-id { width:52px; left:240px; --tx:  50px; --ty:-340px; --tr:-16deg; animation-delay:2.2s;  }
-  .lc-ai { width:52px; left:200px; --tx: -70px; --ty:-280px; --tr: 44deg; animation-delay:2.75s; }
+  @keyframes throw0 {
+    0%  { opacity:0; transform:translate(0,0) rotate(0deg) scale(0.5); }
+    10% { opacity:1; }
+    100%{ opacity:1; transform:translate(var(--tx),var(--ty)) rotate(var(--tr)) scale(1); }
+  }
+  @keyframes throw1 {
+    0%  { opacity:0; transform:translate(0,0) rotate(0deg) scale(0.5); }
+    10% { opacity:1; }
+    100%{ opacity:1; transform:translate(var(--tx),var(--ty)) rotate(var(--tr)) scale(1); }
+  }
+  @keyframes throw2 {
+    0%  { opacity:0; transform:translate(0,0) rotate(0deg) scale(0.5); }
+    10% { opacity:1; }
+    100%{ opacity:1; transform:translate(var(--tx),var(--ty)) rotate(var(--tr)) scale(1); }
+  }
+  @keyframes throw3 {
+    0%  { opacity:0; transform:translate(0,0) rotate(0deg) scale(0.5); }
+    10% { opacity:1; }
+    100%{ opacity:1; transform:translate(var(--tx),var(--ty)) rotate(var(--tr)) scale(1); }
+  }
+  @keyframes throw4 {
+    0%  { opacity:0; transform:translate(0,0) rotate(0deg) scale(0.5); }
+    10% { opacity:1; }
+    100%{ opacity:1; transform:translate(var(--tx),var(--ty)) rotate(var(--tr)) scale(1); }
+  }
+  @keyframes throw5 {
+    0%  { opacity:0; transform:translate(0,0) rotate(0deg) scale(0.5); }
+    10% { opacity:1; }
+    100%{ opacity:1; transform:translate(var(--tx),var(--ty)) rotate(var(--tr)) scale(1); }
+  }
+
+  /* Logos bigger (68–72px), scattered across the 500px wide zone */
+  .lc-ps { width:70px; left:240px; bottom:20px; --tx: 100px; --ty:-280px; --tr:-25deg; }
+  .lc-ae { width:70px; left:290px; bottom:10px; --tx: -20px; --ty:-340px; --tr: 22deg; }
+  .lc-pr { width:70px; left:200px; bottom:30px; --tx: 170px; --ty:-230px; --tr:-42deg; }
+  .lc-lr { width:64px; left:340px; bottom:15px; --tx:-100px; --ty:-300px; --tr: 35deg; }
+  .lc-id { width:64px; left:260px; bottom:25px; --tx:  60px; --ty:-320px; --tr:-18deg; }
+  .lc-ai { width:64px; left:210px; bottom:35px; --tx: -80px; --ty:-260px; --tr: 48deg; }
+
+  .logos-fired .lc-ps { animation: throw0 0.7s cubic-bezier(.2,.8,.4,1) 0.00s forwards; }
+  .logos-fired .lc-ae { animation: throw1 0.7s cubic-bezier(.2,.8,.4,1) 0.18s forwards; }
+  .logos-fired .lc-pr { animation: throw2 0.7s cubic-bezier(.2,.8,.4,1) 0.36s forwards; }
+  .logos-fired .lc-lr { animation: throw3 0.7s cubic-bezier(.2,.8,.4,1) 0.54s forwards; }
+  .logos-fired .lc-id { animation: throw4 0.7s cubic-bezier(.2,.8,.4,1) 0.72s forwards; }
+  .logos-fired .lc-ai { animation: throw5 0.7s cubic-bezier(.2,.8,.4,1) 0.90s forwards; }
 
   /* ─────────────────────────────────────────────────────
      CLAPPERBOARD
@@ -396,7 +370,7 @@
   .acard:hover .acard-img.koi-crop img { transform: scale(1.44); }
 
   /* Berlin: show upper portion of diorama */
-  .acard-img.berlin-crop img { object-position: center 25%; }
+  .acard-img.berlin-crop img { object-position: center 100%; }
 
   /* Modern Palette: show top of cover */
   .acard-img.palette-crop img { object-position: center 5%; }
@@ -414,7 +388,7 @@
     transition: transform 0.45s cubic-bezier(.22,1,.36,1);
   }
   .minecraft-split .ms-door img { object-position: 50% 40%; transform: scale(1.15); }
-  .minecraft-split .ms-city img { object-position: 30% 20%; transform: scale(1.2); }
+  .minecraft-split .ms-city img { object-position: 25% 15%; transform: scale(1.6); }
   .acard:hover .minecraft-split .ms-door img { transform: scale(1.22); filter: sepia(0) contrast(1); }
   .acard:hover .minecraft-split .ms-city img { transform: scale(1.26); filter: sepia(0) contrast(1); }
   .minecraft-split .ms-door::after {
@@ -453,7 +427,7 @@
     .fcard.featured,.fcard.standard,.fcard.half{grid-column:span 12}
     .acard.wide,.acard.third{grid-column:span 12}
     .page-band-inner{padding-left:24px;padding-right:24px}
-    .tape-a,.tape-b,.brush-zone,.logo-throw,.clapper-wrap{display:none}
+    .brush-zone,.logo-throw,.clapper-wrap{display:none}
   }
   </style>
 </head>
@@ -470,14 +444,6 @@
 </nav>
 
 <div class="page-band">
-
-  <!-- Film tape: two vertical strips in top-right corner -->
-  <div class="tape-strip tape-a" aria-hidden="true">
-    <img src="assets/visual-work/HorizontalFilmTape.png" alt=""/>
-  </div>
-  <div class="tape-strip tape-b" aria-hidden="true">
-    <img src="assets/visual-work/HorizontalFilmTape.png" alt=""/>
-  </div>
 
   <div class="page-band-inner">
     <p class="page-eyebrow"><a href="index.html">Home</a> &nbsp;/&nbsp; Visual Work</p>
