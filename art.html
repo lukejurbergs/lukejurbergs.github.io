@@ -160,18 +160,29 @@
        top: -120px  (brushes appear ~120px above the card top into the whitespace)
        right: -20px (slightly outside the content edge, overlapping PA card right side)
   ───────────────────────────────────────────────────── */
+  /*
+     BRUSH JAR: tripled from 360px → 1080px wide.
+     At 1080px wide the jar image (roughly square) is ~1200px tall.
+     We want the jar body hidden behind cards, brushes peeking up.
+     The Paranoid card top is ~57px from film-section-wrap top.
+     We want brushes to fill from ~-500px (above section, in title whitespace)
+     down to ~200px into the card.
+     So: top = 57px - (brushes portion ~550px) = -493px ≈ -500px
+     Move left enough to not clip off left edge of page:
+       content starts at 112px from viewport left.
+       right: -400px pushes jar far enough left that it spans the right portion.
+       Jar center lands roughly over the PA card + right edge area.
+  */
   .brush-zone {
     position: absolute;
-    top: -120px;
-    right: -20px;
-    width: 360px;
-    /* z-index 1 = in front of background but behind cards (cards are z:2 via film-grid) */
+    top: -500px;
+    right: -400px;
+    width: 1080px;
     z-index: 1;
     pointer-events: none;
-    /* starts hidden below, JS adds .brush-animated to trigger pop-up */
-    transform: translateY(100px);
+    transform: translateY(180px);
     opacity: 0;
-    transition: transform 0.9s cubic-bezier(.22,1,.36,1), opacity 0.7s ease;
+    transition: transform 1.1s cubic-bezier(.22,1,.36,1), opacity 0.8s ease;
   }
   .brush-zone.brush-animated {
     transform: translateY(0);
@@ -179,42 +190,45 @@
   }
   .brush-zone img { width: 100%; height: auto; display: block; }
 
-  /* ─────────────────────────────────────────────────────
+  /*
      LOGO THROW ZONE
-     Positioned above the brush jar mouth — logos fly up
-     from the jar into the whitespace to the right of the title.
-     The jar mouth (top of jar) is at:
-       top: -120px + ~60px (top portion of jar) = -60px from wrap top
-       = roughly 460px from page top (after 120px page-top padding + header text ~340px)
-     Logo-throw sits at the same right:, but higher (top: -280px from wrap)
-  ───────────────────────────────────────────────────── */
+     The jar mouth (top of the jar image) is roughly at:
+       brush-zone top (-500px) + ~18% of jar height (~1200px * 0.18 = 216px) = -284px from wrap top
+     Logo-throw sits anchored to that jar mouth, slightly to the left of jar center.
+     Jar center horizontally: right:-400px, width:1080px → center is at right: -400 + 540 = right:140px
+     → left: content_width - 140px. We'll use right:140px to mirror that.
+     Logo-throw width: 520px, height: 400px — wide enough for logos to scatter.
+  */
   .logo-throw {
     position: absolute;
-    top: -280px;
-    right: 0;
-    width: 380px;
-    height: 280px;
+    top: -680px;      /* above jar mouth, into title whitespace */
+    right: 140px;     /* centered over jar mouth horizontally */
+    width: 520px;
+    height: 420px;
     z-index: 5;
     pointer-events: none;
   }
   .logo-chip {
     position: absolute;
-    bottom: 0;   /* logos originate from bottom of zone = jar mouth area */
+    bottom: 0;
     opacity: 0;
   }
-  /* Scroll-triggered: JS adds .logos-fired class to .logo-throw */
   .logos-fired .logo-chip {
     animation: logoArc 3.8s ease-out infinite;
   }
-  .logo-chip img { display: block; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+  .logo-chip img { display: block; border-radius: 10px; box-shadow: 0 4px 18px rgba(0,0,0,0.28); }
 
-  /* Each logo: unique start position, arc destination, rotation, delay */
-  .lc-ps { width:50px; left:200px; --tx: 60px;  --ty:-210px; --tr:-22deg; animation-delay:0.0s; }
-  .lc-ae { width:50px; left:240px; --tx:-10px;  --ty:-260px; --tr: 18deg; animation-delay:0.55s; }
-  .lc-pr { width:50px; left:170px; --tx: 90px;  --ty:-170px; --tr:-35deg; animation-delay:1.1s; }
-  .lc-lr { width:46px; left:290px; --tx:-40px;  --ty:-220px; --tr: 28deg; animation-delay:1.65s; }
-  .lc-id { width:46px; left:220px; --tx: 30px;  --ty:-240px; --tr:-14deg; animation-delay:2.2s; }
-  .lc-ai { width:46px; left:260px; --tx:-60px;  --ty:-190px; --tr: 40deg; animation-delay:2.75s; }
+  /*
+     Logos scatter from the jar mouth (bottom-center of logo-throw zone).
+     Jar mouth is roughly at horizontal center of the zone → ~260px from left.
+     Logos start clustered near that center and arc outward.
+  */
+  .lc-ps { width:58px; left:220px; --tx:  80px; --ty:-300px; --tr:-22deg; animation-delay:0.0s;  }
+  .lc-ae { width:58px; left:270px; --tx: -30px; --ty:-370px; --tr: 20deg; animation-delay:0.55s; }
+  .lc-pr { width:58px; left:180px; --tx: 140px; --ty:-250px; --tr:-38deg; animation-delay:1.1s;  }
+  .lc-lr { width:52px; left:310px; --tx: -90px; --ty:-320px; --tr: 32deg; animation-delay:1.65s; }
+  .lc-id { width:52px; left:240px; --tx:  50px; --ty:-340px; --tr:-16deg; animation-delay:2.2s;  }
+  .lc-ai { width:52px; left:200px; --tx: -70px; --ty:-280px; --tr: 44deg; animation-delay:2.75s; }
 
   /* ─────────────────────────────────────────────────────
      CLAPPERBOARD
