@@ -139,10 +139,10 @@
   */
   .logo-throw {
     position: absolute;
-    top: -350px;      /* much lower — sits near the intro text, not floating high above */
-    right: 80px;
+    top: -760px;      /* high enough that the tallest logo (-560px) reaches near page top */
+    right: 280px;     /* further left */
     width: 520px;
-    height: 600px;    /* tall zone so logos can spread far vertically */
+    height: 600px;
     z-index: 5;
     pointer-events: none;
   }
@@ -194,12 +194,12 @@
      --ty ranges: -80px (lowest, stays near jar) to -560px (highest, near title).
      440px of vertical spread. --tx ranges: -200px to +210px horizontal scatter.
   */
-  .lc-ps { width:100px; left:210px; bottom:10px; --tx: 210px;  --ty: -90px; --tr:-30deg; }
-  .lc-ae { width:100px; left:210px; bottom:10px; --tx: -60px;  --ty:-480px; --tr: 20deg; }
-  .lc-pr { width:100px; left:210px; bottom:10px; --tx: 180px;  --ty:-300px; --tr:-48deg; }
-  .lc-lr { width: 92px; left:210px; bottom:10px; --tx:-200px;  --ty:-180px; --tr: 40deg; }
-  .lc-id { width: 92px; left:210px; bottom:10px; --tx:  70px;  --ty:-560px; --tr:-16deg; }
-  .lc-ai { width: 92px; left:210px; bottom:10px; --tx:-160px;  --ty:-390px; --tr: 55deg; }
+  .lc-ps { width:80px; left:210px; bottom:10px; --tx: 210px;  --ty: -90px; --tr:-30deg; }
+  .lc-ae { width:80px; left:210px; bottom:10px; --tx: -60px;  --ty:-480px; --tr: 20deg; }
+  .lc-pr { width:80px; left:210px; bottom:10px; --tx: 180px;  --ty:-300px; --tr:-48deg; }
+  .lc-lr { width:74px; left:210px; bottom:10px; --tx:-200px;  --ty:-180px; --tr: 40deg; }
+  .lc-id { width:74px; left:210px; bottom:10px; --tx:  70px;  --ty:-560px; --tr:-16deg; }
+  .lc-ai { width:74px; left:210px; bottom:10px; --tx:-160px;  --ty:-390px; --tr: 55deg; }
 
   .logos-fired .lc-ps { animation: throw0 0.8s cubic-bezier(.2,.8,.4,1) 0.00s forwards; }
   .logos-fired .lc-ae { animation: throw1 0.8s cubic-bezier(.2,.8,.4,1) 0.20s forwards; }
@@ -523,12 +523,12 @@
 
       <!-- LOGOS — scroll-triggered throw animation, z:5 (above everything) -->
       <div class="logo-throw" id="logo-throw" aria-hidden="true">
-        <div class="logo-chip lc-ps"><img src="assets/visual-work/PhotoshopLogo.png"    width="100" alt=""/></div>
-        <div class="logo-chip lc-ae"><img src="assets/visual-work/AfterEffectsLogo.png" width="100" alt=""/></div>
-        <div class="logo-chip lc-pr"><img src="assets/visual-work/PremiereProLogo.png"  width="100" alt=""/></div>
-        <div class="logo-chip lc-lr"><img src="assets/visual-work/LightroomLogo.png"    width="92" alt=""/></div>
-        <div class="logo-chip lc-id"><img src="assets/visual-work/InDesignLogo.png"     width="92" alt=""/></div>
-        <div class="logo-chip lc-ai"><img src="assets/visual-work/IllustratorLogo.png"  width="92" alt=""/></div>
+        <div class="logo-chip lc-ps"><img src="assets/visual-work/PhotoshopLogo.png"    width="80" alt=""/></div>
+        <div class="logo-chip lc-ae"><img src="assets/visual-work/AfterEffectsLogo.png" width="80" alt=""/></div>
+        <div class="logo-chip lc-pr"><img src="assets/visual-work/PremiereProLogo.png"  width="80" alt=""/></div>
+        <div class="logo-chip lc-lr"><img src="assets/visual-work/LightroomLogo.png"    width="74" alt=""/></div>
+        <div class="logo-chip lc-id"><img src="assets/visual-work/InDesignLogo.png"     width="74" alt=""/></div>
+        <div class="logo-chip lc-ai"><img src="assets/visual-work/IllustratorLogo.png"  width="74" alt=""/></div>
       </div>
 
       <!-- CLAPPERBOARD — in the empty right half of the Fleeting Hours row -->
